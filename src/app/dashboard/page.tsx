@@ -145,7 +145,7 @@ export default function Dashboard() {
   const handleStartSession = async (type: 'review' | 'discovery' | 'deep-dive') => {
     if (!currentDeck) {
       alert('Please select a deck first!')
-      window.location.href = '/'
+      setShowDeckSelection(true)
       return
     }
 
@@ -197,9 +197,21 @@ export default function Dashboard() {
     })
   }
 
+  const [showDeckSelection, setShowDeckSelection] = useState(false)
+
   const goBackToDeckSelection = () => {
     localStorage.removeItem('selectedDeck')
-    window.location.href = '/'
+    setCurrentDeck(null)
+    setShowDeckSelection(true)
+  }
+
+  const selectDeck = (deck: any) => {
+    localStorage.setItem('selectedDeck', JSON.stringify(deck))
+    setCurrentDeck(deck)
+    setShowDeckSelection(false)
+    // Load deck data with mock user
+    const mockUserId = '00000000-0000-0000-0000-000000000000'
+    loadDeckData(deck.id, mockUserId)
   }
 
   if (loading) {
@@ -210,12 +222,74 @@ export default function Dashboard() {
     )
   }
 
-  if (!currentDeck) {
+  if (!currentDeck || showDeckSelection) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h2 className="text-xl mb-4">No deck selected</h2>
-          <Button onClick={goBackToDeckSelection}>Choose a Deck</Button>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Polyglot Vocabulary Trainer</h1>
+                <p className="text-gray-600">Choose your language deck to get started</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="container mx-auto p-6 max-w-6xl">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Choose Your Language Deck
+            </h2>
+            <p className="text-lg text-gray-600">
+              Select a vocabulary deck to start your learning journey
+            </p>
+          </div>
+
+          {availableDecks.length === 0 ? (
+            <div className="text-center py-12">
+              <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No Decks Available</h3>
+              <p className="text-gray-600">
+                Vocabulary decks will appear here once they're added to the system.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {availableDecks.map((deck) => (
+                <Card 
+                  key={deck.id} 
+                  className="cursor-pointer hover:shadow-lg transition-shadow duration-200 card-enhanced"
+                  onClick={() => selectDeck(deck)}
+                >
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <BookOpen className="h-5 w-5 text-blue-600" />
+                        <CardTitle className="text-lg">{deck.name}</CardTitle>
+                      </div>
+                      <span className={`px-2 py-1 text-xs rounded-full ${
+                        deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-800' :
+                        deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                        deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-800' :
+                        'bg-red-100 text-red-800'
+                      }`}>
+                        {deck.difficulty_level}
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-600 mb-4">{deck.description}</p>
+                    <div className="flex items-center justify-between text-sm text-gray-500">
+                      <span>{deck.language_a_name} → {deck.language_b_name}</span>
+                      <span>{deck.total_words} words</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     )
@@ -242,15 +316,9 @@ export default function Dashboard() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-4">
-              <Button onClick={goBackToDeckSelection} variant="outline" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Decks
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Polyglot Vocabulary Trainer</h1>
-                <p className="text-gray-600">Master vocabulary with spaced repetition</p>
-              </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Polyglot Vocabulary Trainer</h1>
+              <p className="text-gray-600">Master vocabulary with spaced repetition</p>
             </div>
           </div>
         </div>
@@ -307,7 +375,7 @@ export default function Dashboard() {
                 </p>
               </div>
               <Button 
-                onClick={goBackToDeckSelection}
+                onClick={() => setShowDeckSelection(true)}
                 className="btn-outline flex items-center gap-2"
               >
                 <LibraryBig className="h-4 w-4" />
