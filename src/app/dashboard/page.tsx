@@ -287,6 +287,10 @@ export default function Dashboard() {
     loadDeckData(deck.id, mockUserId)
   }
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -306,6 +310,9 @@ export default function Dashboard() {
                 <h1 className="text-2xl font-bold text-gray-900">🐰 Polyglot Vocabulary Trainer</h1>
                 <p className="text-gray-600">Choose your language deck to get started</p>
               </div>
+              <Button variant="outline" onClick={handleSignOut}>
+                Sign Out
+              </Button>
             </div>
           </div>
         </header>
