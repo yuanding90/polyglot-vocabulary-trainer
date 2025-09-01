@@ -161,12 +161,9 @@ export class SessionQueueManager implements QueueManager {
         nearFuture.length = 0 // Clear near future since we're using them
       }
 
-      // If still no review words, use unseen words
-      if (review.length === 0 && unseen.length > 0) {
-        console.log(`No Due Now/Soon words, using ${unseen.length} Unseen words for review`)
-        review.push(...unseen)
-        unseen.length = 0 // Clear unseen since we're using them
-      }
+      // Note: We don't move unseen words to review queue here
+      // This keeps the dashboard display correct (Unseen: full count, Due Now: 0)
+      // The study session will handle the logic of using unseen words for review when needed
 
       // Apply leech spacing to review queue
       const spacedReview = this.applyLeechSpacing(review, progressMap)
