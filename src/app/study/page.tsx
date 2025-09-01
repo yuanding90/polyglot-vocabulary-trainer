@@ -178,130 +178,35 @@ export default function StudySession() {
       setLoading(true)
       console.log('Loading session words for deck:', currentDeck.id, 'deck name:', currentDeck.name, 'session type:', sessionType)
       
-      // First, get the vocabulary IDs for this deck
-      const { data: deckVocab, error: deckError } = await supabase
-        .from('deck_vocabulary')
-        .select('vocabulary_id')
-        .eq('deck_id', currentDeck.id)
-        .order('word_order')
-
-      if (deckError) {
-        console.error('Error loading deck vocabulary:', deckError)
-        throw deckError
-      }
-
-      if (!deckVocab || deckVocab.length === 0) {
-        console.log('No vocabulary found for deck:', currentDeck.id)
-        setLocalSessionWords([])
-        setLoading(false)
-        return
-      }
-
-      // Extract vocabulary IDs
-      const vocabIds = deckVocab.map(item => item.vocabulary_id)
-      console.log('Vocabulary IDs for deck:', vocabIds)
-      console.log('Vocabulary ID types:', vocabIds.map(id => typeof id))
-
-      // Get the actual vocabulary words
-      const { data: words, error: wordsError } = await supabase
-        .from('vocabulary')
-        .select('*')
-        .in('id', vocabIds)
-
-      if (wordsError) {
-        console.error('Error loading words:', wordsError)
-        throw wordsError
-      }
-
-      if (!words || words.length === 0) {
-        console.log('No words found for vocabulary IDs:', vocabIds)
-        setLocalSessionWords([])
-        setLoading(false)
-        return
-      }
-
-      console.log('Loaded words:', words.length)
-
-      // Get user progress for this deck
-      if (!currentUser) {
-        console.log('No current user found')
-        setLoading(false)
-        return
-      }
+      // Get the queues from the dashboard state instead of rebuilding them
+      const { unseenQueue, reviewQueue, practicePool, nearFutureQueue } = useVocabularyStore.getState()
       
-      const { data: userProgress, error: progressError } = await supabase
-        .from('user_progress')
-        .select('*')
-        .eq('user_id', currentUser.id)
-        .eq('deck_id', currentDeck.id)
-
-      if (progressError) {
-        console.error('Error loading user progress:', progressError)
-      }
-
-      console.log('User progress:', userProgress?.length || 0)
-
-      // Create a map of word progress
-      const progressMap = new Map()
-      userProgress?.forEach(progress => {
-        progressMap.set(progress.word_id, progress)
-      })
-
-      // Filter words based on session type
-      let filteredWords = words
-
+      let sessionWords: Vocabulary[] = []
+      
       if (sessionType === 'review') {
-        // For review sessions, include words that are due for review
-        filteredWords = words.filter(word => {
-          const progress = progressMap.get(word.id)
-          if (!progress) return false
-          
-          const nextReview = new Date(progress.next_review_date)
-          const now = new Date()
-          return nextReview <= now
-        })
-        
-        console.log(`Review session: Found ${filteredWords.length} words due for review`)
-        
-        // For review sessions, we can also add some randomization based on difficulty
-        // This ensures a mix of easy and hard words rather than just chronological order
-        if (filteredWords.length > 1) {
-          // Group words by difficulty level for better randomization
-          const easyWords = filteredWords.filter(word => {
-            const progress = progressMap.get(word.id)
-            return progress && progress.interval >= 7 // Words with longer intervals (easier)
-          })
-          
-          const hardWords = filteredWords.filter(word => {
-            const progress = progressMap.get(word.id)
-            return progress && progress.interval < 7 // Words with shorter intervals (harder)
-          })
-          
-          console.log(`Review session breakdown: ${easyWords.length} easy words, ${hardWords.length} hard words`)
-          
-          // Shuffle each group separately, then interleave them for better distribution
-          const shuffledEasy = shuffleArray(easyWords)
-          const shuffledHard = shuffleArray(hardWords)
-          
-          // Interleave easy and hard words for better learning experience
-          const interleavedWords = []
-          const maxLength = Math.max(shuffledEasy.length, shuffledHard.length)
-          
-          for (let i = 0; i < maxLength; i++) {
-            if (i < shuffledHard.length) interleavedWords.push(shuffledHard[i])
-            if (i < shuffledEasy.length) interleavedWords.push(shuffledEasy[i])
-          }
-          
-          filteredWords = interleavedWords
-          console.log(`Review session: Interleaved ${filteredWords.length} words for optimal learning`)
-        }
+        sessionWords = reviewQueue
+        console.log(`Review session: Using ${sessionWords.length} words from review queue`)
       } else if (sessionType === 'discovery') {
-        // For discovery sessions, exclude words that have already been learned
-        const learnedWordIds = userProgress?.map(p => p.word_id) || []
-        filteredWords = words.filter(word => !learnedWordIds.includes(word.id))
+        sessionWords = unseenQueue
+        console.log(`Discovery session: Using ${sessionWords.length} words from unseen queue`)
       } else if (sessionType === 'deep-dive' && deepDiveCategory) {
-        // For deep dive sessions, filter by category
-        filteredWords = words.filter(word => {
+        // For deep dive, we need to filter the practice pool by category
+        const { data: userProgress, error: progressError } = await supabase
+          .from('user_progress')
+          .select('*')
+          .eq('user_id', currentUser?.id)
+          .eq('deck_id', currentDeck.id)
+
+        if (progressError) {
+          console.error('Error loading user progress for deep dive:', progressError)
+        }
+
+        const progressMap = new Map()
+        userProgress?.forEach(progress => {
+          progressMap.set(progress.word_id, progress)
+        })
+
+        sessionWords = practicePool.filter(word => {
           const progress = progressMap.get(word.id)
           if (!progress) return false
 
@@ -318,12 +223,19 @@ export default function StudySession() {
               return false
           }
         })
+        
+        console.log(`Deep dive session: Found ${sessionWords.length} words for category ${deepDiveCategory}`)
       }
 
-      console.log(`Filtered words for ${sessionType}:`, filteredWords.length)
+      if (sessionWords.length === 0) {
+        console.log(`No words available for ${sessionType} session`)
+        setLocalSessionWords([])
+        setLoading(false)
+        return
+      }
 
-      // Shuffle the words with better randomization
-      const shuffledWords = shuffleArray(filteredWords)
+      // Shuffle the words for better randomization
+      const shuffledWords = shuffleArray(sessionWords)
       console.log(`Shuffled ${shuffledWords.length} words for ${sessionType} session`)
       
       setLocalSessionWords(shuffledWords)
@@ -349,7 +261,7 @@ export default function StudySession() {
     } finally {
       setLoading(false)
     }
-  }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types])
+  }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types, currentUser])
 
   const speakWord = (text: string | undefined, language?: string) => {
     if (!text) return

@@ -691,6 +691,9 @@ export default function Dashboard() {
                 <p className="text-gray-600 mb-4">
                   Focus on specific categories like leeches or learning words
                 </p>
+                <p className="text-sm text-purple-600 bg-purple-50 p-3 rounded-lg border border-purple-200 mb-4">
+                  🚧 Deep Dive feature coming soon! This will allow you to focus on specific word categories for targeted practice.
+                </p>
                 
                 <select
                   value={deepDiveCategory || ''}
