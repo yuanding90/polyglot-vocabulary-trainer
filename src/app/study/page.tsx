@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -40,13 +40,15 @@ interface SessionProgress {
   know: number
 }
 
+import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
+
 export default function StudySession() {
-  const { setCurrentWord, setSessionWords, sessionSettings } = useVocabularyStore()
+  const { sessionSettings } = useVocabularyStore()
   
   // Debug session settings
   console.log('Session settings in study session:', sessionSettings)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const [sessionWords, setLocalSessionWords] = useState<any[]>([])
+  const [sessionWords, setLocalSessionWords] = useState<Vocabulary[]>([])
   const [loading, setLoading] = useState(true)
   const [showAnswer, setShowAnswer] = useState(false)
   const [cardType, setCardType] = useState<'recognition' | 'production' | 'listening'>('recognition')
@@ -62,10 +64,10 @@ export default function StudySession() {
     learn: 0,
     know: 0
   })
-  const [currentWord, setCurrentWordState] = useState<any>(null)
+  const [currentWord, setCurrentWordState] = useState<Vocabulary | null>(null)
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
-  const [currentDeck, setCurrentDeck] = useState<any>(null)
+  const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
 
   useEffect(() => {
     // Get session type from localStorage
@@ -158,7 +160,7 @@ export default function StudySession() {
   }
 
   // Fisher-Yates shuffle for better randomization
-  const shuffleArray = (array: any[]) => {
+  const shuffleArray = (array: Vocabulary[]) => {
     const shuffled = [...array]
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -167,7 +169,7 @@ export default function StudySession() {
     return shuffled
   }
 
-  const loadSessionWords = async () => {
+  const loadSessionWords = useCallback(async () => {
     if (!currentDeck) {
       console.log('No current deck found')
       setLoading(false)
@@ -344,7 +346,7 @@ export default function StudySession() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types])
 
   const speakWord = (text: string, language?: string) => {
     if (!text) return
@@ -353,7 +355,7 @@ export default function StudySession() {
     speakText(text, langCode)
   }
 
-  const markWordAsLeech = async (word: any) => {
+  const markWordAsLeech = async (word: Vocabulary) => {
     if (!currentDeck) return
 
     try {
@@ -370,7 +372,7 @@ export default function StudySession() {
 
       const progressData = {
         user_id: mockUserId,
-        word_id: parseInt(word.id),
+        word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
         interval: currentProgress?.interval || 0,
@@ -397,7 +399,7 @@ export default function StudySession() {
     }
   }
 
-  const removeWordFromLeech = async (word: any) => {
+  const removeWordFromLeech = async (word: Vocabulary) => {
     if (!currentDeck) return
 
     try {
@@ -414,7 +416,7 @@ export default function StudySession() {
 
       const progressData = {
         user_id: mockUserId,
-        word_id: parseInt(word.id),
+        word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
         interval: currentProgress?.interval || 0,
@@ -527,7 +529,7 @@ export default function StudySession() {
       
       const progressData = {
         user_id: mockUserId,
-        word_id: parseInt(currentWord.id), // Convert string ID to integer for database
+        word_id: currentWord.id, // ID is already a number
         deck_id: currentDeck.id,
         repetitions: newRepetitions,
         interval: newInterval,

@@ -21,7 +21,7 @@ export interface QueueManager {
 
 export class SessionQueueManager implements QueueManager {
   // Apply smart spacing for leeches to prevent fatigue
-  private applyLeechSpacing(words: Vocabulary[], progressMap: Map<number, any>): Vocabulary[] {
+  private applyLeechSpacing(words: Vocabulary[], progressMap: Map<number, UserProgress>): Vocabulary[] {
     // Separate leeches from regular words
     const leeches: Vocabulary[] = []
     const regularWords: Vocabulary[] = []
@@ -127,7 +127,7 @@ export class SessionQueueManager implements QueueManager {
         // Don't throw error, just use empty progress
       }
 
-      const progressMap = new Map<number, any>(userProgress?.map(p => [p.word_id, p]) || [])
+      const progressMap = new Map<number, UserProgress>(userProgress?.map(p => [p.word_id, p]) || [])
 
       // Build queues
       const unseen: Vocabulary[] = []
