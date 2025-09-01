@@ -41,7 +41,7 @@ interface SessionProgress {
 }
 
 export default function StudySession() {
-  const { currentDeck, setCurrentWord, setSessionWords, sessionSettings } = useVocabularyStore()
+  const { setCurrentWord, setSessionWords, sessionSettings } = useVocabularyStore()
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [sessionWords, setLocalSessionWords] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -62,6 +62,7 @@ export default function StudySession() {
   const [currentWord, setCurrentWordState] = useState<any>(null)
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
+  const [currentDeck, setCurrentDeck] = useState<any>(null)
 
   useEffect(() => {
     // Get session type from localStorage
@@ -76,8 +77,27 @@ export default function StudySession() {
       setDeepDiveCategory(storedDeepDiveCategory)
     }
 
-    loadSessionWords()
+    // Get current deck from localStorage
+    const storedDeck = localStorage.getItem('selectedDeck')
+    if (storedDeck) {
+      try {
+        const deck = JSON.parse(storedDeck)
+        setCurrentDeck(deck)
+        console.log('Loaded deck from localStorage:', deck)
+      } catch (error) {
+        console.error('Error parsing stored deck:', error)
+      }
+    } else {
+      console.log('No deck found in localStorage')
+    }
   }, [])
+
+  // Load session words when currentDeck is available
+  useEffect(() => {
+    if (currentDeck) {
+      loadSessionWords()
+    }
+  }, [currentDeck, sessionType])
 
   const onBack = () => {
     // Clear session data from localStorage
