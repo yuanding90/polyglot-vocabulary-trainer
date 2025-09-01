@@ -451,6 +451,53 @@ export default function StudySession() {
       </header>
 
       <div className="container mx-auto p-6 max-w-4xl">
+        {/* Progress Bar */}
+        <div className="mb-8">
+          <div className="flex justify-between text-sm text-gray-600 mb-2">
+            <span>Progress</span>
+            <span>{Math.round((sessionProgress.reviewed / sessionProgress.total) * 100)}%</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${(sessionProgress.reviewed / sessionProgress.total) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Dynamic Session Progress Visualization */}
+        {sessionType === 'review' && (
+          <div className="mb-8">
+            {/* Overall Statistics */}
+            <div className="grid grid-cols-6 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-700">{sessionWords.length - currentWordIndex}</div>
+                <div className="text-sm text-gray-500">Remaining</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-red-600">{sessionProgress.again}</div>
+                <div className="text-sm text-gray-500">Again</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">{sessionProgress.hard}</div>
+                <div className="text-sm text-gray-500">Hard</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">{sessionProgress.good}</div>
+                <div className="text-sm text-gray-500">Good</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">{sessionProgress.easy}</div>
+                <div className="text-sm text-gray-500">Easy</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600">{sessionProgress.total}</div>
+                <div className="text-sm text-gray-500">Reviewed</div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Session Type Specific Interface */}
         {sessionType === 'review' ? (
           <ReviewCard 
@@ -552,34 +599,42 @@ function ReviewCard({
                       </Button>
                     </div>
                   ) : (
-                    <div className="text-center">
-                      <h1 className="text-6xl font-bold text-gray-900 mb-8">{promptText}</h1>
-                      <div className="max-w-md mx-auto">
-                        <input
-                          type="text"
-                          value={userAnswer}
-                          onChange={(e) => onUserAnswer(e.target.value)}
-                          placeholder="Type your answer..."
-                          className="w-full p-4 text-xl border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                              onShowAnswer()
-                            }
-                          }}
-                        />
+                    <div className="text-center space-y-6">
+                      <div className="flex items-center justify-center gap-4 mb-8">
+                        <div className="text-6xl font-bold text-gray-900">
+                          {promptText}
+                        </div>
+                        {cardType === 'recognition' && (
+                          <Button
+                            variant="ghost"
+                            size="lg"
+                            onClick={() => speakWord(word?.language_a_word, 'auto')}
+                            className="p-3"
+                          >
+                            <Volume2 className="h-8 w-8" />
+                          </Button>
+                        )}
                       </div>
+                      <input
+                        type="text"
+                        value={userAnswer}
+                        onChange={(e) => onUserAnswer(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && onShowAnswer()}
+                        placeholder="Type your answer..."
+                        className="w-full max-w-md p-4 border-2 border-gray-300 rounded-lg text-center text-2xl focus:border-blue-500 focus:outline-none"
+                        autoFocus
+                      />
                     </div>
                   )}
                 </div>
 
-                {/* Check Answer Button */}
+                {/* Reveal Answer Button */}
                 <div className="text-center mt-8">
-                  <Button
-                    onClick={onShowAnswer}
-                    className="bg-blue-600 hover:bg-blue-700 text-xl px-8 py-4"
-                    disabled={cardType !== 'listening' && !userAnswer.trim()}
+                  <Button 
+                    onClick={onShowAnswer} 
+                    className="px-12 py-4 text-xl bg-blue-600 hover:bg-blue-700"
                   >
-                    Check Answer
+                    Reveal Answer
                   </Button>
                 </div>
               </div>
@@ -589,104 +644,105 @@ function ReviewCard({
             <div className="flash-card-back">
               <div className="flex flex-col h-full">
                 {/* Status on top */}
-                <div className="text-center mb-8">
-                  <p className={`text-sm font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                    {isCorrect ? 'Correct!' : 'Not quite'}
+                <div className="text-center mb-6">
+                  <p className={`text-2xl font-semibold ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
+                    {isCorrect ? 'Correct! 🎉' : 'Not quite...'}
                   </p>
                 </div>
 
                 {/* Main content */}
                 <div className="flex-1 flex flex-col justify-center items-center space-y-6">
-                  {/* Language A word */}
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                      <h1 className="text-4xl font-bold text-gray-900">{word?.language_a_word}</h1>
-                      <Button
-                        variant="ghost"
-                        size="lg"
-                        onClick={() => speakWord(word?.language_a_word, 'auto')}
-                        className="p-3"
-                      >
-                        <Volume2 className="h-6 w-6" />
-                      </Button>
-                    </div>
+                  {/* Language A Word with Pronunciation */}
+                  <div className="flex items-center justify-center gap-4">
+                    <p className="text-6xl font-bold text-gray-900">{word?.language_a_word}</p>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => speakWord(word?.language_a_word, 'auto')}
+                      className="p-2"
+                    >
+                      <Volume2 className="h-8 w-8" />
+                    </Button>
                   </div>
 
-                  {/* Language B translation */}
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                      <p className="text-3xl font-medium text-gray-700">{word?.language_b_translation}</p>
-                      <Button
-                        variant="ghost"
-                        size="lg"
-                        onClick={() => speakWord(word?.language_b_translation, 'auto')}
-                        className="p-3"
-                      >
-                        <Volume2 className="h-6 w-6" />
-                      </Button>
-                    </div>
+                  {/* Language B Translation with Pronunciation */}
+                  <div className="flex items-center justify-center gap-4">
+                    <p className="text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => speakWord(word?.language_b_translation, 'auto')}
+                      className="p-2"
+                    >
+                      <Volume2 className="h-6 w-6" />
+                    </Button>
                   </div>
 
-                  {/* Example sentence */}
+                  {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
-                    <div className="text-center p-6 bg-gray-50 rounded-lg max-w-2xl">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-center gap-4">
-                          <p className="text-xl italic text-gray-800">{word.language_a_sentence}</p>
+                    <div className="p-6 bg-gray-50 rounded-lg">
+                      <p className="text-lg text-gray-600 mb-3">Example:</p>
+                      <div className="flex items-center justify-center gap-4">
+                        <p className="text-xl italic">{word.language_a_sentence}</p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => speakWord(word.language_a_sentence, 'auto')}
+                        >
+                          <Volume2 className="h-5 w-5" />
+                        </Button>
+                      </div>
+                      {word.language_b_sentence && (
+                        <div className="flex items-center justify-center gap-4 mt-3">
+                          <p className="text-lg text-gray-500">
+                            {word.language_b_sentence}
+                          </p>
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => speakWord(word.language_a_sentence, 'auto')}
+                            onClick={() => speakWord(word.language_b_sentence, 'auto')}
                           >
                             <Volume2 className="h-5 w-5" />
                           </Button>
                         </div>
-                        {word.language_b_sentence && (
-                          <div className="flex items-center justify-center gap-4">
-                            <p className="text-lg text-gray-600">
-                              {word.language_b_sentence}
-                            </p>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => speakWord(word.language_b_sentence, 'auto')}
-                            >
-                              <Volume2 className="h-5 w-5" />
-                            </Button>
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   )}
                 </div>
 
-                {/* Rating Buttons */}
-                <div className="text-center pt-6">
-                  <div className="flex gap-4 justify-center">
+                {/* Bottom section */}
+                <div className="mt-8 space-y-6">
+                  {/* SRS Rating Buttons */}
+                  <div className="grid grid-cols-4 gap-3">
                     <Button
                       variant="outline"
+                      size="lg"
                       onClick={() => onAnswer('again')}
-                      className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100"
+                      className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-lg"
                     >
                       Again
                     </Button>
                     <Button
                       variant="outline"
+                      size="lg"
                       onClick={() => onAnswer('hard')}
-                      className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
+                      className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100 text-lg"
                     >
                       Hard
                     </Button>
                     <Button
                       variant="outline"
+                      size="lg"
                       onClick={() => onAnswer('good')}
-                      className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
+                      className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-lg"
                     >
                       Good
                     </Button>
                     <Button
+                      variant="outline"
+                      size="lg"
                       onClick={() => onAnswer('easy')}
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-lg"
                     >
                       Easy
                     </Button>
