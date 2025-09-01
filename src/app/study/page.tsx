@@ -872,6 +872,7 @@ export default function StudySession() {
             onUserAnswer={(answer: string) => setUserAnswer(answer)}
             speakWord={speakWord}
             currentWordProgress={currentWordProgress}
+            currentDeck={currentDeck}
           />
         ) : sessionType === 'discovery' ? (
           <DiscoveryCard 
@@ -879,12 +880,14 @@ export default function StudySession() {
             onAnswer={handleAnswer}
             speakWord={speakWord}
             sessionProgress={sessionProgress}
+            currentDeck={currentDeck}
           />
         ) : (
           <DeepDiveCard 
             word={currentWordData}
             onAnswer={handleAnswer}
             speakWord={speakWord}
+            currentDeck={currentDeck}
           />
         )}
       </div>
@@ -905,6 +908,7 @@ interface ReviewCardProps {
   onUserAnswer: (value: string) => void
   speakWord: (text: string | undefined, language?: string) => void
   currentWordProgress: { again_count: number } | null // Add progress data
+  currentDeck: VocabularyDeck | null
 }
 
 function ReviewCard({ 
@@ -918,7 +922,8 @@ function ReviewCard({
   onAnswer, 
   onUserAnswer,
   speakWord,
-  currentWordProgress
+  currentWordProgress,
+  currentDeck
 }: ReviewCardProps) {
   const prompt = cardType === 'recognition' 
     ? `Translate this ${word?.language_a_word ? 'word' : 'text'}:` 
@@ -963,7 +968,7 @@ function ReviewCard({
                       <Button
                         variant="outline"
                         size="lg"
-                        onClick={() => speakWord(word?.language_a_word, 'auto')}
+                        onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
                         className="text-xl px-8 py-4"
                       >
                         <Volume2 className="h-8 w-8 mr-3" />
@@ -1043,7 +1048,7 @@ function ReviewCard({
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => speakWord(word?.language_b_translation, 'auto')}
+                      onClick={() => speakWord(word?.language_b_translation, currentDeck?.language_b_code)}
                       className="p-2"
                     >
                       <Volume2 className="h-6 w-6" />
@@ -1059,7 +1064,7 @@ function ReviewCard({
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => speakWord(word.language_a_sentence, 'auto')}
+                          onClick={() => speakWord(word.language_a_sentence, currentDeck?.language_a_code)}
                         >
                           <Volume2 className="h-5 w-5" />
                         </Button>
@@ -1072,7 +1077,7 @@ function ReviewCard({
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => speakWord(word.language_b_sentence, 'auto')}
+                            onClick={() => speakWord(word.language_b_sentence, currentDeck?.language_b_code)}
                           >
                             <Volume2 className="h-5 w-5" />
                           </Button>
@@ -1161,9 +1166,10 @@ interface DiscoveryCardProps {
   onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
   speakWord: (text: string | undefined, language?: string) => void
   sessionProgress: SessionProgress
+  currentDeck: VocabularyDeck | null
 }
 
-function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: DiscoveryCardProps) {
+function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck }: DiscoveryCardProps) {
   return (
     <Card className="mb-8">
       <CardContent className="p-8">
@@ -1189,7 +1195,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: Discovery
               <Button
                 variant="ghost"
                 size="lg"
-                onClick={() => speakWord(word?.language_a_word, 'auto')}
+                onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
                 className="p-3"
               >
                 <Volume2 className="h-8 w-8" />
@@ -1204,7 +1210,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: Discovery
               <Button
                 variant="ghost"
                 size="lg"
-                onClick={() => speakWord(word?.language_b_translation, 'auto')}
+                onClick={() => speakWord(word?.language_b_translation, currentDeck?.language_b_code)}
                 className="p-3"
               >
                 <Volume2 className="h-6 w-6" />
@@ -1221,7 +1227,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: Discovery
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => speakWord(word.language_a_sentence, 'auto')}
+                    onClick={() => speakWord(word.language_a_sentence, currentDeck?.language_a_code)}
                   >
                     <Volume2 className="h-5 w-5" />
                   </Button>
@@ -1234,7 +1240,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: Discovery
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => speakWord(word.language_b_sentence, 'auto')}
+                      onClick={() => speakWord(word.language_b_sentence, currentDeck?.language_b_code)}
                     >
                       <Volume2 className="h-5 w-5" />
                     </Button>
@@ -1275,9 +1281,10 @@ interface DeepDiveCardProps {
   word: Vocabulary | null
   onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
   speakWord: (text: string | undefined, language?: string) => void
+  currentDeck: VocabularyDeck | null
 }
 
-function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
+function DeepDiveCard({ word, onAnswer, speakWord, currentDeck }: DeepDiveCardProps) {
   return (
     <Card className="mb-8">
       <CardHeader>
@@ -1294,7 +1301,7 @@ function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
               <Button
                 variant="ghost"
                 size="lg"
-                onClick={() => speakWord(word?.language_a_word, 'auto')}
+                onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
                 className="p-3"
               >
                 <Volume2 className="h-8 w-8" />
@@ -1309,7 +1316,7 @@ function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
               <Button
                 variant="ghost"
                 size="lg"
-                onClick={() => speakWord(word?.language_b_translation, 'auto')}
+                onClick={() => speakWord(word?.language_b_translation, currentDeck?.language_b_code)}
                 className="p-3"
               >
                 <Volume2 className="h-6 w-6" />
@@ -1326,7 +1333,7 @@ function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => speakWord(word.language_a_sentence, 'auto')}
+                    onClick={() => speakWord(word.language_a_sentence, currentDeck?.language_a_code)}
                   >
                     <Volume2 className="h-5 w-5" />
                   </Button>
@@ -1339,7 +1346,7 @@ function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => speakWord(word.language_b_sentence, 'auto')}
+                      onClick={() => speakWord(word.language_b_sentence, currentDeck?.language_b_code)}
                     >
                       <Volume2 className="h-5 w-5" />
                     </Button>
