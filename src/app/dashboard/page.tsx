@@ -138,6 +138,17 @@ export default function Dashboard() {
       const deckMetrics = await sessionQueueManager.calculateMetrics(userId, deckId)
       console.log('Calculated metrics:', deckMetrics)
       updateMetrics(deckMetrics)
+
+      // Update userDeckProgress with correct total words
+      const totalWords = deckMetrics.unseen + deckMetrics.leeches + deckMetrics.learning + deckMetrics.strengthening + deckMetrics.consolidating + deckMetrics.mastered
+      setUserDeckProgress(deckId, {
+        deck_id: deckId,
+        total_words: totalWords,
+        mastered_words: deckMetrics.mastered,
+        learning_words: deckMetrics.learning,
+        leeches: deckMetrics.leeches,
+        unseen_words: deckMetrics.unseen
+      })
     } catch (error) {
       console.error('Error loading deck data:', error)
     }
@@ -308,15 +319,15 @@ export default function Dashboard() {
               {availableDecks.map((deck) => {
                 const progress = userDeckProgress[deck.id] || {
                   deck_id: deck.id,
-                  total_words: deck.total_words,
+                  total_words: 0,
                   mastered_words: 0,
                   learning_words: 0,
                   leeches: 0,
-                  unseen_words: deck.total_words
+                  unseen_words: 0
                 }
                 
                 // Calculate progress percentages for different states
-                const totalWords = deck.total_words
+                const totalWords = progress.total_words || deck.total_words
                 const mastered = progress.mastered_words
                 const learning = progress.learning_words
                 const unseen = progress.unseen_words
