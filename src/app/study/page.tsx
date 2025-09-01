@@ -18,7 +18,7 @@ import {
   getLanguageCode
 } from '@/lib/utils'
 
-import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
+import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
 // Removed unused User import
 import { sessionQueueManager } from '@/lib/session-queues'
 
@@ -240,7 +240,7 @@ export default function StudySession() {
       if (words && words.length > 0) {
         // Filter words based on session type (like French app does)
         let filteredWords = words
-        let userProgress: any[] = []
+        let userProgress: UserProgress[] = []
         
         // Get user progress for this deck
         const { data: progressData, error: progressError } = await supabase
