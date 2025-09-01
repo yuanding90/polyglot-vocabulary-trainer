@@ -92,6 +92,20 @@ export default function Dashboard() {
     }
   }, [currentDeck, currentUser])
 
+  // Refresh data when returning from study session (focus event)
+  useEffect(() => {
+    const handleFocus = async () => {
+      if (currentUser && currentDeck) {
+        console.log('Dashboard focused, refreshing data...')
+        await loadDeckData(currentDeck.id, currentUser.id)
+        await loadSessionStats(currentUser.id)
+      }
+    }
+
+    window.addEventListener('focus', handleFocus)
+    return () => window.removeEventListener('focus', handleFocus)
+  }, [currentUser, currentDeck])
+
   const loadDashboardData = useCallback(async (userId: string) => {
     try {
       setLoading(true)
@@ -105,6 +119,27 @@ export default function Dashboard() {
 
       if (decksError) throw decksError
       setAvailableDecks(decks || [])
+
+      // Load metrics for all decks to show correct word counts
+      if (decks && decks.length > 0) {
+        for (const deck of decks) {
+          try {
+            const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
+            setUserDeckProgress(deck.id, {
+              deck_id: deck.id,
+              total_words: metrics.unseen + metrics.leeches + metrics.learning + metrics.strengthening + metrics.consolidating + metrics.mastered,
+              mastered_words: metrics.mastered,
+              learning_words: metrics.learning,
+              leeches: metrics.leeches,
+              unseen_words: metrics.unseen,
+              strengthening_words: metrics.strengthening,
+              consolidating_words: metrics.consolidating
+            })
+          } catch (error) {
+            console.error(`Error loading metrics for deck ${deck.id}:`, error)
+          }
+        }
+      }
 
       // Load current deck from localStorage
       const deckData = localStorage.getItem('selectedDeck')
@@ -352,7 +387,7 @@ export default function Dashboard() {
                 }
                 
                 // Calculate progress percentages for different states
-                const totalWords = progress.total_words || deck.total_words
+                const totalWords = progress.total_words || 0
                 const mastered = progress.mastered_words
                 const learning = progress.learning_words
                 const unseen = progress.unseen_words
@@ -402,8 +437,8 @@ export default function Dashboard() {
                               {/* Strengthening */}
                               <div 
                                 className="bg-yellow-400"
-                                style={{ width: `${(Math.max(0, totalWords - unseen - learning - mastered) / totalWords) * 100}%` }}
-                                title="strengthening"
+                                style={{ width: `${(progress.strengthening_words || 0) / totalWords * 100}%` }}
+                                title={`${progress.strengthening_words || 0} strengthening`}
                               />
                               {/* Mastered */}
                               <div 
@@ -426,7 +461,7 @@ export default function Dashboard() {
                               </div>
                               <div className="text-center">
                                 <StrengtheningIcon className="h-5 w-5 mx-auto mb-2 text-yellow-400" />
-                                <div className="text-xl font-bold text-yellow-500">{Math.max(0, totalWords - unseen - learning - mastered)}</div>
+                                <div className="text-xl font-bold text-yellow-500">{progress.strengthening_words || 0}</div>
                                 <div className="text-sm text-gray-400 font-medium">Strengthening</div>
                               </div>
                               <div className="text-center">

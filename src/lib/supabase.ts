@@ -51,6 +51,8 @@ export interface UserDeckProgress {
   learning_words: number
   leeches: number
   unseen_words: number
+  strengthening_words?: number
+  consolidating_words?: number
 }
 
 export interface StudySession {

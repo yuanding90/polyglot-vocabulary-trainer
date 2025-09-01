@@ -19,7 +19,7 @@ import {
 } from '@/lib/utils'
 
 import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
-import { User } from '@supabase/supabase-js'
+// Removed unused User import
 import { sessionQueueManager } from '@/lib/session-queues'
 
 interface SessionProgress {
@@ -56,6 +56,7 @@ export default function StudySession() {
     know: 0
   })
   const [currentWord, setCurrentWordState] = useState<Vocabulary | null>(null)
+  const [currentWordProgress, setCurrentWordProgress] = useState<{ again_count: number } | null>(null) // Track current word's progress
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
@@ -320,6 +321,9 @@ export default function StudySession() {
         setCurrentWordState(shuffledWords[0])
         setCurrentWordIndex(0)
         
+        // Load progress for the first word
+        await loadCurrentWordProgress(shuffledWords[0])
+        
         // Set initial card type based on session settings
         if (sessionSettings.types.length > 0) {
           const randomType = sessionSettings.types[Math.floor(Math.random() * sessionSettings.types.length)]
@@ -337,6 +341,30 @@ export default function StudySession() {
       setLoading(false)
     }
   }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types])
+
+  const loadCurrentWordProgress = async (word: Vocabulary) => {
+    if (!word || !currentDeck) return
+    
+    try {
+      // Get current user inside the function
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      
+      // Get the word's progress
+      const { data: progress } = await supabase
+        .from('user_progress')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('word_id', word.id)
+        .eq('deck_id', currentDeck.id)
+        .single()
+      
+      setCurrentWordProgress(progress || { again_count: 0 })
+    } catch (error) {
+      console.log('No progress found for word, setting default:', error)
+      setCurrentWordProgress({ again_count: 0 })
+    }
+  }
 
   const speakWord = (text: string | undefined, language?: string) => {
     if (!text) return
@@ -388,7 +416,7 @@ export default function StudySession() {
       }
 
       // Move to next word after marking as leech
-      moveToNextWord()
+      await moveToNextWord()
 
     } catch (error) {
       console.error('Error marking word as leech:', error)
@@ -437,7 +465,7 @@ export default function StudySession() {
       }
 
       // Move to next word after removing from leeches
-      moveToNextWord()
+      await moveToNextWord()
 
     } catch (error) {
       console.error('Error removing word from leeches:', error)
@@ -472,6 +500,13 @@ export default function StudySession() {
         reviewed: prev.reviewed + 1,
         [rating]: prev[rating as keyof SessionProgress] + 1
       }))
+
+      // Handle "Again" logic - add word back to session queue for immediate review
+      if (rating === 'again') {
+        // Add the current word back to the end of the session queue
+        setLocalSessionWords(prev => [...prev, currentWord])
+        console.log('Word marked as "Again" - added back to session queue for immediate review')
+      }
 
       let newInterval = 0
       let newEaseFactor = SRS.EASE_FACTOR_DEFAULT
@@ -556,7 +591,7 @@ export default function StudySession() {
       }
 
       // Move to next word
-      moveToNextWord()
+      await moveToNextWord()
 
     } catch (error) {
       console.error('Error handling answer:', error)
@@ -601,7 +636,7 @@ export default function StudySession() {
     }
   }
 
-  const moveToNextWord = () => {
+  const moveToNextWord = async () => {
     const nextIndex = currentWordIndex + 1
     
     if (nextIndex < sessionWords.length) {
@@ -610,6 +645,9 @@ export default function StudySession() {
       setShowAnswer(false)
       setUserAnswer('')
       setIsCorrect(false)
+      
+      // Load progress for the next word
+      await loadCurrentWordProgress(sessionWords[nextIndex])
       
       // Set card type for next word
       if (sessionSettings.types.length > 0) {
@@ -788,7 +826,6 @@ export default function StudySession() {
         {sessionType === 'review' ? (
           <ReviewCard 
             word={currentWordData}
-            currentWord={currentWord}
             cardType={cardType}
             showAnswer={showAnswer}
             userAnswer={userAnswer}
@@ -798,7 +835,7 @@ export default function StudySession() {
             onAnswer={handleAnswer}
             onUserAnswer={(answer: string) => setUserAnswer(answer)}
             speakWord={speakWord}
-            sessionSettings={sessionSettings}
+            currentWordProgress={currentWordProgress}
           />
         ) : sessionType === 'discovery' ? (
           <DiscoveryCard 
@@ -822,7 +859,6 @@ export default function StudySession() {
 // Review Card Component
 interface ReviewCardProps {
   word: Vocabulary | null
-  currentWord: Vocabulary | null
   cardType: 'recognition' | 'production' | 'listening'
   showAnswer: boolean
   userAnswer: string
@@ -832,12 +868,11 @@ interface ReviewCardProps {
   onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
   onUserAnswer: (value: string) => void
   speakWord: (text: string | undefined, language?: string) => void
-  sessionSettings: { types: string[] }
+  currentWordProgress: { again_count: number } | null // Add progress data
 }
 
 function ReviewCard({ 
   word, 
-  currentWord,
   cardType, 
   showAnswer, 
   userAnswer, 
@@ -847,7 +882,7 @@ function ReviewCard({
   onAnswer, 
   onUserAnswer,
   speakWord,
-  sessionSettings
+  currentWordProgress
 }: ReviewCardProps) {
   const prompt = cardType === 'recognition' 
     ? `Translate this ${word?.language_a_word ? 'word' : 'text'}:` 
@@ -1051,16 +1086,28 @@ function ReviewCard({
 
                   {/* Add/Remove from Leeches Option */}
                   <div className="text-center pt-6 border-t-2 border-gray-300">
-                    {/* Note: again_count should come from user progress, not vocabulary */}
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      onClick={() => onAnswer('leech')}
-                      className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
-                    >
-                      <AlertTriangle className="h-6 w-6 mr-3" />
-                      Add to Leeches
-                    </Button>
+                    {/* Check if word is already a leech based on user progress */}
+                    {currentWordProgress && currentWordProgress.again_count >= 3 ? (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => onAnswer('remove-leech')}
+                        className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-xl py-4"
+                      >
+                        <AlertTriangle className="h-6 w-6 mr-3" />
+                        Remove from Leeches
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => onAnswer('leech')}
+                        className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
+                      >
+                        <AlertTriangle className="h-6 w-6 mr-3" />
+                        Add to Leeches
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
