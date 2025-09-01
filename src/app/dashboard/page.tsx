@@ -28,7 +28,11 @@ import {
   Zap,
   Clock,
   EyeOff,
-  Flame
+  Flame,
+  EyeOff as UnseenIcon,
+  BookOpen as LearningIcon,
+  TrendingUp as StrengtheningIcon,
+  CheckCircle as MasteredIcon
 } from 'lucide-react'
 
 export default function Dashboard() {
@@ -337,13 +341,13 @@ export default function Dashboard() {
                           </div>
                           
                           {/* Progress Bar */}
-                          <div className="space-y-2">
+                          <div className="space-y-3">
                             <div className="flex justify-between text-sm text-gray-600">
                               <span>Progress Overview</span>
                               <span>{progress.mastered_words}/{totalWords} mastered</span>
                             </div>
                             
-                            <div className="flex h-3 bg-gray-200 rounded-full overflow-hidden">
+                            <div className="flex h-4 bg-gray-200 rounded-full overflow-hidden">
                               {/* Unseen */}
                               <div 
                                 className="bg-gray-400"
@@ -370,11 +374,27 @@ export default function Dashboard() {
                               />
                             </div>
                             
-                            <div className="flex justify-between text-xs text-gray-500">
-                              <span>Unseen: {unseen}</span>
-                              <span>Learning: {learning}</span>
-                              <span>Strengthening: {Math.max(0, totalWords - unseen - learning - mastered)}</span>
-                              <span>Mastered: {mastered}</span>
+                            <div className="grid grid-cols-4 gap-3 mt-4">
+                              <div className="text-center">
+                                <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
+                                <div className="text-lg font-bold text-gray-500">{unseen}</div>
+                                <div className="text-xs text-gray-400">Unseen</div>
+                              </div>
+                              <div className="text-center">
+                                <LearningIcon className="h-4 w-4 mx-auto mb-1 text-orange-400" />
+                                <div className="text-lg font-bold text-orange-500">{learning}</div>
+                                <div className="text-xs text-gray-400">Learning</div>
+                              </div>
+                              <div className="text-center">
+                                <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-400" />
+                                <div className="text-lg font-bold text-yellow-500">{Math.max(0, totalWords - unseen - learning - mastered)}</div>
+                                <div className="text-xs text-gray-400">Strengthening</div>
+                              </div>
+                              <div className="text-center">
+                                <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-400" />
+                                <div className="text-lg font-bold text-green-500">{mastered}</div>
+                                <div className="text-xs text-gray-400">Mastered</div>
+                              </div>
                             </div>
                           </div>
                         </div>
