@@ -1,0 +1,35 @@
+{
+  "databases": [
+    {
+      "source_path": "/Users/ding/Desktop/Coding/Chinese App/vocab database/financial_vocab_batch_1.db",
+      "language_a": "Chinese",
+      "language_b": "French",
+      "total_words": 100,
+      "columns": [
+        "id",
+        "word_number",
+        "chinese_word",
+        "french_translation",
+        "example_sentence",
+        "sentence_translation",
+        "created_at"
+      ]
+    },
+    {
+      "source_path": "/Users/ding/Desktop/Coding/Vocabulary Learning App/vocab bank/french_vocab_batch_4.db",
+      "language_a": "French",
+      "language_b": "English",
+      "total_words": 1000,
+      "columns": [
+        "id",
+        "word_number",
+        "french_word",
+        "english_translation",
+        "example_sentence",
+        "sentence_translation",
+        "created_at"
+      ]
+    }
+  ],
+  "total_vocabulary": 1100,
+  "language_pairs": 
