@@ -100,13 +100,9 @@ export default function Dashboard() {
         await loadDeckData(deck.id, mockUserId)
       }
 
-      // Load session statistics (mock data for now)
-      updateSessionStats({
-        reviewsToday: 45,
-        reviews7Days: 234,
-        reviews30Days: 892,
-        currentStreak: 7
-      })
+      // Load session statistics
+      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      await loadSessionStats(mockUserId)
 
     } catch (error) {
       console.error('Error loading dashboard data:', error)
@@ -139,6 +135,50 @@ export default function Dashboard() {
       updateMetrics(deckMetrics)
     } catch (error) {
       console.error('Error loading deck data:', error)
+    }
+  }
+
+  const loadSessionStats = async (userId: string) => {
+    try {
+      const today = new Date()
+      const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
+      const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000)
+
+      // Get session statistics
+      const { data: sessions, error } = await supabase
+        .from('study_sessions')
+        .select('*')
+        .eq('user_id', userId)
+        .gte('created_at', thirtyDaysAgo.toISOString())
+
+      if (error) throw error
+
+      const stats = {
+        reviewsToday: 0,
+        reviews7Days: 0,
+        reviews30Days: 0,
+        currentStreak: 0
+      }
+
+      sessions?.forEach(session => {
+        const sessionDate = new Date(session.created_at)
+        
+        if (sessionDate.toDateString() === today.toDateString()) {
+          stats.reviewsToday += session.words_studied
+        }
+        
+        if (sessionDate >= sevenDaysAgo) {
+          stats.reviews7Days += session.words_studied
+        }
+        
+        if (sessionDate >= thirtyDaysAgo) {
+          stats.reviews30Days += session.words_studied
+        }
+      })
+
+      updateSessionStats(stats)
+    } catch (error) {
+      console.error('Error loading session stats:', error)
     }
   }
 
