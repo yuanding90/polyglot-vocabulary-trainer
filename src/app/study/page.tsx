@@ -18,6 +18,10 @@ import {
   getLanguageCode
 } from '@/lib/utils'
 
+import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
+import { User } from '@supabase/supabase-js'
+import { sessionQueueManager } from '@/lib/session-queues'
+
 interface SessionProgress {
   total: number
   reviewed: number
@@ -28,10 +32,6 @@ interface SessionProgress {
   learn: number
   know: number
 }
-
-import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
-import { User } from '@supabase/supabase-js'
-import { sessionQueueManager } from '@/lib/session-queues'
 
 export default function StudySession() {
   const { sessionSettings } = useVocabularyStore()
@@ -97,7 +97,7 @@ export default function StudySession() {
     } else {
       console.log('Waiting for currentDeck:', { 
         hasDeck: !!currentDeck,
-        deckId: currentDeck?.id
+        deckId: null
       })
     }
   }, [currentDeck, sessionType])
@@ -371,6 +371,7 @@ export default function StudySession() {
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
         interval: currentProgress?.interval || 0,
+
         ease_factor: currentProgress?.ease_factor || SRS.EASE_FACTOR_DEFAULT,
         next_review_date: currentProgress?.next_review_date || new Date().toISOString(),
         again_count: 4 // Mark as leech by setting again_count to threshold
@@ -652,24 +653,25 @@ export default function StudySession() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center space-x-4">
-              <Button onClick={onBack} variant="outline" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
-              </Button>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Study Session</h1>
-                <p className="text-sm text-gray-600">{sessionType} session</p>
+                <Button onClick={onBack} variant="outline" size="sm">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Dashboard
+                </Button>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">Study Session</h1>
+                  <p className="text-sm text-gray-600">{sessionType} session</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button 
-                onClick={() => supabase.auth.signOut()}
-                variant="outline"
-                size="sm"
-                className="text-red-600 border-red-300 hover:bg-red-50"
-              >
-                Sign Out
-              </Button>
+              <div className="flex items-center gap-4">
+                <Button 
+                  onClick={() => supabase.auth.signOut()}
+                  variant="outline"
+                  size="sm"
+                  className="text-red-600 border-red-300 hover:bg-red-50"
+                >
+                  Sign Out
+                </Button>
+              </div>
             </div>
           </div>
         </header>
