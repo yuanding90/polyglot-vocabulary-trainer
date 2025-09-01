@@ -212,6 +212,20 @@ export class SessionQueueManager implements QueueManager {
         }
       })
 
+      console.log('Metrics calculation debug:', {
+        totalProgress: userProgress?.length || 0,
+        leeches: metrics.leeches,
+        learning: metrics.learning,
+        strengthening: metrics.strengthening,
+        consolidating: metrics.consolidating,
+        mastered: metrics.mastered,
+        sampleProgress: userProgress?.slice(0, 3).map(p => ({
+          interval: p.interval,
+          repetitions: p.repetitions,
+          again_count: p.again_count
+        }))
+      })
+
       // Calculate unseen words
       const { data: deckVocab, error: deckVocabError } = await supabase
         .from('deck_vocabulary')

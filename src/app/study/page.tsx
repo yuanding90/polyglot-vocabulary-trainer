@@ -453,20 +453,25 @@ export default function StudySession() {
     try {
       const mockUserId = '00000000-0000-0000-0000-000000000000'
       
+      const sessionData = {
+        user_id: mockUserId,
+        deck_id: currentDeck.id,
+        session_type: sessionType,
+        words_studied: sessionProgress.total,
+        correct_answers: sessionProgress.good + sessionProgress.easy + sessionProgress.know,
+        session_duration: 0, // TODO: Calculate actual duration
+        completed_at: new Date().toISOString()
+      }
+      
+      console.log('Saving session summary with data:', sessionData)
+      
       const { error } = await supabase
         .from('study_sessions')
-        .insert({
-          user_id: mockUserId,
-          deck_id: currentDeck.id,
-          session_type: sessionType,
-          words_studied: sessionProgress.total,
-          correct_answers: sessionProgress.good + sessionProgress.easy + sessionProgress.know,
-          session_duration: 0, // TODO: Calculate actual duration
-          completed_at: new Date().toISOString()
-        })
+        .insert(sessionData)
 
       if (error) {
         console.error('Error saving session summary:', error)
+        console.error('Error details:', error)
       } else {
         console.log('Session summary saved successfully')
       }

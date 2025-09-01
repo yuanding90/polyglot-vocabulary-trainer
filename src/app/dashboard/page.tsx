@@ -176,6 +176,15 @@ export default function Dashboard() {
         currentStreak: 0
       }
 
+      console.log('Session stats debug:', {
+        totalSessions: sessions?.length || 0,
+        sessions: sessions?.slice(0, 3).map(s => ({
+          created_at: s.created_at,
+          words_studied: s.words_studied,
+          session_type: s.session_type
+        }))
+      })
+
       sessions?.forEach(session => {
         const sessionDate = new Date(session.created_at)
         
@@ -192,6 +201,7 @@ export default function Dashboard() {
         }
       })
 
+      console.log('Calculated stats:', stats)
       updateSessionStats(stats)
     } catch (error) {
       console.error('Error loading session stats:', error)
