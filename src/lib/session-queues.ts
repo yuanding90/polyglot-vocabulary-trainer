@@ -154,6 +154,20 @@ export class SessionQueueManager implements QueueManager {
         }
       })
 
+      // If no Due Now words, use Due Soon words for review
+      if (review.length === 0 && nearFuture.length > 0) {
+        console.log(`No Due Now words, using ${nearFuture.length} Due Soon words for review`)
+        review.push(...nearFuture)
+        nearFuture.length = 0 // Clear near future since we're using them
+      }
+
+      // If still no review words, use unseen words
+      if (review.length === 0 && unseen.length > 0) {
+        console.log(`No Due Now/Soon words, using ${unseen.length} Unseen words for review`)
+        review.push(...unseen)
+        unseen.length = 0 // Clear unseen since we're using them
+      }
+
       // Apply leech spacing to review queue
       const spacedReview = this.applyLeechSpacing(review, progressMap)
 

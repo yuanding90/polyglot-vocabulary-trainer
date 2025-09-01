@@ -151,7 +151,13 @@ export default function StudySession() {
     }
   }, [currentDeck])
 
-  const onBack = () => {
+  const onBack = async () => {
+    // Save session summary before leaving
+    if (sessionProgress.total > 0) {
+      console.log('Saving session summary before leaving...')
+      await saveSessionSummary()
+    }
+    
     // Clear session data from localStorage
     localStorage.removeItem('sessionType')
     localStorage.removeItem('deepDiveCategory')
@@ -661,7 +667,7 @@ export default function StudySession() {
     } else {
       // Session complete
       console.log('Session complete!')
-      saveSessionSummary()
+      await saveSessionSummary()
       onBack()
     }
   }
