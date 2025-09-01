@@ -164,6 +164,19 @@ export default function StudySession() {
     window.location.href = '/dashboard'
   }
 
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut()
+      console.log('User signed out successfully')
+      // Redirect to main sign-in page
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Error signing out:', error)
+      // Still redirect even if there's an error
+      window.location.href = '/'
+    }
+  }
+
   // Fisher-Yates shuffle for better randomization
   const shuffleArray = (array: Vocabulary[]) => {
     const shuffled = [...array]
@@ -708,7 +721,7 @@ export default function StudySession() {
               </div>
               <div className="flex items-center gap-4">
                 <Button 
-                  onClick={() => supabase.auth.signOut()}
+                  onClick={handleSignOut}
                   variant="outline"
                   size="sm"
                   className="text-red-600 border-red-300 hover:bg-red-50"
@@ -758,7 +771,7 @@ export default function StudySession() {
             </div>
             <div className="flex items-center gap-4">
               <Button 
-                onClick={() => supabase.auth.signOut()}
+                onClick={handleSignOut}
                 variant="outline"
                 size="sm"
                 className="text-red-600 border-red-300 hover:bg-red-50"

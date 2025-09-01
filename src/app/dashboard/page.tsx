@@ -327,7 +327,16 @@ export default function Dashboard() {
   }
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      await supabase.auth.signOut()
+      console.log('User signed out successfully')
+      // Redirect to main sign-in page
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Error signing out:', error)
+      // Still redirect even if there's an error
+      window.location.href = '/'
+    }
   }
 
   if (loading) {
