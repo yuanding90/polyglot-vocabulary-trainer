@@ -40,8 +40,19 @@ export default function Auth() {
   const handleGoogleSignIn = async () => {
     setLoading(true)
     try {
-      const redirectTo = `${window.location.origin}/auth/callback`
-      console.log('Redirecting to:', redirectTo) // Debug log
+      // Get the current domain
+      const currentDomain = window.location.origin
+      const redirectTo = `${currentDomain}/auth/callback`
+      
+      console.log('Current domain:', currentDomain)
+      console.log('Redirecting to:', redirectTo)
+      
+      // Check if we're in production or development
+      if (process.env.NODE_ENV === 'production') {
+        console.log('Production mode detected')
+      } else {
+        console.log('Development mode detected')
+      }
       
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -49,9 +60,15 @@ export default function Auth() {
           redirectTo
         }
       })
-      if (error) throw error
+      
+      if (error) {
+        console.error('Supabase OAuth error:', error)
+        throw error
+      }
+      
+      console.log('OAuth request sent successfully')
     } catch (error: unknown) {
-      console.error('Google sign-in error:', error) // Debug log
+      console.error('Google sign-in error:', error)
       alert(error instanceof Error ? error.message : 'An error occurred')
     } finally {
       setLoading(false)
