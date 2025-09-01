@@ -29,12 +29,6 @@ import {
   getLanguageCode
 } from '@/lib/utils'
 
-interface StudySessionProps {
-  onBack: () => void
-  sessionType: 'review' | 'discovery' | 'deep-dive'
-  deepDiveCategory?: 'leeches' | 'learning' | 'strengthening' | 'consolidating' | null
-}
-
 interface SessionProgress {
   total: number
   reviewed: number
@@ -46,7 +40,7 @@ interface SessionProgress {
   know: number
 }
 
-export default function StudySession({ onBack, sessionType, deepDiveCategory }: StudySessionProps) {
+export default function StudySession() {
   const { currentDeck, setCurrentWord, setSessionWords, sessionSettings } = useVocabularyStore()
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [sessionWords, setLocalSessionWords] = useState<any[]>([])
@@ -66,16 +60,42 @@ export default function StudySession({ onBack, sessionType, deepDiveCategory }: 
     know: 0
   })
   const [currentWord, setCurrentWordState] = useState<any>(null)
+  const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
+  const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
 
   useEffect(() => {
+    // Get session type from localStorage
+    const storedSessionType = localStorage.getItem('sessionType') as 'review' | 'discovery' | 'deep-dive'
+    if (storedSessionType) {
+      setSessionType(storedSessionType)
+    }
+    
+    // Get deep dive category if it exists
+    const storedDeepDiveCategory = localStorage.getItem('deepDiveCategory') as 'leeches' | 'learning' | 'strengthening' | 'consolidating' | null
+    if (storedDeepDiveCategory) {
+      setDeepDiveCategory(storedDeepDiveCategory)
+    }
+
     loadSessionWords()
   }, [])
 
+  const onBack = () => {
+    // Clear session data from localStorage
+    localStorage.removeItem('sessionType')
+    localStorage.removeItem('deepDiveCategory')
+    window.location.href = '/dashboard'
+  }
+
   const loadSessionWords = async () => {
-    if (!currentDeck) return
+    if (!currentDeck) {
+      console.log('No current deck found')
+      setLoading(false)
+      return
+    }
 
     try {
       setLoading(true)
+      console.log('Loading session words for deck:', currentDeck.id, 'session type:', sessionType)
       
       // First, get the vocabulary IDs for this deck
       const { data: deckVocab, error: deckError } = await supabase
@@ -84,7 +104,10 @@ export default function StudySession({ onBack, sessionType, deepDiveCategory }: 
         .eq('deck_id', currentDeck.id)
         .order('word_order')
 
-      if (deckError) throw deckError
+      if (deckError) {
+        console.error('Error loading deck vocabulary:', deckError)
+        throw deckError
+      }
 
       if (!deckVocab || deckVocab.length === 0) {
         console.log('No vocabulary found for deck:', currentDeck.id)
@@ -104,7 +127,10 @@ export default function StudySession({ onBack, sessionType, deepDiveCategory }: 
         .select('*')
         .in('id', vocabIds)
 
-      if (wordsError) throw wordsError
+      if (wordsError) {
+        console.error('Error loading words:', wordsError)
+        throw wordsError
+      }
 
       if (!words || words.length === 0) {
         console.log('No words found for vocabulary IDs:', vocabIds)
