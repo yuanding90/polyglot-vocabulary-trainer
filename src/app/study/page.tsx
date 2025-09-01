@@ -154,6 +154,16 @@ export default function StudySession() {
     window.location.href = '/dashboard'
   }
 
+  // Fisher-Yates shuffle for better randomization
+  const shuffleArray = (array: any[]) => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
   const loadSessionWords = async () => {
     if (!currentDeck) {
       console.log('No current deck found')
@@ -242,6 +252,41 @@ export default function StudySession() {
           const now = new Date()
           return nextReview <= now
         })
+        
+        console.log(`Review session: Found ${filteredWords.length} words due for review`)
+        
+        // For review sessions, we can also add some randomization based on difficulty
+        // This ensures a mix of easy and hard words rather than just chronological order
+        if (filteredWords.length > 1) {
+          // Group words by difficulty level for better randomization
+          const easyWords = filteredWords.filter(word => {
+            const progress = progressMap.get(word.id)
+            return progress && progress.interval >= 7 // Words with longer intervals (easier)
+          })
+          
+          const hardWords = filteredWords.filter(word => {
+            const progress = progressMap.get(word.id)
+            return progress && progress.interval < 7 // Words with shorter intervals (harder)
+          })
+          
+          console.log(`Review session breakdown: ${easyWords.length} easy words, ${hardWords.length} hard words`)
+          
+          // Shuffle each group separately, then interleave them for better distribution
+          const shuffledEasy = shuffleArray(easyWords)
+          const shuffledHard = shuffleArray(hardWords)
+          
+          // Interleave easy and hard words for better learning experience
+          const interleavedWords = []
+          const maxLength = Math.max(shuffledEasy.length, shuffledHard.length)
+          
+          for (let i = 0; i < maxLength; i++) {
+            if (i < shuffledHard.length) interleavedWords.push(shuffledHard[i])
+            if (i < shuffledEasy.length) interleavedWords.push(shuffledEasy[i])
+          }
+          
+          filteredWords = interleavedWords
+          console.log(`Review session: Interleaved ${filteredWords.length} words for optimal learning`)
+        }
       } else if (sessionType === 'discovery') {
         // For discovery sessions, exclude words that have already been learned
         const learnedWordIds = userProgress?.map(p => p.word_id) || []
@@ -269,8 +314,10 @@ export default function StudySession() {
 
       console.log(`Filtered words for ${sessionType}:`, filteredWords.length)
 
-      // Shuffle the words
-      const shuffledWords = [...filteredWords].sort(() => Math.random() - 0.5)
+      // Shuffle the words with better randomization
+      const shuffledWords = shuffleArray(filteredWords)
+      console.log(`Shuffled ${shuffledWords.length} words for ${sessionType} session`)
+      
       setLocalSessionWords(shuffledWords)
       setSessionProgress(prev => ({ ...prev, total: shuffledWords.length }))
 
