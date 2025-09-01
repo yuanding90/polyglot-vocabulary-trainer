@@ -209,14 +209,28 @@ export default function Dashboard() {
       const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
       const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000)
 
-      // Get session statistics
-      const { data: sessions, error } = await supabase
-        .from('study_sessions')
+      // Get all user progress across all decks (for future use if needed)
+      const { error: progressError } = await supabase
+        .from('user_progress')
+        .select('*')
+        .eq('user_id', userId)
+
+      if (progressError) {
+        console.error('Error fetching user progress for stats:', progressError)
+        return
+      }
+
+      // Get all rating history to count actual words reviewed/discovered
+      const { data: ratingHistory, error: ratingError } = await supabase
+        .from('rating_history')
         .select('*')
         .eq('user_id', userId)
         .gte('created_at', thirtyDaysAgo.toISOString())
 
-      if (error) throw error
+      if (ratingError) {
+        console.error('Error fetching rating history for stats:', ratingError)
+        return
+      }
 
       const stats = {
         reviewsToday: 0,
@@ -225,32 +239,63 @@ export default function Dashboard() {
         currentStreak: 0
       }
 
-      console.log('Session stats debug:', {
-        totalSessions: sessions?.length || 0,
-        sessions: sessions?.slice(0, 3).map(s => ({
-          created_at: s.created_at,
-          words_studied: s.words_studied,
-          session_type: s.session_type
+      console.log('Rating history debug:', {
+        totalRatings: ratingHistory?.length || 0,
+        ratings: ratingHistory?.slice(0, 5).map(r => ({
+          created_at: r.created_at,
+          rating: r.rating,
+          word_id: r.word_id
         }))
       })
 
-      sessions?.forEach(session => {
-        const sessionDate = new Date(session.created_at)
+      // Count words by date from rating history
+      ratingHistory?.forEach(rating => {
+        const ratingDate = new Date(rating.created_at)
         
-        if (sessionDate.toDateString() === today.toDateString()) {
-          stats.reviewsToday += session.words_studied
+        if (ratingDate.toDateString() === today.toDateString()) {
+          stats.reviewsToday++
         }
         
-        if (sessionDate >= sevenDaysAgo) {
-          stats.reviews7Days += session.words_studied
+        if (ratingDate >= sevenDaysAgo) {
+          stats.reviews7Days++
         }
         
-        if (sessionDate >= thirtyDaysAgo) {
-          stats.reviews30Days += session.words_studied
+        if (ratingDate >= thirtyDaysAgo) {
+          stats.reviews30Days++
         }
       })
 
-      console.log('Calculated stats:', stats)
+      // Calculate current streak (consecutive days with activity)
+      const uniqueDates = new Set()
+      ratingHistory?.forEach(rating => {
+        const ratingDate = new Date(rating.created_at)
+        uniqueDates.add(ratingDate.toDateString())
+      })
+
+      const sortedDates = Array.from(uniqueDates).sort().reverse()
+      let streak = 0
+      let currentDate = new Date(today)
+
+      for (const dateStr of sortedDates) {
+        const ratingDate = new Date(dateStr as string)
+        const daysDiff = Math.floor((currentDate.getTime() - ratingDate.getTime()) / (1000 * 60 * 60 * 24))
+        
+        if (daysDiff <= 1) {
+          streak++
+          currentDate = ratingDate
+        } else {
+          break
+        }
+      }
+
+      stats.currentStreak = streak
+
+      console.log('Calculated stats from rating history:', {
+        totalRatings: ratingHistory?.length || 0,
+        uniqueDates: uniqueDates.size,
+        stats
+      })
+
       updateSessionStats(stats)
     } catch (error) {
       console.error('Error loading session stats:', error)
