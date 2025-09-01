@@ -27,7 +27,8 @@ import {
   Ear,
   Zap,
   Clock,
-  EyeOff
+  EyeOff,
+  Flame
 } from 'lucide-react'
 
 export default function Dashboard() {
@@ -297,37 +298,96 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {availableDecks.map((deck) => (
-                <Card 
-                  key={deck.id} 
-                  className="cursor-pointer hover:shadow-lg transition-shadow duration-200 card-enhanced"
-                  onClick={() => selectDeck(deck)}
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <BookOpen className="h-5 w-5 text-blue-600" />
-                        <CardTitle className="text-lg">{deck.name}</CardTitle>
+              {availableDecks.map((deck) => {
+                const progress = userDeckProgress[deck.id] || {
+                  deck_id: deck.id,
+                  total_words: deck.total_words,
+                  mastered_words: 0,
+                  learning_words: 0,
+                  leeches: 0,
+                  unseen_words: deck.total_words
+                }
+                
+                // Calculate progress percentages for different states
+                const totalWords = deck.total_words
+                const mastered = progress.mastered_words
+                const learning = progress.learning_words
+                const unseen = progress.unseen_words
+                
+                return (
+                  <Card 
+                    key={deck.id} 
+                    className="cursor-pointer transition-all hover:shadow-lg hover:bg-gray-50 card-enhanced"
+                    onClick={() => selectDeck(deck)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <BookOpen className="h-5 w-5 text-blue-600" />
+                            <h3 className="font-semibold text-lg">{deck.name}</h3>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-700' :
+                              deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                              deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-700' :
+                              'bg-red-100 text-red-700'
+                            }`}>
+                              {deck.difficulty_level}
+                            </span>
+                          </div>
+                          
+                          {/* Progress Bar */}
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm text-gray-600">
+                              <span>Progress Overview</span>
+                              <span>{progress.mastered_words}/{totalWords} mastered</span>
+                            </div>
+                            
+                            <div className="flex h-3 bg-gray-200 rounded-full overflow-hidden">
+                              {/* Unseen */}
+                              <div 
+                                className="bg-gray-400"
+                                style={{ width: `${(unseen / totalWords) * 100}%` }}
+                                title={`${unseen} unseen`}
+                              />
+                              {/* Learning */}
+                              <div 
+                                className="bg-orange-400"
+                                style={{ width: `${(learning / totalWords) * 100}%` }}
+                                title={`${learning} learning`}
+                              />
+                              {/* Strengthening */}
+                              <div 
+                                className="bg-yellow-400"
+                                style={{ width: `${(Math.max(0, totalWords - unseen - learning - mastered) / totalWords) * 100}%` }}
+                                title="strengthening"
+                              />
+                              {/* Mastered */}
+                              <div 
+                                className="bg-green-500"
+                                style={{ width: `${(mastered / totalWords) * 100}%` }}
+                                title={`${mastered} mastered`}
+                              />
+                            </div>
+                            
+                            <div className="flex justify-between text-xs text-gray-500">
+                              <span>Unseen: {unseen}</span>
+                              <span>Learning: {learning}</span>
+                              <span>Strengthening: {Math.max(0, totalWords - unseen - learning - mastered)}</span>
+                              <span>Mastered: {mastered}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="text-right ml-4">
+                          <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
+                          <div className="text-sm text-gray-600">words</div>
+                        </div>
                       </div>
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-800' :
-                        deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                        deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-800' :
-                        'bg-red-100 text-red-800'
-                      }`}>
-                        {deck.difficulty_level}
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-gray-600 mb-4">{deck.description}</p>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span>{deck.language_a_name} → {deck.language_b_name}</span>
-                      <span>{deck.total_words} words</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           )}
         </div>

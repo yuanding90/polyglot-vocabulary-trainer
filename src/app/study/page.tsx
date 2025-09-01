@@ -245,12 +245,111 @@ export default function StudySession() {
     speakText(text, langCode)
   }
 
-  const handleAnswer = async (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know') => {
+  const markWordAsLeech = async (word: any) => {
+    if (!currentDeck) return
+
+    try {
+      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      
+      // Get current progress
+      const { data: currentProgress } = await supabase
+        .from('user_progress')
+        .select('*')
+        .eq('user_id', mockUserId)
+        .eq('word_id', word.id)
+        .eq('deck_id', currentDeck.id)
+        .single()
+
+      const progressData = {
+        user_id: mockUserId,
+        word_id: parseInt(word.id),
+        deck_id: currentDeck.id,
+        repetitions: currentProgress?.repetitions || 0,
+        interval: currentProgress?.interval || 0,
+        ease_factor: currentProgress?.ease_factor || SRS.EASE_FACTOR_DEFAULT,
+        next_review_date: currentProgress?.next_review_date || new Date().toISOString(),
+        again_count: 3 // Mark as leech by setting again_count to threshold
+      }
+
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert(progressData, { onConflict: 'user_id,word_id,deck_id' })
+
+      if (error) {
+        console.error('Error marking word as leech:', error)
+      } else {
+        console.log('Word marked as leech:', word.language_a_word)
+      }
+
+      // Move to next word after marking as leech
+      moveToNextWord()
+
+    } catch (error) {
+      console.error('Error marking word as leech:', error)
+    }
+  }
+
+  const removeWordFromLeech = async (word: any) => {
+    if (!currentDeck) return
+
+    try {
+      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      
+      // Get current progress
+      const { data: currentProgress } = await supabase
+        .from('user_progress')
+        .select('*')
+        .eq('user_id', mockUserId)
+        .eq('word_id', word.id)
+        .eq('deck_id', currentDeck.id)
+        .single()
+
+      const progressData = {
+        user_id: mockUserId,
+        word_id: parseInt(word.id),
+        deck_id: currentDeck.id,
+        repetitions: currentProgress?.repetitions || 0,
+        interval: currentProgress?.interval || 0,
+        ease_factor: currentProgress?.ease_factor || SRS.EASE_FACTOR_DEFAULT,
+        next_review_date: currentProgress?.next_review_date || new Date().toISOString(),
+        again_count: 0 // Remove from leeches by resetting again_count to 0
+      }
+
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert(progressData, { onConflict: 'user_id,word_id,deck_id' })
+
+      if (error) {
+        console.error('Error removing word from leeches:', error)
+      } else {
+        console.log('Word removed from leeches:', word.language_a_word)
+      }
+
+      // Move to next word after removing from leeches
+      moveToNextWord()
+
+    } catch (error) {
+      console.error('Error removing word from leeches:', error)
+    }
+  }
+
+  const handleAnswer = async (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => {
     if (!currentWord || !currentDeck) return
 
     try {
       const mockUserId = '00000000-0000-0000-0000-000000000000'
       
+      // Handle leech actions
+      if (rating === 'leech') {
+        await markWordAsLeech(currentWord)
+        return
+      }
+
+      if (rating === 'remove-leech') {
+        await removeWordFromLeech(currentWord)
+        return
+      }
+
       // Update session progress
       setSessionProgress(prev => ({
         ...prev,
@@ -752,6 +851,31 @@ function ReviewCard({
                     >
                       Easy
                     </Button>
+                  </div>
+
+                  {/* Add/Remove from Leeches Option */}
+                  <div className="text-center pt-6 border-t-2 border-gray-300">
+                    {currentWord?.again_count >= 3 ? (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => onAnswer('remove-leech')}
+                        className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-xl py-4"
+                      >
+                        <Check className="h-6 w-6 mr-3" />
+                        Remove from Leeches
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => onAnswer('leech')}
+                        className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
+                      >
+                        <AlertTriangle className="h-6 w-6 mr-3" />
+                        Add to Leeches
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
