@@ -217,6 +217,9 @@ export default function Dashboard() {
     setSessionType(null)
     // Reload dashboard data to reflect session results
     loadDashboardData()
+    // Also reload session stats
+    const mockUserId = '00000000-0000-0000-0000-000000000000'
+    loadSessionStats(mockUserId)
   }
 
   const handleLearningTypeToggle = (type: 'recognition' | 'production' | 'listening') => {
@@ -558,6 +561,39 @@ export default function Dashboard() {
           <Card className="flex flex-col card-enhanced">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
+                <Target className="h-5 w-5 text-green-600" />
+                Discovery
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col">
+              <div className="flex-1">
+                <p className="text-gray-600 mb-4">
+                  Learn new words from your selected deck
+                </p>
+                
+                {/* Queue Numbers */}
+                <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">{unseenQueue.length}</div>
+                    <div className="text-sm text-green-700 font-medium">Unseen Words</div>
+                  </div>
+                </div>
+              </div>
+              
+              <Button 
+                onClick={() => handleStartSession('discovery')}
+                className="btn-success w-full text-lg mt-auto"
+                disabled={!currentDeck || sessionSettings.types.length === 0}
+              >
+                <Target className="h-5 w-5 mr-2" />
+                Start Discovery
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="flex flex-col card-enhanced">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
                 <Play className="h-5 w-5 text-blue-600" />
                 Review
               </CardTitle>
@@ -596,39 +632,6 @@ export default function Dashboard() {
               >
                 <Play className="h-5 w-5 mr-2" />
                 Start Review
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="flex flex-col card-enhanced">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target className="h-5 w-5 text-green-600" />
-                Discovery
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex-1 flex flex-col">
-              <div className="flex-1">
-                <p className="text-gray-600 mb-4">
-                  Learn new words from your selected deck
-                </p>
-                
-                {/* Queue Numbers */}
-                <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{unseenQueue.length}</div>
-                    <div className="text-sm text-green-700 font-medium">Unseen Words</div>
-                  </div>
-                </div>
-              </div>
-              
-              <Button 
-                onClick={() => handleStartSession('discovery')}
-                className="btn-success w-full text-lg mt-auto"
-                disabled={!currentDeck || sessionSettings.types.length === 0}
-              >
-                <Target className="h-5 w-5 mr-2" />
-                Start Discovery
               </Button>
             </CardContent>
           </Card>

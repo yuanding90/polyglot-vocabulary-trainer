@@ -268,7 +268,7 @@ export default function StudySession() {
         interval: currentProgress?.interval || 0,
         ease_factor: currentProgress?.ease_factor || SRS.EASE_FACTOR_DEFAULT,
         next_review_date: currentProgress?.next_review_date || new Date().toISOString(),
-        again_count: 3 // Mark as leech by setting again_count to threshold
+        again_count: 4 // Mark as leech by setting again_count to threshold
       }
 
       const { error } = await supabase
@@ -447,6 +447,34 @@ export default function StudySession() {
     }
   }
 
+  const saveSessionSummary = async () => {
+    if (!currentDeck) return
+
+    try {
+      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      
+      const { error } = await supabase
+        .from('study_sessions')
+        .insert({
+          user_id: mockUserId,
+          deck_id: currentDeck.id,
+          session_type: sessionType,
+          words_studied: sessionProgress.total,
+          correct_answers: sessionProgress.good + sessionProgress.easy + sessionProgress.know,
+          session_duration: 0, // TODO: Calculate actual duration
+          completed_at: new Date().toISOString()
+        })
+
+      if (error) {
+        console.error('Error saving session summary:', error)
+      } else {
+        console.log('Session summary saved successfully')
+      }
+    } catch (error) {
+      console.error('Error in saveSessionSummary:', error)
+    }
+  }
+
   const moveToNextWord = () => {
     const nextIndex = currentWordIndex + 1
     
@@ -465,6 +493,7 @@ export default function StudySession() {
     } else {
       // Session complete
       console.log('Session complete!')
+      saveSessionSummary()
       onBack()
     }
   }
@@ -855,7 +884,7 @@ function ReviewCard({
 
                   {/* Add/Remove from Leeches Option */}
                   <div className="text-center pt-6 border-t-2 border-gray-300">
-                    {currentWord?.again_count >= 3 ? (
+                    {currentWord?.again_count >= 4 ? (
                       <Button
                         variant="outline"
                         size="lg"
