@@ -51,10 +51,7 @@ SELECT
     tablename,
     policyname,
     cmd,
-    CASE 
-        WHEN permissive THEN 'Permissive' 
-        ELSE 'Restrictive' 
-    END as policy_type
+    permissive as is_permissive
 FROM pg_policies 
 WHERE tablename IN ('user_progress', 'study_sessions', 'rating_history')
 ORDER BY tablename, policyname;

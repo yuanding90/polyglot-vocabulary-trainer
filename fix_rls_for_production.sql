@@ -52,7 +52,7 @@ SELECT
     schemaname,
     tablename,
     policyname,
-    permissive,
+    permissive as is_permissive,
     roles,
     cmd,
     qual,
