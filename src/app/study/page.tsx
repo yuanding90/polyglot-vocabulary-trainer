@@ -176,10 +176,8 @@ export default function StudySession() {
         })
       } else if (sessionType === 'discovery') {
         // For discovery sessions, exclude words that have already been learned
-        filteredWords = words.filter(word => {
-          const progress = progressMap.get(word.id)
-          return !progress || progress.repetitions === 0
-        })
+        const learnedWordIds = userProgress?.map(p => p.word_id) || []
+        filteredWords = words.filter(word => !learnedWordIds.includes(word.id))
       } else if (sessionType === 'deep-dive' && deepDiveCategory) {
         // For deep dive sessions, filter by category
         filteredWords = words.filter(word => {
