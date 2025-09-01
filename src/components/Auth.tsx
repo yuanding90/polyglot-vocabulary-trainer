@@ -40,9 +40,8 @@ export default function Auth() {
   const handleGoogleSignIn = async () => {
     setLoading(true)
     try {
-      const redirectTo = process.env.NODE_ENV === 'production' 
-        ? 'https://polyglot-vocabulary-trainer.vercel.app/auth/callback'
-        : 'http://localhost:3000/auth/callback'
+      const redirectTo = `${window.location.origin}/auth/callback`
+      console.log('Redirecting to:', redirectTo) // Debug log
       
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -52,6 +51,7 @@ export default function Auth() {
       })
       if (error) throw error
     } catch (error: unknown) {
+      console.error('Google sign-in error:', error) // Debug log
       alert(error instanceof Error ? error.message : 'An error occurred')
     } finally {
       setLoading(false)
