@@ -31,6 +31,7 @@ interface SessionProgress {
 
 import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
+import { sessionQueueManager } from '@/lib/session-queues'
 
 export default function StudySession() {
   const { sessionSettings } = useVocabularyStore()
@@ -178,16 +179,22 @@ export default function StudySession() {
       setLoading(true)
       console.log('Loading session words for deck:', currentDeck.id, 'deck name:', currentDeck.name, 'session type:', sessionType)
       
-      // Get the queues from the dashboard state instead of rebuilding them
+      // Try to get the queues from the dashboard state first
       const { unseenQueue, reviewQueue, practicePool, nearFutureQueue } = useVocabularyStore.getState()
+      console.log('Queues from store:', {
+        unseen: unseenQueue?.length || 0,
+        review: reviewQueue?.length || 0,
+        practice: practicePool?.length || 0,
+        nearFuture: nearFutureQueue?.length || 0
+      })
       
       let sessionWords: Vocabulary[] = []
       
       if (sessionType === 'review') {
-        sessionWords = reviewQueue
+        sessionWords = reviewQueue || []
         console.log(`Review session: Using ${sessionWords.length} words from review queue`)
       } else if (sessionType === 'discovery') {
-        sessionWords = unseenQueue
+        sessionWords = unseenQueue || []
         console.log(`Discovery session: Using ${sessionWords.length} words from unseen queue`)
       } else if (sessionType === 'deep-dive' && deepDiveCategory) {
         // For deep dive, we need to filter the practice pool by category
@@ -227,8 +234,67 @@ export default function StudySession() {
         console.log(`Deep dive session: Found ${sessionWords.length} words for category ${deepDiveCategory}`)
       }
 
+      // If no words from store queues, build them directly as fallback
       if (sessionWords.length === 0) {
-        console.log(`No words available for ${sessionType} session`)
+        console.log(`No words from store queues for ${sessionType}, building queues directly as fallback`)
+        
+        try {
+          const queues = await sessionQueueManager.buildQueues(currentDeck.id, currentUser?.id || '')
+          console.log('Fallback queues built:', {
+            unseen: queues.unseen.length,
+            review: queues.review.length,
+            practice: queues.practice.length,
+            nearFuture: queues.nearFuture.length
+          })
+          
+          if (sessionType === 'review') {
+            sessionWords = queues.review
+          } else if (sessionType === 'discovery') {
+            sessionWords = queues.unseen
+          } else if (sessionType === 'deep-dive' && deepDiveCategory) {
+            // For deep dive, filter practice pool by category
+            const { data: userProgress, error: progressError } = await supabase
+              .from('user_progress')
+              .select('*')
+              .eq('user_id', currentUser?.id)
+              .eq('deck_id', currentDeck.id)
+
+            if (progressError) {
+              console.error('Error loading user progress for deep dive fallback:', progressError)
+            }
+
+            const progressMap = new Map()
+            userProgress?.forEach(progress => {
+              progressMap.set(progress.word_id, progress)
+            })
+
+            sessionWords = queues.practice.filter((word: Vocabulary) => {
+              const progress = progressMap.get(word.id)
+              if (!progress) return false
+
+              switch (deepDiveCategory) {
+                case 'leeches':
+                  return progress.again_count >= 3
+                case 'learning':
+                  return progress.repetitions > 0 && progress.repetitions < 3
+                case 'strengthening':
+                  return progress.repetitions >= 3 && progress.repetitions < 10
+                case 'consolidating':
+                  return progress.repetitions >= 10
+                default:
+                  return false
+              }
+            })
+          }
+          
+          console.log(`Fallback ${sessionType} session: Found ${sessionWords.length} words`)
+        } catch (fallbackError) {
+          console.error('Error building fallback queues:', fallbackError)
+        }
+      }
+      
+      if (sessionWords.length === 0) {
+        console.log(`No words available for ${sessionType} session after fallback`)
         setLocalSessionWords([])
         setLoading(false)
         return
