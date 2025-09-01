@@ -63,24 +63,31 @@ export default function Dashboard() {
   const [showStudySession, setShowStudySession] = useState(false)
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
+  const [currentUser, setCurrentUser] = useState<any>(null)
 
   useEffect(() => {
-    loadDashboardData()
+    // Get current user first
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      setCurrentUser(user)
+      if (user) {
+        await loadDashboardData(user.id)
+      }
+    }
+    getCurrentUser()
   }, [])
 
   // Reload deck-specific data when current deck changes
   useEffect(() => {
-    if (currentDeck) {
+    if (currentDeck && currentUser) {
       const loadCurrentDeckData = async () => {
-        // Use mock user ID for now (skip authentication) - using a proper UUID format
-        const mockUserId = '00000000-0000-0000-0000-000000000000'
-        await loadDeckData(currentDeck.id, mockUserId)
+        await loadDeckData(currentDeck.id, currentUser.id)
       }
       loadCurrentDeckData()
     }
-  }, [currentDeck])
+  }, [currentDeck, currentUser])
 
-  const loadDashboardData = async () => {
+  const loadDashboardData = async (userId: string) => {
     try {
       setLoading(true)
       
@@ -100,14 +107,12 @@ export default function Dashboard() {
         const deck = JSON.parse(deckData)
         setCurrentDeck(deck)
         
-        // Load deck data with mock user
-        const mockUserId = '00000000-0000-0000-0000-000000000000'
-        await loadDeckData(deck.id, mockUserId)
+        // Load deck data with current user
+        await loadDeckData(deck.id, userId)
       }
 
       // Load session statistics
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
-      await loadSessionStats(mockUserId)
+      await loadSessionStats(userId)
 
     } catch (error) {
       console.error('Error loading dashboard data:', error)
@@ -222,8 +227,9 @@ export default function Dashboard() {
     }
 
     // Load fresh deck data before starting session
-    const mockUserId = '00000000-0000-0000-0000-000000000000'
-    await loadDeckData(currentDeck.id, mockUserId)
+    if (currentUser) {
+      await loadDeckData(currentDeck.id, currentUser.id)
+    }
     
     setSessionType(type)
     setShowStudySession(true)
@@ -239,8 +245,9 @@ export default function Dashboard() {
     // Reload dashboard data to reflect session results
     loadDashboardData()
     // Also reload session stats
-    const mockUserId = '00000000-0000-0000-0000-000000000000'
-    loadSessionStats(mockUserId)
+    if (currentUser) {
+      loadSessionStats(currentUser.id)
+    }
   }
 
   const handleLearningTypeToggle = (type: 'recognition' | 'production' | 'listening') => {
@@ -282,9 +289,10 @@ export default function Dashboard() {
     localStorage.setItem('selectedDeck', JSON.stringify(deck))
     setCurrentDeck(deck)
     setShowDeckSelection(false)
-    // Load deck data with mock user
-    const mockUserId = '00000000-0000-0000-0000-000000000000'
-    loadDeckData(deck.id, mockUserId)
+    // Load deck data with current user
+    if (currentUser) {
+      loadDeckData(deck.id, currentUser.id)
+    }
   }
 
   const handleSignOut = async () => {

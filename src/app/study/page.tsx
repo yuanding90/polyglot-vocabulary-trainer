@@ -68,8 +68,16 @@ export default function StudySession() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
+  const [currentUser, setCurrentUser] = useState<any>(null)
 
   useEffect(() => {
+    // Get current user first
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      setCurrentUser(user)
+    }
+    getCurrentUser()
+
     // Get session type from localStorage
     const storedSessionType = localStorage.getItem('sessionType') as 'review' | 'discovery' | 'deep-dive'
     if (storedSessionType) {
@@ -225,11 +233,16 @@ export default function StudySession() {
       console.log('Loaded words:', words.length)
 
       // Get user progress for this deck
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      if (!currentUser) {
+        console.log('No current user found')
+        setLoading(false)
+        return
+      }
+      
       const { data: userProgress, error: progressError } = await supabase
         .from('user_progress')
         .select('*')
-        .eq('user_id', mockUserId)
+        .eq('user_id', currentUser.id)
         .eq('deck_id', currentDeck.id)
 
       if (progressError) {
@@ -359,19 +372,22 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      if (!currentUser) {
+        console.log('No current user found')
+        return
+      }
       
       // Get current progress
       const { data: currentProgress } = await supabase
         .from('user_progress')
         .select('*')
-        .eq('user_id', mockUserId)
+        .eq('user_id', currentUser.id)
         .eq('word_id', word.id)
         .eq('deck_id', currentDeck.id)
         .single()
 
       const progressData = {
-        user_id: mockUserId,
+        user_id: currentUser.id,
         word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
@@ -403,19 +419,22 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      if (!currentUser) {
+        console.log('No current user found')
+        return
+      }
       
       // Get current progress
       const { data: currentProgress } = await supabase
         .from('user_progress')
         .select('*')
-        .eq('user_id', mockUserId)
+        .eq('user_id', currentUser.id)
         .eq('word_id', word.id)
         .eq('deck_id', currentDeck.id)
         .single()
 
       const progressData = {
-        user_id: mockUserId,
+        user_id: currentUser.id,
         word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
@@ -447,7 +466,10 @@ export default function StudySession() {
     if (!currentWord || !currentDeck) return
 
     try {
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      if (!currentUser) {
+        console.log('No current user found')
+        return
+      }
       
       // Handle leech actions
       if (rating === 'leech') {
@@ -477,7 +499,7 @@ export default function StudySession() {
         const { data: currentProgress } = await supabase
           .from('user_progress')
           .select('*')
-          .eq('user_id', mockUserId)
+          .eq('user_id', currentUser.id)
           .eq('word_id', currentWord.id)
           .eq('deck_id', currentDeck.id)
           .single()
@@ -501,7 +523,7 @@ export default function StudySession() {
         newRepetitions = result.repetitions
 
         // Log the rating for review sessions
-        await logRating(mockUserId, currentWord.id.toString(), currentDeck.id, rating as 'again' | 'hard' | 'good' | 'easy')
+        await logRating(currentUser.id, currentWord.id.toString(), currentDeck.id, rating as 'again' | 'hard' | 'good' | 'easy')
 
       } else if (sessionType === 'discovery') {
         // Discovery session logic
@@ -516,7 +538,7 @@ export default function StudySession() {
         }
 
         // Log the rating for discovery sessions
-        await logRating(mockUserId, currentWord.id.toString(), currentDeck.id, rating as 'learn' | 'know')
+        await logRating(currentUser.id, currentWord.id.toString(), currentDeck.id, rating as 'learn' | 'know')
       }
 
       const nextReviewDate = new Date()
@@ -528,7 +550,7 @@ export default function StudySession() {
       console.log('Word ID before conversion:', currentWord.id, 'Type:', typeof currentWord.id)
       
       const progressData = {
-        user_id: mockUserId,
+        user_id: currentUser.id,
         word_id: currentWord.id, // ID is already a number
         deck_id: currentDeck.id,
         repetitions: newRepetitions,
@@ -561,10 +583,13 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      const mockUserId = '00000000-0000-0000-0000-000000000000'
+      if (!currentUser) {
+        console.log('No current user found')
+        return
+      }
       
       const sessionData = {
-        user_id: mockUserId,
+        user_id: currentUser.id,
         deck_id: currentDeck.id,
         session_type: sessionType,
         words_studied: sessionProgress.total,
