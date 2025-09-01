@@ -98,10 +98,18 @@ export default function StudySession() {
 
   // Load session words when currentDeck is available
   useEffect(() => {
-    if (currentDeck) {
+    if (currentDeck && currentUser) {
+      console.log('Both currentDeck and currentUser available, loading session words')
       loadSessionWords()
+    } else {
+      console.log('Waiting for currentDeck and currentUser:', { 
+        hasDeck: !!currentDeck, 
+        hasUser: !!currentUser,
+        deckId: currentDeck?.id,
+        userId: currentUser?.id
+      })
     }
-  }, [currentDeck, sessionType])
+  }, [currentDeck, currentUser, sessionType])
 
   // Listen for localStorage changes to reload when deck changes
   useEffect(() => {

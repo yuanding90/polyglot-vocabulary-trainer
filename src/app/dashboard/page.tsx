@@ -70,9 +70,13 @@ export default function Dashboard() {
     // Get current user first
     const getCurrentUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
+      console.log('Dashboard: Got current user:', user?.email, 'ID:', user?.id)
       setCurrentUser(user)
       if (user) {
+        console.log('Dashboard: Loading dashboard data for user:', user.id)
         await loadDashboardData(user.id)
+      } else {
+        console.log('Dashboard: No user found, redirecting to auth')
       }
     }
     getCurrentUser()
@@ -124,7 +128,11 @@ export default function Dashboard() {
 
   const loadDeckData = useCallback(async (deckId: string, userId: string) => {
     try {
-      console.log('Loading deck data for deck:', deckId, 'user:', userId)
+      console.log('Dashboard: Loading deck data for deck:', deckId, 'user:', userId, 'type:', typeof userId)
+      if (!userId || userId === '00000000-0000-0000-0000-000000000000') {
+        console.error('Dashboard: Invalid user ID detected:', userId)
+        return
+      }
       
       // Build queues
       const queues = await sessionQueueManager.buildQueues(deckId, userId)
