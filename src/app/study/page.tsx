@@ -208,150 +208,161 @@ export default function StudySession() {
       
       console.log('Study session: Using user:', user.email, 'ID:', user.id)
       
-      // Try to get the queues from the dashboard state first
-      const { unseenQueue, reviewQueue, practicePool, nearFutureQueue } = useVocabularyStore.getState()
-      console.log('Queues from store:', {
-        unseen: unseenQueue?.length || 0,
-        review: reviewQueue?.length || 0,
-        practice: practicePool?.length || 0,
-        nearFuture: nearFutureQueue?.length || 0
-      })
-      
-      let sessionWords: Vocabulary[] = []
-      
-      if (sessionType === 'review') {
-        sessionWords = reviewQueue || []
-        console.log(`Review session: Using ${sessionWords.length} words from review queue`)
-      } else if (sessionType === 'discovery') {
-        sessionWords = unseenQueue || []
-        console.log(`Discovery session: Using ${sessionWords.length} words from unseen queue`)
-      } else if (sessionType === 'deep-dive' && deepDiveCategory) {
-        // For deep dive, we need to filter the practice pool by category
-        const { data: userProgress, error: progressError } = await supabase
+      // Get all vocabulary for the deck (like French app does)
+      const { data: deckVocab, error: deckError } = await supabase
+        .from('deck_vocabulary')
+        .select('vocabulary_id')
+        .eq('deck_id', currentDeck.id)
+        .order('word_order')
+
+      if (deckError) {
+        console.error('Error fetching deck vocabulary:', deckError)
+        setLoading(false)
+        return
+      }
+
+      const vocabIds = deckVocab.map(item => item.vocabulary_id)
+
+      // Get vocabulary words
+      const { data: words, error: wordsError } = await supabase
+        .from('vocabulary')
+        .select('*')
+        .in('id', vocabIds)
+
+      if (wordsError) {
+        console.error('Error fetching vocabulary words:', wordsError)
+        setLoading(false)
+        return
+      }
+
+      console.log('Loaded words:', words?.length || 0)
+
+      if (words && words.length > 0) {
+        // Filter words based on session type (like French app does)
+        let filteredWords = words
+        let userProgress: any[] = []
+        
+        // Get user progress for this deck
+        const { data: progressData, error: progressError } = await supabase
           .from('user_progress')
           .select('*')
           .eq('user_id', user.id)
           .eq('deck_id', currentDeck.id)
 
-        if (progressError) {
-          console.error('Error loading user progress for deep dive:', progressError)
-        }
-
-        const progressMap = new Map()
-        userProgress?.forEach(progress => {
-          progressMap.set(progress.word_id, progress)
-        })
-
-        sessionWords = practicePool.filter(word => {
-          const progress = progressMap.get(word.id)
-          if (!progress) return false
-
-          switch (deepDiveCategory) {
-            case 'leeches':
-              return progress.again_count >= 3
-            case 'learning':
-              return progress.repetitions > 0 && progress.repetitions < 3
-            case 'strengthening':
-              return progress.repetitions >= 3 && progress.repetitions < 10
-            case 'consolidating':
-              return progress.repetitions >= 10
-            default:
-              return false
-          }
-        })
-        
-        console.log(`Deep dive session: Found ${sessionWords.length} words for category ${deepDiveCategory}`)
-      }
-
-      // If no words from store queues, build them directly as fallback
-      if (sessionWords.length === 0) {
-        console.log(`No words from store queues for ${sessionType}, building queues directly as fallback`)
-        
-        try {
-          const queues = await sessionQueueManager.buildQueues(currentDeck.id, user.id)
-          console.log('Fallback queues built:', {
-            unseen: queues.unseen.length,
-            review: queues.review.length,
-            practice: queues.practice.length,
-            nearFuture: queues.nearFuture.length
-          })
+        if (!progressError && progressData) {
+          userProgress = progressData
           
           if (sessionType === 'review') {
-            sessionWords = queues.review
-          } else if (sessionType === 'discovery') {
-            sessionWords = queues.unseen
-          } else if (sessionType === 'deep-dive' && deepDiveCategory) {
-            // For deep dive, filter practice pool by category
-            const { data: userProgress, error: progressError } = await supabase
-              .from('user_progress')
-              .select('*')
-              .eq('user_id', user.id)
-              .eq('deck_id', currentDeck.id)
-
-            if (progressError) {
-              console.error('Error loading user progress for deep dive fallback:', progressError)
-            }
-
-            const progressMap = new Map()
-            userProgress?.forEach(progress => {
-              progressMap.set(progress.word_id, progress)
+            // Create a map of word progress for efficient lookup
+            const progressMap = new Map(userProgress.map(p => [p.word_id, p]))
+            
+            // Step 1: Check for Due Now words (overdue for review)
+            const dueNowWords = userProgress.filter(progress => {
+              const nextReview = new Date(progress.next_review_date)
+              return nextReview <= new Date()
             })
-
-            sessionWords = queues.practice.filter((word: Vocabulary) => {
+            
+            if (dueNowWords.length > 0) {
+              // Use Due Now words
+              const dueNowWordIds = dueNowWords.map(p => p.word_id)
+              filteredWords = words.filter(word => dueNowWordIds.includes(word.id))
+              console.log(`Review session: Using ${dueNowWords.length} Due Now words`)
+            } else {
+              // Step 2: Check for Due Soon words (coming up in next 24 hours)
+              const dueSoonWords = userProgress.filter(progress => {
+                const nextReview = new Date(progress.next_review_date)
+                const tomorrow = new Date()
+                tomorrow.setDate(tomorrow.getDate() + 1)
+                return nextReview <= tomorrow && nextReview > new Date()
+              })
+              
+              if (dueSoonWords.length > 0) {
+                // Use Due Soon words
+                const dueSoonWordIds = dueSoonWords.map(p => p.word_id)
+                filteredWords = words.filter(word => dueSoonWordIds.includes(word.id))
+                console.log(`Review session: Using ${dueSoonWords.length} Due Soon words`)
+              } else {
+                // Step 3: Use Unseen words (no progress record)
+                const unseenWords = words.filter(word => !progressMap.has(word.id))
+                
+                if (unseenWords.length > 0) {
+                  filteredWords = unseenWords
+                  console.log(`Review session: Using ${unseenWords.length} Unseen words`)
+                } else {
+                  // Fallback: use all words for practice
+                  filteredWords = words
+                  console.log(`Review session: Using all ${words.length} words for practice`)
+                }
+              }
+            }
+          } else if (sessionType === 'discovery') {
+            // For discovery sessions, exclude words that have already been learned
+            const learnedWordIds = userProgress.map(p => p.word_id)
+            filteredWords = words.filter(word => !learnedWordIds.includes(word.id))
+            console.log(`Discovery session: Using ${filteredWords.length} unseen words`)
+          } else if (sessionType === 'deep-dive' && deepDiveCategory) {
+            // For deep dive, filter based on selected category
+            const progressMap = new Map(userProgress.map(p => [p.word_id, p]))
+            
+            filteredWords = words.filter(word => {
               const progress = progressMap.get(word.id)
               if (!progress) return false
-
+              
               switch (deepDiveCategory) {
                 case 'leeches':
                   return progress.again_count >= 3
                 case 'learning':
-                  return progress.repetitions > 0 && progress.repetitions < 3
+                  return progress.again_count < 3 && progress.interval < 7
                 case 'strengthening':
-                  return progress.repetitions >= 3 && progress.repetitions < 10
+                  return progress.again_count < 3 && progress.interval >= 7 && progress.interval < 21
                 case 'consolidating':
-                  return progress.repetitions >= 10
+                  return progress.again_count < 3 && progress.interval >= 21 && progress.interval < 60
                 default:
                   return false
               }
             })
+            console.log(`Deep dive session: Found ${filteredWords.length} words for category ${deepDiveCategory}`)
           }
-          
-          console.log(`Fallback ${sessionType} session: Found ${sessionWords.length} words`)
-        } catch (fallbackError) {
-          console.error('Error building fallback queues:', fallbackError)
-        }
-      }
-      
-      if (sessionWords.length === 0) {
-        console.log(`No words available for ${sessionType} session after fallback`)
-        setLocalSessionWords([])
-        setLoading(false)
-        return
-      }
-
-      // Shuffle the words for better randomization
-      const shuffledWords = shuffleArray(sessionWords)
-      console.log(`Shuffled ${shuffledWords.length} words for ${sessionType} session`)
-      
-      setLocalSessionWords(shuffledWords)
-      setSessionProgress(prev => ({ ...prev, total: shuffledWords.length }))
-
-      if (shuffledWords.length > 0) {
-        setCurrentWordState(shuffledWords[0])
-        setCurrentWordIndex(0)
-        
-        // Load progress for the first word
-        await loadCurrentWordProgress(shuffledWords[0])
-        
-        // Set initial card type based on session settings
-        if (sessionSettings.types.length > 0) {
-          const randomType = sessionSettings.types[Math.floor(Math.random() * sessionSettings.types.length)]
-          console.log('Setting initial card type:', randomType, 'from available types:', sessionSettings.types)
-          setCardType(randomType)
         } else {
-          console.log('No session types selected for initial card, using default recognition')
-          setCardType('recognition')
+          // No progress data - for new users or new decks
+          if (sessionType === 'review') {
+            // For new users, review session should use unseen words
+            filteredWords = words
+            console.log(`Review session (new user): Using all ${words.length} words`)
+          } else if (sessionType === 'discovery') {
+            // Discovery session uses all words for new users
+            filteredWords = words
+            console.log(`Discovery session (new user): Using all ${words.length} words`)
+          }
         }
+
+        // Shuffle the words for better randomization
+        const shuffledWords = shuffleArray(filteredWords)
+        console.log(`Shuffled ${shuffledWords.length} words for ${sessionType} session`)
+        
+        setLocalSessionWords(shuffledWords)
+        setSessionProgress(prev => ({ ...prev, total: shuffledWords.length }))
+
+        if (shuffledWords.length > 0) {
+          setCurrentWordState(shuffledWords[0])
+          setCurrentWordIndex(0)
+          
+          // Load progress for the first word
+          await loadCurrentWordProgress(shuffledWords[0])
+          
+          // Set initial card type based on session settings
+          if (sessionSettings.types.length > 0) {
+            const randomType = sessionSettings.types[Math.floor(Math.random() * sessionSettings.types.length)]
+            console.log('Setting initial card type:', randomType, 'from available types:', sessionSettings.types)
+            setCardType(randomType)
+          } else {
+            console.log('No session types selected for initial card, using default recognition')
+            setCardType('recognition')
+          }
+        }
+      } else {
+        console.log('No words found for deck')
+        setLocalSessionWords([])
       }
 
     } catch (error) {
