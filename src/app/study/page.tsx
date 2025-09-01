@@ -436,21 +436,27 @@ export default function StudySession() {
             <div className="flex items-center space-x-4">
               <Button onClick={onBack} variant="outline" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
+                End Session
               </Button>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Study Session</h1>
-                <p className="text-sm text-gray-600">{sessionType} session</p>
+              <div className="text-sm text-gray-600">
+                {currentWordIndex + 1} / {sessionWords.length}
               </div>
-            </div>
-            <div className="text-sm text-gray-600">
-              {currentWordIndex + 1} of {sessionWords.length}
             </div>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto p-6 max-w-4xl">
+        {/* Session Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} Session
+          </h1>
+          <p className="text-gray-600">
+            {currentDeck?.name} • {sessionProgress.total} completed
+          </p>
+        </div>
+
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
