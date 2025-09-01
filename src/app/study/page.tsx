@@ -981,11 +981,15 @@ function ReviewCard({
                         <div className="text-6xl font-bold text-gray-900">
                           {promptText}
                         </div>
-                        {cardType === 'recognition' && (
+                        {(cardType === 'recognition' || cardType === 'production') && (
                           <Button
                             variant="ghost"
                             size="lg"
-                            onClick={() => speakWord(word?.language_a_word, 'auto')}
+                            onClick={() => 
+                              cardType === 'recognition' 
+                                ? speakWord(word?.language_a_word, currentDeck?.language_a_code)
+                                : speakWord(word?.language_b_translation, currentDeck?.language_b_code)
+                            }
                             className="p-3"
                           >
                             <Volume2 className="h-8 w-8" />
@@ -1035,7 +1039,7 @@ function ReviewCard({
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => speakWord(word?.language_a_word, 'auto')}
+                      onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
                       className="p-2"
                     >
                       <Volume2 className="h-8 w-8" />
