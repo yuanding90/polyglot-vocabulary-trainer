@@ -59,16 +59,9 @@ export default function StudySession() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
-  const [currentUser, setCurrentUser] = useState<User | null>(null)
+  // Removed currentUser state - getting user inside each function like French app
 
   useEffect(() => {
-    // Get current user first
-    const getCurrentUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setCurrentUser(user)
-    }
-    getCurrentUser()
-
     // Get session type from localStorage
     const storedSessionType = localStorage.getItem('sessionType') as 'review' | 'discovery' | 'deep-dive'
     if (storedSessionType) {
@@ -98,18 +91,16 @@ export default function StudySession() {
 
   // Load session words when currentDeck is available
   useEffect(() => {
-    if (currentDeck && currentUser) {
-      console.log('Both currentDeck and currentUser available, loading session words')
+    if (currentDeck) {
+      console.log('CurrentDeck available, loading session words')
       loadSessionWords()
     } else {
-      console.log('Waiting for currentDeck and currentUser:', { 
-        hasDeck: !!currentDeck, 
-        hasUser: !!currentUser,
-        deckId: currentDeck?.id,
-        userId: currentUser?.id
+      console.log('Waiting for currentDeck:', { 
+        hasDeck: !!currentDeck,
+        deckId: currentDeck?.id
       })
     }
-  }, [currentDeck, currentUser, sessionType])
+  }, [currentDeck, sessionType])
 
   // Listen for localStorage changes to reload when deck changes
   useEffect(() => {
@@ -187,6 +178,16 @@ export default function StudySession() {
       setLoading(true)
       console.log('Loading session words for deck:', currentDeck.id, 'deck name:', currentDeck.name, 'session type:', sessionType)
       
+      // Get current user inside the function (like French app does)
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.error('No authenticated user found')
+        setLoading(false)
+        return
+      }
+      
+      console.log('Study session: Using user:', user.email, 'ID:', user.id)
+      
       // Try to get the queues from the dashboard state first
       const { unseenQueue, reviewQueue, practicePool, nearFutureQueue } = useVocabularyStore.getState()
       console.log('Queues from store:', {
@@ -209,7 +210,7 @@ export default function StudySession() {
         const { data: userProgress, error: progressError } = await supabase
           .from('user_progress')
           .select('*')
-          .eq('user_id', currentUser?.id)
+          .eq('user_id', user.id)
           .eq('deck_id', currentDeck.id)
 
         if (progressError) {
@@ -247,7 +248,7 @@ export default function StudySession() {
         console.log(`No words from store queues for ${sessionType}, building queues directly as fallback`)
         
         try {
-          const queues = await sessionQueueManager.buildQueues(currentDeck.id, currentUser?.id || '')
+          const queues = await sessionQueueManager.buildQueues(currentDeck.id, user.id)
           console.log('Fallback queues built:', {
             unseen: queues.unseen.length,
             review: queues.review.length,
@@ -264,7 +265,7 @@ export default function StudySession() {
             const { data: userProgress, error: progressError } = await supabase
               .from('user_progress')
               .select('*')
-              .eq('user_id', currentUser?.id)
+              .eq('user_id', user.id)
               .eq('deck_id', currentDeck.id)
 
             if (progressError) {
@@ -335,7 +336,7 @@ export default function StudySession() {
     } finally {
       setLoading(false)
     }
-  }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types, currentUser])
+  }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types])
 
   const speakWord = (text: string | undefined, language?: string) => {
     if (!text) return
@@ -348,8 +349,10 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      if (!currentUser) {
-        console.log('No current user found')
+      // Get current user inside the function (like French app does)
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.log('No authenticated user found')
         return
       }
       
@@ -357,13 +360,13 @@ export default function StudySession() {
       const { data: currentProgress } = await supabase
         .from('user_progress')
         .select('*')
-        .eq('user_id', currentUser.id)
+        .eq('user_id', user.id)
         .eq('word_id', word.id)
         .eq('deck_id', currentDeck.id)
         .single()
 
       const progressData = {
-        user_id: currentUser.id,
+        user_id: user.id,
         word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
@@ -395,8 +398,10 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      if (!currentUser) {
-        console.log('No current user found')
+      // Get current user inside the function (like French app does)
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.log('No authenticated user found')
         return
       }
       
@@ -404,13 +409,13 @@ export default function StudySession() {
       const { data: currentProgress } = await supabase
         .from('user_progress')
         .select('*')
-        .eq('user_id', currentUser.id)
+        .eq('user_id', user.id)
         .eq('word_id', word.id)
         .eq('deck_id', currentDeck.id)
         .single()
 
       const progressData = {
-        user_id: currentUser.id,
+        user_id: user.id,
         word_id: word.id,
         deck_id: currentDeck.id,
         repetitions: currentProgress?.repetitions || 0,
@@ -442,8 +447,10 @@ export default function StudySession() {
     if (!currentWord || !currentDeck) return
 
     try {
-      if (!currentUser) {
-        console.log('No current user found')
+      // Get current user inside the function (like French app does)
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.log('No authenticated user found')
         return
       }
       
@@ -475,7 +482,7 @@ export default function StudySession() {
         const { data: currentProgress } = await supabase
           .from('user_progress')
           .select('*')
-          .eq('user_id', currentUser.id)
+          .eq('user_id', user.id)
           .eq('word_id', currentWord.id)
           .eq('deck_id', currentDeck.id)
           .single()
@@ -499,7 +506,7 @@ export default function StudySession() {
         newRepetitions = result.repetitions
 
         // Log the rating for review sessions
-        await logRating(currentUser.id, currentWord.id.toString(), currentDeck.id, rating as 'again' | 'hard' | 'good' | 'easy')
+        await logRating(user.id, currentWord.id.toString(), currentDeck.id, rating as 'again' | 'hard' | 'good' | 'easy')
 
       } else if (sessionType === 'discovery') {
         // Discovery session logic
@@ -514,7 +521,7 @@ export default function StudySession() {
         }
 
         // Log the rating for discovery sessions
-        await logRating(currentUser.id, currentWord.id.toString(), currentDeck.id, rating as 'learn' | 'know')
+        await logRating(user.id, currentWord.id.toString(), currentDeck.id, rating as 'learn' | 'know')
       }
 
       const nextReviewDate = new Date()
@@ -526,7 +533,7 @@ export default function StudySession() {
       console.log('Word ID before conversion:', currentWord.id, 'Type:', typeof currentWord.id)
       
       const progressData = {
-        user_id: currentUser.id,
+        user_id: user.id,
         word_id: currentWord.id, // ID is already a number
         deck_id: currentDeck.id,
         repetitions: newRepetitions,
@@ -559,13 +566,15 @@ export default function StudySession() {
     if (!currentDeck) return
 
     try {
-      if (!currentUser) {
-        console.log('No current user found')
+      // Get current user inside the function (like French app does)
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        console.log('No authenticated user found')
         return
       }
       
       const sessionData = {
-        user_id: currentUser.id,
+        user_id: user.id,
         deck_id: currentDeck.id,
         session_type: sessionType,
         words_studied: sessionProgress.total,
@@ -642,7 +651,7 @@ export default function StudySession() {
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-                          <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4">
               <Button onClick={onBack} variant="outline" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
@@ -653,11 +662,6 @@ export default function StudySession() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              {currentUser && (
-                <span className="text-sm text-gray-600">
-                  {currentUser.email}
-                </span>
-              )}
               <Button 
                 onClick={() => supabase.auth.signOut()}
                 variant="outline"
@@ -666,7 +670,6 @@ export default function StudySession() {
               >
                 Sign Out
               </Button>
-            </div>
             </div>
           </div>
         </header>
@@ -708,11 +711,6 @@ export default function StudySession() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              {currentUser && (
-                <span className="text-sm text-gray-600">
-                  {currentUser.email}
-                </span>
-              )}
               <Button 
                 onClick={() => supabase.auth.signOut()}
                 variant="outline"
