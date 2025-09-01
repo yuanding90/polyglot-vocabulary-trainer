@@ -348,7 +348,7 @@ export default function StudySession() {
     }
   }, [currentDeck, sessionType, deepDiveCategory, sessionSettings.types])
 
-  const speakWord = (text: string, language?: string) => {
+  const speakWord = (text: string | undefined, language?: string) => {
     if (!text) return
     
     const langCode = language || getLanguageCode(currentDeck?.language_a_code || 'en')
@@ -622,7 +622,9 @@ export default function StudySession() {
     language_a_word: currentWord.language_a_word,
     language_b_translation: currentWord.language_b_translation,
     language_a_sentence: currentWord.language_a_sentence,
-    language_b_sentence: currentWord.language_b_sentence
+    language_b_sentence: currentWord.language_b_sentence,
+    created_at: currentWord.created_at,
+    updated_at: currentWord.updated_at
   } : null
 
   if (loading) {
@@ -787,6 +789,21 @@ export default function StudySession() {
 }
 
 // Review Card Component
+interface ReviewCardProps {
+  word: Vocabulary | null
+  currentWord: Vocabulary | null
+  cardType: 'recognition' | 'production' | 'listening'
+  showAnswer: boolean
+  userAnswer: string
+  setUserAnswer: (value: string) => void
+  isCorrect: boolean
+  onShowAnswer: () => void
+  onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
+  onUserAnswer: (value: string) => void
+  speakWord: (text: string | undefined, language?: string) => void
+  sessionSettings: { types: string[] }
+}
+
 function ReviewCard({ 
   word, 
   currentWord,
@@ -800,7 +817,7 @@ function ReviewCard({
   onUserAnswer,
   speakWord,
   sessionSettings
-}: any) {
+}: ReviewCardProps) {
   const prompt = cardType === 'recognition' 
     ? `Translate this ${word?.language_a_word ? 'word' : 'text'}:` 
     : cardType === 'production' 
@@ -1003,27 +1020,16 @@ function ReviewCard({
 
                   {/* Add/Remove from Leeches Option */}
                   <div className="text-center pt-6 border-t-2 border-gray-300">
-                    {currentWord?.again_count >= 4 ? (
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={() => onAnswer('remove-leech')}
-                        className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-xl py-4"
-                      >
-                        <Check className="h-6 w-6 mr-3" />
-                        Remove from Leeches
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={() => onAnswer('leech')}
-                        className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
-                      >
-                        <AlertTriangle className="h-6 w-6 mr-3" />
-                        Add to Leeches
-                      </Button>
-                    )}
+                    {/* Note: again_count should come from user progress, not vocabulary */}
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      onClick={() => onAnswer('leech')}
+                      className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
+                    >
+                      <AlertTriangle className="h-6 w-6 mr-3" />
+                      Add to Leeches
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -1036,7 +1042,14 @@ function ReviewCard({
 }
 
 // Discovery Card Component
-function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: any) {
+interface DiscoveryCardProps {
+  word: Vocabulary | null
+  onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
+  speakWord: (text: string | undefined, language?: string) => void
+  sessionProgress: SessionProgress
+}
+
+function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: DiscoveryCardProps) {
   return (
     <Card className="mb-8">
       <CardContent className="p-8">
@@ -1144,7 +1157,13 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress }: any) {
 }
 
 // Deep Dive Card Component
-function DeepDiveCard({ word, onAnswer, speakWord }: any) {
+interface DeepDiveCardProps {
+  word: Vocabulary | null
+  onAnswer: (rating: 'again' | 'hard' | 'good' | 'easy' | 'learn' | 'know' | 'leech' | 'remove-leech') => void
+  speakWord: (text: string | undefined, language?: string) => void
+}
+
+function DeepDiveCard({ word, onAnswer, speakWord }: DeepDiveCardProps) {
   return (
     <Card className="mb-8">
       <CardHeader>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
-import { supabase } from '@/lib/supabase'
+import { supabase, VocabularyDeck } from '@/lib/supabase'
 import { sessionQueueManager } from '@/lib/session-queues'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -278,7 +278,7 @@ export default function Dashboard() {
     setShowDeckSelection(true)
   }
 
-  const selectDeck = (deck: any) => {
+  const selectDeck = (deck: VocabularyDeck) => {
     localStorage.setItem('selectedDeck', JSON.stringify(deck))
     setCurrentDeck(deck)
     setShowDeckSelection(false)
@@ -324,9 +324,9 @@ export default function Dashboard() {
             <div className="text-center py-12">
               <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No Decks Available</h3>
-              <p className="text-gray-600">
-                Vocabulary decks will appear here once they're added to the system.
-              </p>
+                              <p className="text-gray-600">
+                  Vocabulary decks will appear here once they&apos;re added to the system.
+                </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -626,7 +626,7 @@ export default function Dashboard() {
             <CardContent className="flex-1 flex flex-col">
               <div className="flex-1">
                 <p className="text-gray-600 mb-4">
-                  Review words you've learned using spaced repetition
+                  Review words you&apos;ve learned using spaced repetition
                 </p>
                 
                 {/* Queue Numbers */}
@@ -676,7 +676,7 @@ export default function Dashboard() {
                 
                 <select
                   value={deepDiveCategory || ''}
-                  onChange={(e) => setDeepDiveCategory(e.target.value as any)}
+                  onChange={(e) => setDeepDiveCategory(e.target.value as 'leeches' | 'learning' | 'strengthening' | 'consolidating' | null)}
                   className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                   disabled={!currentDeck || sessionSettings.types.length === 0}
                 >
