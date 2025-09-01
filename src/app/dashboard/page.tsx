@@ -244,11 +244,15 @@ export default function Dashboard() {
   }
 
   const handleLearningTypeToggle = (type: 'recognition' | 'production' | 'listening') => {
+    const newTypes = sessionSettings.types.includes(type)
+      ? sessionSettings.types.filter(t => t !== type)
+      : [...sessionSettings.types, type]
+    
+    console.log('Learning type toggled:', type, 'New types:', newTypes)
+    
     setSessionSettings({
       ...sessionSettings,
-      types: sessionSettings.types.includes(type)
-        ? sessionSettings.types.filter(t => t !== type)
-        : [...sessionSettings.types, type]
+      types: newTypes
     })
   }
 
@@ -325,7 +329,7 @@ export default function Dashboard() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {availableDecks.map((deck) => {
                 const progress = userDeckProgress[deck.id] || {
                   deck_id: deck.id,
@@ -348,7 +352,7 @@ export default function Dashboard() {
                     className="cursor-pointer transition-all hover:shadow-lg hover:bg-gray-50 card-enhanced"
                     onClick={() => selectDeck(deck)}
                   >
-                    <CardContent className="p-4">
+                    <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
@@ -365,7 +369,7 @@ export default function Dashboard() {
                           </div>
                           
                           {/* Progress Bar */}
-                          <div className="space-y-3">
+                                                      <div className="space-y-4">
                             <div className="flex justify-between text-sm text-gray-600">
                               <span>Progress Overview</span>
                               <span>{progress.mastered_words}/{totalWords} mastered</span>
@@ -398,26 +402,26 @@ export default function Dashboard() {
                               />
                             </div>
                             
-                            <div className="grid grid-cols-4 gap-3 mt-4">
+                            <div className="grid grid-cols-4 gap-6 mt-6">
                               <div className="text-center">
-                                <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
-                                <div className="text-lg font-bold text-gray-500">{unseen}</div>
-                                <div className="text-xs text-gray-400">Unseen</div>
+                                <UnseenIcon className="h-5 w-5 mx-auto mb-2 text-gray-400" />
+                                <div className="text-xl font-bold text-gray-500">{unseen}</div>
+                                <div className="text-sm text-gray-400 font-medium">Unseen</div>
                               </div>
                               <div className="text-center">
-                                <LearningIcon className="h-4 w-4 mx-auto mb-1 text-orange-400" />
-                                <div className="text-lg font-bold text-orange-500">{learning}</div>
-                                <div className="text-xs text-gray-400">Learning</div>
+                                <LearningIcon className="h-5 w-5 mx-auto mb-2 text-orange-400" />
+                                <div className="text-xl font-bold text-orange-500">{learning}</div>
+                                <div className="text-sm text-gray-400 font-medium">Learning</div>
                               </div>
                               <div className="text-center">
-                                <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-400" />
-                                <div className="text-lg font-bold text-yellow-500">{Math.max(0, totalWords - unseen - learning - mastered)}</div>
-                                <div className="text-xs text-gray-400">Strengthening</div>
+                                <StrengtheningIcon className="h-5 w-5 mx-auto mb-2 text-yellow-400" />
+                                <div className="text-xl font-bold text-yellow-500">{Math.max(0, totalWords - unseen - learning - mastered)}</div>
+                                <div className="text-sm text-gray-400 font-medium">Strengthening</div>
                               </div>
                               <div className="text-center">
-                                <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-400" />
-                                <div className="text-lg font-bold text-green-500">{mastered}</div>
-                                <div className="text-xs text-gray-400">Mastered</div>
+                                <MasteredIcon className="h-5 w-5 mx-auto mb-2 text-green-400" />
+                                <div className="text-xl font-bold text-green-500">{mastered}</div>
+                                <div className="text-sm text-gray-400 font-medium">Mastered</div>
                               </div>
                             </div>
                           </div>

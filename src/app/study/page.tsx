@@ -42,6 +42,9 @@ interface SessionProgress {
 
 export default function StudySession() {
   const { setCurrentWord, setSessionWords, sessionSettings } = useVocabularyStore()
+  
+  // Debug session settings
+  console.log('Session settings in study session:', sessionSettings)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [sessionWords, setLocalSessionWords] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -324,6 +327,16 @@ export default function StudySession() {
       if (shuffledWords.length > 0) {
         setCurrentWordState(shuffledWords[0])
         setCurrentWordIndex(0)
+        
+        // Set initial card type based on session settings
+        if (sessionSettings.types.length > 0) {
+          const randomType = sessionSettings.types[Math.floor(Math.random() * sessionSettings.types.length)]
+          console.log('Setting initial card type:', randomType, 'from available types:', sessionSettings.types)
+          setCardType(randomType)
+        } else {
+          console.log('No session types selected for initial card, using default recognition')
+          setCardType('recognition')
+        }
       }
 
     } catch (error) {
@@ -588,7 +601,11 @@ export default function StudySession() {
       // Set card type for next word
       if (sessionSettings.types.length > 0) {
         const randomType = sessionSettings.types[Math.floor(Math.random() * sessionSettings.types.length)]
+        console.log('Setting card type for next word:', randomType, 'from available types:', sessionSettings.types)
         setCardType(randomType)
+      } else {
+        console.log('No session types selected, using default recognition')
+        setCardType('recognition')
       }
     } else {
       // Session complete

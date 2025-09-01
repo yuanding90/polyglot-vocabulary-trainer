@@ -149,9 +149,11 @@ export function isToday(date: string | Date): boolean {
 }
 
 // Session utilities
-export function getCardType(): 'recognition' | 'production' | 'listening' {
-  const types = ['recognition', 'production', 'listening']
-  return types[Math.floor(Math.random() * types.length)] as 'recognition' | 'production' | 'listening'
+export function getCardType(selectedTypes: string[] = ['recognition', 'production', 'listening']): 'recognition' | 'production' | 'listening' {
+  if (selectedTypes.length === 0) {
+    return 'recognition' // Default fallback
+  }
+  return selectedTypes[Math.floor(Math.random() * selectedTypes.length)] as 'recognition' | 'production' | 'listening'
 }
 
 export function normalizeText(text: string): string {

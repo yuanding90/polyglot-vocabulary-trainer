@@ -166,6 +166,39 @@ export class SessionQueueManager implements QueueManager {
 
   async calculateMetrics(userId: string, deckId: string) {
     try {
+      // First, get the total words in the deck
+      const { data: deckVocab, error: deckVocabError } = await supabase
+        .from('deck_vocabulary')
+        .select('vocabulary_id')
+        .eq('deck_id', deckId)
+
+      if (deckVocabError) {
+        console.error('Error fetching deck vocabulary for metrics:', deckVocabError)
+        return {
+          unseen: 0,
+          leeches: 0,
+          learning: 0,
+          strengthening: 0,
+          consolidating: 0,
+          mastered: 0
+        }
+      }
+
+      const totalWords = deckVocab?.length || 0
+
+      // If no words in deck, return all zeros
+      if (totalWords === 0) {
+        return {
+          unseen: 0,
+          leeches: 0,
+          learning: 0,
+          strengthening: 0,
+          consolidating: 0,
+          mastered: 0
+        }
+      }
+
+      // Get user progress for this deck
       const { data: userProgress, error } = await supabase
         .from('user_progress')
         .select('*')
@@ -185,7 +218,15 @@ export class SessionQueueManager implements QueueManager {
         if (!isNoDataError) {
           console.error('Error fetching user progress for metrics:', error)
         }
-        // Don't throw error, just use empty progress
+        // For new users with no progress, all words are unseen
+        return {
+          unseen: totalWords,
+          leeches: 0,
+          learning: 0,
+          strengthening: 0,
+          consolidating: 0,
+          mastered: 0
+        }
       }
 
       const metrics = {
@@ -213,6 +254,7 @@ export class SessionQueueManager implements QueueManager {
       })
 
       console.log('Metrics calculation debug:', {
+        totalWords,
         totalProgress: userProgress?.length || 0,
         leeches: metrics.leeches,
         learning: metrics.learning,
@@ -227,17 +269,6 @@ export class SessionQueueManager implements QueueManager {
       })
 
       // Calculate unseen words
-      const { data: deckVocab, error: deckVocabError } = await supabase
-        .from('deck_vocabulary')
-        .select('vocabulary_id')
-        .eq('deck_id', deckId)
-
-      if (deckVocabError) {
-        console.error('Error fetching deck vocabulary for metrics:', deckVocabError)
-        return metrics
-      }
-
-      const totalWords = deckVocab?.length || 0
       const seenWords = userProgress?.length || 0
       metrics.unseen = Math.max(0, totalWords - seenWords)
 
