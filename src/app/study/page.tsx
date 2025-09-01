@@ -8,24 +8,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { 
   ArrowLeft,
   Volume2,
-  Check,
-  X,
-  RotateCcw,
-  Play,
-  Pause,
-  SkipForward,
   AlertTriangle
 } from 'lucide-react'
 import { 
   SRS, 
   calculateNextReview, 
   speakText, 
-  getCardType, 
-  checkAnswer,
-  normalizeText,
   logRating,
-  getRecentRatings,
-  shouldRemoveFromLeech,
   getLanguageCode
 } from '@/lib/utils'
 
@@ -40,7 +29,8 @@ interface SessionProgress {
   know: number
 }
 
-import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
+import { Vocabulary, VocabularyDeck } from '@/lib/supabase'
+import { User } from '@supabase/supabase-js'
 
 export default function StudySession() {
   const { sessionSettings } = useVocabularyStore()
@@ -68,7 +58,7 @@ export default function StudySession() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
-  const [currentUser, setCurrentUser] = useState<any>(null)
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
 
   useEffect(() => {
     // Get current user first

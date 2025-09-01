@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase, VocabularyDeck } from '@/lib/supabase'
+import { User } from '@supabase/supabase-js'
 import { sessionQueueManager } from '@/lib/session-queues'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -63,7 +64,7 @@ export default function Dashboard() {
   const [showStudySession, setShowStudySession] = useState(false)
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
-  const [currentUser, setCurrentUser] = useState<any>(null)
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
 
   useEffect(() => {
     // Get current user first
@@ -87,7 +88,7 @@ export default function Dashboard() {
     }
   }, [currentDeck, currentUser])
 
-  const loadDashboardData = async (userId: string) => {
+  const loadDashboardData = useCallback(async (userId: string) => {
     try {
       setLoading(true)
       
@@ -119,9 +120,9 @@ export default function Dashboard() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  const loadDeckData = async (deckId: string, userId: string) => {
+  const loadDeckData = useCallback(async (deckId: string, userId: string) => {
     try {
       console.log('Loading deck data for deck:', deckId, 'user:', userId)
       
@@ -157,9 +158,9 @@ export default function Dashboard() {
     } catch (error) {
       console.error('Error loading deck data:', error)
     }
-  }
+  }, [])
 
-  const loadSessionStats = async (userId: string) => {
+  const loadSessionStats = useCallback(async (userId: string) => {
     try {
       const today = new Date()
       const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
@@ -211,7 +212,7 @@ export default function Dashboard() {
     } catch (error) {
       console.error('Error loading session stats:', error)
     }
-  }
+  }, [])
 
   const handleStartSession = async (type: 'review' | 'discovery' | 'deep-dive') => {
     if (!currentDeck) {
@@ -239,16 +240,7 @@ export default function Dashboard() {
     window.location.href = '/study'
   }
 
-  const handleSessionEnd = () => {
-    setShowStudySession(false)
-    setSessionType(null)
-    // Reload dashboard data to reflect session results
-    loadDashboardData()
-    // Also reload session stats
-    if (currentUser) {
-      loadSessionStats(currentUser.id)
-    }
-  }
+  // Removed unused handleSessionEnd function
 
   const handleLearningTypeToggle = (type: 'recognition' | 'production' | 'listening') => {
     const newTypes = sessionSettings.types.includes(type)
@@ -279,11 +271,7 @@ export default function Dashboard() {
 
   const [showDeckSelection, setShowDeckSelection] = useState(false)
 
-  const goBackToDeckSelection = () => {
-    localStorage.removeItem('selectedDeck')
-    setCurrentDeck(null)
-    setShowDeckSelection(true)
-  }
+  // Removed unused goBackToDeckSelection function
 
   const selectDeck = (deck: VocabularyDeck) => {
     localStorage.setItem('selectedDeck', JSON.stringify(deck))
