@@ -83,7 +83,7 @@ export default function StudySession() {
       try {
         const deck = JSON.parse(storedDeck)
         setCurrentDeck(deck)
-        console.log('Loaded deck from localStorage:', deck)
+        console.log('Loaded deck from localStorage:', deck.name, 'ID:', deck.id)
       } catch (error) {
         console.error('Error parsing stored deck:', error)
       }
@@ -98,6 +98,54 @@ export default function StudySession() {
       loadSessionWords()
     }
   }, [currentDeck, sessionType])
+
+  // Listen for localStorage changes to reload when deck changes
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'selectedDeck' && e.newValue) {
+        try {
+          const newDeck = JSON.parse(e.newValue)
+          if (newDeck.id !== currentDeck?.id) {
+            console.log('Deck changed in localStorage, reloading session:', newDeck)
+            setCurrentDeck(newDeck)
+            // Clear session words to force reload
+            setLocalSessionWords([])
+            setCurrentWordState(null)
+            setCurrentWordIndex(0)
+          }
+        } catch (error) {
+          console.error('Error parsing new deck from localStorage:', error)
+        }
+      }
+    }
+
+    // Also check localStorage on focus (for when user switches tabs/windows)
+    const handleFocus = () => {
+      const storedDeck = localStorage.getItem('selectedDeck')
+      if (storedDeck) {
+        try {
+          const deck = JSON.parse(storedDeck)
+          if (deck.id !== currentDeck?.id) {
+            console.log('Deck changed on focus, reloading session:', deck)
+            setCurrentDeck(deck)
+            setLocalSessionWords([])
+            setCurrentWordState(null)
+            setCurrentWordIndex(0)
+          }
+        } catch (error) {
+          console.error('Error parsing deck on focus:', error)
+        }
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('focus', handleFocus)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('focus', handleFocus)
+    }
+  }, [currentDeck])
 
   const onBack = () => {
     // Clear session data from localStorage
@@ -115,7 +163,7 @@ export default function StudySession() {
 
     try {
       setLoading(true)
-      console.log('Loading session words for deck:', currentDeck.id, 'session type:', sessionType)
+      console.log('Loading session words for deck:', currentDeck.id, 'deck name:', currentDeck.name, 'session type:', sessionType)
       
       // First, get the vocabulary IDs for this deck
       const { data: deckVocab, error: deckError } = await supabase
