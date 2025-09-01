@@ -13,14 +13,13 @@ import {
 import { 
   SRS, 
   calculateNextReview, 
-  speakText, 
-  logRating,
-  getLanguageCode
+  logRating
 } from '@/lib/utils'
+import { ttsService } from '@/lib/tts-service'
 
 import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
 // Removed unused User import
-import { sessionQueueManager } from '@/lib/session-queues'
+
 
 interface SessionProgress {
   total: number
@@ -396,12 +395,19 @@ export default function StudySession() {
     }
   }
 
-  const speakWord = (text: string | undefined, language?: string) => {
+  const speakWord = async (text: string | undefined, language?: string) => {
     if (!text) return
     
-    const langCode = language || getLanguageCode(currentDeck?.language_a_code || 'en')
-    speakText(text, langCode)
+    let langCode = language
+    if (language === 'auto' || !language) {
+      // Auto-detect based on current deck
+      langCode = currentDeck?.language_a_code || 'en'
+    }
+    
+    await ttsService.speakText(text, langCode)
   }
+
+
 
   const markWordAsLeech = async (word: Vocabulary) => {
     if (!currentDeck) return
