@@ -471,6 +471,21 @@ export default function Dashboard() {
               <h1 className="text-2xl font-bold text-gray-900">🐰 Polyglot Vocabulary Trainer</h1>
               <p className="text-gray-600">Master vocabulary with spaced repetition</p>
             </div>
+            <div className="flex items-center gap-4">
+              {currentUser && (
+                <span className="text-sm text-gray-600">
+                  Signed in as: {currentUser.email}
+                </span>
+              )}
+              <Button 
+                onClick={handleSignOut}
+                variant="outline"
+                className="flex items-center gap-2 text-red-600 border-red-300 hover:bg-red-50"
+              >
+                <Settings className="h-4 w-4" />
+                Sign Out
+              </Button>
+            </div>
           </div>
         </div>
       </header>

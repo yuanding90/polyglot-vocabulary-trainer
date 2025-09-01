@@ -656,16 +656,31 @@ export default function StudySession() {
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-              <div className="flex items-center space-x-4">
-                <Button onClick={onBack} variant="outline" size="sm">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Dashboard
-                </Button>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-900">Study Session</h1>
-                  <p className="text-sm text-gray-600">{sessionType} session</p>
-                </div>
+                          <div className="flex items-center space-x-4">
+              <Button onClick={onBack} variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">Study Session</h1>
+                <p className="text-sm text-gray-600">{sessionType} session</p>
               </div>
+            </div>
+            <div className="flex items-center gap-4">
+              {currentUser && (
+                <span className="text-sm text-gray-600">
+                  {currentUser.email}
+                </span>
+              )}
+              <Button 
+                onClick={() => supabase.auth.signOut()}
+                variant="outline"
+                size="sm"
+                className="text-red-600 border-red-300 hover:bg-red-50"
+              >
+                Sign Out
+              </Button>
+            </div>
             </div>
           </div>
         </header>
@@ -705,6 +720,21 @@ export default function StudySession() {
               <div className="text-sm text-gray-600">
                 {currentWordIndex + 1} / {sessionWords.length}
               </div>
+            </div>
+            <div className="flex items-center gap-4">
+              {currentUser && (
+                <span className="text-sm text-gray-600">
+                  {currentUser.email}
+                </span>
+              )}
+              <Button 
+                onClick={() => supabase.auth.signOut()}
+                variant="outline"
+                size="sm"
+                className="text-red-600 border-red-300 hover:bg-red-50"
+              >
+                Sign Out
+              </Button>
             </div>
           </div>
         </div>
