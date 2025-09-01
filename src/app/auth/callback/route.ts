@@ -48,6 +48,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  // return the user to the home page if there's an error
+  return NextResponse.redirect(`${origin}/`)
 }
