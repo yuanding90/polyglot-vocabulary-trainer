@@ -5,6 +5,7 @@ import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase, VocabularyDeck } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { sessionQueueManager } from '@/lib/session-queues'
+import { DailySummaryManager } from '@/lib/daily-summary'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
@@ -188,10 +189,20 @@ export default function Dashboard() {
       console.log('Calculated metrics:', deckMetrics)
       updateMetrics(deckMetrics)
 
-      // Update userDeckProgress with correct total words
+      // Update userDeckProgress with correct total words - ensure it's in sync with metrics
       const totalWords = deckMetrics.unseen + deckMetrics.leeches + deckMetrics.learning + deckMetrics.strengthening + deckMetrics.consolidating + deckMetrics.mastered
       setUserDeckProgress(deckId, {
         deck_id: deckId,
+        total_words: totalWords,
+        mastered_words: deckMetrics.mastered,
+        learning_words: deckMetrics.learning,
+        leeches: deckMetrics.leeches,
+        unseen_words: deckMetrics.unseen,
+        strengthening_words: deckMetrics.strengthening,
+        consolidating_words: deckMetrics.consolidating
+      })
+      
+      console.log('Updated userDeckProgress for deck:', deckId, {
         total_words: totalWords,
         mastered_words: deckMetrics.mastered,
         learning_words: deckMetrics.learning,
@@ -205,97 +216,10 @@ export default function Dashboard() {
 
   const loadSessionStats = useCallback(async (userId: string) => {
     try {
-      const today = new Date()
-      const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
-      const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000)
-
-      // Get all user progress across all decks (for future use if needed)
-      const { error: progressError } = await supabase
-        .from('user_progress')
-        .select('*')
-        .eq('user_id', userId)
-
-      if (progressError) {
-        console.error('Error fetching user progress for stats:', progressError)
-        return
-      }
-
-      // Get all rating history to count actual words reviewed/discovered
-      const { data: ratingHistory, error: ratingError } = await supabase
-        .from('rating_history')
-        .select('*')
-        .eq('user_id', userId)
-        .gte('created_at', thirtyDaysAgo.toISOString())
-
-      if (ratingError) {
-        console.error('Error fetching rating history for stats:', ratingError)
-        return
-      }
-
-      const stats = {
-        reviewsToday: 0,
-        reviews7Days: 0,
-        reviews30Days: 0,
-        currentStreak: 0
-      }
-
-      console.log('Rating history debug:', {
-        totalRatings: ratingHistory?.length || 0,
-        ratings: ratingHistory?.slice(0, 5).map(r => ({
-          created_at: r.created_at,
-          rating: r.rating,
-          word_id: r.word_id
-        }))
-      })
-
-      // Count words by date from rating history
-      ratingHistory?.forEach(rating => {
-        const ratingDate = new Date(rating.created_at)
-        
-        if (ratingDate.toDateString() === today.toDateString()) {
-          stats.reviewsToday++
-        }
-        
-        if (ratingDate >= sevenDaysAgo) {
-          stats.reviews7Days++
-        }
-        
-        if (ratingDate >= thirtyDaysAgo) {
-          stats.reviews30Days++
-        }
-      })
-
-      // Calculate current streak (consecutive days with activity)
-      const uniqueDates = new Set()
-      ratingHistory?.forEach(rating => {
-        const ratingDate = new Date(rating.created_at)
-        uniqueDates.add(ratingDate.toDateString())
-      })
-
-      const sortedDates = Array.from(uniqueDates).sort().reverse()
-      let streak = 0
-      let currentDate = new Date(today)
-
-      for (const dateStr of sortedDates) {
-        const ratingDate = new Date(dateStr as string)
-        const daysDiff = Math.floor((currentDate.getTime() - ratingDate.getTime()) / (1000 * 60 * 60 * 24))
-        
-        if (daysDiff <= 1) {
-          streak++
-          currentDate = ratingDate
-        } else {
-          break
-        }
-      }
-
-      stats.currentStreak = streak
-
-      console.log('Calculated stats from rating history:', {
-        totalRatings: ratingHistory?.length || 0,
-        uniqueDates: uniqueDates.size,
-        stats
-      })
-
+      // Use the new daily summary system
+      const stats = await DailySummaryManager.getRecentActivityStats(userId)
+      
+      console.log('Loaded recent activity stats:', stats)
       updateSessionStats(stats)
     } catch (error) {
       console.error('Error loading session stats:', error)
@@ -361,13 +285,14 @@ export default function Dashboard() {
 
   // Removed unused goBackToDeckSelection function
 
-  const selectDeck = (deck: VocabularyDeck) => {
+  const selectDeck = async (deck: VocabularyDeck) => {
     localStorage.setItem('selectedDeck', JSON.stringify(deck))
     setCurrentDeck(deck)
     setShowDeckSelection(false)
-    // Load deck data with current user
+    // Load deck data with current user and ensure UI updates
     if (currentUser) {
-      loadDeckData(deck.id, currentUser.id)
+      await loadDeckData(deck.id, currentUser.id)
+      console.log('Deck selected and data loaded:', deck.name)
     }
   }
 
@@ -448,7 +373,7 @@ export default function Dashboard() {
                 
                 return (
                   <Card 
-                    key={deck.id} 
+                    key={`${deck.id}-${progress.total_words}-${progress.mastered_words}`} 
                     className="cursor-pointer transition-all hover:shadow-lg hover:bg-gray-50 card-enhanced"
                     onClick={() => selectDeck(deck)}
                   >

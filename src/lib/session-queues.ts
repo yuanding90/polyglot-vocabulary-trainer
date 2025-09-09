@@ -154,16 +154,9 @@ export class SessionQueueManager implements QueueManager {
         }
       })
 
-      // If no Due Now words, use Due Soon words for review
-      if (review.length === 0 && nearFuture.length > 0) {
-        console.log(`No Due Now words, using ${nearFuture.length} Due Soon words for review`)
-        review.push(...nearFuture)
-        nearFuture.length = 0 // Clear near future since we're using them
-      }
-
-      // Note: We don't move unseen words to review queue here
-      // This keeps the dashboard display correct (Unseen: full count, Due Now: 0)
-      // The study session will handle the logic of using unseen words for review when needed
+      // Note: We don't move words between queues here to keep dashboard display accurate
+      // The study session will handle combining Due Now + Due Soon words when needed
+      // This keeps the dashboard display correct (Due Now: actual count, Due Soon: actual count)
 
       // Apply leech spacing to review queue
       const spacedReview = this.applyLeechSpacing(review, progressMap)

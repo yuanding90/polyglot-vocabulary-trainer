@@ -13,8 +13,11 @@ import {
 import { 
   SRS, 
   calculateNextReview, 
-  logRating
+  logRating,
+  isDueForReview,
+  isNearFuture
 } from '@/lib/utils'
+import { DailySummaryManager } from '@/lib/daily-summary'
 import { ttsService } from '@/lib/tts-service'
 
 import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
@@ -53,6 +56,12 @@ export default function StudySession() {
     easy: 0,
     learn: 0,
     know: 0
+  })
+  
+  // Track session activity for daily summary
+  const [sessionActivity, setSessionActivity] = useState({
+    reviewsDone: 0,
+    newWordsLearned: 0
   })
   const [currentWord, setCurrentWordState] = useState<Vocabulary | null>(null)
   const [currentWordProgress, setCurrentWordProgress] = useState<{ again_count: number } | null>(null) // Track current word's progress
@@ -192,6 +201,53 @@ export default function StudySession() {
     return shuffled
   }
 
+  // Apply smart spacing for leeches to prevent fatigue (same as session-queues.ts)
+  const applyLeechSpacing = (words: Vocabulary[], progressMap: Map<number, UserProgress>): Vocabulary[] => {
+    // Separate leeches from regular words
+    const leeches: Vocabulary[] = []
+    const regularWords: Vocabulary[] = []
+    
+    words.forEach(word => {
+      const progress = progressMap.get(word.id)
+      const isLeech = progress && progress.again_count >= 4
+      
+      if (isLeech) {
+        leeches.push(word)
+      } else {
+        regularWords.push(word)
+      }
+    })
+    
+    // Shuffle both arrays
+    leeches.sort(() => Math.random() - 0.5)
+    regularWords.sort(() => Math.random() - 0.5)
+    
+    // Apply spacing: insert leeches every 3-5 regular words
+    const spacedWords: Vocabulary[] = []
+    const spacingRange = { min: 3, max: 5 }
+    let leechIndex = 0
+    let regularIndex = 0
+    let wordsSinceLastLeech = 0
+    
+    while (leechIndex < leeches.length || regularIndex < regularWords.length) {
+      // Decide whether to add a leech or regular word
+      const shouldAddLeech = leechIndex < leeches.length && 
+                           (wordsSinceLastLeech >= spacingRange.min || regularIndex >= regularWords.length)
+      
+      if (shouldAddLeech) {
+        spacedWords.push(leeches[leechIndex])
+        leechIndex++
+        wordsSinceLastLeech = 0
+      } else if (regularIndex < regularWords.length) {
+        spacedWords.push(regularWords[regularIndex])
+        regularIndex++
+        wordsSinceLastLeech++
+      }
+    }
+    
+    return spacedWords
+  }
+
   const loadSessionWords = useCallback(async () => {
     if (!currentDeck) {
       console.log('No current deck found')
@@ -258,48 +314,38 @@ export default function StudySession() {
           userProgress = progressData
           
           if (sessionType === 'review') {
-            // Create a map of word progress for efficient lookup
+            // Use the same logic as the dashboard for consistency
             const progressMap = new Map(userProgress.map(p => [p.word_id, p]))
             
-            // Step 1: Check for Due Now words (overdue for review)
-            const dueNowWords = userProgress.filter(progress => {
-              const nextReview = new Date(progress.next_review_date)
-              return nextReview <= new Date()
-            })
+            // Build review queue using the same logic as session-queues.ts
+            const reviewWords: Vocabulary[] = []
+            const nearFutureWords: Vocabulary[] = []
             
-            if (dueNowWords.length > 0) {
-              // Use Due Now words
-              const dueNowWordIds = dueNowWords.map(p => p.word_id)
-              filteredWords = words.filter(word => dueNowWordIds.includes(word.id))
-              console.log(`Review session: Using ${dueNowWords.length} Due Now words`)
-            } else {
-              // Step 2: Check for Due Soon words (coming up in next 24 hours)
-              const dueSoonWords = userProgress.filter(progress => {
-                const nextReview = new Date(progress.next_review_date)
-                const tomorrow = new Date()
-                tomorrow.setDate(tomorrow.getDate() + 1)
-                return nextReview <= tomorrow && nextReview > new Date()
-              })
+            words.forEach(word => {
+              const progress = progressMap.get(word.id)
               
-              if (dueSoonWords.length > 0) {
-                // Use Due Soon words
-                const dueSoonWordIds = dueSoonWords.map(p => p.word_id)
-                filteredWords = words.filter(word => dueSoonWordIds.includes(word.id))
-                console.log(`Review session: Using ${dueSoonWords.length} Due Soon words`)
-              } else {
-                // Step 3: Use Unseen words (no progress record)
-                const unseenWords = words.filter(word => !progressMap.has(word.id))
-                
-                if (unseenWords.length > 0) {
-                  filteredWords = unseenWords
-                  console.log(`Review session: Using ${unseenWords.length} Unseen words`)
-                } else {
-                  // Fallback: use all words for practice
-                  filteredWords = words
-                  console.log(`Review session: Using all ${words.length} words for practice`)
+              if (progress) {
+                // Has progress - check if due for review using the same function as dashboard
+                if (isDueForReview(progress.next_review_date)) {
+                  reviewWords.push(word)
+                } else if (isNearFuture(progress.next_review_date)) {
+                  nearFutureWords.push(word)
                 }
               }
+            })
+            
+            // If no Due Now words, use Due Soon words for review (same as dashboard)
+            if (reviewWords.length === 0 && nearFutureWords.length > 0) {
+              console.log(`No Due Now words, using ${nearFutureWords.length} Due Soon words for review`)
+              filteredWords = nearFutureWords
+            } else {
+              filteredWords = reviewWords
             }
+            
+            // Apply leech spacing to match dashboard behavior
+            filteredWords = applyLeechSpacing(filteredWords, progressMap)
+            
+            console.log(`Review session: Using ${filteredWords.length} words (${reviewWords.length} due now, ${nearFutureWords.length} due soon)`)
           } else if (sessionType === 'discovery') {
             // For discovery sessions, exclude words that have already been learned
             const learnedWordIds = userProgress.map(p => p.word_id)
@@ -545,6 +591,19 @@ export default function StudySession() {
         reviewed: prev.reviewed + 1,
         [rating]: prev[rating as keyof SessionProgress] + 1
       }))
+      
+      // Track session activity for daily summary
+      if (sessionType === 'review') {
+        setSessionActivity(prev => ({
+          ...prev,
+          reviewsDone: prev.reviewsDone + 1
+        }))
+      } else if (sessionType === 'discovery' && (rating === 'learn' || rating === 'know')) {
+        setSessionActivity(prev => ({
+          ...prev,
+          newWordsLearned: prev.newWordsLearned + 1
+        }))
+      }
 
       // Handle "Again" logic - add word back to session queue for immediate review
       if (rating === 'again') {
@@ -561,16 +620,17 @@ export default function StudySession() {
       let newEaseFactor = SRS.EASE_FACTOR_DEFAULT
       let newRepetitions = 0
       let newAgainCount = 0
+      
+      // Get current progress for all session types (needed for date calculation)
+      const { data: currentProgress } = await supabase
+        .from('user_progress')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('word_id', currentWord.id)
+        .eq('deck_id', currentDeck.id)
+        .single()
 
       if (sessionType === 'review') {
-        // Get current progress
-        const { data: currentProgress } = await supabase
-          .from('user_progress')
-          .select('*')
-          .eq('user_id', user.id)
-          .eq('word_id', currentWord.id)
-          .eq('deck_id', currentDeck.id)
-          .single()
 
         if (currentProgress) {
           newAgainCount = currentProgress.again_count
@@ -609,9 +669,24 @@ export default function StudySession() {
         await logRating(user.id, currentWord.id.toString(), currentDeck.id, rating as 'learn' | 'know')
       }
 
-      const nextReviewDate = new Date()
+      // Calculate next review date based on whether this was a "Due Now" or "Due Soon" word
+      let nextReviewDate = new Date()
+      
+      // Check if this word was originally "Due Soon" (not due today)
+      const originalDueDate = new Date(currentProgress?.next_review_date || new Date())
+      const wasDueSoon = originalDueDate > new Date()
+      
       if (newInterval > 0) {
-        nextReviewDate.setDate(nextReviewDate.getDate() + newInterval)
+        if (wasDueSoon) {
+          // For "Due Soon" words, calculate from the original due date to preserve spacing
+          nextReviewDate = new Date(originalDueDate)
+          nextReviewDate.setDate(nextReviewDate.getDate() + newInterval)
+          console.log(`Due Soon word reviewed early: original due ${originalDueDate.toDateString()}, new due ${nextReviewDate.toDateString()}`)
+        } else {
+          // For "Due Now" words, calculate from today (normal behavior)
+          nextReviewDate.setDate(nextReviewDate.getDate() + newInterval)
+          console.log(`Due Now word reviewed: new due ${nextReviewDate.toDateString()}`)
+        }
       }
 
       // Log the data being sent for debugging
@@ -685,6 +760,15 @@ export default function StudySession() {
         console.error('Error details:', error)
       } else {
         console.log('Session summary saved successfully')
+      }
+      
+      // Log daily summary if there was any activity
+      if (sessionActivity.reviewsDone > 0 || sessionActivity.newWordsLearned > 0) {
+        await DailySummaryManager.logDailySummary(
+          user.id,
+          sessionActivity.reviewsDone,
+          sessionActivity.newWordsLearned
+        )
       }
     } catch (error) {
       console.error('Error in saveSessionSummary:', error)
@@ -932,6 +1016,7 @@ export default function StudySession() {
             speakWord={speakWord}
             sessionProgress={sessionProgress}
             currentDeck={currentDeck}
+            sessionWords={sessionWords}
           />
         ) : (
           <DeepDiveCard 
@@ -1222,9 +1307,10 @@ interface DiscoveryCardProps {
   speakWord: (text: string | undefined, language?: string) => void
   sessionProgress: SessionProgress
   currentDeck: VocabularyDeck | null
+  sessionWords: Vocabulary[]
 }
 
-function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck }: DiscoveryCardProps) {
+function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck, sessionWords }: DiscoveryCardProps) {
   return (
     <Card className="mb-8">
       <CardContent className="p-8">
