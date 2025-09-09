@@ -879,7 +879,27 @@ export default function StudySession() {
             userAnswer={userAnswer}
             setUserAnswer={setUserAnswer}
             isCorrect={isCorrect}
-            onShowAnswer={() => setShowAnswer(true)}
+            onShowAnswer={() => {
+              // Check if user's answer is correct before showing answer
+              if (currentWordData && userAnswer.trim()) {
+                let correctAnswer = ''
+                if (cardType === 'recognition') {
+                  correctAnswer = currentWordData.language_b_translation
+                } else if (cardType === 'production') {
+                  correctAnswer = currentWordData.language_a_word
+                }
+                
+                // Case-insensitive comparison
+                const isAnswerCorrect = correctAnswer.toLowerCase().trim() === userAnswer.toLowerCase().trim()
+                setIsCorrect(isAnswerCorrect)
+                console.log('Answer check:', {
+                  userAnswer: userAnswer.trim(),
+                  correctAnswer: correctAnswer.trim(),
+                  isCorrect: isAnswerCorrect
+                })
+              }
+              setShowAnswer(true)
+            }}
             onAnswer={handleAnswer}
             onUserAnswer={(answer: string) => setUserAnswer(answer)}
             speakWord={speakWord}
