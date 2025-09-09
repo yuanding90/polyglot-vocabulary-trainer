@@ -1,0 +1,757 @@
+chinese_word,french_translation,chinese_sentence,french_sentence
+阿姨,tante,这是我的阿姨。,C'est ma tante.
+啊,ah,我明白了啊！,"Ah, je comprends !"
+矮,petit/court,那个男孩很矮。,Ce garçon est petit.
+安静,calme/tranquille,请保持安静。,Veuillez rester calme.
+安排,arranger/organiser,我要安排明天的会议。,Je vais organiser la réunion de demain.
+安全,sûr/sécurisé,这个地方很安全。,Cet endroit est sûr.
+暗,sombre/obscur,房间里很暗。,La chambre est sombre.
+按照,selon/d'après,我们按照计划做。,Nous agissons selon le plan.
+八,huit,我有八本书。,J'ai huit livres.
+把,tenir/prendre,把书放在桌子上。,Mets le livre sur la table.
+爸爸,papa/père,我爸爸在工作。,Mon père travaille.
+吧,d'accord,我们去吃饭吧。,"Allons manger, d'accord ?"
+白,blanc,这朵花是白色的。,Cette fleur est blanche.
+百,cent,这本书有一百页。,Ce livre a cent pages.
+班,classe,我在三年级二班。,Je suis dans la classe 2 de troisième année.
+搬,déménager/déplacer,我们明天要搬家。,Nous allons déménager demain.
+半,demi/moitié,请给我半杯咖啡。,Donnez-moi une demi-tasse de café.
+帮忙,aider,你能帮忙拿一下这个箱子吗？,Peux-tu m'aider à porter cette boîte ?
+帮助,aide/assister,谢谢你的帮助。,Merci de ton aide.
+包,emballer/contenir,请把礼物包起来。,"S'il vous plaît, emballez le cadeau."
+包括,inclure/comprendre,票价包括午餐。,Le prix inclut le déjeuner.
+抱,porter/embrasser,妈妈抱着小孩。,La mère porte l'enfant dans ses bras.
+抱歉,désolé,非常抱歉，我迟到了。,Je suis vraiment désolé d'être en retard.
+杯子,tasse/verre,这个杯子很漂亮。,Cette tasse est très belle.
+北方,nord,我来自中国北方。,Je viens du nord de la Chine.
+北京,Pékin,我想去北京旅游。,Je veux voyager à Pékin.
+倍,fois,这个价格是以前的两倍。,Ce prix est deux fois plus élevé qu'avant.
+被,être (passif),我的自行车被偷了。,Mon vélo a été volé.
+本,livre/volume,这本书很有意思。,Ce livre est très intéressant.
+本来,à l'origine/initialement,我本来想去看电影。,J'avais initialement prévu d'aller voir un film.
+笨,stupide,他做事很笨，但是很认真。,"Il est maladroit, mais très sérieux."
+鼻子,nez,我的鼻子有点感冒了。,J'ai un peu le nez qui coule.
+比,plus que,他比我高。,Il est plus grand que moi.
+遍,fois,我要把这本书看一遍。,Je veux lire ce livre une fois.
+表格,formulaire,请填写这张表格。,Veuillez remplir ce formulaire.
+表示,exprimer,他表示很感谢。,Il exprime sa gratitude.
+表演,spectacle,孩子们要表演节目。,Les enfants vont faire un spectacle.
+别,ne pas,别担心，一切都好。,"Ne t'inquiète pas, tout va bien."
+别人,les autres,别人都去看电影了。,Les autres sont allés voir un film.
+冰箱,réfrigérateur,冰箱里有牛奶。,Il y a du lait dans le réfrigérateur.
+并且,et aussi,他会说中文，并且会说法语。,Il parle chinois et aussi français.
+博士,docteur,她是物理学博士。,Elle est docteure en physique.
+不但,non seulement,他不但会做饭，还会洗衣服。,"Non seulement il sait cuisiner, mais il sait aussi faire la lessive."
+不客气,de rien,谢谢！-不客气！,Merci ! - De rien !
+不,ne pas,我不喜欢咖啡。,Je n'aime pas le café.
+不得不,être obligé de,我不得不去上班。,Je suis obligé d'aller travailler.
+不管,peu importe,不管天气怎样，我都会来。,"Peu importe le temps, je viendrai."
+部分,partie,这只是问题的一部分。,Ce n'est qu'une partie du problème.
+擦,essuyer,请擦一下桌子。,"S'il te plaît, essuie la table."
+猜,deviner,你猜我今天看到谁了？,Devine qui j'ai vu aujourd'hui ?
+才,seulement,他才十岁。,Il n'a que dix ans.
+材料,matériel,我需要买些做蛋糕的材料。,J'ai besoin d'acheter du matériel pour faire un gâteau.
+菜,plat,这个菜很好吃。,Ce plat est délicieux.
+参加,participer,你要参加这个活动吗？,Veux-tu participer à cette activité ?
+草,herbe,草地上有很多花。,Il y a beaucoup de fleurs dans l'herbe.
+茶,thé,我每天早上喝茶。,Je bois du thé tous les matins.
+差,mauvais,他的成绩很差。,Ses résultats sont mauvais.
+差不多,presque,我们差不多到了。,Nous sommes presque arrivés.
+唱歌,chanter,她喜欢唱歌。,Elle aime chanter.
+超市,supermarché,我要去超市买东西。,Je vais faire des courses au supermarché.
+吵,se disputer/bruyant,他们经常吵架,Ils se disputent souvent
+成功,succès/réussir,她终于成功了,Elle a finalement réussi
+成熟,mûr/mature,这个水果很成熟,Ce fruit est bien mûr
+城市,ville,北京是一个大城市,Pékin est une grande ville
+乘坐,prendre/monter dans,我们乘坐飞机去巴黎,Nous prenons l'avion pour Paris
+吃,manger,我每天都吃早饭,Je prends le petit-déjeuner tous les jours
+重新,à nouveau/encore,让我们重新开始,Recommençons à nouveau
+抽烟,fumer,请不要在这里抽烟,Veuillez ne pas fumer ici
+出,sortir,他刚才出门了,Il vient de sortir
+出差,voyage d'affaires,我明天要出差去上海,Je pars en voyage d'affaires à Shanghai demain
+出生,naître,她在法国出生,Elle est née en France
+厨房,cuisine,妈妈在厨房做饭,Maman fait la cuisine dans la cuisine
+除了,sauf/excepté,除了周末我每天都工作,Je travaille tous les jours sauf le week-end
+船,bateau,那艘船很大,Ce bateau est très grand
+春,printemps,春天是最美的季节,Le printemps est la plus belle saison
+次,fois,这是我第二次来巴黎。,C'est ma deuxième fois à Paris.
+从,de; depuis,火车从北京到上海要五个小时。,Le train met cinq heures de Pékin à Shanghai.
+从来,toujours; jamais,我从来没去过法国。,Je ne suis jamais allé en France.
+粗心,négligent,他做作业很粗心。,Il est négligent quand il fait ses devoirs.
+答案,réponse,这个问题的答案很简单。,La réponse à cette question est simple.
+打扮,se faire beau; s'habiller,她每天都很认真地打扮。,Elle s'habille soigneusement tous les jours.
+打算,avoir l'intention de,我明年打算去法国。,J'ai l'intention d'aller en France l'année prochaine.
+打印,imprimer,请帮我打印这份文件。,"S'il vous plaît, imprimez ce document pour moi."
+打折,faire une réduction,这家商店正在打折。,Ce magasin fait des réductions.
+大,grand,这是一个大房子。,C'est une grande maison.
+大概,probablement,他大概明天来。,Il viendra probablement demain.
+大家,tout le monde,大家都喜欢这个老师。,Tout le monde aime ce professeur.
+戴,porter,她戴着一顶红帽子。,Elle porte un chapeau rouge.
+代表,représentant,他是我们公司的代表。,Il est le représentant de notre entreprise.
+代替,remplacer,她今天代替我去开会。,Elle me remplace à la réunion aujourd'hui.
+大夫,médecin,我需要去看大夫,J'ai besoin d'aller voir le médecin
+担心,s'inquiéter,妈妈总是担心我,Maman s'inquiète toujours pour moi
+蛋糕,gâteau,这个蛋糕很好吃,Ce gâteau est délicieux
+但是,mais,我想去，但是没有时间,"Je veux y aller, mais je n'ai pas le temps"
+当,être,他当老师已经十年了,Il est professeur depuis dix ans
+当地,local,我们喜欢吃当地的食物,Nous aimons manger la cuisine locale
+当然,bien sûr,你想去吗？当然想去！,Tu veux y aller ? Bien sûr que je veux !
+刀,couteau,这把刀很锋利,Ce couteau est très tranchant
+到,arriver,我们什么时候到北京？,Quand arrivons-nous à Pékin ?
+到底,enfin,你到底想要什么？,Que veux-tu enfin ?
+道歉,s'excuser,他向我道歉了,Il s'est excusé auprès de moi
+得意,fier,他对考试成绩很得意,Il est fier de ses résultats d'examen
+地,particule adverbiale,他慢慢地走,Il marche lentement
+的,de,这是我的书,C'est mon livre
+得,particule de degré,他跑得很快,Il court très vite
+得,devoir,我得去上课了。,Je dois aller en cours.
+灯,lampe,请把灯打开。,Allume la lampe s'il te plaît.
+等,attendre,请等我一下。,Attends-moi un moment.
+等,etcetera,我喜欢水果：苹果、香蕉等。,"J'aime les fruits : pommes, bananes, etc."
+低,bas,他说话声音很低。,Il parle à voix basse.
+底,fond,箱子的底是平的。,Le fond de la boîte est plat.
+弟弟,frère cadet,我的弟弟今年十岁。,Mon petit frère a dix ans.
+地方,endroit,这是一个很好的地方。,C'est un très bel endroit.
+地球,Terre,地球是我们的家。,La Terre est notre maison.
+地址,adresse,请告诉我你的地址。,Donne-moi ton adresse s'il te plaît.
+第一,premier,他是班上第一名。,Il est premier de sa classe.
+点,point,纸上有一个黑点。,Il y a un point noir sur le papier.
+掉,tomber,书从桌子上掉下来了。,Le livre est tombé de la table.
+冬,hiver,北京的冬天很冷。,L'hiver à Pékin est très froid.
+懂,comprendre,我完全懂你的意思。,Je comprends parfaitement ce que tu veux dire.
+都,"tout, tous",我们都喜欢吃冰淇淋,Nous aimons tous manger de la glace
+肚子,ventre,我的肚子疼,J'ai mal au ventre
+短,court,这条裙子太短了,Cette jupe est trop courte
+段,"section, partie",这段故事很有趣,Cette partie de l'histoire est très intéressante
+断,"casser, rompre",绳子断了,La corde s'est cassée
+多,beaucoup,这里有很多书,Il y a beaucoup de livres ici
+多么,"combien, que",天气多么好啊！,Que le temps est beau !
+多少,combien,这本书多少钱？,Combien coûte ce livre ?
+朵,classificateur de fleurs,一朵漂亮的花,Une belle fleur
+而,"et, mais",他很聪明而且勤奋,Il est intelligent et diligent
+而且,"de plus, en outre",她很漂亮而且很友好,"Elle est belle et, de plus, très gentille"
+儿童,enfant,这个公园是儿童游乐场,Ce parc est une aire de jeux pour enfants
+儿子,fils,我的儿子今年十岁,Mon fils a dix ans cette année
+耳朵,oreille,他的耳朵很大,Ses oreilles sont grandes
+二,deux,我有两个兄弟,J'ai deux frères
+法律,loi,这个国家的法律很严格。,Les lois de ce pays sont très strictes.
+方便,pratique,这家超市位置很方便。,Ce supermarché est situé dans un endroit pratique.
+方法,méthode,我找到了解决问题的方法。,J'ai trouvé une méthode pour résoudre le problème.
+方面,aspect,他在各个方面都很优秀。,Il est excellent dans tous les aspects.
+方向,direction,你走错方向了。,Tu as pris la mauvaise direction.
+放,mettre,请把书放在桌子上。,Mets le livre sur la table s'il te plaît.
+放弃,abandonner,我决定不放弃这个机会。,J'ai décidé de ne pas abandonner cette opportunité.
+放暑假,prendre les vacances d'été,学生们开始放暑假了。,Les étudiants commencent leurs vacances d'été.
+放心,être rassuré,你可以放心，我会准时到的。,"Tu peux être rassuré, j'arriverai à l'heure."
+非常,très,这个电影非常有趣。,Ce film est très intéressant.
+分,diviser,请把蛋糕分成四份。,Divise le gâteau en quatre parts.
+份,part,我要一份炒饭。,Je voudrais une portion de riz sauté.
+丰富,riche,这里的文化很丰富。,La culture ici est très riche.
+符合,correspondre à,这个方案符合我们的要求。,Ce plan correspond à nos exigences.
+富,riche,他是这个城市最富的人。,Il est l'homme le plus riche de cette ville.
+附近,"près de, aux alentours",我家附近有一家超市,Il y a un supermarché près de chez moi
+复印,photocopier,请帮我复印这份文件,"S'il vous plaît, photocopiez ce document pour moi"
+干杯,"santé, tchin-tchin",让我们一起干杯吧！,Trinquons ensemble !
+干燥,"sec, aride",冬天空气很干燥,L'air est très sec en hiver
+敢,oser,我敢说法语,J'ose parler français
+感冒,rhume,我昨天感冒了,J'ai attrapé un rhume hier
+感情,"sentiment, émotion",他们之间的感情很好,Ils ont une bonne relation entre eux
+干,"faire, travailler",我想干这份工作,Je veux faire ce travail
+高,"haut, grand",这座楼很高,Cet immeuble est très haut
+高兴,"content, heureux",我很高兴认识你,Je suis ravi de te connaître
+哥哥,grand frère,我哥哥在大学读书,Mon grand frère étudie à l'université
+各,chaque,各个学生都有一本书,Chaque étudiant a un livre
+个,classificateur,这个苹果很甜,Cette pomme est très sucrée
+个子,"taille, stature",他个子很高,Il est de grande taille
+跟,avec,我想跟你一起去,Je veux aller avec toi
+根据,"selon, d'après",根据天气预报，明天会下雨。,"Selon les prévisions météo, il va pleuvoir demain."
+更,"encore plus, davantage",今天比昨天更热。,Il fait encore plus chaud aujourd'hui qu'hier.
+公斤,kilogramme,这个西瓜有五公斤重。,Cette pastèque pèse cinq kilogrammes.
+公里,kilomètre,从这里到学校有两公里。,Il y a deux kilomètres d'ici à l'école.
+公司,"entreprise, société",我在一家大公司工作。,Je travaille dans une grande entreprise.
+公园,parc public,周末我喜欢去公园散步。,J'aime me promener dans le parc le weekend.
+工具,outil,我需要一些工具来修理自行车。,J'ai besoin d'outils pour réparer mon vélo.
+工作,travail,她在医院工作。,Elle travaille à l'hôpital.
+共同,"commun, ensemble",我们有共同的爱好。,Nous avons des intérêts communs.
+狗,chien,他养了一只可爱的小狗。,Il a un petit chien mignon.
+够,"suffisant, assez",这些钱够买票吗？,Est-ce que cet argent est suffisant pour acheter le billet?
+鼓励,encourager,老师总是鼓励学生。,Le professeur encourage toujours ses élèves.
+鼓掌,applaudir,演出结束后观众都鼓掌了。,Le public a applaudi après le spectacle.
+故事,histoire,妈妈给我讲了一个有趣的故事。,Maman m'a raconté une histoire intéressante.
+故意,intentionnellement,他不是故意打破杯子的。,Il n'a pas cassé le verre intentionnellement.
+挂,accrocher,请把照片挂在墙上。,"S'il vous plaît, accrochez la photo au mur."
+关,fermer,请关门。,Fermez la porte s'il vous plaît.
+关系,relation,我们的关系很好。,Notre relation est très bonne.
+关心,se soucier,她很关心她的孩子。,Elle se soucie beaucoup de son enfant.
+关于,à propos de,这本书是关于中国历史的。,Ce livre est à propos de l'histoire chinoise.
+管理,gérer,他管理这家公司。,Il gère cette entreprise.
+光,lumière,房间里的光很亮。,La lumière dans la pièce est très claire.
+广播,radio,我每天早上听广播。,J'écoute la radio tous les matins.
+广告,publicité,电视上有很多广告。,Il y a beaucoup de publicités à la télévision.
+逛,se promener,周末我喜欢逛街。,J'aime me promener dans les rues le weekend.
+国家,pays,中国是一个大国家。,La Chine est un grand pays.
+果然,en effet,他果然来了。,"En effet, il est venu."
+果汁,jus de fruit,我想喝杯果汁。,Je voudrais un verre de jus de fruit.
+孩子,enfant,这个孩子很可爱。,Cet enfant est très mignon.
+海洋,océan,太平洋是最大的海洋。,L'océan Pacifique est le plus grand océan.
+害怕,avoir peur,我害怕一个人住在这里。,J'ai peur de vivre ici tout seul.
+害羞,timide,她是一个很害羞的女孩。,C'est une fille très timide.
+寒假,vacances d'hiver,寒假我要回家看父母。,Je vais rentrer voir mes parents pendant les vacances d'hiver.
+汗,sueur,运动后我出了很多汗。,J'ai beaucoup transpiré après le sport.
+航班,vol,我的航班明天早上八点起飞。,Mon vol décolle demain matin à huit heures.
+好,bon,这个电影很好看。,Ce film est très bon.
+好吃,délicieux,这家餐厅的菜很好吃。,La nourriture dans ce restaurant est délicieuse.
+好像,on dirait que,好像要下雨了。,On dirait qu'il va pleuvoir.
+号,numéro,今天是三月五号。,Aujourd'hui c'est le cinq mars.
+喝,boire,我想喝一杯咖啡。,Je veux boire une tasse de café.
+和,et,我和我的朋友去商店。,Mon ami et moi allons au magasin.
+河,rivière,这条河很长。,Cette rivière est très longue.
+合格,qualifié,他的考试成绩合格了。,Il a obtenu une note satisfaisante à son examen.
+合适,convenable,这件衣服很合适你。,Ce vêtement te va très bien.
+盒子,boîte,请把礼物放在盒子里。,"S'il te plaît, mets le cadeau dans la boîte."
+黑,noir,这辆车是黑色的,Cette voiture est noire
+黑板,tableau noir,老师在黑板上写字,Le professeur écrit sur le tableau noir
+很,très,这个蛋糕很好吃,Ce gâteau est très bon
+猴子,singe,猴子在树上跳来跳去,Le singe saute d'arbre en arbre
+厚,épais,这本书很厚,Ce livre est très épais
+后悔,regretter,我后悔没听你的话,Je regrette de ne pas t'avoir écouté
+后来,plus tard,后来我们成了好朋友,"Plus tard, nous sommes devenus bons amis"
+后面,derrière,我的房间在后面,Ma chambre est derrière
+忽然,soudainement,他忽然站了起来,Il s'est levé soudainement
+互相,mutuellement,我们要互相帮助,Nous devons nous aider mutuellement
+花,fleur,她在花园里种花,Elle plante des fleurs dans le jardin
+花园,jardin,这个花园很漂亮,Ce jardin est très beau
+画,dessiner,她喜欢画画,Elle aime dessiner
+坏,mauvais,这个手机坏了,Ce téléphone est cassé
+黄,jaune,这朵花是黄色的,Cette fleur est jaune
+回,retourner,他已经回家了,Il est déjà rentré à la maison
+回答,répondre,请回答我的问题,"S'il vous plaît, répondez à ma question"
+会,pouvoir,我会说法语,Je peux parler français
+火,feu,房子着火了,La maison est en feu
+或者,ou,你要咖啡或者茶？,Tu veux du café ou du thé ?
+机会,opportunité,这是一个好机会,C'est une bonne opportunité
+几乎,presque,我几乎每天都运动,Je fais presque du sport tous les jours
+极,extrême,这是极重要的事,C'est une affaire d'extrême importance
+极其,extrêmement,这个电影极其有趣,Ce film est extrêmement intéressant
+集合,rassemblement,学生们在操场上集合,Les étudiants se rassemblent sur le terrain
+即使,même si,即使下雨我也要去,J'irai même s'il pleut
+几,combien,你有几本书？,Combien de livres as-tu ?
+寄,envoyer,我要寄一封信,Je vais envoyer une lettre
+既然,puisque,既然你来了，就坐下吧,"Puisque tu es là, assieds-toi"
+家,maison,我的家在北京,Ma maison est à Pékin
+家具,meubles,我们需要买新的家具。,Nous avons besoin d'acheter de nouveaux meubles.
+加班,faire des heures supplémentaires,今天我要加班到很晚。,Aujourd'hui je dois faire des heures supplémentaires jusqu'à tard.
+加油站,station-service,前面有一个加油站。,Il y a une station-service devant.
+假,faux,这个手表是假的。,Cette montre est fausse.
+价格,prix,这个商品的价格很合理。,Le prix de ce produit est raisonnable.
+减肥,maigrir,她正在努力减肥。,Elle essaie de maigrir.
+减少,réduire,我们必须减少垃圾。,Nous devons réduire nos déchets.
+件,pièce,我买了三件衣服。,J'ai acheté trois pièces de vêtements.
+健康,santé,保持健康很重要。,Il est important de rester en bonne santé.
+将来,avenir,将来我想当医生。,"À l'avenir, je veux devenir médecin."
+降低,baisser,公司决定降低价格。,L'entreprise a décidé de baisser les prix.
+教,enseigner,她在大学教法语。,Elle enseigne le français à l'université.
+交,remettre,请把作业交给老师。,Veuillez remettre le devoir au professeur.
+交流,échanger,我们需要多交流。,Nous devons échanger davantage.
+交通,circulation,这里的交通很方便。,La circulation est très pratique ici.
+角,angle/coin/corne,这个房间的角有点脏。,Le coin de cette pièce est un peu sale.
+脚,pied/jambe,我的脚很疼。,Mon pied me fait mal.
+叫,appeler/crier,我叫Marie。,Je m'appelle Marie.
+教室,salle de classe,教室里有很多学生。,Il y a beaucoup d'élèves dans la salle de classe.
+教授,professeur,他是物理教授。,Il est professeur de physique.
+教育,éducation,教育对孩子很重要。,L'éducation est très importante pour les enfants.
+接,recevoir/prendre,请接电话。,"S'il vous plaît, répondez au téléphone."
+接受,accepter,我接受你的建议。,J'accepte ton conseil.
+街道,rue,这条街道很安静。,Cette rue est très calme.
+姐姐,sœur aînée,我的姐姐在北京工作。,Ma sœur aînée travaille à Pékin.
+解决,résoudre,我们需要解决这个问题。,Nous devons résoudre ce problème.
+借,emprunter/prêter,我想借一本书。,Je voudrais emprunter un livre.
+今天,aujourd'hui,今天天气很好。,Il fait beau aujourd'hui.
+尽管,bien que/malgré,尽管下雨，他还是去了。,"Bien qu'il pleuve, il y est allé."
+近,proche,我家离学校很近。,Ma maison est proche de l'école.
+禁止,interdire,这里禁止吸烟。,Il est interdit de fumer ici.
+精彩,brillant/magnifique,这个电影很精彩。,Ce film est magnifique.
+精神,esprit/mental,他今天的精神很好。,Il a le moral très bon aujourd'hui.
+警察,policier,警察在帮助人们。,Le policier aide les gens.
+竟然,étonnamment,他竟然没来上课。,"Étonnamment, il n'est pas venu en cours."
+究竟,finalement/au fond,你究竟想要什么？,Que veux-tu au fond ?
+九,neuf,我有九本书。,J'ai neuf livres.
+久,longtemps,我们很久没见面了。,Nous ne nous sommes pas vus depuis longtemps.
+旧,vieux/ancien,这是我的旧手机。,C'est mon ancien téléphone.
+就,tout de suite,我就来。,J'arrive tout de suite.
+距离,distance,学校距离这里很近。,L'école est à courte distance d'ici.
+句子,phrase,这个句子很简单。,Cette phrase est très simple.
+决定,décider,我决定明天去北京。,J'ai décidé d'aller à Pékin demain.
+咖啡,café,我每天早上喝咖啡。,Je bois du café tous les matins.
+开,ouvrir,请开门。,Veuillez ouvrir la porte.
+开始,commencer,我们什么时候开始上课？,Quand commençons-nous le cours ?
+开玩笑,plaisanter,他只是在开玩笑，别当真。,"Il plaisante seulement, ne le prends pas au sérieux."
+看,regarder/voir,我正在看一本有趣的书。,Je suis en train de lire un livre intéressant.
+看法,opinion/point de vue,我同意你的看法。,Je suis d'accord avec ton point de vue.
+棵,classifier,院子里有三棵树。,Il y a trois arbres dans la cour.
+科学,science,我的儿子很喜欢学习科学。,Mon fils aime beaucoup étudier les sciences.
+咳嗽,tousser,他感冒了，一直在咳嗽。,Il est enrhumé et ne cesse de tousser.
+渴,avoir soif,我跑步后很渴。,J'ai très soif après avoir couru.
+可怜,pitoyable,那只小猫看起来很可怜。,Ce petit chat a l'air pitoyable.
+可能,possible/peut-être,明天可能会下雨。,Il va peut-être pleuvoir demain.
+可是,mais,我想去，可是没有时间。,"Je veux y aller, mais je n'ai pas le temps."
+可惜,dommage,真可惜你不能来参加派对。,C'est dommage que tu ne puisses pas venir à la fête.
+可以,pouvoir,我们可以明天见面吗？,Pouvons-nous nous voir demain ?
+刻,quart d'heure,现在是三点一刻。,Il est trois heures et quart.
+客人,invité/client,我们家有客人来访。,Nous avons des invités à la maison.
+肯定,"certain, sûr",我肯定会按时完成作业,Je vais certainement finir mes devoirs à temps
+空气,l'air,今天的空气很新鲜,L'air est très frais aujourd'hui
+恐怕,"je crains que, peut-être",恐怕我明天不能去,Je crains que je ne puisse pas venir demain
+口,bouche,这个房间里有五口人,Il y a cinq personnes dans cette pièce
+哭,pleurer,小孩子突然哭了起来,L'enfant s'est soudainement mis à pleurer
+苦,"amer, pénible",这个咖啡太苦了,Ce café est trop amer
+快,"rapide, vite",你要快点，要迟到了,"Dépêche-toi, tu vas être en retard"
+筷子,baguettes,请给我一双筷子,Donnez-moi une paire de baguettes s'il vous plaît
+困,"fatigué, piégé",我今天很困,Je suis très fatigué aujourd'hui
+拉,tirer,请拉开窗帘,Tirez les rideaux s'il vous plaît
+垃圾桶,poubelle,把纸扔进垃圾桶,Jette le papier dans la poubelle
+辣,"épicé, piquant",这个菜很辣,Ce plat est très épicé
+来,venir,他明天来北京,Il vient à Pékin demain
+来不及,ne pas avoir le temps,我来不及吃早饭,Je n'ai pas le temps de prendre le petit déjeuner
+来得及,avoir le temps,我们来得及赶火车,Nous avons le temps d'attraper le train
+浪漫,romantique,这家餐厅很浪漫,Ce restaurant est très romantique
+老,vieux,老王是我的邻居,Le vieux Wang est mon voisin
+老虎,tigre,动物园里有一只老虎,Il y a un tigre dans le zoo
+了,particule verbale,我吃了早饭,J'ai pris mon petit déjeuner
+累,fatigué,工作后我很累,Je suis fatigué après le travail
+冷,froid,今天天气很冷,Il fait très froid aujourd'hui
+冷静,calme,请保持冷静,"Restez calme, s'il vous plaît"
+离,quitter,我家离学校很近,Ma maison est proche de l'école
+离开,partir,他明天离开北京,Il part de Pékin demain
+里,dans,书在包里,Le livre est dans le sac
+理解,comprendre,我完全理解你,Je te comprends parfaitement
+理想,idéal,这是我的理想工作,C'est mon travail idéal
+礼貌,politesse,他很有礼貌,Il est très poli
+礼物,cadeau,这是给你的礼物,C'est un cadeau pour toi
+厉害,formidable,你真厉害,Tu es vraiment formidable
+力气,force,他的力气很大，可以搬动这个箱子。,"Il a beaucoup de force, il peut déplacer cette boîte."
+例如,par exemple,很多水果都有维生素C，例如橙子和柠檬。,"Beaucoup de fruits contiennent de la vitamine C, par exemple les oranges et les citrons."
+凉快,frais,夏天晚上很凉快，适合散步。,"Les soirées d'été sont fraîches, idéales pour se promener."
+两,deux,我买了两本书。,J'ai acheté deux livres.
+亮,lumineux,今天天气很好，太阳很亮。,"Il fait beau aujourd'hui, le soleil est lumineux."
+聊天,bavarder,朋友们喜欢一起喝咖啡聊天。,Les amis aiment boire du café et bavarder ensemble.
+了解,comprendre,我完全了解你的想法。,Je comprends parfaitement ce que tu penses.
+零,zéro,温度降到零度以下了。,La température est descendue en dessous de zéro.
+另外,en plus,我要一杯咖啡，另外再来一块蛋糕。,"Je voudrais un café et, en plus, un morceau de gâteau."
+留,laisser,请留下你的电话号码。,"S'il vous plaît, laissez votre numéro de téléphone."
+留学,étudier à l'étranger,他去法国留学了。,Il est parti étudier en France.
+流泪,pleurer,这个电影太感人了，她看着看着就流泪了。,Le film était si émouvant qu'elle s'est mise à pleurer.
+流利,couramment,她说法语说得很流利。,Elle parle français couramment.
+流行,être à la mode,这种发型现在很流行。,Cette coiffure est très à la mode maintenant.
+六,six,我有六个好朋友。,J'ai six bons amis.
+楼,immeuble,我住在三楼。,J'habite au troisième étage.
+路,route,这条路通向公园。,Cette route mène au parc.
+乱,désordonné,房间很乱。,La chambre est en désordre.
+旅游,voyager,我喜欢去中国旅游。,J'aime voyager en Chine.
+慢,lent,他走路很慢。,Il marche très lentement.
+忙,occupé,我今天很忙。,Je suis très occupé aujourd'hui.
+猫,chat,我家有一只黑猫。,J'ai un chat noir à la maison.
+毛巾,serviette,请给我一条毛巾。,"Donnez-moi une serviette, s'il vous plaît."
+帽子,chapeau,她戴着红帽子。,Elle porte un chapeau rouge.
+没,ne pas avoir,我没有时间。,Je n'ai pas le temps.
+没关系,ce n'est pas grave,你迟到了，没关系。,"Tu es en retard, ce n'est pas grave."
+每,chaque,每天我都喝咖啡。,Je bois du café chaque jour.
+妹妹,petite sœur,我妹妹在学校。,Ma petite sœur est à l'école.
+门,porte,请关上门。,"Ferme la porte, s'il te plaît."
+梦,rêve,我做了一个好梦。,J'ai fait un beau rêve.
+米,riz/mètre,我需要买一公斤米,J'ai besoin d'acheter un kilo de riz
+面包,pain,每天早上我都吃面包,Je mange du pain tous les matins
+面条,nouilles,这家餐馆的面条很好吃,Les nouilles de ce restaurant sont délicieuses
+民族,nationalité/ethnie,中国有五十六个民族,La Chine compte cinquante-six ethnies
+明白,comprendre/clair,现在我明白了,Maintenant je comprends
+明天,demain,明天我要去上班,Demain je vais travailler
+名字,nom,你的名字是什么？,Comment t'appelles-tu ?
+目的,but/objectif,我的目的是学好法语,Mon but est d'apprendre bien le français
+拿,prendre/tenir,请拿着这本书,"S'il te plaît, prends ce livre"
+哪,quel/lequel,你喜欢哪个？,Lequel préfères-tu ?
+哪儿,où,你的手机在哪儿？,Où est ton téléphone portable ?
+那,ce/cela/celui-là,那是我的书,C'est mon livre
+那儿,là-bas,我的包在那儿,Mon sac est là-bas
+奶奶,grand-mère,我的奶奶住在北京,Ma grand-mère habite à Pékin
+耐心,patient/patience,学习语言要有耐心,Il faut être patient pour apprendre une langue
+南,sud,我家在南边。,Ma maison est au sud.
+男人,homme,那个男人是我的老师。,Cet homme est mon professeur.
+呢,et,你呢，你觉得怎么样？,"Et toi, qu'en penses-tu ?"
+内,intérieur,请进到里内。,Veuillez entrer à l'intérieur.
+内容,contenu,这本书的内容很有趣。,Le contenu de ce livre est très intéressant.
+能,pouvoir,我能说法语。,Je peux parler français.
+能力,capacité,他有很强的学习能力。,Il a une grande capacité d'apprentissage.
+你,tu,你今天好吗？,Comment vas-tu aujourd'hui ?
+年,année,今年是2024年。,"Cette année, c'est 2024."
+您,vous,您好，请坐。,"Bonjour, veuillez vous asseoir."
+牛奶,lait,我每天早上喝牛奶。,Je bois du lait tous les matins.
+弄,faire,我不知道怎么弄。,Je ne sais pas comment faire.
+努力,effort,他很努力地学习。,Il étudie avec beaucoup d'effort.
+暖和,chaud,今天天气很暖和。,Il fait bien chaud aujourd'hui.
+女儿,fille,我的女儿今年五岁。,Ma fille a cinq ans cette année.
+女人,femme,这个女人很优雅,Cette femme est très élégante
+偶尔,parfois,我偶尔去看电影,Je vais parfois au cinéma
+爬山,faire de la randonnée,周末我喜欢爬山,J'aime faire de la randonnée le week-end
+排列,arrangement,请把这些书排列整齐,Veuillez arranger ces livres en ordre
+判断,juger,很难判断他说的是不是真的,Il est difficile de juger s'il dit la vérité
+胖,gros,我的猫很胖,Mon chat est gros
+跑步,courir,每天早上我去跑步,Je vais courir tous les matins
+陪,accompagner,我陪你去医院,Je t'accompagne à l'hôpital
+朋友,ami,他是我最好的朋友,Il est mon meilleur ami
+皮肤,peau,她的皮肤很好,Elle a une belle peau
+啤酒,bière,他喜欢喝啤酒,Il aime boire de la bière
+脾气,caractère,她的脾气很好,Elle a un bon caractère
+便宜,bon marché,这件衣服很便宜,Ce vêtement est bon marché
+票,billet,我买了两张电影票,J'ai acheté deux billets de cinéma
+漂亮,beau/belle,这朵花很漂亮,Cette fleur est belle
+苹果,pomme,这个苹果很甜,Cette pomme est très sucrée
+瓶子,bouteille,请把空瓶子放在这里,"S'il vous plaît, mettez la bouteille vide ici"
+破,cassé,我的手机屏幕破了,L'écran de mon téléphone est cassé
+葡萄,raisin,我喜欢吃新鲜葡萄,J'aime manger des raisins frais
+普遍,universel,这是一个普遍现象,C'est un phénomène universel
+七,sept,我有七本书,J'ai sept livres
+妻子,épouse,他的妻子是老师,Son épouse est professeur
+其次,ensuite,首先学习，其次休息,"D'abord étudier, ensuite se reposer"
+其他,autre,其他人都回家了,Les autres personnes sont rentrées chez elles
+其中,parmi,其中有三个是红色的,"Parmi eux, trois sont rouges"
+奇怪,étrange,这件事很奇怪,Cette chose est très étrange
+起床,se lever,我每天七点起床,Je me lève tous les jours à sept heures
+起来,se lever,天气开始变冷起来了,Le temps commence à devenir froid
+气候,climat,这里的气候很好,Le climat ici est très bon
+千,mille,这本书要一千元,Ce livre coûte mille yuans
+千万,des millions; surtout,你千万别忘了带护照。,Surtout n'oublie pas ton passeport.
+前面,devant; avant,商店就在前面。,Le magasin est juste devant.
+敲,frapper; cogner,有人在敲门。,Quelqu'un frappe à la porte.
+巧克力,chocolat,我最喜欢吃黑巧克力。,J'aime beaucoup le chocolat noir.
+清楚,clair; net,我现在明白得很清楚了。,Je comprends très clairement maintenant.
+晴,ensoleillé,今天是晴天。,Il fait beau aujourd'hui.
+情况,situation; circonstance,请告诉我具体情况。,Dis-moi la situation exacte.
+秋,automne,秋天是我最喜欢的季节。,L'automne est ma saison préférée.
+区别,différence,这两种颜色没有太大区别。,Il n'y a pas beaucoup de différence entre ces deux couleurs.
+取,prendre; retirer,我要去银行取钱。,Je vais retirer de l'argent à la banque.
+去,aller,我明天要去北京。,Je vais à Pékin demain.
+去年,l'année dernière,去年我去了法国。,"L'année dernière, je suis allé en France."
+全部,tout; entier,我把作业全部做完了。,J'ai terminé tous mes devoirs.
+缺点,défaut; inconvénient,每个人都有缺点。,Tout le monde a des défauts.
+缺少,manquer de,这里缺少一些重要信息。,Il manque quelques informations importantes ici.
+却,mais/pourtant,他很累却还在工作,Il est fatigué mais il continue à travailler
+群,groupe,一群学生在操场上玩,Un groupe d'étudiants joue sur le terrain
+裙子,jupe,她买了一条新裙子,Elle a acheté une nouvelle jupe
+然而,cependant,天气很冷，然而他没穿外套,"Il fait froid, cependant il ne porte pas de manteau"
+然后,ensuite/puis,我先吃饭然后去工作,Je mange d'abord puis je vais travailler
+人,personne,这个房间里有三个人,Il y a trois personnes dans cette pièce
+任何,n'importe quel,你可以选择任何颜色,Tu peux choisir n'importe quelle couleur
+仍然,encore/toujours,下雨了，但他仍然想出去,"Il pleut, mais il veut toujours sortir"
+日,jour/soleil,今日天气很好,Le temps est beau aujourd'hui
+容易,facile,这个问题很容易,Cette question est facile
+如果,si,如果下雨我就不去,"Si il pleut, je n'irai pas"
+入口,entrée,商店的入口在那里,L'entrée du magasin est là-bas
+三,trois,我有三本书,J'ai trois livres
+散步,se promener,我喜欢在公园散步,J'aime me promener dans le parc
+森林,forêt,这个森林很大,Cette forêt est grande
+商店,magasin,这家商店的东西很便宜。,Les articles dans ce magasin sont bon marché.
+商量,discuter,我们需要商量一下这个问题。,Nous devons discuter de cette question.
+上,sur,猫在桌子上睡觉。,Le chat dort sur la table.
+上班,aller au travail,我每天早上八点上班。,Je vais au travail tous les jours à huit heures.
+上网,surfer sur Internet,我喜欢在家上网。,J'aime surfer sur Internet à la maison.
+上午,matin,上午我去超市买东西。,"Le matin, je vais au supermarché faire des courses."
+稍微,un peu,今天稍微冷一点。,Il fait un peu froid aujourd'hui.
+少,peu,这里的人很少。,Il y a peu de monde ici.
+社会,société,我们生活在一个现代社会。,Nous vivons dans une société moderne.
+深,profond,这个湖很深。,Ce lac est très profond.
+身体,corps,要注意保护身体健康。,Il faut prendre soin de la santé de son corps.
+什么,quoi,你想吃什么？,Que veux-tu manger ?
+甚至,même,他很忙，甚至没时间吃饭。,Il est tellement occupé qu'il n'a même pas le temps de manger.
+生病,tomber malade,他昨天生病了。,Il est tombé malade hier.
+生活,vie,我在北京生活了三年。,J'ai vécu à Pékin pendant trois ans.
+生命,la vie,生命是很宝贵的。,La vie est précieuse.
+生气,être fâché,请不要生气。,"S'il vous plaît, ne soyez pas fâché."
+生日,l'anniversaire,今天是我的生日。,C'est mon anniversaire aujourd'hui.
+声音,la voix/le son,你的声音很好听。,Ta voix est très belle.
+省,économiser,我们要省一点钱。,Nous devons économiser un peu d'argent.
+剩,rester,还剩下三个苹果。,Il reste trois pommes.
+失望,déçu,他对结果很失望。,Il est déçu du résultat.
+十,dix,我有十本书。,J'ai dix livres.
+十分,très,这个电影十分有趣。,Ce film est très intéressant.
+食品,les aliments,这些食品很新鲜。,Ces aliments sont très frais.
+使,faire,这使我很开心。,Cela me rend heureux.
+使用,utiliser,你会使用这个软件吗？,Sais-tu utiliser ce logiciel?
+是,être,他是我的朋友。,Il est mon ami.
+适合,convenir,这件衣服很适合你。,Ce vêtement te convient bien.
+世界,le monde,这是世界上最高的山。,C'est la plus haute montagne du monde.
+事情,affaire,这件事情很重要。,Cette affaire est très importante.
+收,recevoir,我收到了你的信。,J'ai reçu ta lettre.
+收入,revenu,他的月收入很高。,Son revenu mensuel est élevé.
+收拾,ranger,请帮我收拾房间。,Aide-moi à ranger la chambre.
+手表,montre,这是一块新手表。,C'est une nouvelle montre.
+手机,téléphone portable,我的手机没电了。,Mon téléphone portable n'a plus de batterie.
+首都,capitale,巴黎是法国的首都。,Paris est la capitale de la France.
+首先,d'abord,首先，我们要学习法语。,"D'abord, nous devons étudier le français."
+瘦,maigre,她变得很瘦了。,Elle est devenue très maigre.
+受不了,insupportable,我受不了这个噪音。,Je ne supporte pas ce bruit.
+受到,recevoir,他受到了表扬。,Il a reçu des compliments.
+舒服,confortable,这张床很舒服。,Ce lit est très confortable.
+叔叔,oncle,我的叔叔住在北京。,Mon oncle habite à Pékin.
+熟悉,familier,我很熟悉这个地方。,Je suis très familier avec cet endroit.
+数量,quantité,商店里的商品数量很多。,Il y a une grande quantité de produits dans le magasin.
+数学,mathématiques,我最喜欢的科目是数学,Ma matière préférée est les mathématiques
+数字,chiffre,请输入六位数字密码,Veuillez entrer un mot de passe à six chiffres
+双,paire,这双鞋子很舒服,Cette paire de chaussures est très confortable
+水,eau,我每天喝八杯水,Je bois huit verres d'eau par jour
+水果,fruit,超市的水果很新鲜,Les fruits du supermarché sont très frais
+水平,niveau,他的汉语水平很高,Son niveau de chinois est très élevé
+司机,chauffeur,我爸爸是出租车司机,Mon père est chauffeur de taxi
+死,mourir,这条路是死胡同,Cette rue est une impasse
+四,quatre,我家在四楼,J'habite au quatrième étage
+送,livrer,我要送这个包裹给妈妈,Je vais livrer ce colis à ma mère
+速度,vitesse,这辆车的速度太快了,La vitesse de cette voiture est trop rapide
+塑料袋,sac plastique,请给我一个塑料袋,"Donnez-moi un sac plastique, s'il vous plaît"
+酸,acide,这个柠檬很酸,Ce citron est très acide
+算,calculer,让我算一下总价,Laissez-moi calculer le prix total
+虽然,bien que,虽然下雨了，我们还是去散步,"Bien qu'il pleuve, nous allons quand même nous promener"
+随便,comme on veut,你想吃什么随便点。,Commande ce que tu veux.
+随着,avec,随着时间的推移，他变得更强了。,"Avec le temps, il est devenu plus fort."
+所以,donc,他生病了所以没来上课。,Il était malade donc il n'est pas venu en cours.
+所有,tout,所有的学生都喜欢这个老师。,Tous les étudiants aiment ce professeur.
+他,il,他是我的好朋友。,Il est mon bon ami.
+她,elle,她在图书馆学习。,Elle étudie à la bibliothèque.
+它,il/elle (pour objets),它是一只可爱的猫。,C'est un chat mignon.
+台,bureau/scène,这台电脑很贵。,Cet ordinateur est très cher.
+抬,lever,请帮我抬一下这个箱子。,Aide-moi à soulever cette boîte.
+太,trop,这个房间太小了。,Cette pièce est trop petite.
+太阳,soleil,今天太阳很大。,Le soleil est fort aujourd'hui.
+趟,fois (voyage),我今天去超市跑了两趟。,Je suis allé au supermarché deux fois aujourd'hui.
+糖,sucre,这个蛋糕太甜了，放了很多糖。,"Ce gâteau est trop sucré, il y a beaucoup de sucre."
+特别,spécial/particulièrement,这个餐厅特别好吃。,Ce restaurant est particulièrement bon.
+特点,caractéristique,每个人都有自己的特点。,Chaque personne a ses propres caractéristiques.
+踢足球,jouer au football,我每个周末都喜欢踢足球,J'aime jouer au football tous les weekends
+提高,augmenter,我们需要提高工作效率,Nous devons augmenter notre efficacité au travail
+提供,fournir,这家店提供免费送货服务,Ce magasin fournit un service de livraison gratuit
+提前,à l'avance,我们需要提前准备考试,Nous devons nous préparer à l'avance pour l'examen
+提醒,rappeler,请提醒我明天开会,"S'il vous plaît, rappelez-moi la réunion de demain"
+体育,sport,他是体育老师,Il est professeur de sport
+天气,temps,今天天气很好,Il fait beau aujourd'hui
+甜,sucré,这个蛋糕很甜,Ce gâteau est très sucré
+填空,remplir les blancs,学生们正在做填空题,Les élèves remplissent les exercices à trous
+条,bande,这条街很长,Cette rue est très longue
+条件,condition,工作条件很好,Les conditions de travail sont bonnes
+跳舞,danser,她喜欢跳舞,Elle aime danser
+听,écouter,我在听音乐,J'écoute de la musique
+停止,arrêter,请停止说话,"Arrêtez de parler, s'il vous plaît"
+通知,informer,老师通知我们明天考试,Le professeur nous informe qu'il y a un examen demain
+同情,compassion,我很同情他的遭遇。,J'ai de la compassion pour sa situation.
+同事,collègue,她是我的新同事。,Elle est ma nouvelle collègue.
+同学,camarade de classe,他是我的高中同学。,Il est mon camarade de classe du lycée.
+同意,être d'accord,我同意你的想法。,Je suis d'accord avec ton idée.
+突然,soudain,他突然站了起来。,Il s'est levé soudainement.
+推,pousser,请推门进来。,Veuillez pousser la porte pour entrer.
+脱,enlever,天热时请脱掉外套。,Enlevez votre manteau quand il fait chaud.
+袜子,chaussettes,我买了新袜子。,J'ai acheté de nouvelles chaussettes.
+外,dehors,他在外面等你。,Il t'attend dehors.
+玩,jouer,孩子们在公园玩。,Les enfants jouent dans le parc.
+完,fini,作业做完了。,Les devoirs sont finis.
+完成,accomplir,我已经完成了工作。,J'ai accompli mon travail.
+完全,complètement,我完全理解你。,Je te comprends complètement.
+碗,bol,这个碗很漂亮。,Ce bol est très beau.
+晚上,soir,晚上我们去看电影。,"Ce soir, nous allons voir un film."
+万,dix mille,这个城市有几万人口。,Cette ville a des dizaines de milliers d'habitants.
+往,vers/aller vers,他往学校走去。,Il marche vers l'école.
+往往,souvent,他往往迟到。,Il arrive souvent en retard.
+网球,tennis,我喜欢打网球。,J'aime jouer au tennis.
+网站,site web,这是一个很好的网站。,C'est un très bon site web.
+喂,allô,喂，你好吗？,"Allô, comment vas-tu ?"
+位,personne/place,这位是我的老师。,Cette personne est mon professeur.
+味道,goût/saveur,这个菜的味道很好。,Ce plat a très bon goût.
+文化,culture,中国文化很有趣。,La culture chinoise est très intéressante.
+文章,article,这篇文章写得很好。,Cet article est bien écrit.
+我,je/moi,我是学生。,Je suis étudiant.
+握手,serrer la main,他们互相握手。,Ils se serrent la main.
+无,sans,这里无人。,Il n'y a personne ici.
+无聊,ennuyeux,这个电影很无聊。,Ce film est très ennuyeux.
+五,cinq,我有五本书。,J'ai cinq livres.
+西,ouest,我家在城市的西边,Ma maison est à l'ouest de la ville
+西瓜,pastèque,夏天吃西瓜很爽,C'est rafraîchissant de manger de la pastèque en été
+希望,espérer,我希望明天会是个好天气,J'espère qu'il fera beau demain
+吸引,attirer,这个城市吸引了很多游客,Cette ville attire beaucoup de touristes
+洗,laver,我需要洗这件衣服,J'ai besoin de laver ce vêtement
+洗衣机,machine à laver,我的洗衣机坏了,Ma machine à laver est en panne
+洗澡,prendre une douche,我每天早上洗澡,Je prends une douche tous les matins
+夏,été,我最喜欢夏天,J'aime beaucoup l'été
+下,descendre,请下楼来,Descendez s'il vous plaît
+下午,après-midi,下午我们去公园,Nous allons au parc cet après-midi
+下雨,pleuvoir,今天可能会下雨,Il va probablement pleuvoir aujourd'hui
+先,d'abord,你先去吧，我随后来,"Va d'abord, je viendrai après"
+先生,monsieur,王先生是我的老师,Monsieur Wang est mon professeur
+咸,salé,这个汤太咸了,Cette soupe est trop salée
+羡慕,envier,我很羡慕你的新工作,J'envie ton nouveau travail
+限制,limiter,政府限制了进口商品。,Le gouvernement a limité les importations.
+香,parfumé,这些花真香。,Ces fleurs sont vraiment parfumées.
+香蕉,banane,我每天早上吃一根香蕉。,Je mange une banane chaque matin.
+相反,contraire,他的想法和我的相反。,Son opinion est contraire à la mienne.
+相同,identique,这两本书的内容是相同的。,Le contenu de ces deux livres est identique.
+相信,croire,我相信你会成功的。,Je crois que tu vas réussir.
+响,sonner,电话突然响了。,Le téléphone a soudainement sonné.
+想,penser,我想去旅游。,Je pense partir en voyage.
+向,vers,他向学校走去。,Il marche vers l'école.
+像,ressembler,他很像他的父亲。,Il ressemble beaucoup à son père.
+消息,nouvelle,你听到这个好消息了吗？,As-tu entendu cette bonne nouvelle ?
+小,petit,这是一个小房间。,C'est une petite chambre.
+小姐,mademoiselle,王小姐是我的老师。,Mademoiselle Wang est mon professeur.
+小心,faire attention,过马路要小心。,Il faut faire attention en traversant la rue.
+笑,rire,这个笑话让大家都笑了。,Cette blague a fait rire tout le monde.
+效果,effet,这个药的效果很好。,L'effet de ce médicament est très bon.
+些,quelques,我买了些水果。,J'ai acheté quelques fruits.
+鞋,chaussures,这双鞋很舒服。,Ces chaussures sont très confortables.
+写,écrire,我正在写一封信。,Je suis en train d'écrire une lettre.
+新,nouveau,这是一本新书。,C'est un nouveau livre.
+辛苦,pénible,这份工作很辛苦。,Ce travail est très pénible.
+心情,humeur,今天我的心情很好。,Je suis de bonne humeur aujourd'hui.
+信,lettre,我收到了一封信。,J'ai reçu une lettre.
+信任,faire confiance,我完全信任他。,Je lui fais totalement confiance.
+信心,confiance,我对未来充满信心。,J'ai confiance en l'avenir.
+信用卡,carte de crédit,我用信用卡付款。,Je paie avec ma carte de crédit.
+星期,semaine,下星期我要去北京。,"La semaine prochaine, je vais à Pékin."
+行,aller,我们一起行动吧。,Allons-y ensemble.
+行李箱,valise,我的行李箱很重。,Ma valise est très lourde.
+醒,se réveiller,我每天七点醒。,Je me réveille tous les jours à sept heures.
+姓,nom de famille,我姓王，你呢？,"Mon nom de famille est Wang, et vous ?"
+性别,sexe,请在表格上填写你的性别。,Veuillez indiquer votre sexe sur le formulaire.
+性格,caractère,他的性格很开朗。,Il a un caractère très jovial.
+幸福,bonheur,他们是一个幸福的家庭。,Ils forment une famille heureuse.
+兴趣,intérêt,我对音乐很有兴趣。,Je m'intéresse beaucoup à la musique.
+熊猫,panda,熊猫是中国的国宝。,Le panda est un trésor national chinois.
+修,réparer,我需要修我的自行车。,J'ai besoin de réparer mon vélo.
+休息,se reposer,工作了一天后要好好休息。,Il faut bien se reposer après une journée de travail.
+需要,avoir besoin,我需要买些食物。,J'ai besoin d'acheter de la nourriture.
+学生,étudiant,教室里有很多学生。,Il y a beaucoup d'étudiants dans la classe.
+学校,école,我的学校在市中心。,Mon école est au centre-ville.
+雪,neige,今天下雪了。,Il neige aujourd'hui.
+血,sang,他需要去医院验血。,Il doit aller à l'hôpital pour une analyse de sang.
+研究生,étudiant en master,他现在是北大的研究生。,Il est actuellement étudiant en master à l'Université de Pékin.
+演出,spectacle,今晚有一场精彩的演出。,Il y a un superbe spectacle ce soir.
+眼睛,les yeux,他的眼睛很漂亮,Ses yeux sont beaux
+阳光,le soleil,今天的阳光很温暖,Le soleil est chaleureux aujourd'hui
+羊肉,le mouton,这家餐厅的羊肉很好吃,Le mouton dans ce restaurant est délicieux
+养成,développer,我要养成运动的好习惯,Je veux développer une bonne habitude de faire du sport
+要求,demander,老师要求我们完成作业,Le professeur nous demande de finir nos devoirs
+要,vouloir,我要去商店买东西,Je veux aller au magasin faire des courses
+也,aussi,我也喜欢看电影,J'aime aussi regarder des films
+叶子,la feuille,树上的叶子变黄了,Les feuilles de l'arbre sont devenues jaunes
+一,un,我只有一本书,Je n'ai qu'un livre
+衣服,les vêtements,这件衣服很适合你,Ces vêtements te vont bien
+医生,le médecin,这位医生很有经验,Ce médecin est très expérimenté
+医院,l'hôpital,医院就在前面,L'hôpital est juste devant
+一定,certainement,我一定会准时到,J'arriverai certainement à l'heure
+一共,au total,我们一共有五个人,Nous sommes cinq personnes au total
+一会儿,un moment,请等我一会儿,Attendez-moi un moment
+一切,tout,一切都准备好了,Tout est prêt
+以,avec/par,我以前从未见过这种情况,Je n'ai jamais vu ça auparavant
+以后,après/désormais,从今以后我要好好学习,"Dorénavant, je vais étudier sérieusement"
+以前,avant/autrefois,他以前住在巴黎,Il habitait à Paris avant
+椅子,chaise,这把椅子很舒服,Cette chaise est très confortable
+一般,ordinaire/général,这家餐厅的菜一般,La nourriture dans ce restaurant est ordinaire
+一起,ensemble,我们一起去看电影吧,Allons au cinéma ensemble
+一直,toujours/sans cesse,他一直在学习法语,Il étudie toujours le français
+意思,sens/signification,这个词的意思很难理解,Le sens de ce mot est difficile à comprendre
+阴,nuageux/sombre,今天天气很阴,"Aujourd'hui, le temps est nuageux"
+因此,donc/par conséquent,他生病了，因此没来上课,"Il était malade, donc il n'est pas venu en cours"
+引起,provoquer/causer,这个新闻引起了很多关注,Cette nouvelle a provoqué beaucoup d'attention
+印象,impression,这部电影给我留下深刻的印象,Ce film m'a laissé une forte impression
+影响,influence/effet,天气影响了我的心情,Le temps a influencé mon humeur
+硬,dur/ferme,这张床太硬了,Ce lit est trop dur
+勇敢,courageux/brave,他是一个勇敢的消防员。,C'est un pompier courageux.
+用,utiliser,我用筷子吃饭。,Je mange avec des baguettes.
+幽默,humoristique,这个老师很幽默。,Ce professeur est très humoristique.
+由,par/de,这本书是由他写的。,Ce livre est écrit par lui.
+由于,en raison de,由于下雨，比赛取消了。,"En raison de la pluie, le match a été annulé."
+尤其,particulièrement,我喜欢水果，尤其是苹果。,"J'aime les fruits, particulièrement les pommes."
+游泳,nager,夏天我喜欢去游泳。,J'aime nager en été.
+有,avoir/il y a,我有一只猫。,J'ai un chat.
+有名,célèbre,这家餐厅很有名。,Ce restaurant est très célèbre.
+有趣,intéressant,这个电影很有趣。,Ce film est très intéressant.
+友好,amical,他们是友好的邻居。,Ce sont des voisins amicaux.
+又,encore/aussi,他又迟到了。,Il est encore en retard.
+愉快,joyeux/agréable,祝你周末愉快！,Bon weekend!
+于是,donc/ainsi,天很热，于是我开了空调。,"Il faisait chaud, donc j'ai allumé la climatisation."
+与,avec/et,他与她是好朋友。,Il est ami avec elle.
+羽毛球,badminton,我每周都打羽毛球,Je joue au badminton chaque semaine
+遇到,rencontrer,我在街上遇到了我的老师,J'ai rencontré mon professeur dans la rue
+元,yuan,这本书二十元,Ce livre coûte vingt yuans
+原来,à l'origine,原来他是法国人,"À l'origine, il était français"
+原因,raison,你知道原因吗？,Tu connais la raison ?
+愿意,vouloir bien,我愿意帮助你,Je veux bien t'aider
+越,de plus en plus,他跑得越来越快,Il court de plus en plus vite
+月,mois/lune,现在是三月,C'est le mois de mars
+月亮,lune,今晚的月亮很圆,La lune est très ronde ce soir
+云,nuage,天上有白云,Il y a des nuages blancs dans le ciel
+在,être à/dans,我在家,Je suis à la maison
+再,encore,请再说一遍,Répète encore une fois s'il te plaît
+早上,matin,早上好！,Bonjour !
+怎么,comment,怎么去火车站？,Comment aller à la gare ?
+增加,augmenter,物价在增加,Les prix augmentent
+窄,étroit,这条路太窄了，车子过不去。,"Cette route est trop étroite, la voiture ne peut pas passer."
+站,station/se tenir debout,请在这里站一会儿。,Veuillez vous tenir debout ici un moment.
+丈夫,mari,我丈夫在医院工作。,Mon mari travaille à l'hôpital.
+招聘,recruter,这家公司正在招聘新员工。,Cette entreprise recrute de nouveaux employés.
+着急,s'inquiéter,别着急，我们还有时间。,"Ne t'inquiète pas, nous avons encore du temps."
+找,chercher,我在找我的钥匙。,Je cherche mes clés.
+照片,photo,这张照片拍得很漂亮。,Cette photo est très belle.
+照相机,appareil photo,我买了一台新照相机。,J'ai acheté un nouvel appareil photo.
+着,en train de,他正在看着电视。,Il est en train de regarder la télévision.
+真,vrai/vraiment,这个故事是真的吗？,Cette histoire est-elle vraie ?
+真正,véritable,这是真正的中国茶。,C'est du véritable thé chinois.
+整理,ranger/organiser,我需要整理我的房间。,J'ai besoin de ranger ma chambre.
+正常,normal,一切都很正常。,Tout est normal.
+正好,justement/exactement,我正好有时间。,J'ai justement du temps.
+正确,correct,你的答案是正确的。,Ta réponse est correcte.
+正式,officiel,这是一个正式的会议,C'est une réunion officielle
+正在,être en train de,他正在看书,Il est en train de lire
+之,de (littéraire),天之骄子,L'enfant prodige du ciel
+只,classificateur d'animaux,一只鸟,Un oiseau
+支持,soutenir,我支持你的决定,Je soutiens ta décision
+知道,savoir,我知道这个答案,Je connais la réponse
+直接,direct,请直接告诉我,Dis-le-moi directement
+植物,plante,这是一种罕见的植物,C'est une plante rare
+指,doigt/indiquer,他指着那个方向,Il pointe dans cette direction
+只,seulement,我只有一本书,J'ai seulement un livre
+只好,être obligé de,我只好同意,Je suis obligé d'accepter
+只要,tant que,只要你努力就会成功,Tu réussiras tant que tu fais des efforts
+至少,au moins,至少等五分钟,Attends au moins cinq minutes
+制造,fabriquer,这台车在德国制造,Cette voiture est fabriquée en Allemagne
+中国,Chine,我喜欢中国文化,J'aime la culture chinoise
+中文,le chinois,我正在学习中文。,J'apprends le chinois.
+中午,midi,中午我们一起吃饭。,Nous déjeunons ensemble à midi.
+种,planter/genre,我喜欢种花。,J'aime planter des fleurs.
+重点,point important,这是考试的重点。,C'est le point important de l'examen.
+重要,important,这件事很重要。,Cette affaire est très importante.
+周末,week-end,周末我想去公园。,Je veux aller au parc ce week-end.
+猪,cochon,这只猪很胖。,Ce cochon est très gros.
+主要,principal,这是主要问题。,C'est le problème principal.
+主意,idée,我有一个好主意。,J'ai une bonne idée.
+住,habiter,我住在巴黎。,J'habite à Paris.
+祝,souhaiter,祝你生日快乐！,Je te souhaite un joyeux anniversaire !
+著名,célèbre,这是一个著名的作家。,C'est un écrivain célèbre.
+注意,faire attention,请注意安全。,Faites attention à la sécurité.
+撞,heurter,车子撞到了树。,La voiture a heurté l'arbre.
+准确,précis,这个答案很准确。,Cette réponse est très précise.
+桌子,table,这张桌子很漂亮,Cette table est belle
+字,caractère,我不认识这个字,Je ne connais pas ce caractère
+字典,dictionnaire,我需要查字典,J'ai besoin de consulter le dictionnaire
+自己,soi-même,我想自己做,Je veux le faire moi-même
+自然,nature,这是自然现象,C'est un phénomène naturel
+走,marcher,我们一起走吧,Marchons ensemble
+租,louer,我想租一套公寓,Je veux louer un appartement
+嘴,bouche,他的嘴很小,Sa bouche est petite
+最,le plus,这是最好的,C'est le meilleur
+最好,meilleur,这个餐厅最好,Ce restaurant est le meilleur
+最后,final,这是最后一次,C'est la dernière fois
+最近,récemment,最近天气很好,Le temps est bon récemment
+尊重,respecter,我们要互相尊重,Nous devons nous respecter mutuellement
+昨天,hier,昨天我去了商店,"Hier, je suis allé au magasin"
+坐,s'asseoir,请坐在这里,Veuillez vous asseoir ici
+做,faire,我每天做饭。,Je fais la cuisine tous les jours.
+做生意,faire des affaires,他在中国做生意。,Il fait des affaires en Chine.
+座,siège,这个座很舒服。,Ce siège est confortable.
+座位,place assise,这个座位是空的。,Cette place est libre.
+作用,effet/fonction,运动对健康有好的作用。,Le sport a un bon effet sur la santé.
+作者,auteur,这本书的作者是法国人。,L'auteur de ce livre est français.

@@ -23,3 +23,4 @@ ALTER TABLE rating_history DISABLE ROW LEVEL SECURITY;
 SELECT schemaname, tablename, rowsecurity 
 FROM pg_tables 
 WHERE tablename IN ('vocabulary_decks', 'vocabulary', 'deck_vocabulary', 'user_progress', 'study_sessions', 'rating_history');
+

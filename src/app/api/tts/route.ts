@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Rate limiting and quota management
+const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
+const MAX_REQUESTS_PER_MINUTE = 10 // Conservative limit
+const MAX_REQUESTS_PER_MONTH = 1000 // Conservative monthly limit
+
+// In-memory rate limiting (for production, use Redis or database)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>()
+const monthlyQuotaStore = new Map<string, { count: number; month: string }>()
+
 // Language to Azure voice mapping
 const LANGUAGE_VOICES: Record<string, string> = {
   'fr': 'fr-FR-DeniseNeural',
@@ -28,6 +37,45 @@ const LANGUAGE_LOCALES: Record<string, string> = {
   'ru': 'ru-RU'
 }
 
+// Rate limiting function
+function checkRateLimit(identifier: string): { allowed: boolean; remaining: number; resetTime: number } {
+  const now = Date.now()
+  const current = rateLimitStore.get(identifier)
+  
+  if (!current || now > current.resetTime) {
+    // Reset or initialize
+    rateLimitStore.set(identifier, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+    return { allowed: true, remaining: MAX_REQUESTS_PER_MINUTE - 1, resetTime: now + RATE_LIMIT_WINDOW }
+  }
+  
+  if (current.count >= MAX_REQUESTS_PER_MINUTE) {
+    return { allowed: false, remaining: 0, resetTime: current.resetTime }
+  }
+  
+  current.count++
+  return { allowed: true, remaining: MAX_REQUESTS_PER_MINUTE - current.count, resetTime: current.resetTime }
+}
+
+// Monthly quota check
+function checkMonthlyQuota(identifier: string): { allowed: boolean; remaining: number } {
+  const now = new Date()
+  const currentMonth = `${now.getFullYear()}-${now.getMonth()}`
+  const current = monthlyQuotaStore.get(identifier)
+  
+  if (!current || current.month !== currentMonth) {
+    // Reset for new month
+    monthlyQuotaStore.set(identifier, { count: 1, month: currentMonth })
+    return { allowed: true, remaining: MAX_REQUESTS_PER_MONTH - 1 }
+  }
+  
+  if (current.count >= MAX_REQUESTS_PER_MONTH) {
+    return { allowed: false, remaining: 0 }
+  }
+  
+  current.count++
+  return { allowed: true, remaining: MAX_REQUESTS_PER_MONTH - current.count }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { text, language } = await request.json()
@@ -36,6 +84,35 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Text and language are required' },
         { status: 400 }
+      )
+    }
+
+    // Rate limiting - use IP address as identifier
+    const clientIP = request.headers.get('x-forwarded-for') || 
+                    request.headers.get('x-real-ip') || 
+                    'unknown'
+    
+    const rateLimit = checkRateLimit(clientIP)
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { 
+          error: 'Rate limit exceeded', 
+          remaining: rateLimit.remaining,
+          resetTime: rateLimit.resetTime 
+        },
+        { status: 429 }
+      )
+    }
+
+    // Monthly quota check
+    const quotaCheck = checkMonthlyQuota(clientIP)
+    if (!quotaCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: 'Monthly quota exceeded', 
+          remaining: quotaCheck.remaining 
+        },
+        { status: 429 }
       )
     }
 
@@ -91,11 +168,14 @@ export async function POST(request: NextRequest) {
     const audioBlob = await response.blob()
     const audioBuffer = await audioBlob.arrayBuffer()
 
-    // Return the audio as a response
+    // Return the audio as a response with rate limit headers
     return new NextResponse(audioBuffer, {
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Cache-Control': 'public, max-age=3600' // Cache for 1 hour
+        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+        'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+        'X-RateLimit-Reset': rateLimit.resetTime.toString(),
+        'X-Quota-Remaining': quotaCheck.remaining.toString()
       }
     })
 

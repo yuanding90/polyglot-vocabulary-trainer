@@ -45,3 +45,4 @@ AZURE_SPEECH_REGION=eastus
 ## Usage
 
 The TTS service automatically detects the language from your deck settings and uses the appropriate voice. No manual configuration needed!
+

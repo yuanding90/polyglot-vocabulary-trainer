@@ -181,6 +181,12 @@
   height: 100%;
 }
 
+/* Ensure back is hidden initially */
+.flash-card:not(.flipped) .flash-card-back {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .flash-card-inner {
   position: relative;
   width: 100%;
@@ -194,6 +200,16 @@
   transform: rotateY(180deg);
 }
 
+.flash-card.flipped .flash-card-back {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.flash-card.flipped .flash-card-front {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .flash-card-front,
 .flash-card-back {
   position: absolute;
@@ -205,6 +221,10 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
+}
+
+.flash-card-front {
+  transform: rotateY(0deg);
 }
 
 .flash-card-back {

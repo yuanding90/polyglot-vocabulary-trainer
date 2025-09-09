@@ -128,3 +128,4 @@ async function calculateCurrentStreak(userId: string): Promise<number> {
     return 0
   }
 }
+

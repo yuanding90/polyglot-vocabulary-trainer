@@ -11,9 +11,20 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Get initial session with error handling
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.log('Session error (this is normal on first load):', error.message)
+        // Clear any stale auth data
+        supabase.auth.signOut()
+      }
       setUser(session?.user ?? null)
+      setLoading(false)
+    }).catch((error) => {
+      console.log('Session fetch error:', error.message)
+      // Clear any stale auth data
+      supabase.auth.signOut()
+      setUser(null)
       setLoading(false)
     })
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, startTransition } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -115,6 +115,9 @@ export default function StudySession() {
             setLocalSessionWords([])
             setCurrentWordState(null)
             setCurrentWordIndex(0)
+            setShowAnswer(false)
+            setUserAnswer('')
+            setIsCorrect(false)
           }
         } catch (error) {
           console.error('Error parsing new deck from localStorage:', error)
@@ -134,6 +137,9 @@ export default function StudySession() {
             setLocalSessionWords([])
             setCurrentWordState(null)
             setCurrentWordIndex(0)
+            setShowAnswer(false)
+            setUserAnswer('')
+            setIsCorrect(false)
           }
         } catch (error) {
           console.error('Error parsing deck on focus:', error)
@@ -345,6 +351,9 @@ export default function StudySession() {
         if (shuffledWords.length > 0) {
           setCurrentWordState(shuffledWords[0])
           setCurrentWordIndex(0)
+          setShowAnswer(false) // Ensure answer is hidden for new word
+          setUserAnswer('')
+          setIsCorrect(false)
           
           // Load progress for the first word
           await loadCurrentWordProgress(shuffledWords[0])
@@ -676,11 +685,14 @@ export default function StudySession() {
     const nextIndex = currentWordIndex + 1
     
     if (nextIndex < sessionWords.length) {
-      setCurrentWordIndex(nextIndex)
-      setCurrentWordState(sessionWords[nextIndex])
-      setShowAnswer(false)
-      setUserAnswer('')
-      setIsCorrect(false)
+      startTransition(() => {
+        // All state updates happen together atomically
+        setCurrentWordIndex(nextIndex)
+        setCurrentWordState(sessionWords[nextIndex])
+        setShowAnswer(false)
+        setUserAnswer('')
+        setIsCorrect(false)
+      })
       
       // Load progress for the next word
       await loadCurrentWordProgress(sessionWords[nextIndex])

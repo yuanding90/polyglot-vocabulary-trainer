@@ -66,3 +66,4 @@ def check_chinese_deck_sizes():
 
 if __name__ == "__main__":
     check_chinese_deck_sizes()
+

@@ -46,6 +46,7 @@ export default function Auth() {
       
       console.log('Current domain:', currentDomain)
       console.log('Redirecting to:', redirectTo)
+      console.log('Full URL:', window.location.href)
       
       // Check if we're in production or development
       if (process.env.NODE_ENV === 'production') {
@@ -57,7 +58,11 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo
+          redirectTo,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          }
         }
       })
       

@@ -27,3 +27,4 @@ CREATE POLICY "Users can view their own sessions" ON study_sessions
 
 CREATE POLICY "Users can insert their own sessions" ON study_sessions
     FOR INSERT WITH CHECK (auth.uid() = user_id);
+

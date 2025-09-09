@@ -39,3 +39,4 @@ CREATE POLICY "Mock user can access study sessions" ON study_sessions
 ALTER TABLE user_progress ENABLE ROW LEVEL SECURITY;
 ALTER TABLE rating_history ENABLE ROW LEVEL SECURITY;
 ALTER TABLE study_sessions ENABLE ROW LEVEL SECURITY;
+
