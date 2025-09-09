@@ -122,17 +122,18 @@ export class DailySummaryManager {
   private static calculateCurrentStreak(summaries: DailySummary[]): number {
     const dateSet = new Set(summaries.map(s => s.date))
     let streak = 0
-    let checkDay = new Date()
+    const today = new Date()
+    let checkDay = new Date(today)
 
     // If no activity today, start from yesterday
     if (!dateSet.has(checkDay.toISOString().split('T')[0])) {
-      checkDay.setDate(checkDay.getDate() - 1)
+      checkDay = new Date(today.getTime() - 24 * 60 * 60 * 1000)
     }
 
     // Count consecutive days with activity
     while (dateSet.has(checkDay.toISOString().split('T')[0])) {
       streak++
-      checkDay.setDate(checkDay.getDate() - 1)
+      checkDay = new Date(checkDay.getTime() - 24 * 60 * 60 * 1000)
     }
 
     return streak
