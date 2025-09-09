@@ -549,8 +549,12 @@ export default function StudySession() {
       // Handle "Again" logic - add word back to session queue for immediate review
       if (rating === 'again') {
         // Add the current word back to the end of the session queue
-        setLocalSessionWords(prev => [...prev, currentWord])
+        const updatedSessionWords = [...sessionWords, currentWord]
+        setLocalSessionWords(updatedSessionWords)
+        // Update session progress total to include the added word
+        setSessionProgress(prev => ({ ...prev, total: prev.total + 1 }))
         console.log('Word marked as "Again" - added back to session queue for immediate review')
+        console.log('Updated session words length:', updatedSessionWords.length)
       }
 
       let newInterval = 0
@@ -636,7 +640,13 @@ export default function StudySession() {
       }
 
       // Move to next word
-      await moveToNextWord()
+      if (rating === 'again') {
+        // For "Again", use the updated session words array
+        const updatedSessionWords = [...sessionWords, currentWord]
+        await moveToNextWord(updatedSessionWords)
+      } else {
+        await moveToNextWord()
+      }
 
     } catch (error) {
       console.error('Error handling answer:', error)
@@ -658,7 +668,7 @@ export default function StudySession() {
         user_id: user.id,
         deck_id: currentDeck.id,
         session_type: sessionType,
-        words_studied: sessionProgress.total,
+        words_studied: sessionWords.length,
         correct_answers: sessionProgress.good + sessionProgress.easy + sessionProgress.know,
         session_duration: 0, // TODO: Calculate actual duration
         completed_at: new Date().toISOString()
@@ -681,21 +691,30 @@ export default function StudySession() {
     }
   }
 
-  const moveToNextWord = async () => {
+  const moveToNextWord = async (updatedSessionWords?: Vocabulary[]) => {
     const nextIndex = currentWordIndex + 1
+    const currentSessionWords = updatedSessionWords || sessionWords
     
-    if (nextIndex < sessionWords.length) {
+    console.log('moveToNextWord called:', {
+      nextIndex,
+      currentSessionWordsLength: currentSessionWords.length,
+      sessionWordsLength: sessionWords.length,
+      hasUpdatedWords: !!updatedSessionWords
+    })
+    
+    // Check if there are more words in the current session (including words added back with "Again")
+    if (nextIndex < currentSessionWords.length) {
       startTransition(() => {
         // All state updates happen together atomically
         setCurrentWordIndex(nextIndex)
-        setCurrentWordState(sessionWords[nextIndex])
+        setCurrentWordState(currentSessionWords[nextIndex])
         setShowAnswer(false)
         setUserAnswer('')
         setIsCorrect(false)
       })
       
       // Load progress for the next word
-      await loadCurrentWordProgress(sessionWords[nextIndex])
+      await loadCurrentWordProgress(currentSessionWords[nextIndex])
       
       // Set card type for next word
       if (sessionSettings.types.length > 0) {
@@ -707,8 +726,8 @@ export default function StudySession() {
         setCardType('recognition')
       }
     } else {
-      // Session complete
-      console.log('Session complete!')
+      // Session complete - only when we've gone through all words in the current session
+      console.log('Session complete! Processed', currentSessionWords.length, 'words total')
       await saveSessionSummary()
       onBack()
     }
@@ -819,7 +838,7 @@ export default function StudySession() {
             {sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} Session
           </h1>
           <p className="text-gray-600">
-            {currentDeck?.name} • {sessionProgress.total} completed
+            {currentDeck?.name} • {sessionWords.length} words in session
           </p>
         </div>
 
@@ -827,12 +846,12 @@ export default function StudySession() {
         <div className="mb-8">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
             <span>Progress</span>
-            <span>{Math.round((sessionProgress.reviewed / sessionProgress.total) * 100)}%</span>
+            <span>{Math.round((sessionProgress.reviewed / sessionWords.length) * 100)}%</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(sessionProgress.reviewed / sessionProgress.total) * 100}%` }}
+              style={{ width: `${(sessionProgress.reviewed / sessionWords.length) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -863,7 +882,7 @@ export default function StudySession() {
                 <div className="text-sm text-gray-500">Easy</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">{sessionProgress.total}</div>
+                <div className="text-2xl font-bold text-purple-600">{sessionWords.length}</div>
                 <div className="text-sm text-gray-500">Reviewed</div>
               </div>
             </div>
@@ -1213,7 +1232,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
         <div className="mb-8">
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <div className="text-2xl font-bold text-blue-700">{sessionProgress.total - sessionProgress.reviewed}</div>
+              <div className="text-2xl font-bold text-blue-700">{sessionWords.length - sessionProgress.reviewed}</div>
               <div className="text-sm text-blue-600">Remaining Unseen</div>
             </div>
             <div className="bg-green-50 p-4 rounded-lg border border-green-200">
