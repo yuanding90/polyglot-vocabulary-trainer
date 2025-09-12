@@ -18,6 +18,7 @@ import {
   isNearFuture
 } from '@/lib/utils'
 import { DailySummaryManager } from '@/lib/daily-summary'
+import { SimilarWordsPanel } from '@/components/SimilarWordsPanel'
 import { ttsService } from '@/lib/tts-service'
 
 import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
@@ -1026,6 +1027,15 @@ export default function StudySession() {
             currentDeck={currentDeck}
           />
         )}
+
+        {/* Similar Words Under Card */}
+        <div className="mt-12 pt-6 border-t">
+          <SimilarWordsPanel 
+            currentWordId={sessionType === 'review' ? (showAnswer ? (currentWord?.id ?? null) : null) : (currentWord?.id ?? null)}
+            currentDeckId={currentDeck?.id ?? null}
+            max={5}
+          />
+        </div>
       </div>
     </div>
   )

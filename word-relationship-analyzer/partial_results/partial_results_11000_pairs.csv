@@ -1,0 +1,6445 @@
+target_word,similar_words
+a priori,apeurer
+abasourdi,absurde
+abattoir,abattre
+abattre,abattoir
+abcès,accès
+aboi,"aboli, abri, aloi"
+aboli,"aboi, abolir"
+abolir,aboli
+abord,aborder
+aborder,abord
+abreuver,abreuvoir
+abreuvoir,abreuver
+abri,aboi
+abriter,abrutir
+abrutir,abriter
+absurde,abasourdi
+abus,"abuser, abusif, anus"
+abuser,abus
+abusif,abus
+abîme,abîmer
+abîmer,abîme
+accident,accidenté
+accidenté,accident
+accoler,"acculer, accéléré"
+accoster,accusateur
+accouder,"accoudoir, accéder"
+accoudoir,"accouder, accéder"
+acculer,"accoler, accéléré"
+accusateur,accoster
+accusé,accès
+accès,"abcès, accusé"
+accéder,"accouder, accoudoir"
+accéléré,"accoler, acculer"
+acheter,acheteur
+acheteur,acheter
+acide,"acier, aide, aider, aride, avide"
+acier,"acide, aider, aimer"
+acrobate,acrobatie
+acrobatie,acrobate
+acte,"acteur, apte"
+acteur,acte
+acéré,aéré
+adapter,adopter
+adepte,adopté
+adopter,adapter
+adopté,adepte
+affable,"affaibli, affre"
+affaibli,affable
+affaiblir,affubler
+affaire,"affairé, affre"
+affairé,"affaire, affre"
+affaler,"affluer, affoler"
+affermir,affirmer
+affiche,affre
+affilé,affolé
+affirmer,affermir
+affluer,"affaler, affoler"
+affoler,"affaler, affluer"
+affolé,affilé
+affre,"affable, affaire, affairé, affiche, affreux"
+affreux,affre
+affront,affût
+affubler,affaiblir
+affût,"affront, affûter"
+affûter,affût
+agent,argent
+agile,"aigle, aile, angle, argile, asile"
+agilité,agité
+agir,aire
+agité,agilité
+agresser,agresseur
+agresseur,agresser
+agriculteur,agriculture
+agriculture,agriculteur
+agréer,"aigreur, aigrir, augurer"
+ahuri,ahurir
+ahurir,ahuri
+aide,"acide, aider, aile, aine, aire"
+aider,"acide, acier, aide, aimer, aride"
+aigle,"agile, aigre, aile, angle, asile"
+aigre,"aigle, aigri, aire"
+aigreur,"agréer, aigrir, augurer"
+aigri,"aigre, aigrir, amaigri"
+aigrir,"agréer, aigreur, aigri, augurer"
+aile,"agile, aide, aigle, ailé, aine"
+ailé,"aile, aimé, aisé"
+aimable,amiable
+aimant,"amant, amante, amont, aménité"
+aimer,"acier, aider, amer, animer, armer"
+aimé,"ailé, aisé, animé, armé"
+aine,"aide, aile, aire, aise, ange"
+aire,"agir, aide, aigre, aile, aine"
+aisance,aise
+aise,"aide, aile, aine, aire, aisance"
+aisé,"ailé, aimé, aise, anis, avis"
+alarme,arme
+alarmer,armer
+alerte,alerté
+alerté,alerte
+algue,algèbre
+algèbre,algue
+alias,atlas
+alimentaire,alimenter
+alimenter,alimentaire
+aller,"allier, allouer, allure, allée"
+allier,"aller, allouer, allure"
+allié,"allongé, allée"
+allo,"allô, aloi"
+allongé,allié
+allouer,"aller, allier, allure"
+allure,"aller, allier, allouer"
+allègre,"allée, alléger, allégorie, alléguer"
+allègrement,allégrement
+allée,"aller, allié, allègre"
+alléger,"allègre, allégorie, alléguer"
+allégorie,"allègre, alléger, alléguer"
+allégrement,allègrement
+alléguer,"allègre, alléger, allégorie"
+allô,allo
+aloi,"aboi, allo"
+altier,aléatoire
+aléatoire,altier
+amaigri,aigri
+amande,amende
+amant,"aimant, amante, amont, aménité, avant"
+amante,"aimant, amant, amont, aménité"
+amateur,ameuter
+ambre,"ambré, arbre"
+ambré,ambre
+amen,"amende, amer, arme"
+amende,"amande, amen"
+amer,"aimer, amen, ameuter, arme, armer"
+ameuter,"amateur, amer"
+amiable,aimable
+amical,amicale
+amicale,amical
+amirauté,amorti
+amocher,amour
+amollir,amour
+amont,"aimant, amant, amante, aménité"
+amorcer,amour
+amorti,amirauté
+amortir,amour
+amour,"amocher, amollir, amorcer, amortir"
+ample,"ampleur, ampoule"
+ampleur,ample
+ampoule,ample
+aménité,"aimant, amant, amante, amont"
+analogie,analogue
+analogue,analogie
+ancre,"ancrer, antre"
+ancrer,ancre
+ange,"aine, angle, anse, auge"
+angle,"agile, aigle, ange"
+angoisse,angoissé
+angoissé,angoisse
+animal,anomalie
+animer,aimer
+animé,aimé
+anis,"aise, aisé, anse, anus, avis"
+annonce,année
+annulaire,annuler
+annuler,annulaire
+année,annonce
+anomalie,animal
+anse,"aine, aise, ange, anis, anus"
+antan,autant
+antenne,"antienne, antre"
+antienne,antenne
+antique,antre
+antre,"ancre, antenne, antique, astre, autre"
+anus,"abus, anis, anse"
+apeurer,a priori
+apitoyer,apôtre
+apparat,"appart, apport, appât"
+apparaître,"apporter, apprêter"
+apparent,apprenti
+appart,"apparat, apport"
+appel,"appeler, appelé"
+appeler,appel
+appelé,appel
+appoint,appât
+apport,"apparat, appart"
+apporter,"apparaître, apprêter"
+apprenti,apparent
+apprêter,"apparaître, apporter"
+appât,"apparat, appoint, appétit"
+appétit,appât
+après,auprès
+apte,acte
+apôtre,apitoyer
+arabe,arbre
+arbre,"ambre, arabe, arbuste"
+arbuste,arbre
+arche,"archer, archet"
+archer,arche
+archet,arche
+archéologie,archéologue
+archéologue,archéologie
+argent,"agent, argenté"
+argenter,argenterie
+argenterie,argenter
+argenté,argent
+argile,agile
+arguer,aérogare
+aride,"acide, aide, aider, avide"
+aristocrate,aristocratie
+aristocratie,aristocrate
+armateur,armature
+armature,armateur
+arme,"aire, alarme, amen, amer, armer"
+armer,"aimer, alarmer, amer, arme, armoire"
+armoire,"arme, armer, armoirie, armure, armée"
+armoirie,"armer, armoire, armure"
+armure,"armer, armoire, armoirie"
+armé,"aimé, arme, armée, aéré"
+armée,"arme, armer, armoire, armé, arôme"
+arrivé,arrivée
+arrivée,arrivé
+arrière,arriéré
+arriéré,arrière
+arroser,arrosoir
+arrosoir,arroser
+arrêt,"arrêter, arrêté, arête"
+arrêter,"arrêt, arête"
+arrêté,arrêt
+article,articulé
+articulé,article
+artillerie,artilleur
+artilleur,artillerie
+arête,"arrêt, arrêter"
+arôme,"arme, armer, armée"
+asile,"agile, aigle, aile"
+assassin,assassiné
+assassiné,assassin
+asseoir,assuré
+assiette,aussitôt
+assis,"assise, aussi"
+assise,assis
+assuré,asseoir
+astre,"antre, austère, autre"
+athlète,athée
+athée,athlète
+atlas,alias
+attache,attaché
+attachement,attouchement
+attaché,attache
+atteindre,attendre
+atteint,"atteinte, attente"
+atteinte,"atteint, attente"
+attenant,atténuant
+attendre,atteindre
+attente,"atteint, atteinte"
+atterrer,atterrir
+atterrir,atterrer
+attouchement,attachement
+attraper,attrouper
+attrouper,attraper
+atténuant,attenant
+au-dessous,au-dessus
+au-dessus,au-dessous
+aubaine,aube
+aube,"aubaine, auberge, auge"
+auberge,aube
+aucun,"aucune, aucuns"
+aucune,aucun
+aucuns,aucun
+auditeur,auditoire
+auditoire,auditeur
+auge,"ange, aube, auguste"
+augurer,"agréer, aigreur, aigrir"
+auguste,auge
+auprès,après
+aura,azur
+aussi,assis
+aussitôt,assiette
+austère,astre
+autant,antan
+autel,autre
+auto,autour
+automne,autre
+autonome,autonomie
+autonomie,autonome
+autorité,autoroute
+autoroute,autorité
+autour,auto
+autre,"antre, astre, autel, automne, autres"
+autres,autre
+auvent,avant
+aval,avaler
+avaler,"aval, avilir"
+avance,"avancé, avancée"
+avancé,"avance, avancée"
+avancée,"avance, avancé, avare"
+avant,"amant, auvent"
+avare,avancée
+avatar,aviateur
+avec,aveu
+aventurer,aventurier
+aventurier,aventurer
+avertir,avorter
+aveu,avec
+aveuglement,aveuglément
+aveuglément,aveuglement
+aviateur,avatar
+avide,"acide, aide, aider, aride"
+avidité,"aviné, avisé"
+avilir,avaler
+aviné,"avidité, avion, avisé"
+avion,"aviné, aviron, aviso"
+aviron,avion
+avis,"aise, aisé, anis, aviser, aviso"
+aviser,avis
+aviso,"avion, avis, avisé"
+avisé,"aisé, avidité, aviné, avis, aviso"
+avoir,avorter
+avorter,"avertir, avoir"
+avérer,aérer
+azur,aura
+aérer,"armer, avérer"
+aérogare,arguer
+aéré,"acéré, armé"
+aîné,aine
+baba,baby
+babine,"bibine, bobine"
+babiole,bible
+babouche,bibiche
+baby,baba
+bader,"balader, bande, bander, barder, baser"
+badin,"bain, bedaine, bidon, boudin"
+baffe,"bouffe, bouffi, bouffée"
+bagarre,"bagne, bague, barre, bigarré"
+bagne,"bagarre, bague, bande, beigne, bougon"
+bagnole,"bague, bignole, bougnoule"
+bague,"bagarre, bagne, bagnole, baume, blague"
+baie,"bail, bain, baise, base, bave"
+baigner,"baigneur, baignoire"
+baigneur,"baigner, baignoire"
+baignoire,"baigner, baigneur"
+bail,"baie, bain, baril, bile"
+bain,"badin, baie, bail, banc, bien"
+baise,"baie, baiser, baisse, baisser, base"
+baiser,"baise, baser, boiserie"
+baisse,"baise, basse, boss, bosse, bossu"
+baisser,"baise, bosser"
+balade,"bled, bolide"
+balader,"bader, baladeur"
+baladeur,balader
+balafre,"balle, balte"
+balance,"balancé, balle, balte, blanc"
+balancer,"balancier, balançoire"
+balancier,"balancer, balançoire"
+balancé,"balance, blanc"
+balançoire,"balancer, balancier"
+balayer,"balayeur, biler, blaireau, bleuir, bouler"
+balayeur,"balayer, biler, blaireau, bleuir, bouler"
+baleine,"balle, balte, bilan, boulon"
+baliser,blaser
+ballant,bouillant
+balle,"balafre, balance, baleine, ballet, balte"
+ballet,"balle, ballot, billet, billot"
+ballon,"bouillon, bâillon"
+ballot,"ballet, billet, billot"
+balte,"balafre, balance, baleine, balle, belote"
+bambou,"bombe, bombé"
+banal,"banane, bancal, banlieue"
+banane,"banal, benne, bonne, bénin"
+bananier,"bannir, bannière, bonnir"
+banc,"bain, bancal, blanc"
+bancal,"banal, banc"
+bande,"bader, bagne, bandeau, bander, bandé"
+bandeau,"bande, bandé, bond, bondé"
+bander,"bader, bande, bonder, bondir, buanderie"
+bandé,"bande, bandeau, bond, bondé"
+banlieue,banal
+bannir,"bananier, bannière, bonnir"
+bannière,"bananier, bannir, bonnir"
+baquet,"biquet, boqueteau, bouquet"
+baraque,"barbe, baroque, barque, barre, brique"
+baratin,"baron, baryton, breton"
+barbare,"barbarie, barbe, barber, barbier, barre"
+barbarie,"barbare, barber, barbier, berbère"
+barbe,"baraque, barbare, barbelé, barber, barbu"
+barbelé,"barbe, barré"
+barber,"barbare, barbarie, barbe, barbier, berbère"
+barbier,"barbare, barbarie, barber, berbère"
+barbu,"barbe, barreau, bribe"
+barda,"bord, bordé, bordée, bride, bridé"
+barder,"bader, border, bordure, brider, broder"
+baril,"bail, bariolé, brûlé"
+barioler,"brûler, brûlure"
+bariolé,"baril, barré, brûlé"
+barmaid,brimade
+baron,"baratin, borne, borné, brin, bruine"
+baroque,"baraque, barbe, barque, barre, brique"
+barque,"baraque, baroque, brique"
+barrage,barbe
+barre,"bagarre, baraque, barbare, barbe, baroque"
+barreau,"barbu, barre, barré, beurre, beurré"
+barrer,"barre, barrière, beurrer, bourrer, brrr"
+barrière,"barrer, beurrer, bourrer, brrr"
+barré,"barbelé, bariolé, barre, barreau, beurre"
+baryton,"baratin, breton"
+bas-côté,"biscuit, boy-scout"
+basané,"besoin, bison"
+bascule,"base, basse"
+basculer,bousculer
+base,"baie, baise, bascule, baser, basse"
+baser,"bader, baise, baiser, base, basse"
+basque,busqué
+basse,"baise, baisse, bascule, base, baser"
+bassin,"bassine, boisson, buisson"
+bassine,"base, bassin, boisson, buisson"
+bataille,bouteille
+batailler,boitiller
+bath,béat
+batterie,"batteur, battoir, battre, botter"
+batteur,"batterie, battoir, battre, botter"
+battoir,"batterie, batteur, battre, botter"
+battre,"batterie, batteur, battoir, botter"
+battu,"battue, botte, botté, butte"
+battue,"battu, botte, botté, butte"
+baume,"bague, brame, brume"
+bavard,buvard
+bave,"baie, base, baver, baveux, brave"
+baver,"bader, baser, bave, bavure, brave"
+baveux,bave
+bavure,"baver, buveur"
+beau,"beauté, bedeau, bleu"
+beau-frère,bâfrer
+beauté,beau
+bedaine,"badin, bidon, boudin"
+bedeau,beau
+beige,"beigne, belge, berge"
+beigne,"bagne, beige, bougon, béguin"
+beignet,bougnat
+belge,"beige, berge, blague"
+belote,"balte, bleuté, blot, boulet, boulot"
+benne,"banane, bonne, bénin"
+benêt,"bonté, béant, bénit"
+berbère,"barbare, barbarie, barber, barbier, berge"
+bercail,bricole
+berceau,broc
+bercer,berceur
+berceur,bercer
+berge,"beige, belge, berbère, berger, berline"
+berger,"berge, bergerie"
+bergerie,berger
+berline,berge
+berner,"borner, brunir"
+besoin,"basané, bison"
+bestial,bestiole
+bestiau,buste
+bestiole,bestial
+beugler,bigler
+beurre,"barre, barreau, barré, beurré, bourre"
+beurrer,"barrer, barrière, bourrer, brrr"
+beurré,"barre, barreau, barré, beurre, bourre"
+biais,baise
+bibiche,"babouche, bible, biche"
+bibine,"babine, bobine"
+bible,"babiole, bibiche, bile, biler, bille"
+biche,"bibiche, bicher, bicoque, bicorne, boche"
+bicher,"biche, boucher, boucherie, bêcher, bêcheur"
+bicoque,biche
+bicorne,biche
+bide,"baie, bidet, bidoche, bien, bile"
+bidet,"bide, bride"
+bidoche,bide
+bidon,"badin, bedaine, bison, boudin"
+bien,"baie, bain, bide, bile, bing"
+bien-être,bénitier
+bienvenu,bienvenue
+bienvenue,bienvenu
+biffer,"bouffer, bouffir"
+biffin,bouffon
+bigarré,bagarre
+bigler,"beugler, biler"
+bignole,"bagnole, bougnoule"
+bijou,bijoux
+bijoux,bijou
+bilan,"baleine, blanc, boulon"
+bile,"baie, bail, bible, bide, bien"
+biler,"balayer, balayeur, bible, bigler, bile"
+bille,"balle, bible, bile, biler, billet"
+billet,"ballet, ballot, bile, bille, billot"
+billot,"ballet, ballot, billet"
+bing,"bain, bien, brin"
+bique,"biquet, brique"
+biquet,"baquet, bique, boqueteau, bouquet"
+biscuit,"bas-côté, boy-scout"
+bise,"baie, baise, base, bide, bien"
+bison,"basané, besoin, bidon"
+bistouri,"bistre, bistro"
+bistre,"bistouri, bistro"
+bistro,"bistouri, bistre"
+bite,"baie, bide, bien, bile, bise"
+bière,boire
+black,blanc
+blague,"bague, belge"
+blaguer,bulgare
+blaireau,"balayer, balayeur, biler, bleuir, bouler"
+blanc,"balance, balancé, banc, bilan, black"
+blanche,"blanc, blanchi, blaze"
+blancheur,blanchir
+blanchi,"blanc, blanche"
+blanchir,blancheur
+blanchisserie,blanchisseur
+blanchisseur,blanchisserie
+blaser,"baliser, baser"
+blason,blouson
+blasé,"blouse, blues"
+blaze,"blanche, blazer"
+blazer,blaze
+bled,"balade, bile, bleu, bolide"
+blesser,blessure
+blessure,blesser
+bleu,"beau, bile, bled, bleuir, bleuté"
+bleuir,"balayer, balayeur, biler, blaireau, bleu"
+bleuter,bleuâtre
+bleuté,"balte, belote, bleu, blot, boulet"
+bleuâtre,bleuter
+blinder,blondeur
+blindé,blond
+bloc,"blocus, blot, bouc, broc"
+blocus,bloc
+blond,"blindé, bond, bondé"
+blondeur,blinder
+blot,"balte, belote, bleuté, bloc, boulet"
+blouse,"blasé, blues, bouse"
+blouson,blason
+blues,"blasé, blouse"
+bluff,bluffer
+bluffer,bluff
+blâme,"blâmer, blême"
+blâmer,"blâme, blêmir"
+blême,blâme
+blêmir,blâmer
+bobine,"babine, bibine"
+bocal,"boucle, bouclé"
+boche,"biche, bouche, bouché, bouchée, broche"
+boire,"bière, borne"
+bois,"bise, boisé, boss, buis"
+boiserie,"baiser, baser"
+boisson,"bassin, bassine, buisson"
+boisé,"bois, brisé"
+boiter,"boutoir, buter, bâtir"
+boitiller,batailler
+bolide,"balade, bled"
+bombarder,bombardier
+bombardier,bombarder
+bombe,"bambou, bomber, bombé"
+bomber,bombe
+bombé,"bambou, bombe"
+bond,"bande, bandeau, bandé, blond, bonder"
+bonder,"bander, bond, bondir, buanderie"
+bondir,"bander, bond, bonder, buanderie"
+bondé,"bande, bandeau, bandé, blond, bond"
+bonnard,bond
+bonne,"banane, benne, bonnet, borne, bénin"
+bonnet,bonne
+bonnir,"bananier, bannir, bannière"
+bonté,"benêt, bondé, borné, botté, béant"
+boqueteau,"baquet, biquet, bouquet"
+bord,"barda, bond, bordel, border, bordé"
+bordel,bord
+border,"barder, bord, bordure, brider, broder"
+bordure,"barder, border, borne, brider, broder"
+bordé,"barda, bondé, bord, bordée, borné"
+bordée,"barda, bord, bordé, bride, bridé"
+borgne,"borne, bourgeon"
+borne,"baron, boire, bonne, bordure, borgne"
+borner,"berner, borne, brunir"
+borné,"baron, bondé, bonté, bordé, borne"
+boss,"baisse, basse, bois, bosse, bosser"
+bosse,"baisse, basse, boss, bosselé, bosser"
+bosselé,"bosse, boussole"
+bosser,"baisser, boss, bosse"
+bossu,"baisse, basse, boss, bosse"
+botte,"battu, battue, botter, botté, boîte"
+botter,"batterie, batteur, battoir, battre, botte"
+botté,"battu, battue, bonté, botte, butte"
+bouc,"bloc, boucan, bouche, bouché, boucle"
+boucan,"bouc, bécane"
+bouche,"biche, boche, bouc, bouché, bouchée"
+boucher,"bicher, boucherie, bêcher, bêcheur, bûcher"
+boucherie,"bicher, boucher, bêcher, bêcheur, bûcher"
+bouché,"biche, boche, bouc, bouche, bouchée"
+bouchée,"biche, boche, bouche, bouché, boue"
+boucle,"bocal, bouc, bouclé, boule"
+boucler,"bouclier, bâcler"
+bouclier,"boucler, bâcler"
+bouclé,"bocal, bouc, boucle"
+bouder,"bader, bouderie, boudeur, boudoir"
+bouderie,"bader, bouder, boudeur, boudoir"
+boudeur,"bader, bouder, bouderie, boudoir"
+boudin,"badin, bedaine, bidon"
+boudoir,"bader, bouder, bouderie, boudeur"
+boue,"bouc, bouchée, boueux, bouffée, bouge"
+boueux,boue
+bouffe,"baffe, bouffi, bouffée"
+bouffer,"biffer, bouffir"
+bouffi,"baffe, bouffe, bouffée"
+bouffir,"biffer, bouffer"
+bouffon,biffin
+bouffée,"baffe, boue, bouffe, bouffi, bouge"
+bouge,"bouchée, boue, bouffée, bouger, bougie"
+bougeoir,"bouger, bougre, bégayer"
+bouger,"bouge, bougeoir, bougre, bégayer"
+bougie,bouge
+bougnat,"beignet, bout"
+bougnoule,"bagnole, bignole"
+bougon,"bagne, beigne, béguin"
+bougre,"bouge, bougeoir, bouger, bégayer"
+bouillant,ballant
+bouille,"balle, bille, boue, bouge, bouilli"
+bouilli,"balle, bille, bouille, bouillie, bulle"
+bouillie,"balle, bille, bouille, bouilli, bulle"
+bouillir,"bouilloire, bâiller"
+bouilloire,"bouillir, bâiller"
+bouillon,"ballon, bâillon"
+bouillonner,bâillonner
+boulanger,boulangerie
+boulangerie,boulanger
+boule,"bouchée, boucle, boue, bouffée, bouge"
+bouleau,boule
+bouler,"balayer, balayeur, biler, blaireau, bleuir"
+boulet,"balte, belote, bleuté, blot, boule"
+boulier,"balayer, balayeur, biler, blaireau, bleuir"
+boulon,"baleine, bilan"
+boulot,"balte, belote, bleuté, blot, boulet"
+boum,"bouc, boue, bout"
+bouquet,"baquet, biquet, boqueteau, bout"
+bourg,"berge, bouge"
+bourgade,brigade
+bourgeois,bourgeoisie
+bourgeoisie,bourgeois
+bourgeon,borgne
+bourre,"barre, barreau, barré, beurre, beurré"
+bourreau,"barre, barreau, barré, beurre, beurré"
+bourrer,"barrer, barrière, beurrer, brrr"
+bourru,"barre, barreau, barré, beurre, beurré"
+bourré,"barre, barreau, barré, beurre, beurré"
+bourrée,"barre, barreau, barré, beurre, beurré"
+bourse,"bouse, braise, bras, brise, brisé"
+boursoufler,boursouflure
+boursouflure,boursoufler
+bousculer,basculer
+bouse,"blouse, bosse, bouchée, boue, bouffée"
+boussole,bosselé
+bout,"blot, bouc, boue, bougnat, boum"
+bouteille,bataille
+boutoir,"boiter, buter, bâtir"
+bouton,"bout, butin, bâton, béton"
+boutonner,boutonnière
+boutonnière,boutonner
+bouée,"boue, bouge, boule, bouse, buée"
+boxe,"boue, boxer, boxeur"
+boxer,"boxe, boxeur"
+boxeur,"boxe, boxer"
+boy-scout,"bas-côté, biscuit"
+boîte,botte
+braillard,brouillard
+brailler,"briller, brouiller"
+braise,"baise, bourse, bras, brise, brisé"
+brame,"baume, bramer, branche, branque, brassée"
+bramer,"brame, brimer"
+branche,"brame, brave, bronche"
+brancher,broncher
+branque,"brame, brave"
+braquer,briquer
+bras,"base, bourse, braise, brasse, brise"
+brasero,"brasier, bravo, briser"
+brasier,"brasero, briser"
+brasse,"basse, bras, brassée, brosse, brousse"
+brasser,"brasserie, brosser, bruisser"
+brasserie,"brasser, brosser, bruisser"
+brassée,"brame, brasse, brave, brosse, brousse"
+bravade,brame
+brave,"bave, baver, brame, branche, branque"
+bravement,brièvement
+braver,"baver, brave, bravoure, bréviaire"
+bravo,"brasero, brave"
+bravoure,"braver, bréviaire"
+bref,bure
+bretelle,broutille
+breton,"baratin, baryton"
+bribe,"barbe, barbu, bible, bricole, bride"
+bricole,"bercail, bribe, bride, brise"
+bride,"barda, bide, bidet, bord, bordé"
+brider,"barder, border, bordure, bride, broder"
+bridge,bride
+bridé,"barda, bord, bordé, bordée, bride"
+brigade,"bourgade, bribe, brise"
+briller,"brailler, brouiller"
+brimade,"barmaid, bribe, brise"
+brimer,bramer
+brin,"bain, baron, bien, bing, borne"
+brio,"brin, broc"
+brioche,"bribe, bride, brise, broche, brèche"
+brique,"baraque, baroque, barque, bique"
+briquer,braquer
+brise,"baise, bise, bourse, braise, bras"
+briser,"brasero, brasier, brise"
+brisé,"boisé, bourse, braise, bras, bridé"
+brièvement,bravement
+broc,"berceau, bloc, bouc, brio, broche"
+brocart,bureaucrate
+broche,"boche, brioche, broc, brèche"
+broder,"barder, border, bordure, brider, broderie"
+broderie,"barder, border, bordure, brider, broder"
+brodé,"barda, bondé, bord, bordé, bordée"
+bronche,branche
+broncher,brancher
+bronze,bronzé
+bronzé,bronze
+brosse,"bosse, brasse, brassée, brousse"
+brosser,"brasser, brasserie, bruisser"
+brouette,burette
+brouillard,braillard
+brouille,brouillé
+brouiller,"brailler, briller"
+brouillé,brouille
+brousse,"brasse, brassée, brosse"
+broutille,bretelle
+broyer,"barre, barreau, barré, beurre, beurré"
+broyé,brodé
+brrr,"barrer, barrière, beurrer, bourrer"
+bruine,"baron, borne, borné, brin, brun"
+bruire,"barre, barreau, barré, beurre, beurré"
+bruisser,"brasser, brasserie, brosser"
+bruit,"bruni, brut, brute, bruyant, béret"
+brume,"baume, brame, brumeux, brune, brusque"
+brumeux,brume
+brun,"baron, borne, borné, brin, bruine"
+brune,"baron, borne, borné, brin, bruine"
+bruni,"baron, borne, borné, brin, bruine"
+brunir,"berner, borner, brun, bruni"
+brusque,"brume, brune, brute"
+brusquer,brusquerie
+brusquerie,brusquer
+brut,"bout, bruit, brun, brutal, brute"
+brutal,brut
+brute,"bruit, brume, brune, brusque, brut"
+bruyant,"bruit, brut"
+bruyère,"barre, barreau, barré, beurre, beurré"
+brèche,"brioche, broche"
+bréviaire,"braver, bravoure"
+brûler,"barioler, brûlure"
+brûlure,"barioler, brûler"
+brûlé,"baril, bariolé"
+buanderie,"bander, bonder, bondir"
+buis,"bise, bois, buse"
+buisson,"bassin, bassine, boisson"
+bulbe,"boule, bulgare, bulle"
+bulgare,"blaguer, bulbe, bulle"
+bulle,"balle, bille, bouille, bouilli, bouillie"
+bure,"boue, bref, bureau, burette, buse"
+bureau,bure
+bureaucrate,brocart
+burette,"brouette, bure"
+burin,"baron, borne, borné, brin, bruine"
+buse,"base, bise, boue, bouse, buis"
+busqué,basque
+buste,"bestiau, bouse, brute, buse, buter"
+buter,"boiter, boutoir, brute, buste, butte"
+butin,"bouton, burin, butiner, bâton, béton"
+butiner,butin
+butte,"battu, battue, botte, botté, brute"
+buté,"bout, brut, buée"
+buvard,bavard
+buveur,"baver, bavure"
+buée,"boue, bouée, bure, buse, buté"
+bâche,"biche, boche, bouche, bouché, bouchée"
+bâcler,"boucler, bouclier"
+bâfrer,beau-frère
+bâiller,"bouillir, bouilloire"
+bâillon,"ballon, bouillon"
+bâillonner,bouillonner
+bâti,bâtir
+bâtiment,bêtement
+bâtir,"boiter, boutoir, buter, bâti"
+bâton,"bouton, butin, béton"
+béant,"benêt, bonté, béat, bénit"
+béat,"bath, béant"
+bébête,bête
+bécane,boucan
+béer,buée
+bégayer,"bougeoir, bouger, bougre"
+béguin,"bagne, beigne, bougon"
+bélier,"balayer, balayeur, biler, blaireau, bleuir"
+bénin,"banane, benne, bonne, bénir, bénit"
+bénir,"bénin, bénit"
+bénit,"benêt, bonté, béant, bénin, bénir"
+bénitier,bien-être
+bénédictin,bénédiction
+bénédiction,bénédictin
+bénéficiaire,bénéficier
+bénéficier,bénéficiaire
+béret,"bruit, brut, brute"
+béton,"bouton, butin, bâton"
+bêche,"biche, boche, bouche, bouché, bouchée"
+bêcher,"bicher, boucher, boucherie, bêche, bêcheur"
+bêcheur,"bicher, boucher, boucherie, bêche, bêcher"
+bête,"bite, bébête"
+bêtement,bâtiment
+bûche,"biche, boche, bouche, bouché, bouchée"
+bûcher,"bicher, boucher, boucherie, bêcher, bêcheur"
+cabane,cabine
+cabanon,canon
+cabine,cabane
+caca,"casa, clac, coca, crac"
+cacahuète,"cachet, cachot"
+cache,"cacher, cachet, caché, coche, couche"
+cachemire,cauchemar
+cacher,"cache, cher, cocher, coucher"
+cachet,"cacahuète, cache, cachot"
+cachette,couchette
+cachot,"cacahuète, cachet, cahot"
+caché,"cache, coche, couche, couché, craché"
+caddie,cadi
+cadence,"cadencé, cadre"
+cadencé,cadence
+cadet,cadre
+cadi,"caddie, caïd, chai"
+cador,"cadre, cidre, coudre, cèdre, céder"
+cadre,"cadence, cadet, cador, cadrer, carne"
+cadrer,"cadre, coudrier"
+cafetier,cafetière
+cafetière,cafetier
+cage,"cageot, cagoule, cake, cale, came"
+cageot,cage
+cagna,"canal, cogne, cygne"
+cagoule,"cage, cigale"
+cahier,"chair, chaire, char, cher, chier"
+cahot,"cachot, cahoter, cahute, calot, canot"
+cahoter,"cahot, chuter, châtier"
+cahute,"cahot, chat, chiot, chut, chute"
+caille,"caillou, caillé, celle, celui-là, colle"
+cailler,"cellier, ciller, coller, collier, cueillir"
+caillot,collet
+caillou,"caille, caillé, celle, celui-là, colle"
+caillé,"caille, caillou, celle, celui-là, colle"
+caisse,"casse, cassé, cesse, cossu, cuisse"
+caissier,"casser, casseur, cassure, cesser"
+caisson,"coussin, cuisson"
+cake,"cage, cale, came, cape, case"
+calamité,climat
+calciné,caleçon
+cale,"cage, cake, caler, calibre, calme"
+caler,"cale, calme, calmer, calter, caser"
+caleçon,calciné
+calibre,"cale, calme, célèbre"
+calice,"celui-ci, clac, clic"
+calife,clef
+calmant,"calot, clément"
+calme,"cale, caler, calibre, calmer, calotte"
+calmer,"caler, calme, clamer, clameur"
+calot,"cahot, calmant, calotte, canot, capot"
+calotte,"cale, calme, calot, culotte"
+calter,"caler, clouter, cloître, clôture, culture"
+calvaire,"clavier, couleuvre"
+calèche,"cale, calme, cliché, cloche"
+cambouis,cambuse
+cambuse,"cambouis, came"
+came,"cage, cake, cale, calme, cambuse"
+camelot,camelote
+camelote,camelot
+camp,"came, camper, campus, cape, champ"
+campagne,compagnie
+camper,"camp, campeur, compère"
+campeur,"camper, compère"
+campus,"camp, compas, composé"
+canal,cagna
+canari,couiner
+cancer,"cancre, coincer"
+cancre,"cancer, coincer"
+candeur,"ceindre, cendre, cendré, conduire"
+caneton,"cantine, canton, centaine, contenu, continu"
+caniche,cinoche
+canicule,concile
+canine,"canne, canon, connu, couenne"
+caniveau,convoi
+canne,"canine, canner, canon, carne, connu"
+canner,"canne, connerie"
+canon,"cabanon, canine, canne, canot, canton"
+canot,"cahot, calot, canon, capot, cent"
+canotier,"ceinture, centre, cintre, conter, conteur"
+cantine,"caneton, canton, centaine, contenu, continu"
+canton,"caneton, canon, cantine, centaine, contenu"
+cantonner,cantonnier
+cantonnier,cantonner
+capable,"cape, coupable"
+cape,"cage, cake, cale, came, camp"
+capital,capitale
+capitale,capital
+capot,"cahot, calot, canot, capote"
+capote,capot
+caprice,cape
+capsule,cape
+capter,capture
+capture,"cape, capter"
+carabine,carbone
+caracoler,"cercler, circulaire, circuler"
+caractère,caricature
+carafe,cerf
+carat,"carte, court, croate, croûte, cruauté"
+carbone,"carabine, carpe, carte"
+carence,"carpe, carte, croyance"
+caressant,croissant
+caresse,"carne, carpe, carte, crasse, crosse"
+caresser,"crisser, cuirasser, cuirassier"
+cargo,"cierge, cirage, courage"
+caricature,caractère
+carnage,"carpe, carte"
+carne,"cadre, canne, caresse, carnet, carotte"
+carnet,"carne, cornet, courant, crainte, criant"
+carotte,"carne, carpe, courette, crotte"
+carpe,"cadre, cape, carbone, carence, caresse"
+carreau,"carré, carrée, cirer, coureur, courir"
+carrer,"carrière, carrure, courrier"
+carrière,"carrer, carrure, courrier"
+carrure,"carne, carpe, carrer, carrière, carte"
+carré,"carreau, carrée, cirer, coureur, courir"
+carrée,"carreau, carré, cirer, coureur, courir"
+carte,"cadre, carat, carbone, carence, caresse"
+carton,"certain, certaine, courtine, creton, croûton"
+carême,"crime, crème"
+casa,"caca, case"
+casaque,"case, casque, casqué, casse, caste"
+cascade,"case, casse, caste"
+case,"cage, cake, cale, came, cape"
+caser,"caler, case, caserne, casier, casse"
+caserne,"case, caser, casse, caste"
+casier,"caser, causer, causerie"
+casino,"cousin, cuisine"
+casque,"casaque, casqué, cosaque"
+casqué,"casaque, casque, cosaque"
+casse,"caisse, casaque, cascade, case, caser"
+casser,"caissier, case, caser, casse, casseur"
+casseur,"caissier, casse, casser, cassure, cesser"
+cassure,"caissier, case, casser, casseur, caste"
+cassé,"caisse, casse, cesse, chassé, classé"
+caste,"carte, casaque, cascade, case, caser"
+cauchemar,cachemire
+causant,cuisant
+cause,"case, caser, casse, caste, causer"
+causer,"caser, casier, cause, causerie"
+causerie,"caser, casier, causer"
+causette,cuistot
+caution,"citoyen, coton"
+cavale,"cale, civil"
+cavaler,"caler, cavalerie, cavalier"
+cavalerie,"cavaler, cavalier"
+cavalier,"cavaler, cavalerie"
+cave,"cage, cake, cale, came, cape"
+caveau,cave
+caverne,cave
+caviar,"civière, couver, cuivre, cuivré, cuver"
+cavité,civet
+caïd,cadi
+ceindre,"candeur, cendre, cendré, conduire"
+ceinture,"canotier, centre, cintre, conter, conteur"
+ceinturer,"centrer, contraire, contrarié, contrer"
+cela,"ciel, clac, clan"
+celle,"caille, caillou, caillé, celles, cellule"
+celle-là,cellule
+celles,celle
+cellier,"cailler, ciller, coller, collier, cueillir"
+cellule,"celle, celle-là"
+celui-ci,"calice, clac, clic"
+celui-là,"caille, caillou, caillé, celle, colle"
+cendre,"candeur, ceindre, cendré, conduire"
+cendré,"candeur, ceindre, cendre, conduire"
+censeur,censure
+censure,censeur
+censé,"cents, cerné"
+cent,"canot, centre, cents, conte"
+centaine,"caneton, cantine, canton, contenu, continu"
+centenaire,"contenir, continuer"
+centime,centième
+centième,centime
+central,"centrale, contrôle"
+centrale,"central, contrôle"
+centre,"canotier, ceinture, cent, cintre, conter"
+centrer,"ceinturer, contraire, contrarié, contrer"
+cents,"censé, cent"
+cerceau,"coriace, crac, croc"
+cercle,"cercueil, crucial"
+cercler,"caracoler, circulaire, circuler"
+cercueil,"cercle, crucial"
+cerf,"carafe, chef, cher, clef"
+cerise,"corse, cours, course, crise, croisé"
+cerisier,"corsaire, corser, courser, coursier, creuser"
+cerne,"carne, cerner, cerné, coran, corne"
+cerner,"cerne, cerné, corner, crinière, crâner"
+cerné,"carne, censé, cerne, cerner, coran"
+certain,"carton, certaine, courtine, creton, croûton"
+certaine,"carton, certain, courtine, creton, croûton"
+certaines,certains
+certains,certaines
+certes,"courtois, courtoisie, crétois"
+cerveau,"corvée, crevé, crève"
+cesse,"caisse, casse, cassé, cesser, cossu"
+cesser,"caissier, casser, casseur, cassure, cesse"
+cette,"cotte, couette"
+ceux,"cieux, creux"
+chacun,"chacune, chicane"
+chacune,"chacun, chape, chicane"
+chahut,chut
+chai,"cadi, chair, chaire, chaise, char"
+chair,"cahier, chai, chaire, chaleur, changer"
+chaire,"cahier, chai, chair, char, cher"
+chaise,"chai, chaos, choisi, chose"
+chaland,chaud
+chaleur,"chair, char, chialer, choléra"
+chambre,"chambrée, chape"
+chambrée,chambre
+chameau,"chaume, chimie"
+chamois,chemise
+champ,"camp, chape"
+chanceler,chancelier
+chancelier,chanceler
+change,changé
+changer,"chair, char"
+changé,change
+chant,"canot, chanter, chantre, chariot, chat"
+chanter,"chair, chant, chanteur, chantier, chantre"
+chanteur,"chanter, chantier, chantre, chuinter"
+chantier,"chanter, chanteur, chantre, chuinter"
+chantre,"chant, chanter, chanteur, chantier, chape"
+chanvre,chape
+chaos,"chaise, choisi, chose"
+chape,"cape, carpe, chacune, chambre, champ"
+chapeau,"chape, chope"
+chaque,"chique, choqué, chèque"
+char,"cahier, chai, chair, chaire, chaleur"
+charbon,chérubin
+charcuterie,charcutier
+charcutier,charcuterie
+charge,"char, chargé"
+charger,"chair, char, chargeur"
+chargeur,charger
+chargé,"char, charge"
+chariot,"chant, charité, charte, chat, cohorte"
+charité,"chariot, charte, cohorte"
+charme,"char, chrome, chromo"
+charmer,"chair, char, charmeur, chromer"
+charmeur,"charmer, chromer"
+charnier,charnière
+charnière,charnier
+charnu,"char, chrono"
+charre,"char, charroi, charrue, chérir"
+charroi,"chai, charre, charrue, chérir"
+charrue,"chape, charre, charroi, chérir"
+charte,"carte, char, chariot, charité, cohorte"
+chasse,"casse, chassé, chaussé, chaussée, châsse"
+chasser,"chair, char, chasseur, chausser, chaussure"
+chasseur,"chasser, chausser, chaussure"
+chassé,"cassé, chasse, chaussé, chaussée, châsse"
+chaste,caste
+chat,"cahot, cahute, chai, chant, char"
+chaton,"chat, châtain"
+chaud,"chaland, chaux"
+chauffer,"chauffeur, chiffre"
+chauffeur,"chauffer, chiffre"
+chaume,"chameau, chimie"
+chaumière,"chimère, chômeur"
+chausser,"chasser, chasseur, chaussure"
+chaussure,"chasser, chasseur, chausser"
+chaussé,"chasse, chassé, chaussée, châsse"
+chaussée,"chasse, chassé, chaussé, châsse"
+chauve,cheveu
+chaux,"chaud, choix"
+chaîne,"chien, chêne"
+chef,"cerf, cher, chez, clef"
+chemin,"chemineau, cheminée"
+chemineau,"chemin, cheminée"
+cheminée,"chemin, chemineau"
+chemise,chamois
+chenal,chenil
+chenil,chenal
+cher,"cacher, cahier, cerf, chair, chaire"
+chercher,chercheur
+chercheur,chercher
+cheval,chevelu
+chevalerie,"chevalier, chevalière, chevelure"
+chevalier,"chevalerie, chevalière, chevelure"
+chevalière,"chevalerie, chevalier, chevelure"
+chevelu,cheval
+chevelure,"chevalerie, chevalier, chevalière"
+cheveu,chauve
+chevreau,chèvre
+chez,"chef, cher"
+chialer,"chaleur, choléra"
+chiant,chant
+chic,"chai, chiche, chichi, chicot, choc"
+chicane,"chacun, chacune"
+chiche,"chic, chichi, chouchou"
+chichi,"chic, chiche, chouchou"
+chicot,"chic, chiot"
+chien,"chaîne, chier, chiffon, chignon, chêne"
+chier,"cahier, chair, chaire, char, cher"
+chiffon,chien
+chiffonner,chiffonnier
+chiffonnier,chiffonner
+chiffre,"chauffer, chauffeur"
+chignon,chien
+chimie,"chameau, chaume"
+chimère,"chaumière, chômeur"
+chiner,chier
+chiot,"cahot, cahute, chat, chicot, chut"
+chiotte,chouette
+chiper,"chier, choper"
+chique,"chaque, choqué, chèque"
+chiquer,choquer
+choc,"chic, chou, coca, coco, cocu"
+choeur,"cahier, chair, chaire, char, cher"
+choir,"cahier, chair, chaire, char, cher"
+choisi,"chaise, chaos, chose"
+choisir,choir
+choix,"chaux, choir, croix"
+choléra,"chaleur, chialer"
+chope,"chape, chapeau, choper, chorale, chose"
+choper,"chiper, chope"
+chopine,chose
+choquer,"chiquer, choir"
+choqué,"chaque, chique, chèque"
+chorale,"chope, chose"
+chose,"chaise, chaos, choisi, chope, chopine"
+chou,"choc, chouïa, chut, clou, cocu"
+chouchou,"chiche, chichi"
+chouette,chiotte
+chouïa,chou
+choyer,"cahier, chair, chaire, char, cher"
+chrome,"charme, chromo"
+chromer,"charmer, charmeur"
+chromo,"charme, chrome"
+chrono,charnu
+chuinter,"chanter, chanteur, chantier, chantre"
+chut,"cahot, cahute, chahut, chat, chiot"
+chute,"cahot, cahute, chat, chiot, chut"
+chuter,"cahoter, chut, chute, châtier"
+châle,câble
+châsse,"chasse, chassé, chaussé, chaussée"
+châtain,chaton
+château,"cahot, cahute, chat, chiot, chut"
+châtier,"cahoter, chuter"
+chèque,"chaque, chique, choqué"
+chèvre,chevreau
+chéri,"cahier, chair, chaire, char, cher"
+chérif,chéri
+chérir,"charre, charroi, charrue, chéri"
+chérubin,charbon
+chêne,"chaîne, chien"
+chômeur,"chaumière, chimère"
+cible,câble
+cidre,"cador, cadre, cire, cirer, coudre"
+ciel,"cela, cime, cire"
+cierge,"cargo, cirage, courage"
+cieux,"ceux, cireux, creux"
+cigale,cagoule
+ciller,"cailler, cellier, coller, collier, cueillir"
+cime,"came, ciel, ciment, cire, crime"
+ciment,cime
+cinoche,caniche
+cinq,"ciné, clin, coin, conique, conque"
+cintre,"canotier, ceinture, centre, conter, conteur"
+ciné,"cinq, cinéma, ciré, cité, clin"
+cinéma,ciné
+cirage,"cargo, cierge, courage"
+circulaire,"caracoler, cercler, circuler"
+circuler,"caracoler, cercler, circulaire"
+cire,"cidre, ciel, cime, cirer, cireux"
+cirer,"carreau, carré, carrée, chier, cidre"
+cireux,"cieux, cire, crayeux, creux, croix"
+cirque,crique
+ciré,"ciné, cire, cité, cuir, curé"
+citer,"chier, cirer, coter, cotre, couture"
+citerne,citron
+citoyen,"caution, coton"
+citron,citerne
+cité,"ciné, ciré, cuit, cécité, côté"
+civet,cavité
+civil,cavale
+civière,"caviar, couver, cuivre, cuivré, cuver"
+clac,"caca, calice, cela, celui-ci, clan"
+claie,"clair, claire, craie"
+clair,"caler, chair, claie, claire, clairon"
+claire,"caler, claie, clair, clore, clouer"
+clairière,"colorer, colorier"
+clairon,"clair, clan"
+clamer,"calmer, clameur"
+clameur,"calmer, clair, clamer"
+clamser,clair
+clan,"cela, clac, clairon, clin, colon"
+claper,clapier
+clapier,claper
+claque,"clique, cloaque, cloque, colique"
+claquer,"clair, cloquer"
+classe,"casse, classé, colosse, coulisse, culasse"
+classer,"clair, classeur, coulisser"
+classeur,"classer, coulisser"
+classé,"cassé, classe, colosse, coulisse, culasse"
+claude,clodo
+clause,"cause, clos, colis"
+clavier,"calvaire, couleuvre"
+clef,"cale, calife, cerf, chef"
+clerc,caler
+clic,"calice, celui-ci, chic, clac, cliché"
+cliché,"calèche, clic, cloche"
+client,coulant
+climat,calamité
+clin,"cinq, ciné, clan, clic, coin"
+clique,"claque, cloaque, cloque, colique"
+cloaque,"claque, clique, clope, cloque, clore"
+cloche,"calèche, cliché, coche"
+clodo,claude
+cloison,clown
+clope,"chope, cloaque, clore, cloître, copie"
+cloque,"claque, clique, cloaque, colique, coque"
+cloquer,claquer
+clore,"caler, clair, claire, cloaque, clope"
+clos,"clause, clou, colis, colo"
+clou,"chou, clos, clouer, clouté, cloué"
+clouer,"caler, clair, claire, clore, clou"
+clouter,"calter, cloître, clôture, culture"
+clouté,"calot, clou, cloué, colt, culot"
+cloué,"clou, clouté, coulé, coupé"
+clown,"cloison, colon"
+cloître,"calter, clope, clouter, clôture, culture"
+cloîtrer,clôturer
+club,"clou, cube"
+clément,calmant
+clôture,"calter, clouter, cloître, culture"
+clôturer,cloîtrer
+coca,"caca, choc, coco, cocu, coma"
+cocasse,"casse, coche"
+coche,"cache, caché, cloche, cocasse, cocher"
+cocher,"cacher, cher, coche, coucher"
+cochon,cocon
+coco,"choc, coca, cocon, cocu, colo"
+cocon,"cochon, coco, colon, coron, coton"
+cocotte,"coche, cotte"
+cocu,"choc, chou, clou, coca, coco"
+code,"coke, corde, cote, coude"
+coeur,"choeur, coter, cour, cours, court"
+coffre,"coiffer, coiffeur, coiffure"
+cogne,"cagna, cogner, conte, corne, cygne"
+cogner,cogne
+cohorte,"chariot, charité, charte"
+cohue,"chute, coche, coque, coude, coupe"
+coiffe,coiffé
+coiffer,"coffre, coiffeur, coiffure"
+coiffeur,"coffre, coiffer, coiffure"
+coiffure,"coffre, coiffer, coiffeur"
+coiffé,coiffe
+coin,"cinq, ciné, clin, coincé, crin"
+coincer,"cancer, cancre"
+coincé,"coin, conçu"
+coke,"cake, code, cote"
+colique,"claque, clique, cloaque, cloque, colle"
+colis,"clause, clos"
+collabo,colo
+collant,colt
+colle,"caille, caillou, caillé, celle, celui-là"
+collectionner,collectionneur
+collectionneur,collectionner
+coller,"cailler, cellier, ciller, colle, collier"
+collet,"caillot, colle"
+collier,"cailler, cellier, ciller, coller, cueillir"
+colline,couillon
+collège,collègue
+collègue,collège
+colo,"clos, clou, coco, collabo, colon"
+colombe,"colle, combe"
+colon,"clan, clin, clown, cocon, colo"
+colonel,"colon, colonial"
+colonial,colonel
+colonie,"clan, clin, colle, colon, câlin"
+colonne,"colle, colon"
+colorer,"clairière, colorier"
+colorier,"clairière, colorer"
+coloré,"caler, clair, claire, clore, clouer"
+colosse,"classe, classé, colle, coulisse, culasse"
+colt,"calot, clouté, collant, colo, cool"
+colère,"caler, clair, claire, clore, clouer"
+coma,coca
+combe,"colombe, comble, comique, comme, commode"
+combien,"combine, combiné"
+combine,"combien, combiné, comme, comte"
+combiné,"combien, combine, comté"
+comble,"combe, comblé, cymbale"
+comblé,"comble, cymbale"
+comique,"combe, comme, comte"
+comité,"comte, comté, comète"
+commande,"commando, commandé"
+commando,"commande, commandé"
+commandé,"commande, commando"
+comme,"combe, combine, comique, comment, compote"
+comment,"comme, communauté"
+commentaire,commenter
+commenter,commentaire
+commettre,commutateur
+commissaire,commissure
+commissure,commissaire
+commode,"combe, comte"
+commun,commune
+communauté,comment
+commune,"combe, commun, comte"
+commutateur,commettre
+commère,"combe, comte"
+compagnie,campagne
+comparaître,comporter
+comparse,compris
+compartiment,comportement
+compas,"campus, composé"
+compatible,comptable
+compatir,"compter, compteur, comptoir"
+complet,complot
+compliment,complément
+complot,complet
+comploter,compléter
+complément,compliment
+compléter,comploter
+comportement,compartiment
+comporter,comparaître
+composé,"campus, compas, comté"
+compote,"combe, comme, compte"
+compris,comparse
+comptable,compatible
+comptant,compétent
+compte,"compote, comte"
+compter,"compatir, compteur, comptoir"
+compteur,"compatir, compter, comptoir"
+comptoir,"compatir, compter, compteur"
+compère,"camper, campeur, combe, comme, comte"
+compétent,comptant
+comte,"combe, combine, comique, comité, comme"
+comté,"combiné, comité, composé, comte, comète"
+comète,"comité, comte, comté"
+comédie,"combe, comme, comte"
+concert,"concerto, concret"
+concerto,"concert, concret"
+concile,"canicule, conte"
+concilier,conclure
+conclure,concilier
+concret,"concert, concerto"
+concéder,coïncider
+conduire,"candeur, ceindre, cendre, cendré"
+conduit,conduite
+conduite,conduit
+condé,"confiné, congé"
+confesser,confesseur
+confesseur,confesser
+confiné,"condé, congé"
+confirmer,conformer
+conformer,confirmer
+confrère,"confrérie, conférer"
+confrérie,"confrère, conférer"
+conférer,"confrère, confrérie"
+congé,"condé, confiné"
+conique,"cinq, conque, conte, cynique"
+connerie,canner
+connu,"canine, canne, canon, contigu, conçu"
+conque,"cinq, conique, coque, cynique"
+conseil,"console, consul"
+conservateur,conservatoire
+conservatoire,conservateur
+conserve,conservé
+conservé,conserve
+console,"conseil, consul, conte"
+constat,constitué
+constatation,constitution
+constater,constituer
+constituer,constater
+constitution,constatation
+constitué,constat
+consul,"conseil, console"
+conte,"canot, cent, cogne, comte, concile"
+contenir,"centenaire, continuer"
+content,"conte, continuité"
+contenu,"caneton, cantine, canton, centaine, conte"
+conter,"canotier, ceinture, centre, cintre, conte"
+conteur,"canotier, ceinture, centre, cintre, conte"
+contigu,"connu, conçu"
+continu,"caneton, cantine, canton, centaine, contenu"
+continue,"caneton, cantine, canton, centaine, contenu"
+continuer,"centenaire, contenir"
+continuité,content
+contour,"canotier, ceinture, centre, cintre, conter"
+contraint,contrainte
+contrainte,contraint
+contraire,"ceinturer, centrer, contrarié, contrer"
+contrarié,"ceinturer, centrer, contraire, contrer"
+contrat,contrit
+contre,"canotier, ceinture, centre, cintre, conte"
+contrer,"ceinturer, centrer, contraire, contrarié"
+contrit,contrat
+contrée,"canotier, ceinture, centre, cintre, conter"
+contrôle,"central, centrale"
+contrôler,contrôleur
+contrôleur,contrôler
+convenu,conçu
+conviction,convocation
+convier,convoyer
+convive,conte
+convocation,conviction
+convoi,caniveau
+convoyer,convier
+conçu,"coincé, connu, contenu, contigu, continu"
+cool,"coco, colo, colt"
+coordonner,cordonnier
+copain,coupon
+copie,"chope, clope, copier, copieux, coupe"
+copier,"copie, couper, coupure"
+copieux,copie
+coque,"cloque, cohue, conque, coquet, coude"
+coquet,coque
+corail,"cruel, créole, céréale"
+coran,"carne, cerne, cerné, corne, cornu"
+corbeau,"cornu, courbe, courbé, crabe"
+cordage,"corne, corse"
+corde,"clore, code, cordeau, coriace, corne"
+cordeau,"corde, cornu, credo"
+cordialité,crédulité
+cordon,coron
+cordonnier,coordonner
+coriace,"cerceau, corde, corne, corse, crac"
+corne,"carne, cerne, cerné, clore, cogne"
+corner,"cerner, corne, crinière, crâner, crâneur"
+cornet,"carnet, corne, courant, crainte, criant"
+cornu,"carne, cerne, cerné, connu, conçu"
+corolle,"colle, corde, corne, corse"
+coron,"carne, cerne, cerné, cocon, colon"
+corps,"corse, cours"
+corrida,criard
+corsage,"corde, corne"
+corsaire,"cerisier, corser, courser, coursier, creuser"
+corse,"cerise, chose, clore, cordage, corde"
+corser,"cerisier, corsaire, corse, courser, coursier"
+corset,"corse, curiosité"
+cortège,"corde, corne, corse"
+corvée,"cerveau, crevé, crève"
+cosaque,"casaque, casque, casqué"
+cossu,"caisse, casse, cassé, cesse, cousu"
+cote,"code, coke, colt, comte, conte"
+coteau,cote
+coter,"citer, coeur, comte, conte, conter"
+coton,"caution, citoyen, cocon, colon, coron"
+cotre,"citer, clore, comte, conte, contre"
+cotte,"cette, cocotte, comte, conte, cote"
+couche,"cache, caché, coche, couché"
+coucher,"cacher, cocher, cour"
+couchette,cachette
+couché,"cache, caché, coche, couche"
+coude,"code, cohue, coque, corde, coudre"
+coudre,"cador, cadre, cidre, coude, cèdre"
+coudrier,cadrer
+couenne,"canine, canne, canon, connu, coupe"
+couette,"cette, cotte, coupe"
+couille,"caille, caillou, caillé, celle, celui-là"
+couillon,colline
+couiner,"canari, cour"
+coulant,"client, court"
+couler,"caler, clair, claire, clore, clouer"
+couleur,"caler, clair, claire, clore, clouer"
+couleuvre,"calvaire, clavier"
+coulisse,"classe, classé, colosse, culasse"
+coulisser,"classer, classeur"
+couloir,"caler, clair, claire, clore, clouer"
+coulé,"cloué, coulée, coupé"
+coulée,coulé
+coup,"chou, clou, cocu, coupe, couper"
+coupable,capable
+coupant,court
+coupe,"chope, clope, cohue, copie, coque"
+couper,"copier, coup, coupe, coupure"
+couple,"coup, coupe, coupole"
+couplet,court
+coupole,couple
+coupon,"copain, coup"
+coupure,"copier, couper"
+coupé,"cloué, coulé, coup, coupe"
+cour,"chou, clou, cocu, coeur, coucher"
+courage,"cargo, cierge, cirage, coupe"
+courant,"carnet, cornet, crainte, criant, croyant"
+courbe,"corbeau, cour, courbé, crabe"
+courber,"cour, courbure"
+courbure,courber
+courbé,"corbeau, cour, courbe, crabe"
+courette,"carotte, crotte"
+coureur,"carreau, carré, carrée, cirer, cour"
+courir,"carreau, carré, carrée, cirer, cour"
+couronner,crayonner
+courre,"carreau, carré, carrée, cirer, cour"
+courrier,"carrer, carrière, carrure"
+courroie,"carreau, carré, carrée, cirer, coureur"
+cours,"cerise, coeur, corps, corse, cour"
+course,"cerise, corse, cour, cours, crise"
+courser,"cerisier, corsaire, corser, cour, cours"
+coursier,"cerisier, corsaire, corser, courser, creuser"
+court,"carat, carte, coeur, coulant, coupant"
+courtier,"cratère, critère, croître, créateur, créature"
+courtine,"carton, certain, certaine, creton, croûton"
+courtois,"certes, courtoisie, crétois"
+courtoisie,"certes, courtois, crétois"
+cousin,"casino, cuisine"
+coussin,"caisson, cuisson"
+cousu,"cossu, cours, couteau"
+couteau,cousu
+coutume,coupe
+couture,"citer, coter, cotre, coupe, coûter"
+couvent,court
+couver,"caviar, civière, cuivre, cuivré, cuver"
+couvrir,cour
+coïncider,concéder
+coït,"colt, cote"
+coûter,"citer, coter, cotre, couture, côtier"
+crabe,"corbeau, courbe, courbé, craie, crainte"
+crac,"caca, cerceau, clac, coriace, craché"
+crachat,crochet
+cracher,crécher
+crachin,cran
+craché,"caché, crac, crochu, cruche, crèche"
+craie,"claie, crabe, crapule, cratère, cravate"
+crainte,"carnet, cornet, courant, crabe, criant"
+cramer,crémier
+cran,"carne, cerne, cerné, clan, coran"
+crapule,"crabe, craie"
+craquant,croquant
+craquer,croquer
+crasse,"caresse, casse, crosse, cuirasse, cuirassé"
+cratère,"courtier, crabe, craie, critère, croître"
+cravate,"crabe, craie"
+crayeux,"cireux, creux, croix, curieux"
+crayon,"carne, cerne, cerné, coran, corne"
+crayonner,couronner
+credo,"corde, cordeau"
+creton,"carton, certain, certaine, courtine, croûton"
+creuser,"cerisier, corsaire, corser, courser, coursier"
+creux,"ceux, cieux, cireux, crayeux, croix"
+crevé,"cerveau, corvée, crève"
+criant,"carnet, cornet, courant, crainte, croyant"
+criard,corrida
+crier,"carreau, carré, carrée, chier, cirer"
+crieur,"carreau, carré, carrée, cirer, coureur"
+crime,"carême, cime, craie, crier, crise"
+criminel,cérémonial
+crin,"carne, cerne, cerné, cinq, ciné"
+crinière,"cerner, corner, crâner, crâneur"
+crique,cirque
+crise,"cerise, corse, cours, course, craie"
+crisser,"caresser, crise, cuirasser, cuirassier"
+critère,"courtier, cratère, crime, crise, croître"
+croate,"carat, carte, court, croûte, cruauté"
+croc,"cerceau, choc, coca, coco, cocu"
+crochet,crachat
+crochu,"craché, croc, cruche, crèche"
+croire,"carreau, carré, carrée, cirer, coureur"
+croisement,curieusement
+croiser,"cerisier, corsaire, corser, courser, coursier"
+croiseur,"cerisier, corsaire, corser, courser, coursier"
+croisière,"cerisier, corsaire, corser, courser, coursier"
+croissant,caressant
+croisé,"cerise, corse, cours, course, crise"
+croisée,"cerise, corse, cours, course, crise"
+croix,"choix, cireux, crayeux, creux, curieux"
+croquant,craquant
+croquer,craquer
+crosse,"caresse, crasse, cuirasse, cuirassé"
+crotte,"carotte, cotte, courette"
+croupe,"carpe, coupe, crépi, crépu, crêpe"
+croyance,carence
+croyant,"carnet, cornet, courant, crainte, criant"
+croître,"courtier, cratère, critère, créateur, créature"
+croûte,"carat, carte, court, croate, cruauté"
+croûton,"carton, certain, certaine, courtine, creton"
+cruauté,"carat, carte, court, croate, croûte"
+cruche,"craché, crochu, crèche"
+crucial,"cercle, cercueil, cruel"
+crudité,crédit
+crue,"cire, cruel, cube, cure, cuve"
+cruel,"corail, crucial, crue, créole, céréale"
+crâne,"carne, cerne, cerné, coran, corne"
+crâner,"cerner, corner, crinière, crâne, crâneur"
+crâneur,"cerner, corner, crinière, crâne, crâner"
+crèche,"craché, crochu, cruche"
+crème,"carême, crime, crève"
+crève,"cerveau, corvée, crevé, crème"
+créateur,"courtier, cratère, critère, croître, créature"
+création,"carton, certain, certaine, courtine, creton"
+créature,"courtier, cratère, critère, croître, créateur"
+crécher,cracher
+crédit,crudité
+crédulité,cordialité
+créer,"carreau, carré, carrée, cirer, coureur"
+crémier,cramer
+créneau,"carne, cerne, cerné, coran, corne"
+créole,"corail, cruel, céréale"
+crépi,"carpe, croupe, crépu, crêpe"
+crépu,"carpe, croupe, créneau, crépi, crêpe"
+crétin,"carton, certain, certaine, courtine, creton"
+crétois,"certes, courtois, courtoisie"
+crêpe,"carpe, croupe, crépi, crépu, crête"
+crête,"carat, carte, court, croate, croûte"
+cube,"club, crue, cubique, cure, cuve"
+cubique,cube
+cueillir,"cailler, cellier, ciller, coller, collier"
+cuiller,"cailler, cellier, ciller, coller, collier"
+cuillerée,"cailler, cellier, ciller, coller, collier"
+cuillère,"cailler, cellier, ciller, coller, collier"
+cuir,"cire, ciré, cour, cuiller, cuire"
+cuirasse,"caresse, crasse, crosse, cuirassé"
+cuirasser,"caresser, crisser, cuirassier"
+cuirassier,"caresser, crisser, cuirasser"
+cuirassé,"caresse, crasse, crosse, cuirasse"
+cuire,"cidre, cire, cirer, cuir, cuisine"
+cuisant,"causant, cuit"
+cuisine,"casino, cousin, cuire"
+cuisiner,cuisinier
+cuisinier,cuisiner
+cuisse,"caisse, casse, cassé, cesse, cossu"
+cuisson,"caisson, coussin"
+cuistot,"causette, cuit"
+cuit,"chut, cité, cuir, cuisant, cuistot"
+cuite,"chute, citer, cuire, cuit, culte"
+cuivre,"caviar, civière, couver, cuire, cuivré"
+cuivré,"caviar, civière, couver, cuivre, cuver"
+culasse,"classe, classé, colosse, coulisse, culte"
+culbuter,célibataire
+culot,"calot, clouté, colt, culotte, culte"
+culotte,"calotte, culot"
+culte,"calot, chute, clouté, colt, cuite"
+culture,"calter, clouter, cloître, clôture"
+cure,"cire, cour, crue, cube, cuir"
+curer,"carreau, carré, carrée, cirer, coureur"
+cureton,"carton, certain, certaine, courtine, creton"
+curieusement,croisement
+curieux,"cireux, crayeux, creux, croix"
+curiosité,corset
+curé,"ciré, cour, cuir, cure"
+cuve,"cave, crue, cube, cure, cuver"
+cuver,"caviar, civière, couver, cuivre, cuivré"
+cuvette,cuve
+cyclope,clope
+cygne,"cagna, cogne"
+cymbale,"comble, comblé"
+cynique,"cinq, conique, conque"
+câble,"châle, cible"
+câlin,"clan, clin, colon, colonie"
+cèdre,"cador, cadre, cidre, coudre, céder"
+cécité,cité
+céder,"cador, cadre, cidre, coudre, créer"
+célibataire,culbuter
+célèbre,calibre
+céréale,"corail, cruel, créole"
+cérémonial,criminel
+cône,côte
+côte,"cote, cône, côté"
+côtier,"citer, coter, cotre, couture, coûter"
+côtoyer,"citer, coter, cotre, couture, coûter"
+côté,"cité, cote, côte"
+dada,dard
+dague,"digue, drague"
+daigner,"dégainer, dégénéré"
+daim,"dais, dame"
+dais,"daim, dans"
+dalle,"daller, douille"
+daller,"dalle, dollar"
+dame,"daim, damer, dames, date, drame"
+damer,"dame, dames, damier, damner, dater"
+dames,"dame, damer, damoiseau, drame"
+damier,"damer, demeure, demeuré"
+damnation,domination
+damner,"damer, diminuer, dominer, démener, démunir"
+damné,"demain, domaine, domino, démon, démuni"
+damoiseau,dames
+dandy,"dinde, dénudé"
+danois,"dans, danse, dense"
+dans,"dais, danois, danse, danser, dedans"
+danse,"danois, dans, danser, danseur, dense"
+danser,"dans, danse, danseur"
+danseur,"danse, danser"
+dard,"dada, darder, druide"
+darder,"dard, dérider"
+daron,diurne
+date,"dame, dater, datte"
+dater,"damer, date, datte, doter, douter"
+datte,"date, dater, dette"
+dauphin,diaphane
+dealer,"diluer, douleur, délayer, délier, délire"
+debout,"débat, débit, début"
+dedans,dans
+delta,"dilaté, délit"
+delà,"deçà, duel"
+demain,"damné, domaine, domino, démon, démuni"
+demeure,"damer, damier, demeuré"
+demeuré,"damer, damier, demeure"
+demi-soeur,démesuré
+demi-sourire,démesurer
+demi-tour,diamètre
+denier,"denrée, douanier, dénouer, dénuer, dîner"
+denrée,"denier, douanier, dénouer, dénuer, dîner"
+dense,"danois, dans, danse, denture"
+densité,dynastie
+dent,dont
+dentier,"denture, donateur"
+denture,"dense, dentier, donateur"
+dessein,dessin
+dessert,desserte
+desserte,dessert
+dessin,dessein
+dessous,dessus
+dessus,dessous
+destin,"destiné, destinée"
+destiné,"destin, destinée"
+destinée,"destin, destiné"
+destruction,distraction
+dette,datte
+deux,"dieu, doux"
+deuxième,dixième
+devant,divinité
+devenir,deviner
+devers,divers
+deviner,devenir
+devis,"devise, deviser, divisé"
+devise,"devis, divisé"
+deviser,"devis, diviser"
+devoir,"dévier, dévouer"
+deçà,delà
+diable,"double, doublé, débile"
+dialecte,délicat
+dialogue,"déluge, délégué"
+dialoguer,"déloger, déléguer"
+diamant,"dément, démenti, démonté, dûment"
+diamantaire,"dominateur, démentir, démonter"
+diamètre,demi-tour
+diaphane,dauphin
+dictateur,dictature
+dictature,dictateur
+dicter,"docteur, douceâtre"
+dictée,docte
+dieu,"deux, dire"
+digne,"digue, dinde, dégaine"
+digue,"dague, digne, dingue"
+dilaté,"delta, délit"
+diluer,"dealer, douleur, délayer, délier, délire"
+diminuer,"damner, dominer, démener, démunir"
+dinde,"dandy, digne, dénudé"
+dingo,dingue
+dingue,"digue, dingo"
+diplomate,diplomatie
+diplomatie,diplomate
+dire,"dieu, direct, dure"
+direct,dire
+directeur,directoire
+directoire,directeur
+diriger,"draguer, droguer"
+dirlo,drôle
+discipline,discipliné
+discipliné,discipline
+dispensaire,dispenser
+dispenser,dispensaire
+dispos,disposé
+disposé,dispos
+dissiper,"désespoir, désespéré"
+dissoudre,dissuader
+dissuader,dissoudre
+distraction,destruction
+diurne,daron
+divan,divin
+divers,devers
+divin,divan
+divinité,devant
+diviser,deviser
+divisé,"devis, devise"
+divorce,divorcé
+divorcé,divorce
+dixième,deuxième
+dizaine,douzaine
+dock,"docker, donc"
+docker,dock
+docte,"dictée, docteur, doter, doute"
+docteur,"dicter, docte, douceâtre"
+document,doucement
+dodo,dodu
+dodu,"dodo, doux, doué"
+doge,"dogme, dope, dose"
+dogme,doge
+doigt,"droit, dégoût, dégoûté, dégât"
+dollar,daller
+domaine,"damné, demain, domino, démon, démuni"
+dominateur,"diamantaire, démentir, démonter"
+domination,damnation
+dominer,"damner, diminuer, démener, démunir"
+domino,"damné, demain, domaine, démon, démuni"
+dompter,dompteur
+dompteur,dompter
+donateur,"dentier, denture"
+donc,"dock, dont"
+donnant,dont
+donne,"donner, donneur, donné, donnée"
+donner,"donne, donneur"
+donneur,"donne, donner"
+donné,"donne, donnée"
+donnée,"donne, donné"
+dont,"dent, donc, donnant"
+dope,"doge, dose, dupe"
+dorer,"dorure, doser, doter, douairier, douer"
+dormant,durement
+dormeur,dormir
+dormir,dormeur
+dortoir,"droiture, dérouter"
+dorure,"dorer, douairier, durer"
+doré,doué
+dose,"doge, dope, doser"
+doser,"dorer, dose, doter, douer, désir"
+doter,"dater, docte, dorer, doser, douer"
+douairier,"dorer, dorure, durer"
+douanier,"denier, denrée, dénouer, dénuer, dîner"
+double,"diable, doublé, débile"
+doubler,"doublure, déblayer, débouler"
+doublure,"doubler, déblayer, débouler"
+doublé,"diable, double, débile"
+doucement,document
+douceur,"décor, décoré"
+douceâtre,"dicter, docteur"
+douche,"dèche, déchu"
+doucher,"déchiré, déchoir"
+douer,"dorer, doser, doter, doute, douter"
+douille,"dalle, doute"
+douleur,"dealer, diluer, délayer, délier, délire"
+doute,"docte, doter, douer, douille, douter"
+douter,"dater, doter, douer, doute, détour"
+douteux,"doute, doux"
+doux,"deux, dodu, douteux, doué"
+douzaine,dizaine
+douze,"douer, doute"
+doué,"dodu, doré, doux"
+drague,"dague, dragée, drogue, drogué"
+draguer,"diriger, droguer"
+dragée,"drague, drogue, drogué"
+drame,"dame, damer, dames"
+drap,"drapeau, draper, drapé"
+drapeau,"drap, drapé"
+draper,"drap, draperie, déraper"
+draperie,"draper, déraper"
+drapé,"drap, drapeau"
+drogue,"drague, dragée, drogué"
+droguer,"diriger, draguer"
+drogué,"drague, dragée, drogue"
+droit,"doigt, droite, dureté, déroute"
+droite,"droit, dureté, déroute"
+droiture,"dortoir, dérouter"
+druide,dard
+drôle,dirlo
+drôlement,déroulement
+drôlerie,dérouler
+duce,"duel, dune, dupe, dure"
+duel,"delà, duce, dune, dupe, duquel"
+dune,"duce, duel, dupe, dure"
+dupe,"dope, duce, duel, dune, duper"
+duper,"douer, dupe, durer"
+duquel,duel
+durable,dure
+durci,durcir
+durcir,durci
+dure,"dire, duce, duel, dune, dupe"
+durement,dormant
+durer,"dorer, dorure, douairier, douer, duper"
+dureté,"droit, droite, dure, déroute"
+durée,"dure, durer"
+duvet,dévot
+dynastie,densité
+dèche,"douche, déchu"
+débat,"debout, débit, début"
+débauche,"débauché, débouché"
+débaucher,déboucher
+débauché,"débauche, débouché"
+débile,"diable, double, doublé"
+débit,"debout, débat, débiter, début, délit"
+débiter,"débit, débuter"
+déblayer,"doubler, doublure, débouler"
+déborder,débrider
+déboucher,débaucher
+débouché,"débauche, débauché"
+débouler,"doubler, doublure, déblayer"
+débrider,déborder
+début,"debout, débat, débit, débuter"
+débuter,"débiter, début"
+décaper,"décor, découper"
+déceler,"déclaré, décoloré, décor, découler"
+décembre,décombre
+déchirer,déchirure
+déchirure,déchirer
+déchiré,"doucher, déchoir"
+déchoir,"doucher, déchiré"
+déchu,"douche, dèche, décousu"
+décider,"décor, découdre, décéder"
+décimer,décor
+déclarer,décolorer
+déclaré,"déceler, décoloré, découler"
+décolorer,déclarer
+décoloré,"déceler, déclaré, découler"
+décombre,décembre
+décor,"douceur, décaper, déceler, décider, décimer"
+décorateur,"décroître, décréter"
+décorer,"décor, décrire"
+décoré,"douceur, décor"
+découdre,"décider, décéder"
+découler,"déceler, déclaré, décoloré"
+découpe,découpé
+découper,décaper
+découpé,découpe
+décousu,"déchu, décès"
+découvert,découverte
+découverte,découvert
+décrire,décorer
+décroître,"décorateur, décréter"
+décréter,"décorateur, décroître"
+décès,décousu
+décéder,"décider, décor, découdre"
+dédier,déduire
+déduire,dédier
+défaire,défier
+défait,"défaite, défaut"
+défaite,"défait, défaut"
+défaut,"défait, défaite"
+défi,"défier, défilé, défini"
+défiance,défoncé
+défier,"défaire, défi"
+défilé,défi
+défini,défi
+défoncé,défiance
+dégaine,digne
+dégainer,"daigner, dégénéré"
+dégoter,dégoûter
+dégourdir,dégrader
+dégoût,"doigt, dégoûté, dégât"
+dégoûter,dégoter
+dégoûté,"doigt, dégoût, dégât"
+dégrader,dégourdir
+dégât,"doigt, dégoût, dégoûté"
+dégénéré,"daigner, dégainer"
+délabrement,délibérément
+délabré,"délibéré, délié"
+délai,"délit, délié"
+délayer,"dealer, diluer, douleur, délier, délire"
+délibéré,délabré
+délibérément,délabrement
+délicat,dialecte
+délier,"dealer, diluer, douleur, délayer, délire"
+délire,"dealer, diluer, douleur, délayer, délier"
+délit,"delta, dilaté, débit, délai, délié"
+délié,"délabré, délai, délit, délégué"
+déloger,"dialoguer, déléguer"
+déluge,"dialogue, délégué"
+déléguer,"dialoguer, déloger"
+délégué,"dialogue, délié, déluge"
+démanger,"déménager, déménageur"
+démarrer,démarreur
+démarreur,démarrer
+démener,"damner, diminuer, dominer, démunir"
+dément,"diamant, démenti, démonté, dûment"
+démenti,"diamant, dément, démonté, dûment"
+démentir,"diamantaire, dominateur, démonter"
+démerder,démordre
+démesurer,demi-sourire
+démesuré,demi-soeur
+démocrate,démocratie
+démocratie,démocrate
+démodé,démon
+démolir,démêler
+démon,"damné, demain, domaine, domino, démodé"
+démonter,"diamantaire, dominateur, démentir"
+démonté,"diamant, dément, démenti, démon, dûment"
+démordre,démerder
+démuni,"damné, demain, domaine, domino, démon"
+démunir,"damner, diminuer, dominer, démener"
+déménager,"démanger, déménageur"
+déménageur,"démanger, déménager"
+démêler,démolir
+dénouement,dénuement
+dénouer,"denier, denrée, douanier, dénuer, dîner"
+dénudé,"dandy, dinde"
+dénuement,dénouement
+dénuer,"denier, denrée, douanier, dénouer, dîner"
+déparier,dépérir
+départ,déporté
+départir,déporter
+dépayser,déposer
+dépeindre,dépendre
+dépendre,dépeindre
+dépens,dépense
+dépense,dépens
+dépiauter,dépotoir
+dépit,"débit, délit, dépité, député, dépôt"
+dépité,"dépit, député, dépôt"
+déplaire,"déplier, déployer"
+déplier,"déplaire, déployer"
+déployer,"déplaire, déplier"
+déployé,dépoli
+dépoli,déployé
+déporter,départir
+déporté,départ
+déposer,dépayser
+dépotoir,dépiauter
+dépouille,dépouillé
+dépouillé,dépouille
+déprime,déprimé
+déprimé,déprime
+député,"dépit, dépité, dépôt"
+dépérir,déparier
+dépôt,"dépit, dépité, député"
+dérailler,dérouiller
+déraper,"draper, draperie"
+dérider,darder
+dérouiller,dérailler
+déroulement,drôlement
+dérouler,drôlerie
+déroute,"droit, droite, dureté"
+dérouter,"dortoir, droiture"
+désarroi,désirer
+désavouer,désoeuvré
+désert,déserté
+déserter,déserteur
+déserteur,déserter
+déserté,désert
+désespoir,"dissiper, désespéré"
+désespéré,"dissiper, désespoir"
+désir,"doser, désirer, désiré, désoler"
+désirer,"désarroi, désir"
+désiré,"doser, désir"
+désoeuvré,désavouer
+désoler,désir
+déséquilibre,déséquilibré
+déséquilibré,déséquilibre
+détaler,dételer
+déteindre,détendre
+dételer,détaler
+détendre,déteindre
+détention,détonation
+déterrer,détériorer
+détonation,détention
+détour,"dater, doter, douter"
+détremper,détromper
+détromper,détremper
+détériorer,déterrer
+dévaler,dévoiler
+dévier,"devoir, dévouer"
+dévoiler,dévaler
+dévot,duvet
+dévouer,"devoir, dévier"
+dîner,"denier, denrée, douanier, dénouer, dénuer"
+dîneur,"denier, denrée, douanier, dénouer, dénuer"
+dôme,dame
+dûment,"diamant, dément, démenti, démonté"
+effarant,"effrayant, effronté"
+effarer,effrayer
+effaré,"effrayé, effroi"
+effrayant,"effarant, effronté"
+effrayer,effarer
+effrayé,"effaré, effroi"
+effroi,"effaré, effrayé"
+effronté,"effarant, effrayant"
+elle,elles
+elles,elle
+emballer,embellir
+emballé,"embellie, embué"
+embauche,embûche
+embaucher,embouchure
+embellie,emballé
+embellir,emballer
+embouchure,embaucher
+emboîter,embêter
+embraser,embrasure
+embrasure,embraser
+embrouille,embrouillé
+embrouillé,embrouille
+embrun,embryon
+embryon,embrun
+embué,emballé
+embêter,emboîter
+embûche,embauche
+emmerder,emmerdeur
+emmerdeur,emmerder
+empaler,"empiler, emplir, employer, employeur"
+emparer,"empereur, empirer"
+empereur,"emparer, empirer"
+empiler,"empaler, emplir, employer, employeur"
+empirer,"emparer, empereur"
+empiéter,empâter
+empli,"emplir, emploi, employé"
+emplir,"empaler, empiler, empli, employer, employeur"
+emploi,"empli, employé"
+employer,"empaler, empiler, emplir, employeur"
+employeur,"empaler, empiler, emplir, employer"
+employé,"empli, emploi"
+empocher,empêcher
+empreint,"empreinte, emprunt, emprunté"
+empreinte,"empreint, emprunt, emprunté"
+emprunt,"empreint, empreinte, emprunté"
+emprunté,"empreint, empreinte, emprunt"
+empâter,empiéter
+empêcher,empocher
+en-tête,"entité, entêté"
+enchanter,enchanteur
+enchanteur,enchanter
+enclume,encre
+encoche,encre
+encolure,enculer
+encombre,encombré
+encombré,encombre
+encore,encre
+encourir,encrier
+encre,"enclume, encoche, encore, entre"
+encrier,encourir
+enculer,encolure
+enfance,enfoncé
+enfer,"enfermé, enfler, enfoiré, enfouir, enfuir"
+enfermé,"enfer, enflé"
+enfiler,"enfler, enflure"
+enfin,engin
+enfler,"enfer, enfiler, enflure"
+enflure,"enfiler, enfler"
+enflé,"enfermé, enfoiré, enfoncé"
+enfoiré,"enfer, enflé, enfouir, enfuir"
+enfoncé,"enfance, enflé"
+enfouir,"enfer, enfoiré, enfuir"
+enfuir,"enfer, enfoiré, enfouir"
+engin,enfin
+engluer,engueuler
+engraisser,engrosser
+engrosser,engraisser
+engueuler,engluer
+enquêter,enquêteur
+enquêteur,enquêter
+enrayer,enrouer
+enrouer,enrayer
+enrouler,enrôler
+enrôler,enrouler
+entacher,enticher
+entente,entre
+enterré,"entourer, entrer"
+enticher,entacher
+entier,"entouré, entre, entrée"
+entité,"en-tête, entêté"
+entonner,entonnoir
+entonnoir,entonner
+entourer,"enterré, entrer"
+entouré,"entier, entre, entrée"
+entrain,entraîné
+entrave,"entravé, entrevue"
+entraver,entrevoir
+entravé,"entrave, entrevue"
+entraîner,entraîneur
+entraîneur,entraîner
+entraîné,entrain
+entre,"encre, entente, entier, entouré, entrer"
+entrer,"enterré, entourer, entre"
+entretenu,entretien
+entretien,entretenu
+entrevoir,entraver
+entrevue,"entrave, entravé"
+entrée,"entier, entouré, entre"
+entêté,"en-tête, entité"
+enveloppe,enveloppé
+enveloppé,enveloppe
+envie,"envier, envieux, envoi, envolée"
+envier,"envie, envoyer"
+envieux,envie
+envoi,"envie, envol"
+envol,"envoi, envoler, envolée"
+envoler,envol
+envolée,"envie, envol"
+envoyer,envier
+errer,erreur
+erreur,errer
+espace,"espacé, espèce"
+espacé,"espace, espèce"
+espèce,"espace, espacé"
+essai,essaim
+essaim,essai
+essayer,"essor, essuyer"
+essor,"essayer, essorer, essuyer"
+essorer,essor
+essuyer,"essayer, essor"
+exact,excité
+exaction,exécution
+exagéré,exiger
+exalter,exulter
+exciter,exécuter
+excité,exact
+exclu,exclure
+exclure,exclu
+excuse,excès
+excès,excuse
+exiger,exagéré
+exil,"exiler, exilé"
+exiler,exil
+exilé,exil
+exploit,exploité
+exploité,exploit
+exploser,expulser
+explosion,expulsion
+expulser,exploser
+expulsion,explosion
+extase,extasié
+extasié,extase
+extra,extrait
+extraire,extérieur
+extrait,extra
+extérieur,extraire
+exulter,exalter
+exécuter,exciter
+exécution,exaction
+fable,faible
+face,"facette, faconde, factice, facture, facétie"
+facette,face
+facile,ficelé
+facilité,faculté
+faconde,"face, fécond"
+facteur,facture
+factice,face
+faction,fiction
+facture,"face, facteur"
+faculté,facilité
+facétie,face
+fade,"face, fader, fadeur, fard, façade"
+fader,"fade, fadeur, faner, farder, foudre"
+fadeur,"fade, fader, foudre"
+fagot,falot
+faible,fable
+faille,"feuille, feuillu, filial, fille, fouille"
+failler,"faillir, falloir, fouiller"
+faillir,"failler, falloir, fouiller"
+faillite,"feuillet, follet"
+faim,"fait, film"
+faire,"farce, fibre, fifre, firme, flair"
+faisan,"fusain, fusion"
+faisceau,fiasco
+faiseur,fuser
+fait,faim
+falaise,fils
+falloir,"failler, faillir, fouiller"
+falot,"fagot, filet, flot, fluet, flûte"
+familial,"famille, femelle"
+famille,"familial, femelle"
+fanal,"fatal, final, finale"
+fanatisme,fantasme
+faner,"fader, fange, faune, finir, fouiner"
+fange,"faner, faune, frange"
+fantasme,fanatisme
+fané,flan
+faraud,"fard, fardeau, fraude, froid, fuyard"
+farce,"face, faire, farceur, farci, force"
+farceur,"farce, farcir, forcer"
+farci,"farce, farcir, force, forcé, frac"
+farcir,"farceur, farci, forcer"
+fard,"fade, faraud, fardeau, farder, fraude"
+fardeau,"faraud, fard, fraude, froid, fuyard"
+farder,"fader, fard, froideur, froidure"
+farine,"forain, fourneau, fourni, fournée, frein"
+farouche,"fourche, friche"
+farouchement,fraîchement
+faste,"faute, faîte, fiesta"
+fatal,"fanal, fauteuil, futile"
+fatalité,futilité
+fatigue,fatigué
+fatigué,fatigue
+faucher,"ficher, fichier, fâcher"
+faucille,ficelle
+faucon,façon
+faune,"faner, fange, faute, fauve"
+fausser,"fissure, fossoyeur"
+faute,"faste, faune, fauter, fauteur, fauve"
+fauter,"faute, fauteur, feutre, feutré, foutoir"
+fauteuil,"fatal, futile"
+fauteur,"faute, fauter, feutre, feutré, foutoir"
+fauve,"faune, faute"
+faux,flux
+faveur,"favori, fièvre"
+favori,"faveur, fièvre"
+façade,fade
+façon,faucon
+faîte,"faste, faute"
+faïence,"fiancé, foncé"
+feindre,"fendre, fonder, fondre"
+feint,"feinte, feinter, fente, fiente, fonte"
+feinte,"feint, fente, fiente, fonte, fuyant"
+feinter,"feint, fenêtre"
+femelle,"familial, famille, femme"
+femme,"femelle, ferme, flemme"
+fendre,"feindre, fonder, fondre"
+fendu,"finaud, fond, fondu, fondé"
+fente,"feint, feinte, fiente, fonte, fuyant"
+fenêtre,feinter
+ferme,"femme, ferment, fermer, fermeté, fermé"
+fermement,firmament
+ferment,"ferme, fièrement"
+fermer,"ferme, fermier, fermoir, fermé, former"
+fermeté,"ferme, ferré, format"
+fermier,"fermer, fermoir, former, frimer, frémir"
+fermoir,"fermer, fermier, former, frimer, frémir"
+fermé,"ferme, fermer, ferré, firme, forme"
+ferrer,"ferré, fourrer, fourrier, fourrure"
+ferré,"fermeté, fermé, ferrer, foirer, forer"
+fertile,ferme
+ferveur,fourvoyer
+fesse,"fessée, fissa, fosse, fossé"
+fessée,"fesse, fissa, fosse, fossé"
+festin,fiston
+feuille,"faille, feuillu, filial, fille, fouille"
+feuillet,"faillite, follet"
+feuillu,"faille, feuille, filial, fille, fouille"
+feutre,"fauter, fauteur, feutré, foutoir, foutre"
+feutré,"fauter, fauteur, feutre, foutoir, foutre"
+fiancer,"foncer, foncier"
+fiancé,"faïence, foncé"
+fiasco,faisceau
+fibre,"faire, fifre, firme, foire, frire"
+ficelle,"faucille, fiche"
+ficelé,facile
+fiche,"ficelle, ficher, fichu, friche, fâché"
+ficher,"faucher, fiche, fichier, fâcher"
+fichier,"faucher, ficher, fâcher"
+fichu,"fiche, fâché"
+fiction,faction
+fidèle,féodal
+fief,"fiel, fier, fifi, file, fine"
+fiel,"fief, fier, file, film, fils"
+fiente,"feint, feinte, fente, fonte, fuyant"
+fier,"fief, fiel, fierté, figer, file"
+fierté,"fier, fort, forêt, frite, fruit"
+fiesta,faste
+fifi,"fief, fini"
+fifre,"faire, fibre, firme, foire, frire"
+figer,"fier, figue, figuier, figure, filer"
+figue,"figer, figure, fugue"
+figuier,"figer, figure, fougère"
+figure,"figer, figue, figuier, fougère"
+figé,"filé, fixé"
+file,"fief, fiel, fier, filer, filet"
+filer,"fier, figer, file, filet, filière"
+filet,"falot, file, filer, fille, fiole"
+filial,"faille, feuille, feuillu, fille, fouille"
+filin,"filon, flan, félin"
+filière,"file, filer, fille, flair, fleur"
+fille,"faille, feuille, feuillu, file, filer"
+filleul,fille
+film,"faim, fiel, file, filmer, fils"
+filmer,"filer, film"
+filon,"filin, fion, flan, félin"
+fils,"falaise, fiel, file, film, filé"
+filtrer,flétrir
+filé,"fiel, figé, file, film, fils"
+final,"fanal, finale"
+finale,"fanal, final"
+finance,fine
+financer,financier
+financier,financer
+finaud,"fendu, fond, fondu, fondé"
+fine,"fief, fiel, fier, file, finance"
+finesse,fine
+fini,"fifi, fine, finir, fion, foin"
+finir,"faner, fini, fouiner"
+fiole,"file, filer, filet, fille, folie"
+fion,"filon, fine, fini, foin, fond"
+fioriture,"friture, fruitier, fureter, fureteur"
+firmament,fermement
+firme,"faire, ferme, fermé, fibre, fifre"
+fissa,"fesse, fessée, fosse, fossé"
+fissure,"fausser, fossoyeur"
+fiston,festin
+fixe,"fief, fiel, fier, file, fine"
+fixer,"fier, figer, filer, fixe"
+fixé,"figé, filé, fixe"
+fièrement,ferment
+fièvre,"faveur, favori"
+flacon,flocon
+flagrant,fulgurant
+flair,"faire, filer, filière, flairer, flamber"
+flairer,"flair, fleurer, fleurir"
+flambant,flamboyant
+flambeau,flambée
+flamber,"flair, flambeur, flamboyer"
+flambeur,"flamber, flamboyer"
+flamboyant,flambant
+flamboyer,"flamber, flambeur"
+flambée,flambeau
+flamme,flemme
+flan,"fané, filin, filon, flanc, félin"
+flanc,"flan, franc"
+flash,flashe
+flashe,flash
+flatter,"flair, flatterie, flatteur, flotter, flotteur"
+flatterie,"flatter, flatteur, flotter, flotteur"
+flatteur,"flatter, flatterie, flotter, flotteur"
+flemme,"femme, flamme"
+fleur,"filer, filière, flair, fleurer, fleuret"
+fleurer,"flairer, fleur, fleurir"
+fleuret,"fleur, flirt"
+fleuri,"filer, filière, flair, fleur, flore"
+fleurir,"flairer, fleur, fleurer"
+flic,"floc, fric"
+flirt,"flair, fleuret, flirter"
+flirter,flirt
+floc,"flic, flocon, flot, flou, froc"
+flocon,"flacon, floc"
+flore,"filer, filière, flair, fleur, fleuri"
+flot,"falot, filet, floc, flotte, flou"
+flotte,flot
+flotter,"flatter, flatterie, flatteur, flotteur"
+flotteur,"flatter, flatterie, flatteur, flotter"
+flou,"floc, flot, flux, four"
+fluet,"falot, filet, flot, flûte, fouet"
+flux,"faux, flou"
+flâner,"flânerie, flâneur"
+flânerie,"flâner, flâneur"
+flâneur,"flâner, flânerie"
+flétrir,filtrer
+flûte,"falot, filet, flot, fluet"
+foetus,foutaise
+foie,"fief, fiel, fier, file, fine"
+foin,"fine, fini, fion, foie, fois"
+foire,"faire, fibre, fifre, firme, flore"
+foirer,"ferré, foire, forer, fourreau, fourré"
+foireux,"foire, furieux"
+fois,"fils, foie, foin"
+folie,"fiole, foie, foire, foule"
+follet,"faillite, feuillet"
+foncer,"fiancer, foncier"
+foncier,"fiancer, foncer"
+fonctionnaire,fonctionner
+fonctionner,fonctionnaire
+foncé,"faïence, fiancé, fondé, forcé, froncé"
+fond,"fendu, finaud, fion, foin, fonder"
+fonder,"feindre, fendre, fond, fondre"
+fondre,"feindre, fendre, fond, fonder"
+fonds,"fond, fondu, fondé"
+fondu,"fendu, finaud, fond, fonds, fondé"
+fondé,"fendu, finaud, foncé, fond, fonds"
+fonte,"feint, feinte, fente, fiente, front"
+foot,"flot, fort"
+forain,"farine, fourneau, fourni, fournée, frein"
+force,"farce, farci, flore, foire, forcené"
+forcené,"force, formé"
+forcer,"farceur, farcir, force, forer"
+forcé,"farce, farci, foncé, force, formé"
+forcément,férocement
+forer,"ferré, flore, foire, foirer, force"
+forestier,frustré
+forfait,"fort, forêt"
+forge,"flore, foire, force, forer, forger"
+forger,"forer, forge, fourguer"
+format,fermeté
+forme,"ferme, fermé, firme, flore, foire"
+formel,"forme, formule, formulé"
+formellement,fourmillement
+former,"fermer, fermier, fermoir, forer, forme"
+formule,"force, forge, formel, formulé"
+formuler,fourmilier
+formulé,"formel, formule"
+formé,"ferme, fermé, firme, forcené, forcé"
+fort,"fierté, flot, foot, forfait, fortin"
+fortifié,furtif
+fortin,"fort, fortune, fortuné"
+fortuit,"fort, forêt"
+fortune,"force, forge, forme, fortin, fortuné"
+fortuné,"formé, fortin, fortune"
+forçat,férocité
+forêt,"fierté, forfait, fort, fortuit, frite"
+fosse,"fesse, fessée, fissa, fossé"
+fossoyeur,"fausser, fissure"
+fossé,"fesse, fessée, fissa, fosse"
+foudre,"fader, fadeur"
+fouet,"fluet, foule, foutu, fumet"
+fougue,fugue
+fougère,"figer, figuier, figure, foule"
+fouille,"faille, feuille, feuillu, filial, fille"
+fouiller,"failler, faillir, falloir"
+fouiner,"faner, finir, four"
+foule,"fiole, folie, fouet, fougère, fouler"
+fouler,"filer, filière, flair, fleur, fleuri"
+foulée,foule
+four,"flou, fort, fouiner, fourbe, fourbi"
+fourbe,"four, fourbi, fourbu"
+fourbi,"four, fourbe, fourbu"
+fourbu,"four, fourbe, fourbi"
+fourche,"farouche, foule, friche"
+fourgue,"forge, foule, frigo"
+fourguer,forger
+fourmi,"ferme, fermé, firme, forme, formé"
+fourmilier,formuler
+fourmillement,formellement
+fournaise,frénésie
+fourneau,"farine, forain, fourni, fournée, frein"
+fourni,"farine, forain, four, fourneau, fournée"
+fournir,"four, freiner"
+fourniture,frontière
+fournée,"farine, forain, foule, fourneau, fourni"
+fourreau,"ferré, foirer, forer, fourré, frayer"
+fourrer,"ferrer, four, fourrier, fourrure"
+fourrier,"ferrer, fourrer, fourrure"
+fourrure,"ferrer, fourrer, fourrier"
+fourré,"ferré, foirer, forer, four, fourreau"
+fourvoyer,ferveur
+foutaise,foetus
+foutoir,"fauter, fauteur, feutre, feutré, four"
+foutre,"fauter, fauteur, feutre, feutré, foutoir"
+foutu,"fouet, futur"
+foyer,forer
+frac,"face, farce, farci, force, forcé"
+fracas,frac
+fraction,friction
+frais,"fraise, frise, frisé"
+fraise,"frais, frise, frisé"
+franc,"flanc, frac, franco, froncé"
+franco,"franc, froncé"
+frange,"fange, fringue"
+franger,fringuer
+frappe,frappé
+frappé,frappe
+frasque,"fresque, frusque"
+fraude,"faraud, fard, fardeau, froid, fuyard"
+frayer,"ferré, foirer, forer, fourreau, fourré"
+frayeur,"ferré, foirer, forer, fourreau, fourré"
+fraîchement,farouchement
+fraîcheur,fraîchir
+fraîchir,fraîcheur
+frein,"farine, feint, forain, fourneau, fourni"
+freiner,"fournir, frein"
+fresque,"frasque, frusque"
+friable,"frime, frise"
+friand,fronde
+fric,"farce, farci, flic, force, forcé"
+friche,"farouche, fiche, fourche, fric"
+friction,fraction
+frigo,"forge, fourgue"
+frime,"ferme, fermé, firme, forme, formé"
+frimer,"fermer, fermier, fermoir, former, frime"
+fringue,"frange, frime, frise"
+fringuer,franger
+fripé,"frisé, férié"
+frire,"faire, ferré, fibre, fifre, firme"
+frise,"frais, fraise, friable, frime, fringue"
+friser,frise
+frisé,"frais, fraise, fripé, frise, férié"
+frite,"fierté, fort, forêt, frime, frire"
+friture,"fioriture, frime, frise, fruitier, fureter"
+fritz,"frite, fruit"
+frivole,"frime, frise"
+froc,"farce, farci, floc, force, forcé"
+froid,"faraud, fard, fardeau, fraude, fuyard"
+froideur,"farder, froidure"
+froidure,"farder, froideur"
+froissé,frousse
+froncé,"foncé, franc, franco"
+fronde,friand
+front,"fonte, frontal, fronton"
+frontal,front
+frontière,fourniture
+fronton,front
+frousse,froissé
+fruit,"fierté, fort, forêt, frite, fritz"
+fruitier,"fioriture, friture, fureter, fureteur"
+frusque,"frasque, fresque"
+frustré,forestier
+frère,"ferré, foirer, forer, fourreau, fourré"
+frémir,"fermer, fermier, fermoir, former, frimer"
+frénésie,fournaise
+fréquent,fréquenté
+fréquenté,fréquent
+frêle,"frêne, fêler"
+frêne,"farine, forain, fourneau, fourni, fournée"
+fugue,"figue, fougue"
+fuir,"fier, four"
+fuite,"faute, frite, fruit, furie"
+fulgurant,flagrant
+fumant,féminité
+fumer,"fumet, fumeur, fumier, fumée, fuser"
+fumet,"fluet, fouet, fumer, fumée"
+fumeur,"fumer, fumier"
+fumier,"fumer, fumeur"
+fumé,"fumée, futé"
+fumée,"fumer, fumet, fumé, fusée"
+fureter,"fioriture, friture, fruitier, fureteur"
+fureteur,"fioriture, friture, fruitier, fureter"
+fureur,"ferré, foirer, forer, fourreau, fourré"
+furie,"frime, frire, frise, frite, fuite"
+furieux,"foireux, furie"
+furtif,fortifié
+fusain,"faisan, fusion"
+fuser,"faiseur, fumer, fusée"
+fusil,fusillé
+fusillé,fusil
+fusion,"faisan, fusain"
+fusée,"fumée, fuser"
+futile,"fatal, fauteuil"
+futilité,fatalité
+futur,"fauter, fauteur, feutre, feutré, foutoir"
+futé,fumé
+fuyant,"feint, feinte, fente, fiente, fonte"
+fuyard,"faraud, fard, fardeau, fraude, froid"
+fâcher,"faucher, ficher, fichier"
+fâché,"fiche, fichu"
+fécond,faconde
+félin,"filin, filon, flan"
+féminité,fumant
+féodal,fidèle
+férié,"fripé, frisé"
+féroce,"farce, farci, force, forcé, frac"
+férocement,forcément
+férocité,forçat
+féru,fétu
+fétu,féru
+fêler,"filer, filière, flair, fleur, fleuri"
+fêlure,"filer, filière, flair, fleur, fleuri"
+fêlé,filé
+fête,fêter
+fêter,"fauter, fauteur, feutre, feutré, foutoir"
+gaffe,gaffer
+gaffer,"gaffe, gouffre"
+gage,"gang, garage, gare, gaze"
+gagner,guigner
+gagné,ganté
+gain,"gaine, gainer, gamin, gang, gant"
+gaine,"gain, gainer, gamin, grain, graine"
+gainer,"gain, gaine, genre, gêner"
+gala,"galant, glas"
+galant,"gala, gant, gluant"
+galaxie,galeux
+galer,"galerie, galet, garer, gaule, gaver"
+galerie,"galer, geler, geôlier, gloire, gueuler"
+galet,"galer, galette, gaule, gilet, goulot"
+galette,"galet, glotte"
+galeux,galaxie
+galon,"galonné, galop, gazon"
+galonné,galon
+galop,"galon, galoper, galopin"
+galoper,"galop, glapir"
+galopin,galop
+gamelle,gamme
+gamin,"gain, gaine, grain"
+gamme,"gamelle, gammée, gomme, gramme"
+gammée,"gamme, gomme"
+gang,"gage, gain, gangue, gant, gong"
+gangue,"gang, gong"
+gant,"gain, galant, gang, ganter, ganté"
+ganter,"gant, géniteur"
+ganté,"gagné, gant, gaîté, gent, genêt"
+garage,"gage, gorge, gorgée"
+garant,"gant, garanti, garantie, granit, grenat"
+garanti,"garant, garantie, granit, grenat, gérant"
+garantie,"garant, garanti, granit, grenat, gérant"
+garantir,garniture
+garce,"garde, gare, garer, glace, grec"
+garde,"garce, garder, gardé, gare, garer"
+garder,"garde, garer"
+gardien,"gourdin, gradin, guéridon"
+gardé,"garde, gourd, gourde, grade, gradé"
+gare,"gage, garce, garde, garer, gars"
+garer,"galer, garce, garde, garder, gare"
+garni,"garnir, giron, grain, graine, grenu"
+garnir,"garni, grenier"
+garniture,garantir
+gars,"gare, glas, gras, gris, gros"
+gauche,gâche
+gaucherie,gâcher
+gaule,"galer, galet"
+gaulois,"glaise, glas"
+gaver,"galer, garer, gazer, givre, givré"
+gaze,"gage, gare, gazelle, gazer, gazette"
+gazelle,gaze
+gazer,"galer, garer, gaver, gaze"
+gazette,gaze
+gazeux,gaze
+gazon,galon
+gaîté,ganté
+geai,gain
+geignard,goguenard
+geindre,gendre
+geler,"galer, galerie, gelée, geôle, geôlier"
+gelé,gelée
+gelée,"geler, gelé, geôle"
+gendre,"geindre, genre"
+genou,grenu
+genre,"gainer, gendre, gerbe, germe, gêner"
+gens,"gent, génois"
+gent,"gant, ganté, gens, gentil, genêt"
+gentil,gent
+genêt,"gant, ganté, gent, géant"
+gerbe,"genre, gerber, germe, gourbi"
+gerber,gerbe
+germain,graminée
+germe,"genre, gerbe, germer, groom"
+germer,germe
+geôle,"geler, gelée"
+geôlier,"galer, galerie, geler, gloire, gueuler"
+gibet,gilet
+gibier,gober
+gifle,"gifler, gilet"
+gifler,gifle
+gilet,"galet, gibet, gifle, goulot"
+girafe,grief
+girl,"gril, grêle"
+giron,"garni, girond, grain, graine, grenu"
+girond,"giron, grand, grenade"
+girouette,"gratuit, gratuité, griotte, grotte"
+gitan,guitoune
+givre,"gaver, givré, grive"
+givré,"gaver, givre"
+glace,"garce, glacer, glacé, glauque"
+glacer,"glace, glacier, glacière"
+glacier,"glacer, glacière"
+glacière,"glacer, glacier"
+glacé,glace
+glaise,"gaulois, glas"
+gland,"glande, glander, goéland, grand"
+glande,"gland, goéland"
+glander,gland
+glapir,galoper
+glas,"gala, gars, gaulois, glaise, gras"
+glauque,glace
+glaçon,glycine
+glissement,gloussement
+glisser,"glissière, glousser"
+glissière,"glisser, glousser"
+globe,gober
+gloire,"galer, galerie, geler, geôlier, gueuler"
+glotte,galette
+gloussement,glissement
+glousser,"glisser, glissière"
+gluant,galant
+glycine,glaçon
+gnome,gomme
+gnon,"gond, gong, guenon"
+gober,"gibier, globe, goder"
+goder,"gober, godet, guider"
+godet,goder
+gogo,gong
+goguenard,geignard
+golf,golfe
+golfe,golf
+gomme,"gamme, gammée, gnome, gommer"
+gommer,gomme
+gond,"gnon, gong, guindé"
+gong,"gang, gangue, gnon, gogo, gond"
+gorge,"garage, gorger, gorgée, gorille"
+gorger,gorge
+gorgée,"garage, gorge"
+gorille,"gorge, grille, grillé"
+gosier,gésir
+gouffre,gaffer
+goulot,"galet, gilet"
+gourbi,gerbe
+gourd,"garde, gardé, gourde, gourdin, grade"
+gourde,"garde, gardé, gourd, grade, gradé"
+gourdin,"gardien, gourd, gradin, guéridon"
+gourer,"garer, gruyère, guerre, guérir, gérer"
+goutter,"gouttière, guetter, guetteur"
+gouttière,"goutter, guetter, guetteur"
+gouvernant,gouvernante
+gouvernante,gouvernant
+gouverner,gouverneur
+gouverneur,gouverner
+goéland,"gland, glande"
+goût,goûter
+goûter,"goût, guitare, guêtre, gâter, gâterie"
+gracile,"grade, grave"
+grade,"garde, gardé, gourd, gourde, gracile"
+gradin,"gardien, gourdin, grain, guéridon"
+gradé,"garde, gardé, gourd, gourde, grade"
+grailler,"griller, grouiller"
+grain,"gain, gaine, gamin, garni, giron"
+graine,"gaine, garni, giron, grain, grenu"
+graisse,"grade, grave"
+graisser,"grosseur, grossier, grossir, guérisseur"
+graminée,germain
+gramme,gamme
+grand,"girond, gland, grade, gradé, grain"
+grand-rue,"grandeur, grandir, grenadier, gronder"
+grandement,grondement
+grandeur,"grand-rue, grandir, grenadier, gronder"
+grandir,"grand, grand-rue, grandeur, grenadier, gronder"
+granit,"garant, garanti, garantie, grenat, gérant"
+grappe,grippe
+gras,"gars, glas, gravats, gris, gros"
+gratin,grain
+gratuit,"girouette, gratuité, griotte, grotte"
+gratuité,"girouette, gratuit, griotte, grotte"
+gravats,gras
+grave,"gaver, gracile, grade, graisse, graver"
+graver,"gaver, grave, gravier, gravir, gravure"
+gravier,"graver, gravir, gravure"
+gravir,"graver, gravier, gravure"
+gravité,gradé
+gravure,"grade, graver, gravier, gravir"
+gravé,"gradé, grave, grive, grève"
+grec,"garce, gare, grue, grâce"
+greffe,"griffe, griffu"
+greffer,"greffier, griffer"
+greffier,"greffer, griffer"
+grenade,"girond, grand"
+grenadier,"grand-rue, grandeur, grandir, gronder"
+grenadine,grondin
+grenat,"garant, garanti, garantie, granit, gérant"
+grenier,garnir
+grenu,"garni, genou, giron, grain, graine"
+grief,"girafe, grive"
+griffe,"greffe, griffu"
+griffer,"greffer, greffier"
+griffu,"greffe, griffe"
+gril,"girl, grille, grillé, gris, grêle"
+grillage,grillagé
+grillagé,grillage
+grille,"gorille, gril, grillé"
+griller,"grailler, grouiller"
+grillé,"gorille, gril, grille"
+grimace,grive
+griotte,"girouette, gratuit, gratuité, grive, grotte"
+grippe,grappe
+gris,"gars, gras, gril, griser, gros"
+grisaille,groseille
+griser,"gris, griserie"
+griserie,griser
+grive,"givre, grave, gravé, grief, grimace"
+groin,"garni, giron, grain, graine, grenu"
+grondement,grandement
+gronder,"grand-rue, grandeur, grandir, grenadier"
+grondin,grenadine
+groom,germe
+gros,"gars, gras, gris, grès"
+groseille,grisaille
+grosseur,"graisser, grossier, grossir, guérisseur"
+grossier,"graisser, grosseur, grossir, guérisseur"
+grossir,"graisser, grosseur, grossier, guérisseur"
+grotte,"girouette, gratuit, gratuité, griotte"
+grouiller,"grailler, griller"
+groupe,groupé
+groupé,groupe
+grue,"gare, grec, gruyère, guet"
+gruyère,"garer, gourer, grue, guerre, guérir"
+grâce,"garce, grec, gâche"
+grès,"gars, gras, gris, gros"
+grève,"grave, gravé, grive"
+grêle,"girl, gril"
+guenon,gnon
+guerre,"garer, gourer, gruyère, guérir, gérer"
+guet,"gent, grue"
+guetter,"goutter, gouttière, guetteur"
+guetteur,"goutter, gouttière, guetter"
+gueuler,"galer, galerie, geler, geôlier, gloire"
+guide,"guider, guise, guitare"
+guider,"goder, guide"
+guigner,gagner
+guindé,gond
+guise,"guide, guitare"
+guitare,"goûter, guide, guise, guêtre, gâter"
+guitoune,gitan
+guéri,"guérir, guérite"
+guéridon,"gardien, gourdin, gradin"
+guérir,"garer, gourer, gruyère, guerre, guéri"
+guérisseur,"graisser, grosseur, grossier, grossir"
+guérite,guéri
+guêtre,"goûter, guitare, gâter, gâterie"
+gâche,"gauche, grâce, gâcher"
+gâcher,"gaucherie, gâche"
+gâter,"goûter, guitare, guêtre, gâterie"
+gâterie,"goûter, guitare, guêtre, gâter"
+géant,"gant, ganté, gent, genêt, gérant"
+gémir,gésir
+géniteur,ganter
+génois,gens
+gérant,"garant, garanti, garantie, granit, grenat"
+gérer,"garer, gourer, gruyère, guerre, guérir"
+gésir,"gosier, gémir"
+gêne,"gêner, gêné"
+gêner,"gainer, genre, gêne"
+gêné,gêne
+habileté,hublot
+habit,"habiter, habitué, habité, hébété"
+habiter,"habit, habituer, hébéter"
+habitude,hébétude
+habituer,"habiter, hébéter"
+habitué,"habit, habité, hébété"
+habité,"habit, habitué, hébété"
+hache,"hacher, haché, hanche"
+hacher,"hache, hocher"
+haché,hache
+haie,"haine, hier"
+haine,"haie, haineux"
+haineux,haine
+haleine,halle
+haler,"haleter, halle, halte, hilare, huiler"
+haleter,haler
+hall,"halle, halo"
+halle,"haleine, haler, hall, halte"
+halo,hall
+halte,"haler, halle, haute"
+hamac,hammam
+hammam,hamac
+hampe,harpe
+hanche,hache
+handicap,handicapé
+handicapé,handicap
+haque,haute
+harassé,hérissé
+harde,"hardi, harem, harpe, havre, horde"
+hardi,"harde, horde"
+harem,"harde, harpe, havre"
+harmonie,hermine
+harpe,"hampe, harde, harem, havre"
+hausse,housse
+hausser,"hisser, huissier"
+haut,"haute, huit"
+haute,"halte, haque, haut, hutte"
+hauteur,"huître, hâter, hêtre"
+havre,"harde, harem, harpe, hiver"
+herbe,"herbu, hermine, herse, heure"
+herbu,herbe
+hermine,"harmonie, herbe, herse"
+herse,"herbe, hermine, heure, hors, héros"
+heure,"herbe, herse, heureux, heurt, hure"
+heureux,heure
+heurt,"heure, heurter, heurté"
+heurter,"heurt, hériter, héritier"
+heurté,heurt
+hier,"haie, hiver, huer"
+hilare,"haler, huiler, héler"
+hippo,huppé
+hisser,"hausser, huissier"
+histoire,"hystérie, hésiter"
+historique,hystérique
+hiver,"havre, hier"
+hiératique,hérétique
+hobereau,hébreu
+hocher,hacher
+home,"hommage, homme"
+hommage,home
+homme,home
+honoraire,honorer
+honorer,honoraire
+honte,"honteux, hotte"
+honteux,honte
+horaire,"horde, hourra"
+horde,"harde, hardi, horaire, horloge"
+horizontal,horizontale
+horizontale,horizontal
+horloge,horde
+hors,"herse, héros, hérésie"
+hostie,hosto
+hosto,hostie
+hotte,"honte, hutte"
+houle,"houleux, huile"
+houleux,"houle, huileux"
+hourra,horaire
+housse,hausse
+hublot,habileté
+huer,"hier, humer, hure"
+huile,"houle, huiler, huileux, huilé"
+huiler,"haler, hilare, huile, héler"
+huileux,"houleux, huile"
+huilé,huile
+huis,huit
+huissier,"hausser, hisser"
+huit,"haut, huis"
+humain,hymne
+humer,"huer, humeur, humour"
+humeur,"humer, humour"
+humour,"humer, humeur"
+huppé,hippo
+hure,"heure, huer"
+hutte,"haute, hotte"
+huître,"hauteur, hâter, hêtre"
+hymne,"humain, hyène"
+hystérie,"histoire, hésiter"
+hystérique,historique
+hyène,hymne
+hâle,"hâlé, hâte"
+hâlé,hâle
+hâte,"hâle, hâter, hôte"
+hâter,"hauteur, huître, hâte, hêtre"
+hébreu,hobereau
+hébéter,"habiter, habituer"
+hébétude,habitude
+hébété,"habit, habitué, habité"
+héler,"haler, hilare, huiler"
+hérissé,harassé
+hériter,"heurter, héritier"
+héritier,"heurter, hériter"
+héron,héros
+héros,"herse, hors, héron, hérésie"
+hérésie,"herse, hors, héros"
+hérétique,hiératique
+hésiter,"histoire, hystérie"
+hêtre,"hauteur, huître, hâter"
+hôte,"hâte, hôtel, hôtesse"
+hôtel,hôte
+hôtesse,hôte
+idem,"idée, iode"
+idiot,idiotie
+idiotie,idiot
+idée,"idem, iode"
+ignare,ignoré
+ignoré,ignare
+illustre,illustré
+illustré,illustre
+image,imager
+imager,"image, imagerie"
+imagerie,imager
+imaginaire,imaginer
+imaginer,imaginaire
+immeuble,"immobile, immuable"
+immobile,"immeuble, immuable"
+immuable,"immeuble, immobile"
+impair,"imper, impur"
+impasse,impie
+impassibilité,impossibilité
+impassible,impossible
+impatient,impotent
+impec,"imper, impie"
+imper,"impair, impec, impie, impur"
+impie,"impasse, impec, imper"
+imposer,impur
+impossibilité,impassibilité
+impossible,impassible
+imposteur,imposture
+imposture,imposteur
+impotent,impatient
+imprimer,"imprimerie, imprimeur"
+imprimerie,"imprimer, imprimeur"
+imprimeur,"imprimer, imprimerie"
+impur,"impair, imper, imposer"
+inapte,"inepte, ineptie"
+incendiaire,incendier
+incendie,incendié
+incendier,incendiaire
+incendié,incendie
+inclure,incolore
+incolore,inclure
+inconvenant,inconvénient
+inconvénient,inconvenant
+incroyable,incurable
+incurable,incroyable
+indigent,indignité
+indigne,"indigné, indigène"
+indignité,indigent
+indigné,"indigne, indigène"
+indigène,"indigne, indigné"
+inepte,"inapte, ineptie"
+ineptie,"inapte, inepte"
+inerte,inertie
+inertie,inerte
+inespéré,inspiré
+infamie,"infime, infâme"
+infant,infinité
+infime,"infamie, infâme"
+infinité,infant
+infirme,"informe, informé"
+infirmerie,"infirmier, informer"
+infirmier,"infirmerie, informer"
+informe,"infirme, informé"
+informer,"infirmerie, infirmier"
+informé,"infirme, informe"
+infortune,infortuné
+infortuné,infortune
+infâme,"infamie, infime"
+ingénier,ingénieur
+ingénieur,ingénier
+initial,"initiale, inutile"
+initiale,"initial, inutile"
+initiation,intuition
+insatiable,instable
+insolite,insulte
+inspecter,inspecteur
+inspecteur,inspecter
+inspiré,inespéré
+instable,insatiable
+instaurer,instruire
+instruire,instaurer
+insu,issu
+insulte,insolite
+intention,intonation
+interdiction,introduction
+interdire,introduire
+interrogateur,interrogatoire
+interrogatoire,interrogateur
+intonation,intention
+introduction,interdiction
+introduire,interdire
+intuition,initiation
+inutile,"initial, initiale"
+inventaire,"inventer, inventeur"
+inventer,"inventaire, inventeur"
+inventeur,"inventaire, inventer"
+invite,invité
+inviter,invétéré
+invité,invite
+invétéré,inviter
+iode,"idem, idée"
+iris,"iriser, irisé"
+iriser,iris
+irisé,iris
+issu,"insu, issue"
+issue,issu
+ivre,"ivresse, ivrogne"
+ivresse,ivre
+ivrogne,ivre
+jadis,"jais, judas"
+jais,"jadis, jamais"
+jalon,julien
+jalousie,jules
+jamais,jais
+jardinier,jardinière
+jardinière,jardinier
+jarre,"jarret, jurer"
+jarret,jarre
+jauger,juger
+jaune,"jauni, jeune"
+jauni,"jaune, jaunir"
+jaunir,"jauni, junior"
+jaunâtre,jointure
+javel,jovial
+jeter,jetée
+jeté,jetée
+jetée,"jeter, jeté"
+jeune,"jaune, jeûne"
+jeunot,joint
+jeûne,jeune
+joie,"joindre, joli, joue"
+joindre,joie
+joint,jeunot
+jointure,jaunâtre
+joli,joie
+jongler,jongleur
+jongleur,jongler
+joue,"joie, jouer, jouet, joueur, joug"
+jouer,"joue, jouet, joueur, jouir, jour"
+jouet,"joue, jouer, joute"
+joueur,"joue, jouer, jour"
+joug,"joue, jour, juge, jugé"
+jouir,"jouer, jour, jouxter"
+jour,"joue, jouer, joueur, joug, jouir"
+journée,"joue, joute, juron"
+joute,"joue, jouer, jouet, journée, juste"
+jouxter,"jouir, jour"
+jovial,javel
+judas,jadis
+juge,"joue, joug, juger, jugé, jupe"
+juger,"jauger, jouer, juge, jurer"
+jugé,"joug, juge, juré"
+juif,juin
+juin,juif
+jules,jalousie
+julien,jalon
+junior,jaunir
+jupe,"joue, juge, jute"
+jupon,juron
+jurer,"jarre, jouer, juger"
+juron,"journée, jupon"
+jury,"jour, juré"
+juré,"jour, jugé, jury"
+juste,"joute, jute, jésuite"
+jute,"joue, joute, juge, jupe, juste"
+juteux,jute
+jésuite,juste
+l'un,"l'une, lune"
+l'une,"l'un, lune"
+la plupart de,la plupart du
+la plupart du,la plupart de
+labeur,"labour, libre, libéré"
+laboratoire,libérateur
+labour,"labeur, libre, libéré"
+labourer,"laboureur, libraire, librairie, libérer"
+laboureur,"labourer, libraire, librairie, libérer"
+lacer,"lacet, lance, lancer, laper, laver"
+lacet,"lacer, lacté, lance"
+lacis,lacs
+lacs,"lacis, laps, laïc"
+lacté,lacet
+lacune,"leçon, lycéen"
+ladite,ledit
+lady,"laid, land, lard"
+lagune,"ligne, lignée, légion"
+laid,"lady, laie, lait, land, lard"
+laideur,leader
+laie,"laid, lainage, laine, lait, lame"
+lainage,"laie, lange, langue, linge, long"
+laine,"laie, laineux, lance, lande, lange"
+laineux,laine
+laisse,"laissé, liasse, liesse, lisse"
+laisser,"lasser, lisser"
+laissé,"laisse, liasse, liesse, lisse"
+lait,"laid, laie, laiton, laitue"
+laitier,"literie, litière, litre, loterie, loutre"
+laiton,"lait, latin, litanie, lutin"
+laitue,lait
+lambeau,limbe
+lame,"laie, lamelle, lampe, larme, lave"
+lamelle,"lame, lampe"
+lampe,"lame, lamelle, lamper, lampée, laper"
+lamper,"lampe, laper"
+lampée,lampe
+lance,"lacer, lacet, laine, lancer, lancée"
+lancer,"lacer, lance"
+lancée,lance
+land,"lady, laid, landau, lande, lard"
+landau,"land, lande, lundi"
+lande,"laine, lance, land, landau, langage"
+langage,"lance, lande, lange"
+lange,"lainage, laine, lance, lande, langage"
+langue,"lainage, lange, linge, long, longue"
+langueur,"languir, lingerie, longer, longueur"
+languir,"langueur, lingerie, longer, longueur"
+lanière,"lance, lande, lange, lunaire"
+laper,"lacer, lampe, lamper, laver, louper"
+lapin,"laine, latin"
+laps,"lacs, lapsus"
+lapsus,laps
+laque,"laquer, laqué, laïque, loque"
+laquer,"laque, liqueur"
+laqué,laque
+lard,"lady, laid, land, lardon, lardu"
+lardon,lard
+lardu,"lard, lord, lourd"
+large,"lange, larme, larve"
+largeur,larguer
+larguer,largeur
+larme,"lame, lampe, large, larve"
+larron,lorrain
+larve,"large, larme, lave, laver"
+lasser,"laisser, lisser"
+latin,"laine, laiton, lapin, litanie, lutin"
+latrine,"latte, litron"
+latte,"latrine, layette, lutte"
+laurier,"leurre, lierre"
+lavande,"lande, lave"
+lave,"laie, lame, larve, lavande, laver"
+laver,"lacer, laper, larve, lave, laveur"
+laveur,"lave, laver, lavoir, lever, levier"
+lavoir,"laver, laveur, lever, levier, livre"
+lavé,"lave, levé"
+layette,"latte, lutte"
+laïc,lacs
+laïque,laque
+leader,laideur
+lecteur,"lecture, locataire"
+lecture,"lecteur, locataire"
+ledit,ladite
+lent,lien
+lessiver,lessiveur
+lessiveur,lessiver
+lester,"lustre, lustré"
+lettre,"lettré, lutter, lutteur"
+lettré,"lettre, lutter, lutteur"
+leur,"leurre, leurrer, leurs, lier, lieu"
+leurre,"laurier, leur, lierre"
+leurrer,leur
+leurs,"leur, lors, lueur"
+lever,"laver, laveur, lavoir, levier, levée"
+levier,"laver, laveur, lavoir, lever, livre"
+levé,"lavé, levée"
+levée,"lever, levé"
+leçon,"lacune, lycéen"
+liane,"laine, lance, lande, lange, ligne"
+liasse,"laisse, laissé, liesse, lisse"
+libertin,libération
+libraire,"labourer, laboureur, librairie, libérer"
+librairie,"labourer, laboureur, libraire, libérer"
+libre,"labeur, labour, libéré, limbe, lire"
+libérateur,laboratoire
+libération,libertin
+libérer,"labourer, laboureur, libraire, librairie"
+libéré,"labeur, labour, libre"
+licorne,lucarne
+lien,"laie, lent, lier, lieu, lime"
+lier,"laie, leur, lien, lierre, lieu"
+lierre,"laurier, leurre, lier"
+liesse,"laisse, laissé, liasse, lisse"
+lieu,"laie, leur, lien, lier, lieue"
+lieue,"lieu, ligue"
+ligne,"lagune, laine, liane, lignée, ligue"
+lignée,"lagune, ligne, légion"
+ligue,"lieue, ligne, liguer, linge, liège"
+liguer,"ligue, loger, logeur, léger, léguer"
+limbe,"lambeau, libre, lime, limer, limpide"
+lime,"laie, lame, lien, lier, lieu"
+limer,"lier, limbe, lime, lumière"
+limite,limité
+limité,limite
+limon,lion
+limpide,"limbe, lime"
+linge,"lainage, laine, lange, langue, liane"
+lingerie,"langueur, languir, longer, longueur"
+lino,"lien, lion, loin"
+lion,"lien, limon, lino, loin, long"
+liqueur,laquer
+liquide,loquedu
+lire,"laie, libre, lien, lier, lieu"
+lisible,"lisse, liste"
+lisière,"lisse, liste, liséré, loisir"
+lisse,"laisse, laissé, liasse, liesse, lisible"
+lisser,"laisser, lasser, lisse"
+liste,"lisible, lisière, lisse, litre"
+liséré,"lisière, loisir"
+litanie,"laiton, latin, litre, lutin"
+literie,"laitier, litière, litre, loterie, loutre"
+litière,"laitier, literie, litre, loterie, loutre"
+litre,"laitier, libre, lire, liste, litanie"
+litron,latrine
+livre,"laver, laveur, lavoir, lever, levier"
+livrer,"livre, livreur, lévrier"
+livret,livre
+livreur,"livre, livrer, lévrier"
+livrée,"laver, laveur, lavoir, lever, levier"
+liège,"ligne, ligue, linge"
+lièvre,"laver, laveur, lavoir, lever, levier"
+lobe,"loge, lope"
+local,"loyal, luciole"
+locataire,"lecteur, lecture"
+loco,look
+loge,"lobe, loger, logeur, logique, logé"
+loger,"liguer, loge, logeur, longer, louer"
+logeur,"liguer, loge, loger, léger, léguer"
+logique,loge
+logis,louis
+logé,"loge, long, loué"
+loin,"lien, lino, lion, loir, long"
+loir,"lier, lire, loin, loisir, lord"
+loisir,"lisière, liséré, loir"
+long,"lainage, lange, langue, linge, lion"
+longer,"langueur, languir, lingerie, loger, long"
+longue,"lainage, lange, langue, linge, long"
+longueur,"langueur, languir, lingerie, longer"
+look,loco
+lope,"lobe, loge, loup, loupe"
+loque,"laque, loquet, louer, loupe"
+loquedu,liquide
+loquet,loque
+lord,"lard, lardu, loir, lors, lourd"
+lorrain,larron
+lors,"leurs, loir, lord"
+loterie,"laitier, literie, litière, litre, loutre"
+louable,loupe
+louange,"lainage, lange, langue, linge, long"
+louche,lâche
+loucher,"lâcher, lécher"
+louer,"loger, loque, loueur, loupe, louper"
+loueur,"louer, lueur"
+louis,logis
+loup,"lope, loupe, louper, loué"
+loupe,"lope, loque, louable, louange, louer"
+louper,"laper, louer, loup, loupe, lèpre"
+lourd,"lard, lardu, lord, louer, lourder"
+lourder,"lourd, lourdeur"
+lourdeur,lourder
+loutre,"laitier, literie, litière, litre, loterie"
+louvet,louveteau
+louveteau,louvet
+louvoyer,"laver, laveur, lavoir, lever, levier"
+loué,"logé, loup"
+lover,"laver, laveur, lavoir, lever, levier"
+loyal,local
+loyer,"loger, louer, lover"
+lubie,luire
+lucarne,licorne
+luciole,local
+lueur,"leur, leurs, louer, loueur"
+luire,"libre, lire, litre, livre, lubie"
+lumière,limer
+lunaire,"lanière, lune"
+lundi,"land, landau, lande"
+lune,"l'un, l'une, lunaire, lunette, luxe"
+lunette,lune
+lustre,"lester, lustré"
+lustré,"lester, lustre"
+lutin,"laiton, latin, litanie"
+lutte,"latte, layette, lutter, lutteur"
+lutter,"lettre, lettré, lutte, lutteur"
+lutteur,"lettre, lettré, lutte, lutter"
+luxe,lune
+lycée,lycéen
+lycéen,"lacune, leçon, lycée"
+là-dessous,là-dessus
+là-dessus,là-dessous
+lâche,"louche, lâcher, lâcheté"
+lâcher,"loucher, lâche, lécher"
+lâcheté,lâche
+lèpre,"laper, louper, lèvre"
+lèvre,"laver, laveur, lavoir, lever, levier"
+lécher,"loucher, lâcher"
+légal,légat
+légat,légal
+léger,"liguer, loger, logeur, léguer"
+légion,"lagune, ligne, lignée"
+léguer,"liguer, loger, logeur, léger"
+lévrier,"livrer, livreur"
+maboul,"meuble, meublé, mobile"
+machin,machine
+machine,machin
+madame,médium
+madone,médian
+madrier,modérer
+mage,"magie, magique, mare, marge"
+magie,"mage, maire, mamie, manie, marge"
+magique,mage
+magma,maman
+magot,"muguet, mégot"
+maigre,"maire, mugir"
+maigreur,"maigrir, maugréer"
+maigrir,"maigreur, maugréer"
+mail,"maille, main, mais, mari, miel"
+maille,"mail, malle, mille, mlle, moelle"
+maillet,"maillot, mollet"
+maillon,"main, million, moellon"
+maillot,"maillet, mollet"
+main,"mail, maillon, maints, mais, malin"
+maintes,"maints, mais"
+maintien,"mention, menton, monotone, monotonie, munition"
+maints,"main, maintes"
+maire,"magie, maigre, mairie, mamie, manie"
+mairie,maire
+mais,"mail, main, maintes, maison, marais"
+maison,mais
+majeur,major
+major,majeur
+malade,"maladie, mélodie"
+maladie,"malade, malle, mélodie"
+malaise,"malaisé, malle"
+malaisé,malaise
+malice,milice
+malin,"main, marin, matin, melon, moulin"
+malingre,mélanger
+malle,"maille, maladie, malaise, mille, mlle"
+maman,"magma, mamelon"
+mamelle,mamie
+mamelon,"maman, melon"
+mamie,"magie, maire, mamelle, manie"
+manager,"manger, mangeur, ménager, ménagerie"
+mandarin,mandarine
+mandarine,mandarin
+mander,"mendier, minauder, moindre, méandre"
+manette,"manie, menotte"
+manger,"manager, mangeur, ménager, ménagerie"
+mangeur,"manager, manger, ménager, ménagerie"
+mangue,"manège, ménage"
+maniaque,"manque, manqué"
+manie,"magie, maire, mamie, manette, manier"
+maniement,monument
+manier,"manie, manière, manoir, mener, meneur"
+manif,manie
+manière,"manier, manoir, mante, mener, meneur"
+manoir,"manier, manière, mener, meneur, miner"
+manque,"maniaque, manqué"
+manqué,"maniaque, manque"
+mante,"manie, manière, manteau, marne, mater"
+manteau,"mante, minet, minuit, minute, minutie"
+manège,"mangue, ménage"
+maquereau,"moquer, moquerie, moqueur"
+maquette,moquette
+marais,"mais, mars, moeurs, morose, mors"
+maraud,"mardi, merde, myriade"
+maraîcher,"marcher, marcheur"
+marbre,"mare, marre"
+marc,"marche, marché, mare, mari, mark"
+marche,"marc, marché"
+marcher,"maraîcher, marcheur"
+marcheur,"maraîcher, marcher"
+marché,"marc, marche"
+mardi,"maraud, mari, marin, marié, martini"
+mare,"mage, maire, marbre, marc, marelle"
+marelle,"mare, marge, marne, marre, marée"
+marge,"mage, magie, maire, mare, marelle"
+mari,"mail, main, mais, marc, mardi"
+mariage,"mare, marge, marne, marre, marée"
+marier,"mari, marre, mirer, miroir, mourir"
+marin,"main, malin, mardi, mari, marine"
+marine,"mari, marin, marne, morne, mouron"
+marié,"mardi, mari, marin, marée"
+mark,"marc, mare, mari, mars"
+marmite,"mare, marge, marmot, marne, marre"
+marmot,marmite
+marne,"maire, manie, mante, mare, marelle"
+marotte,"mare, marge, marne, marre, marée"
+marque,marqué
+marquis,mars
+marqué,marque
+marraine,marron
+marre,"maire, marbre, mare, marelle, marge"
+marrer,"mare, marre"
+marron,marraine
+mars,"mais, marais, marc, mare, mari"
+marteau,"mort, muret, mérite"
+martial,mortel
+martien,martini
+martinet,"miroitant, méritant"
+martini,"mardi, mari, martien"
+martyr,"martyre, meurtre, meurtri, miroiter, mortier"
+martyre,"mare, marge, marne, martyr, marée"
+marée,"maire, mare, marelle, marge, mariage"
+masque,"masqué, mosaïque, mosquée, musique"
+masqué,"masque, mosaïque, mosquée, musique"
+massage,message
+masse,"masser, masseur, massue, mess, messe"
+masser,"masse, masseur, mousser"
+masseur,"masse, masser, mousser"
+massue,"masse, mess, messe, miss, mousse"
+mastiquer,moustiquaire
+masure,"maure, mauser, mesure, mesuré, miser"
+matador,mater
+match,maths
+matelas,maths
+mater,"mante, matador, matière, matériau, maître"
+maths,"match, matelas"
+matin,"main, malin, marin, matinal, matinée"
+matinal,matin
+matinée,"matin, maton, mitan, mouton, mutin"
+matière,"mater, matériau, maître, mitre, moiteur"
+maton,"matin, matinée, matou, maçon, mitan"
+matou,maton
+matrone,mitron
+matériau,"mater, matière, maître, mitre, moiteur"
+maudire,"mauve, modéré, moudre"
+maugréer,"maigreur, maigrir"
+maure,"maire, mare, marge, marne, marre"
+mauser,"masure, mesure, mesuré, miser, misère"
+mauve,"maudire, maure"
+mayonnaise,miennes
+maçon,"maton, mécano, mécène"
+maçonner,maçonnerie
+maçonnerie,maçonner
+maître,"mater, matière, matériau, mitre, moiteur"
+maîtrise,motorisé
+maïa,maïs
+maïs,"mais, mars, maïa"
+meilleur,"millier, mollir, mouiller"
+melon,"malin, mamelon, moulin"
+menace,"menacé, mince, monceau"
+menacer,minceur
+menacé,"menace, mince, monceau"
+mendiant,mondanité
+mendier,"mander, minauder, moindre, méandre"
+mener,"manier, manière, manoir, meneur, miner"
+meneur,"manier, manière, manoir, mener, miner"
+menotte,manette
+menteur,"mentir, miniature, minuter, minuterie, moniteur"
+mention,"maintien, menton, monotone, monotonie, munition"
+mentir,"menteur, miniature, minuter, minuterie, moniteur"
+menton,"maintien, mention, monotone, monotonie, munition"
+menu,"meuf, mien"
+menuisier,monsieur
+mercerie,"mercier, mercure"
+merci,"marc, mercier, morceau"
+mercier,"mercerie, merci, mercure"
+mercure,"mercerie, mercier, merde, merle"
+merde,"maraud, mardi, mercure, merder, merdeux"
+merder,"merde, merdier, mirador, mordoré, mordre"
+merdeux,merde
+merdier,"merder, mirador, mordoré, mordre"
+merle,"mercure, merde, meule, moral, morale"
+mess,"masse, massue, messe, mets, miss"
+message,massage
+messe,"masse, massue, mess, miss, mousse"
+mesure,"masure, mauser, mesuré, miser, misère"
+mesuré,"masure, mauser, mesure, miser, misère"
+mets,"mess, muet, métis"
+metteur,mettre
+mettre,metteur
+meuble,"maboul, meublé, meule, mobile"
+meubler,mobilier
+meublé,"maboul, meuble, mobile"
+meuf,menu
+meule,"merle, meuble, meurtre, meute, moule"
+meurtre,"martyr, martyre, meule, meurtri, miroiter"
+meurtri,"martyr, martyre, meurtre, miroiter, mortier"
+meurtrier,meurtrir
+meurtrir,meurtrier
+meute,"meule, muter"
+miam,mica
+miauler,"molaire, mouler, moulure, mêler"
+mica,miam
+miche,"miché, mince, mioche, moche, mouche"
+miché,"miche, mioche, moche, mouche, mèche"
+micro,microbe
+microbe,micro
+miel,"mail, mien, mine, mire, mise"
+mielleux,moelleux
+mien,"main, menu, miel, mienne, miens"
+mienne,"mien, monnaie, moyenne"
+miennes,mayonnaise
+miens,"mien, minus, moins"
+miette,"motte, mouette, muette"
+mieux,miteux
+mignon,moignon
+milice,malice
+militaire,militer
+militer,militaire
+mille,"maille, malle, mlle, moelle, mollo"
+milliard,mollard
+millier,"meilleur, mollir, mouiller"
+million,"maillon, moellon"
+mimer,"miner, mirer, miser, mémoire, mémère"
+mimosa,mêmes
+minable,"mince, mine"
+minaret,minorité
+minauder,"mander, mendier, moindre, méandre"
+mince,"menace, menacé, miche, minable, minceur"
+minceur,"menacer, mince"
+mine,"main, miel, mien, minable, mince"
+miner,"manier, manière, manoir, mener, meneur"
+minet,"mante, manteau, mince, mine, miner"
+mineur,"manier, manière, manoir, mener, meneur"
+miniature,"menteur, mentir, minuter, minuterie, moniteur"
+ministre,"ministère, monastère, monstre"
+ministère,"ministre, monastère, monstre"
+minorité,minaret
+minuit,"mante, manteau, minet, minute, minutie"
+minus,"miens, moins"
+minute,"mante, manteau, minet, minuit, minutie"
+minuter,"menteur, mentir, miniature, minuterie, moniteur"
+minuterie,"menteur, mentir, miniature, minuter, moniteur"
+minutie,"mante, manteau, mince, mine, minet"
+mioche,"miche, miché, moche, mouche, mèche"
+miracle,mire
+mirador,"merder, merdier, mirer, mordoré, mordre"
+mirage,"marge, mariage, morgue"
+mire,"maire, mare, miel, mien, mine"
+mirer,"maire, marier, marre, mimer, miner"
+mirette,"marotte, mire, murette"
+miroir,"marier, marre, mirer, mourir, murer"
+miroitant,"martinet, méritant"
+miroiter,"martyr, martyre, meurtre, meurtri, mortier"
+mise,"mais, miel, mien, mine, mire"
+miser,"masure, mauser, mesure, mesuré, mimer"
+miss,"mais, masse, massue, mess, messe"
+missel,"mise, miss"
+mission,"moisson, mousson"
+missive,mise
+misère,"masure, mauser, mesure, mesuré, miser"
+mitan,"matin, matinée, maton, mouton, mutin"
+mitard,"motard, moutard, moutarde"
+mite,"miel, mien, mine, mire, mise"
+miteux,"mieux, mite"
+mitrailler,mitrailleur
+mitrailleur,mitrailler
+mitre,"maire, mater, matière, matériau, maître"
+mitron,matrone
+mixte,"mite, mitre, moite"
+mlle,"maille, malle, mille, moelle, mollo"
+mobile,"maboul, meuble, meublé"
+mobilier,meubler
+moche,"miche, miché, mioche, mouche, mèche"
+mode,"modelé, moderne, modeste, monde, moue"
+modeler,moduler
+modelé,"mode, modèle"
+moderne,mode
+modeste,"mode, modestie"
+modestie,modeste
+moduler,modeler
+modèle,modelé
+modérer,madrier
+modéré,"maudire, moudre"
+moelle,"maille, malle, mille, mlle, mollo"
+moelleux,mielleux
+moellon,"maillon, million"
+moeurs,"marais, mars, morose, mors"
+moignon,mignon
+moindre,"mander, mendier, minauder, moite, méandre"
+moine,"mince, mine, miner, minet, moineau"
+moineau,moine
+moins,"miens, minus, moine, mois, moisi"
+moire,"maire, mire, mirer, mitre, moine"
+moiré,moire
+mois,"mais, mise, miss, moins, moisi"
+moisi,"moins, mois, moisir"
+moisir,"masure, mauser, mesure, mesuré, miser"
+moisson,"mission, mousson"
+moite,"mite, mitre, mixte, moindre, moine"
+moiteur,"mater, matière, matériau, maître, mitre"
+molaire,"miauler, mouler, moulure, mêler"
+mollard,milliard
+mollet,"maillet, maillot"
+mollir,"meilleur, millier, mouiller"
+mollo,"maille, malle, mille, mlle, moelle"
+momi,mois
+monastère,"ministre, ministère, monstre"
+monceau,"menace, menacé, mince"
+mondanité,mendiant
+monde,"mode, moine, monnaie, monocle, monstre"
+moniteur,"menteur, mentir, miniature, minuter, minuterie"
+monnaie,"mienne, monde, moyenne"
+monocle,monde
+monotone,"maintien, mention, menton, monotonie, munition"
+monotonie,"maintien, mention, menton, monotone, munition"
+monsieur,menuisier
+monstre,"ministre, ministère, monastère, monde"
+mont,"mante, manteau, minet, minuit, minute"
+montage,monde
+montant,mont
+monter,"menteur, mentir, miniature, minuter, minuterie"
+montre,"menteur, mentir, miniature, minuter, minuterie"
+monture,"menteur, mentir, miniature, minuter, minuterie"
+monté,"mante, manteau, minet, minuit, minute"
+montée,"mante, manteau, minet, minuit, minute"
+monument,maniement
+monétaire,"menteur, mentir, miniature, minuter, minuterie"
+moquer,"maquereau, moquerie, moqueur"
+moquerie,"maquereau, moquer, moqueur"
+moquette,maquette
+moqueur,"maquereau, moquer, moquerie"
+moral,"merle, morale, mural"
+morale,"merle, moral, mural"
+morbide,"morne, morue, morve"
+morceau,"marc, merci"
+mordant,mort
+mordoré,"merder, merdier, mirador, mordre"
+mordre,"merder, merdier, mirador, mordoré"
+morgue,"marge, mariage, mirage, morue"
+morne,"marin, marine, marne, moine, moire"
+morose,"marais, mars, moeurs, mors"
+mors,"marais, mars, moeurs, mois, morose"
+morsure,"morne, morve"
+mort,"marteau, mont, mordant, mors, mortel"
+mortel,"martial, mort"
+mortier,"martyr, martyre, meurtre, meurtri, miroiter"
+mortuaire,"martyr, martyre, meurtre, meurtri, miroiter"
+morue,"moire, morbide, morgue, morne, morve"
+morve,"moire, morbide, morne, morsure, morue"
+morveux,morve
+mosaïque,"masque, masqué, mosquée, musique"
+mosquée,"masque, masqué, mosaïque, musique"
+motard,"mitard, moutard, moutarde"
+moteur,"mater, matière, matériau, maître, mitre"
+moto,"mont, mort"
+motorisé,maîtrise
+motte,"miette, moite, mouette, muette"
+mouche,"miche, miché, mioche, moche, mèche"
+moucher,"mouchoir, mâcher, mâchoire"
+mouchoir,"moucher, mâcher, mâchoire"
+moudre,"maudire, modéré"
+moue,"mode, morue, mouette, moule, moulure"
+mouette,"miette, motte, moue, moule, muette"
+moufle,"moule, mufle"
+mouiller,"meilleur, millier, mollir"
+mouillé,"maille, malle, mille, mlle, moelle"
+moulant,moulinet
+moule,"meule, morue, moue, mouette, moufle"
+mouler,"miauler, molaire, moule, moulure, mêler"
+moulin,"malin, melon"
+moulinet,moulant
+moult,"moule, mourant, mouvant, mulet"
+moulure,"miauler, molaire, moue, mouler, mêler"
+mourant,moult
+mourir,"marier, marre, mirer, miroir, murer"
+mouron,"marin, marine, marne, morne"
+mousse,"masse, massue, mess, messe, miss"
+mousser,"masser, masseur"
+mousson,"mission, moisson"
+moussu,"masse, massue, mess, messe, miss"
+moustache,moustachu
+moustachu,moustache
+moustiquaire,mastiquer
+moustique,mystique
+moutard,"mitard, motard, moutarde"
+moutarde,"mitard, motard, moutard"
+mouton,"matin, matinée, maton, mitan, mutin"
+mouvant,moult
+moyen,moyenne
+moyenne,"mienne, monnaie, moyen"
+muer,"moue, muet, mule, murer, muter"
+muet,"mets, moue, muer, muette, muguet"
+muette,"miette, motte, mouette, muet"
+mufle,"meule, moufle, moule, mule, mulet"
+mugir,"maigre, munir"
+muguet,"magot, muet, mégot"
+mule,"meule, mlle, moue, moule, muer"
+mulet,"meule, moule, moult, muet, mufle"
+munir,"manier, manière, manoir, mener, meneur"
+munition,"maintien, mention, menton, monotone, monotonie"
+muraille,marelle
+mural,"merle, moral, morale"
+murer,"marier, marre, maure, mirer, miroir"
+muret,"marteau, maure, mort, muet, mulet"
+murette,"marotte, mirette, muret"
+muscle,"musclé, musical"
+muscler,musculaire
+musclé,"muscle, musical"
+musculaire,muscler
+musette,musée
+musical,"muscle, musclé"
+musique,"masque, masqué, mosaïque, mosquée, musée"
+musée,"musette, musique"
+muter,"mater, matière, matériau, maître, meute"
+mutilé,"mutuel, métal"
+mutin,"matin, matinée, maton, mitan, mouton"
+mutuel,"mutilé, métal"
+myope,myopie
+myopie,myope
+myriade,"maraud, mardi, merde"
+mystique,moustique
+mâcher,"moucher, mouchoir, mâchoire"
+mâchoire,"moucher, mouchoir, mâcher"
+mâle,"mlle, mule, môle"
+mâture,"mater, matière, matériau, maître, mitre"
+mèche,"miche, miché, mioche, moche, mouche"
+mère,"mare, mire, mètre, mémère"
+mètre,"mater, matière, matériau, maître, mitre"
+méandre,"mander, mendier, minauder, moindre"
+mécano,"maçon, mécène"
+mécène,"maçon, mécano"
+médecin,médecine
+médecine,médecin
+médian,madone
+médium,madame
+médius,"méduse, médusé"
+méduse,"médius, médusé"
+médusé,"médius, méduse"
+mégot,"magot, muguet"
+mélange,mélangé
+mélanger,malingre
+mélangé,mélange
+mélodie,"malade, maladie"
+mémoire,"mimer, moire, mémère"
+mémère,"mimer, mère, mémoire"
+mémé,même
+ménage,"mangue, manège"
+ménager,"manager, manger, mangeur, ménagerie"
+ménagerie,"manager, manger, mangeur, ménager"
+mépris,méprise
+méprise,mépris
+méritant,"martinet, miroitant"
+mérite,"marteau, mort, muret"
+mériter,"martyr, martyre, meurtre, meurtri, miroiter"
+méritoire,"martyr, martyre, meurtre, meurtri, miroiter"
+métal,"mutilé, mutuel"
+métier,"mater, matière, matériau, maître, mitre"
+métis,mets
+métro,"mater, matière, matériau, maître, mitre"
+météo,métro
+météore,"mater, matière, matériau, maître, mitre"
+mêler,"miauler, molaire, mouler, moulure, mêlée"
+mêlé,mêlée
+mêlée,"mêler, mêlé"
+même,"mémé, mêmes, môme"
+mêmes,"mimosa, même"
+môle,"mlle, mule, mâle, môme"
+môme,"même, môle"
+mûrir,"marier, marre, mirer, miroir, mourir"
+nacelle,nacre
+nacre,"nacelle, nacrer, nacré"
+nacrer,nacre
+nacré,"nacre, navré"
+nage,"nager, nageur, naguère, naze, nuage"
+nageoire,"nager, nageur, naguère, neiger, nègre"
+nager,"nage, nageoire, nageur, naguère, neiger"
+nageur,"nage, nageoire, nager, naguère, neiger"
+naguère,"nage, nageoire, nager, nageur, neiger"
+nain,"nana, nazi"
+nana,nain
+nanti,"nantir, natif, néant"
+nantir,nanti
+nappe,nippe
+narrateur,nourriture
+narrer,nourrir
+nasal,"natal, naval"
+natal,"nasal, naturel, naval"
+natif,nanti
+nation,notion
+national,nationale
+nationale,national
+nature,"naître, neutre, notaire, noter, notoire"
+naturel,natal
+naufrage,naufragé
+naufragé,naufrage
+naval,"nasal, natal, nouvel"
+navet,"navette, navrant, naïveté, nouveauté"
+navette,navet
+navire,navré
+navrant,navet
+navré,"nacré, navire"
+naze,"nage, nazi, nazisme"
+nazi,"nain, naze"
+nazisme,naze
+naître,"nature, neutre, notaire, noter, notoire"
+naïveté,"navet, nouveauté"
+neige,"neiger, neigeux"
+neiger,"nageoire, nager, nageur, naguère, neige"
+neigeux,neige
+nerf,"neuf, nier"
+neuf,nerf
+neutre,"nature, naître, notaire, noter, notoire"
+neveu,neveux
+neveux,neveu
+niche,"nicher, nièce"
+nicher,niche
+nickel,nickelé
+nickelé,nickel
+nier,"nerf, noir"
+nimber,nombre
+nippe,nappe
+nièce,niche
+noce,note
+noir,"nier, noirci, noircir, noix, nord"
+noiraud,nord
+noirceur,noircir
+noirci,noir
+noircir,"noir, noirceur"
+noix,noir
+nombre,nimber
+nord,"noir, noiraud, normand"
+nord-est,nord-ouest
+nord-ouest,nord-est
+normal,normale
+normale,normal
+normand,nord
+norme,notre
+notable,"note, notre"
+notaire,"nature, naître, neutre, note, noter"
+note,"noce, notable, notaire, noter, notoire"
+noter,"nature, naître, neutre, notaire, note"
+notion,nation
+notoire,"nature, naître, neutre, notaire, note"
+notre,"nature, naître, neutre, norme, notable"
+nouer,"noter, nourrir, noyer"
+nouille,nulle
+nourrir,"narrer, nouer"
+nourriture,narrateur
+nous,noué
+nouveauté,"navet, naïveté"
+nouvel,naval
+noué,"nous, noyé, nuée"
+noyer,"noter, nouer"
+noyé,noué
+nuage,"nage, nager"
+nuire,nurse
+nulle,nouille
+nurse,nuire
+nuée,noué
+nègre,"nageoire, nager, nageur, naguère, neiger"
+néant,nanti
+négro,"nageoire, nager, nageur, naguère, neiger"
+néné,néon
+néon,néné
+nôtre,"nature, naître, neutre, notaire, noter"
+nôtres,nôtre
+oasis,ouais
+observateur,observatoire
+observatoire,observateur
+obtus,obus
+obus,"obtus, ours"
+ocre,"ogre, once, orge, orme, orée"
+oeuvrer,"ouvreur, ouvrier, ouvrir"
+offense,"offensé, offre"
+offensé,offense
+offre,offense
+ogive,"olive, orgie"
+ogre,"ocre, ogresse, orge, orme, orée"
+ogresse,ogre
+oindre,ondoyer
+olive,ogive
+ombre,"ombrer, ombreux"
+ombrer,ombre
+ombreux,ombre
+once,"ocre, oncle, onde, onze"
+oncle,"once, ongle"
+onde,"once, ondée, onze"
+ondoyer,oindre
+ondée,onde
+ongle,oncle
+onze,"once, onde, onzième"
+onzième,onze
+orage,"orageux, orange, orge, orgie, orgue"
+orageux,orage
+oraison,oursin
+orange,"orage, orangé"
+orangé,orange
+orateur,oratoire
+oratoire,orateur
+ordre,ordure
+ordure,ordre
+organe,"origine, ouragan"
+orgasme,"orge, orgie, orgue"
+orge,"ocre, ogre, orage, orgasme, orgie"
+orgie,"ogive, orage, orgasme, orge, orgue"
+orgue,"orage, orgasme, orge, orgie, orgueil"
+orgueil,orgue
+original,originel
+origine,"organe, ouragan"
+originel,original
+orme,"ocre, ogre, orge, orée"
+orner,ornière
+ornière,orner
+ortie,orgie
+orée,"ocre, ogre, orge, orme"
+oser,osier
+osier,oser
+otage,orage
+ouais,oasis
+ouate,"ouater, ouaté, ouste, outre"
+ouater,ouate
+ouaté,"ouate, outré"
+oubli,"oublier, oublié"
+oublier,oubli
+oublié,oubli
+ouest,ouste
+ouragan,"organe, origine"
+ours,"obus, oursin, ouïr"
+oursin,"oraison, ours"
+ouste,"ouate, ouest, outre"
+outre,"ouate, ouste, outrer, outré"
+outrer,outre
+outré,"ouaté, outre"
+ouvrage,ouvragé
+ouvragé,ouvrage
+ouvreur,"oeuvrer, ouvrier, ouvrir"
+ouvrier,"oeuvrer, ouvreur, ouvrir"
+ouvrir,"oeuvrer, ouvreur, ouvrier"
+ouïe,ouïr
+ouïr,"ours, ouïe"
+pacha,"pioche, poche, péché, pêche"
+pacte,"pater, patte, place"
+page,"pageot, pagne, paie, pale, pape"
+pageot,page
+pagne,"page, panne, panse, peigne, peigné"
+paie,"page, pain, pair, paire, paix"
+paiement,piment
+paillard,pillard
+paille,"paillé, pelle, pilule, pull"
+paillé,"paille, pelle, pilule, pull"
+pain,"paie, pair, paix, paon, pari"
+pair,"paie, pain, paire, paix, parc"
+paire,"paie, pair, parer, phare, pire"
+paix,"paie, pain, pair, pari, prix"
+palabre,"pale, palme"
+palace,"place, placé, plouc, police, policé"
+palais,"pelouse, plus, pouls"
+pale,"page, paie, palabre, palette, palme"
+paletot,"palette, plutôt"
+palette,"pale, paletot, palme, plutôt"
+palier,"peler, pelure, piler, pilier, pilori"
+palme,"palabre, pale, palette, paluche, paume"
+palmier,plumer
+paluche,"pale, palme, peluche, pouliche"
+panache,"panne, panse, penché, punch, péniche"
+panard,"peinard, pinard"
+panier,"peiner, punir, pénurie"
+panique,"panne, panse"
+panne,"pagne, panache, panique, panneau, panse"
+panneau,panne
+panse,"pagne, panache, panique, panne, panser"
+panser,"panse, penser, penseur"
+pantin,"patin, ponton, punition"
+paon,"pain, pion, plan, pont"
+papa,pape
+pape,"page, paie, pale, papa, paye"
+papeterie,"papoter, pupitre"
+papier,"paupière, piper, pépère"
+papoter,"papeterie, pupitre"
+paquet,piquet
+par-ci,"parc, percée, porc"
+par-dessous,"par-dessus, pardessus"
+par-dessus,"par-dessous, pardessus"
+parabole,parbleu
+parade,"pardi, parodie, perdu, prie-dieu, période"
+parader,"perdre, perdreau, produire, prédire"
+parage,"page, pirogue, purge"
+paralysie,paralysé
+paralysé,paralysie
+parapet,"part, péripétie"
+parapluie,périple
+parasite,"poursuite, preste"
+parasol,persil
+paravent,prévoyant
+paraître,"partir, poireauter, porter, porteur, portier"
+parbleu,parabole
+parc,"pair, par-ci, pari, part, paré"
+parce qu,parce que
+parce que,parce qu
+parcourir,"procurer, procureur"
+pardessus,"par-dessous, par-dessus"
+pardi,"parade, pari, paria, parmi, parodie"
+pareil,"parlé, parole, perle, prolo, puéril"
+parement,purement
+parent,parenté
+parenté,"parent, parlé, paré"
+parer,"paire, parier, parler, parloir, parure"
+paresse,"paroisse, presse, pressé, prouesse"
+parfaire,"préféré, purifier"
+parfait,"part, profit, préfet"
+parfum,parfumé
+parfumé,"parfum, parlé, paré"
+pari,"paie, pain, pair, paix, parc"
+paria,"pardi, pari, parmi, paroi, parti"
+parier,"parer, pari, parure, pierre, poirier"
+parigot,part
+parisien,"persan, prison"
+parlant,part
+parlementaire,parlementer
+parlementer,parlementaire
+parler,"parer, parleur, parloir, perler"
+parleur,"parler, parloir, perler"
+parloir,"parer, parler, parleur, perler"
+parlé,"pareil, parenté, parfumé, parole, partagé"
+parmi,"pardi, pari, paria, paroi, parti"
+parodie,"parade, pardi, perdu, prie-dieu, période"
+paroi,"pardi, pari, paria, parmi, parti"
+paroisse,"paresse, presse, pressé, prouesse"
+paroissien,"persuasion, pression, prussien"
+parole,"pareil, parlé, perle, prolo, puéril"
+parquet,part
+parrain,perron
+parsemer,présumer
+part,"pair, parapet, parc, parfait, pari"
+partage,"partagé, protégé"
+partager,protéger
+partagé,"parlé, partage, paré, protégé"
+partant,"part, portant, pourtant"
+parti,"pardi, pari, paria, parmi, paroi"
+particule,protocole
+partie,"part, parti, perte, pirate, port"
+partiel,"parti, portail"
+partir,"paraître, part, parti, poireauter, porter"
+partout,"part, pirouette"
+parure,"parer, parier, pierre, poirier, pourri"
+parvenir,"provenir, prévenir"
+parvenu,prévenu
+paré,"pair, parc, parenté, parfumé, pari"
+pasque,puisque
+passant,puissant
+passe,"panse, passer, passeur, passé, pause"
+passer,"passe, passeur, passoire, pisser, pisseur"
+passeur,"passe, passer, passoire, pisser, pisseur"
+passif,poussif
+passion,"poisson, poussin"
+passionner,poissonnière
+passoire,"passer, passeur, pisser, pisseur, poisser"
+passé,"passe, pisse, pousse, poussé, poussée"
+pastel,postal
+pasteur,"pester, poster, postier, posture"
+patate,"patati, patte, petit"
+patati,"patate, patte, petit"
+patauger,potager
+pater,"pacte, parer, patrie, patte, patère"
+patience,"pitance, potence"
+patin,"pain, pantin, parti, patine, patiner"
+patine,"patin, pitaine, piton, piéton, potin"
+patiner,"patin, piétiner"
+patio,"parti, patin"
+patois,puits
+patrie,"pater, patère, paître, pieuter, pitre"
+patron,"poitrine, poterne, pétrin"
+patrouille,poutrelle
+patte,"pacte, patate, patati, pater, petit"
+patère,"pater, patrie, paître, pieuter, pitre"
+paume,"palme, paumer, paumé, pause, plume"
+paumer,"paume, pâmer"
+paumé,paume
+paupière,"papier, piper, pépère"
+pause,"panse, passe, paume, phase"
+pauvre,"pieuvre, poivre, pouvoir"
+pauvreté,poivrot
+pavé,"paré, payé"
+payant,"peint, pente, point, pointe, pointu"
+paye,"page, paie, pale, pape, payer"
+payer,"parer, pater, paye"
+pays,"paye, paysan, payé"
+paysage,paye
+paysan,"pays, poison"
+payé,"paré, pavé, paye, pays"
+paître,"pater, patrie, patère, pieuter, pitre"
+peau,"peuh, peur, pieu, pneu"
+peigne,"pagne, peigné, peine, pigeon, pogne"
+peigner,peignoir
+peignoir,peigner
+peigné,"pagne, peigne, pigeon, pogne, poigne"
+peinard,"panard, pinard"
+peindre,"penderie, pendre, poindre, pondre"
+peine,"peigne, peiner, peint, pente, pince"
+peiner,"panier, peine, punir, pénurie"
+peint,"payant, peine, peintre, pente, petit"
+peintre,"peint, peinture, pianoter, pointer, puanteur"
+peinture,"peintre, pianoter, pointer, puanteur, pénétré"
+pelage,"plage, poulaga"
+peler,"palier, pelle, pelure, perle, perler"
+pelisse,"pelle, plissé"
+pelle,"paille, paillé, peler, pelisse, pelouse"
+pelote,"pilote, plat, plateau, poulet"
+peloter,"piloter, plâtre"
+peloton,"platane, platine"
+pelouse,"palais, pelle, plus, pouls"
+peluche,"paluche, pelle, pouliche"
+pelure,"palier, peler, piler, pilier, pilori"
+penaud,"pendu, pinède"
+penché,"panache, punch, péniche"
+penderie,"peindre, pendre, poindre, pondre"
+pendre,"peindre, penderie, poindre, pondre"
+pendu,"penaud, pendule, perdu, pinède"
+pendule,"pendu, pente"
+penser,"panser, penseur, peser"
+penseur,"panser, penser"
+pension,pinson
+pensée,"panse, pesée, punaise, pénis"
+pente,"payant, peine, peint, pendule, perte"
+percer,précaire
+perche,"porche, proche, prêche"
+percher,"perchoir, prêcher, prêcheur"
+perchoir,"percher, prêcher, prêcheur"
+percussion,procession
+percée,"par-ci, parc, porc"
+perdant,prudent
+perdre,"parader, perdreau, produire, prédire"
+perdreau,"parader, perdre, produire, prédire"
+perdu,"parade, pardi, parodie, pendu, prie-dieu"
+perfide,"perfidie, perle, perte"
+perfidie,perfide
+perle,"pareil, parlé, parole, peler, pelle"
+perler,"parler, parleur, parloir, peler, perle"
+permanent,"permanente, proéminent"
+permanente,"permanent, proéminent"
+permettre,"prometteur, promettre"
+permis,promis
+perron,parrain
+persan,"parisien, prison"
+persienne,personne
+persil,parasol
+personne,persienne
+persuader,présider
+persuadé,près de
+persuasion,"paroissien, pression, prussien"
+perte,"part, parti, partie, pente, perfide"
+peser,"peler, penser, peste, pester, pesée"
+peste,"pente, perte, peser, pester, pesée"
+pester,"pasteur, peser, peste, poster, postier"
+pesée,"pensée, peser, peste"
+petit,"patate, patati, patte, peint"
+peuh,"peau, peur, pieu, pneu"
+peuple,peuplé
+peupler,"peuplier, peur, populaire"
+peuplier,"peupler, populaire"
+peuplé,peuple
+peur,"peau, peuh, peupler, pieu, pleur"
+peureux,"poreux, prix"
+phare,"paire, parer, phase"
+phase,"panse, passe, pause, phare, phrase"
+philo,pilon
+philosophe,philosophie
+philosophie,philosophe
+phono,"photo, porno"
+photo,"phono, porto"
+photographe,photographie
+photographie,photographe
+phrase,phase
+piaffer,pouffer
+piailler,"piller, polluer"
+pianoter,"peintre, peinture, pointer, puanteur, pénétré"
+piazza,pizza
+pied,"paie, pieu, pige, pile, pipe"
+pierre,"parer, parier, parure, poirier, pourri"
+pieu,"paie, peau, peuh, peur, pied"
+pieusement,posément
+pieuter,"pater, patrie, patère, paître, pitre"
+pieuvre,"pauvre, poivre, pouvoir"
+pieux,"pieu, piteux"
+pige,"page, paie, pied, pieu, pigeon"
+pigeon,"pagne, peigne, peigné, pige, pogne"
+piger,"pige, piler, piper, piège, piéger"
+pignon,pognon
+pile,"paie, pale, pied, pieu, pige"
+piler,"palier, peler, pelure, piger, pile"
+pilier,"palier, peler, pelure, piler, pilori"
+pillage,pile
+pillard,paillard
+piller,"piailler, pile, piler, polluer"
+pilon,"philo, pion, piton, plain, plaine"
+pilori,"palier, peler, pelure, piler, pilier"
+pilote,"pelote, plat, plateau, poulet"
+piloter,"peloter, plâtre"
+pilule,"paille, paillé, pelle, pile, pull"
+piment,paiement
+pinard,"panard, peinard"
+pince,"peine, pinceau, pincer, pincé, pincée"
+pinceau,"pince, pincé, pincée"
+pincer,"pince, pioncer, poncer"
+pincé,"pince, pinceau, pincée"
+pincée,"pince, pinceau, pincé"
+pinson,pension
+pintade,pince
+pinède,"penaud, pendu"
+pioche,"pacha, poche, péché, pêche"
+piocher,"pécher, pécheur, pêcher, pêcheur"
+pion,"pain, paon, pilon, piton, pont"
+pioncer,"pincer, poncer"
+pipe,"paie, pape, pied, pieu, pige"
+piper,"papier, paupière, piger, piler, pipe"
+pipi,pipe
+piquant,péquenot
+pique,"piquer, piquet, piqueur, piqué"
+piquer,"pique, piqueur, piqûre"
+piquet,"paquet, pique"
+piqueur,"pique, piquer, piqûre"
+piqué,pique
+piqûre,"piquer, piqueur"
+pirate,"part, parti, partie, perte, port"
+pire,"paie, pair, paire, pied, pieu"
+pirogue,"parage, pire, purge"
+pirouette,partout
+piscine,"pisse, piste"
+pisse,"passe, passé, piscine, pisser, pisseur"
+pisser,"passer, passeur, passoire, pisse, pisseur"
+pisseur,"passer, passeur, passoire, pisse, pisser"
+pisseux,"pisse, poisseux"
+pistache,postiche
+piste,"peste, piscine, pisse, pitre, poste"
+piston,"piton, position"
+pitaine,"patin, patine, piton, pitre, piéton"
+pitance,"patience, pitre, potence"
+piteux,"pieux, pâteux"
+pitié,piété
+piton,"patin, patine, pilon, pion, piston"
+pitre,"paire, pater, patrie, patère, paître"
+pivot,pivoter
+pivoter,pivot
+pizza,piazza
+pièce,"pince, piège"
+piège,"pige, piger, pièce"
+piètre,"pater, patrie, patère, paître, pieuter"
+piéger,piger
+piétiner,patiner
+piéton,"patin, patine, pitaine, piton, potin"
+piété,pitié
+place,"pacte, palace, placer, placé, plage"
+placer,"place, policier"
+placide,plage
+placé,"palace, place, planqué, plouc, police"
+plage,"page, pagne, pelage, place, placide"
+plaider,plaidoirie
+plaidoirie,plaider
+plaie,"paie, paire, place, plage, plain"
+plain,"pain, patin, pilon, plaie, plaine"
+plaine,"pilon, plaie, plain, plan, plein"
+plainte,"place, plage, plain, plant, plante"
+plaire,"paire, palier, peler, pelure, piler"
+plaisanter,plaisanterie
+plaisanterie,plaisanter
+plan,"pain, paon, pilon, plain, plaine"
+planche,"plage, plaie"
+planer,plan
+planque,"place, plage, plaie, planqué"
+planqué,"placé, planque"
+plant,"plain, plainte, plan, plante, planter"
+plante,"plainte, plan, plant, planté, planète"
+planter,"plant, planteur"
+planteur,planter
+planton,"plain, plan, plant"
+planté,"plainte, plan, plant, plante, planète"
+planète,"place, plage, plaie, plainte, plant"
+plaque,plaqué
+plaqué,plaque
+plat,"part, pelote, pilote, plan, plant"
+platane,"peloton, place, plage, plaie, platine"
+plateau,"pelote, pilote, plat, poulet"
+platine,"peloton, place, plage, platane"
+plein,"peine, peint, pilon, plain, plaine"
+pleur,"palier, peler, pelure, peur, piler"
+pleurer,"pleur, pleureur"
+pleureur,pleurer
+pliant,"plainte, plant, plante, planté, planète"
+plier,"palier, peler, pelure, piger, piler"
+plissé,pelisse
+plomb,"plombe, plomber, plombé"
+plombe,"plomb, plombé"
+plomber,"plomb, plombier"
+plombier,plomber
+plombé,"plomb, plombe"
+plonge,plongée
+plonger,plongeur
+plongeur,plonger
+plongée,plonge
+plouc,"palace, place, placé, police, policé"
+ployer,"palier, peler, pelure, piler, pilier"
+pluie,"plaie, plier, plumage, plume"
+plumage,pluie
+plume,"palme, paume, pluie, plumeau, plumer"
+plumeau,"palme, plume"
+plumer,"palmier, plume"
+plumet,plume
+plus,"palais, pelouse, pouls, puis"
+plutôt,"paletot, palette"
+plâtre,"peloter, piloter, pâtre"
+pneu,"peau, peuh, peur, pieu"
+poche,"pacha, pioche, porche, pouce, proche"
+pogne,"pagne, peigne, peigné, pigeon, poigne"
+pognon,pignon
+poids,pois
+poigne,"pagne, peigne, peigné, pigeon, pogne"
+poignée,"pagne, peigne, peigné, pigeon, pogne"
+poil,"pile, poilu, pois, poli, polo"
+poilu,"poil, poireau"
+poindre,"peindre, penderie, pendre, pondre"
+poing,"point, potin"
+point,"payant, peint, pente, poing, pointe"
+pointe,"payant, peint, pente, point, pointu"
+pointer,"peintre, peinture, pianoter, point, puanteur"
+pointu,"payant, peint, pente, point, pointe"
+pointé,"payant, peint, pente, point, pointe"
+poire,"paire, pire, pitre, poignée, poireau"
+poireau,"poilu, poire"
+poireauter,"paraître, partir, porter, porteur, portier"
+poirier,"parer, parier, parure, pierre, pourri"
+pois,"poids, poil, poison, poli, pose"
+poison,"paysan, pois"
+poisser,"passer, passeur, passoire, pisser, pisseur"
+poisseux,pisseux
+poisson,"passion, poussin"
+poissonnière,passionner
+poitrail,pétrole
+poitrine,"patron, poterne, pétrin"
+poivre,"pauvre, pieuvre, poire, pouvoir"
+poivrot,"pauvreté, point"
+poker,poser
+polaire,"palier, peler, pelure, piler, pilier"
+poli,"poil, pois, police, policé, polir"
+police,"palace, place, placé, plouc, poli"
+policier,placer
+policé,"palace, place, placé, plouc, poli"
+polir,"palier, peler, pelure, piler, pilier"
+polluer,"piailler, piller, polir"
+polo,"poil, poli, prolo"
+pommade,pompe
+pomme,"pommeau, pommer, pompe, poème"
+pommeau,pomme
+pommer,"pomme, pommier"
+pommier,pommer
+pompe,"pommade, pomme, pomper, pompeux, pompon"
+pomper,"pompe, pompier"
+pompeux,pompe
+pompier,pomper
+pompon,pompe
+poncer,"pincer, pioncer"
+pondre,"peindre, penderie, pendre, poindre"
+pont,"paon, payant, peint, pente, pion"
+ponte,"payant, peint, pente, pogne, point"
+ponton,"pantin, pont, ponte, punition"
+pope,"pape, pipe, pompe, pore, pose"
+popote,pote
+populaire,"peupler, peuplier"
+porc,"par-ci, parc, percée, porche, pore"
+porche,"perche, poche, porc, proche, prêche"
+pore,"pire, poire, pope, porc, poreux"
+poreux,"peureux, pore, prix"
+porno,"phono, porto, prune, pruneau, purin"
+port,"part, parti, partie, perte, pirate"
+portail,partiel
+portant,"partant, port, pourtant"
+porte,"part, parti, partie, perte, pirate"
+porter,"paraître, partir, poireauter, port, porte"
+porteur,"paraître, partir, poireauter, porte, porter"
+portier,"paraître, partir, poireauter, porter, porteur"
+portion,puritain
+portique,pratique
+porto,"part, parti, partie, perte, photo"
+portée,"part, parti, partie, perte, pirate"
+pose,"pois, pope, pore, poser, poste"
+poser,"peser, poker, pose, poste, poster"
+position,piston
+possédé,posé
+postal,pastel
+poste,"peste, piste, ponte, porte, pose"
+poster,"pasteur, pester, poser, poste, postier"
+postiche,pistache
+postier,"pasteur, pester, poster, posture"
+posture,"pasteur, pester, pose, poster, postier"
+posé,"pois, pose, possédé"
+posément,pieusement
+potager,patauger
+pote,"pont, ponte, pope, popote, pore"
+poteau,pote
+potelé,"pote, pétale"
+potence,"patience, pitance, pote"
+poterie,"pater, patrie, patère, paître, pieuter"
+poterne,"patron, poitrine, pote, pétrin"
+potin,"patin, patine, pitaine, piton, piéton"
+potion,"patin, patine, pitaine, piton, piéton"
+pouce,"plouc, poche, poule, poupe, pourpre"
+poudre,"poudré, pudeur"
+poudrer,pour
+poudré,"poudre, pudeur"
+pouf,"pour, poussif, prof"
+pouffer,"piaffer, pour"
+poulaga,"pelage, plage"
+poulailler,pulluler
+poulain,"pilon, plain, plaine, plan, plein"
+poule,"pouce, poulet, poulie, poulpe, pouls"
+poulet,"pelote, pilote, plat, plateau, poule"
+pouliche,"paluche, peluche"
+poulie,poule
+poulpe,"poule, poupe, pulpe"
+pouls,"palais, pelouse, plus, poule"
+poupe,"pompe, pope, pouce, poule, poulpe"
+poupon,"poupe, pépin"
+poupée,poupe
+pour,"peur, porc, pore, port, poudrer"
+pourpre,"pouce, poule, propre, proprio"
+pourri,"parer, parier, parure, pierre, poirier"
+pourrir,"pour, pérorer"
+poursuite,"parasite, preste"
+pourtant,"partant, portant"
+pourtour,"paraître, partir, poireauter, porter, porteur"
+pourvoir,"priver, prouver, prévoir"
+pousse,"passe, passé, pisse, poussé, poussée"
+pousser,"passer, passeur, passoire, pisser, pisseur"
+poussif,"passif, pouf"
+poussin,"passion, poisson"
+poussière,"passer, passeur, passoire, pisser, pisseur"
+poussé,"passe, passé, pisse, pousse, poussée"
+poussée,"passe, passé, pisse, pouce, poule"
+poutre,"pater, patrie, patère, paître, pieuter"
+poutrelle,patrouille
+pouvoir,"pauvre, pieuvre, poivre, pour"
+poème,"pomme, pompe, poète"
+poète,"ponte, porte, poste, pote, poème"
+poêle,poule
+prairie,"parer, parier, parure, pierre, poirier"
+pratique,portique
+premier,"primaire, primer, primeur"
+preneur,prunier
+presse,"paresse, paroisse, pressé, prouesse"
+pression,"paroissien, persuasion, prussien"
+pressé,"paresse, paroisse, presse, prouesse"
+preste,"parasite, peste, poursuite"
+preuve,privé
+prie-dieu,"parade, pardi, parodie, perdu, période"
+prier,"parer, parier, parure, pierre, piger"
+prieur,"parer, parier, parure, pierre, poirier"
+primaire,"premier, primer, primeur"
+primate,prise
+prime,"parmi, prier, primer, primo, prise"
+primer,"premier, prier, primaire, prime, primeur"
+primeur,"premier, primaire, primer"
+primo,"parmi, prime, périmé"
+prince,pince
+pris,"pari, pois, prise, priser, prison"
+prise,"pisse, piste, prier, primate, prime"
+priser,"prier, pris, prise"
+prison,"parisien, persan, pris"
+prisunic,présence
+priver,"pourvoir, prier, prouver, prévoir"
+privilège,privilégié
+privilégié,privilège
+privé,preuve
+prix,"paix, pari, peureux, poreux, pris"
+prière,"parer, parier, parure, pierre, poirier"
+procession,percussion
+proche,"perche, poche, porche, prêche"
+procurer,"parcourir, procureur"
+procureur,"parcourir, procurer"
+procès,précis
+procéder,"procédure, précéder"
+procédure,"procéder, précéder"
+prodige,"prodigue, prose, proue"
+prodigue,prodige
+producteur,prédicateur
+production,prédiction
+produire,"parader, perdre, perdreau, prédire"
+prof,"pouf, profil, profit"
+profane,"proie, prose, proue"
+professer,professeur
+professeur,professer
+profil,prof
+profit,"parfait, prof, préfet"
+proférer,préférer
+proie,"paroi, poire, prier, prime, prise"
+prolixe,"prose, proue"
+prolo,"pareil, parlé, parole, perle, polo"
+promener,promeneur
+promeneur,promener
+prometteur,"permettre, promettre"
+promettre,"permettre, prometteur"
+promis,permis
+promontoire,prémonitoire
+promoteur,"prématuré, périmètre"
+prophète,prophétie
+prophétie,prophète
+propice,"prose, proue"
+proportion,préparation
+propos,préposé
+propre,"pourpre, proprio"
+propret,"propreté, propriété"
+propreté,"propret, propriété"
+proprio,"pourpre, prolo, propre"
+propriétaire,préparatoire
+propriété,"propret, propreté"
+prose,"pose, poser, poste, pris, prise"
+protocole,particule
+protéger,partager
+protégé,"partage, partagé"
+proue,"pouce, poule, poupe, prodige, profane"
+prouesse,"paresse, paroisse, presse, pressé"
+prouver,"pourvoir, priver, prévoir"
+provenance,prévenance
+provenir,"parvenir, prévenir"
+provençal,provincial
+provincial,provençal
+proviseur,provisoire
+provision,prévision
+provisoire,proviseur
+proéminent,"permanent, permanente"
+prudent,perdant
+prune,"porno, proue, pruneau, purin"
+pruneau,"porno, prune, purin"
+prunier,preneur
+prussien,"paroissien, persuasion, pression"
+près,"pris, prise, prose"
+près de,persuadé
+préau,prévenu
+précaire,percer
+précepte,précipité
+précepteur,précipiter
+précieusement,précisément
+précipiter,précepteur
+précipité,précepte
+précis,procès
+précisément,précieusement
+précéder,"procéder, procédure"
+prédicateur,producteur
+prédiction,production
+prédire,"parader, perdre, perdreau, produire"
+préfet,"parfait, profit"
+préférer,proférer
+préféré,"parfaire, purifier"
+prématuré,"promoteur, périmètre"
+prémonitoire,promontoire
+préparation,proportion
+préparatoire,propriétaire
+préposé,propos
+présence,prisunic
+présider,persuader
+présumer,parsemer
+prétoire,"paraître, partir, poireauter, porter, porteur"
+prévenance,provenance
+prévenir,"parvenir, provenir"
+prévenu,"parvenu, préau"
+prévision,provision
+prévoir,"pourvoir, priver, prouver"
+prévoyant,paravent
+prêche,"perche, porche, proche, pêche"
+prêcher,"percher, perchoir, prêcheur"
+prêcheur,"percher, perchoir, prêcher"
+prêt,"part, parti, partie, perte, pirate"
+prêter,"paraître, partir, poireauter, porter, porteur"
+prêtre,"paraître, partir, poireauter, porter, porteur"
+psaume,paume
+psychologie,psychologue
+psychologue,psychologie
+puant,"payant, peint, pente, plant, point"
+puanteur,"peintre, peinture, pianoter, pointer, pénétré"
+puce,"pouce, puceau, puer, pute"
+puceau,puce
+pudeur,"poudre, poudré"
+puer,"peur, pour, puce, pute"
+puis,"plus, pois, pris, puiser, puits"
+puiser,"peser, poser, puis"
+puisque,pasque
+puissant,passant
+puits,"patois, puis"
+pull,"paille, paillé, pelle, pilule"
+pulluler,poulailler
+pulpe,"poule, poulpe, poupe, pulpeux"
+pulpeux,pulpe
+punaise,"panse, pensée, pénis"
+punch,"panache, penché, péniche"
+puni,"puis, punir, punk"
+punir,"panier, peiner, puni, pénurie"
+punition,"pantin, ponton"
+punk,puni
+pupitre,"papeterie, papoter, pitre"
+purement,parement
+pureté,"part, parti, partie, perte, pirate"
+purge,"parage, pirogue, purger, purée"
+purger,purge
+purifier,"parfaire, préféré"
+purin,"porno, prune, pruneau"
+puritain,portion
+purée,purge
+putain,"patin, patine, pitaine, piton, piéton"
+pute,"pote, puce, puer, pâte"
+puéril,"pareil, parlé, parole, perle, prolo"
+pylône,"pilon, plain, plaine, plan, plein"
+pâle,"pale, pile, pâleur, pâte, pôle"
+pâleur,"palier, peler, pelure, piler, pilier"
+pâlir,"palier, peler, pelure, piler, pilier"
+pâmer,paumer
+pâte,"pote, pute, pâle, pâteux, pâtre"
+pâteux,"piteux, pâte"
+pâtir,"pater, patrie, patère, paître, pieuter"
+pâtisserie,pâtissier
+pâtissier,pâtisserie
+pâtre,"pater, patrie, patère, paître, pieuter"
+pâture,"pater, patrie, patère, paître, pieuter"
+pâté,"pâte, pâtée"
+pâtée,"pâte, pâtre, pâté"
+père,"pire, pore, pépère"
+pécher,"piocher, pécheur, pêcher, pêcheur"
+pécheur,"piocher, pécher, pêcher, pêcheur"
+péché,"pacha, pioche, poche, pêche"
+pédal,"pédaler, pénal"
+pédaler,pédal
+pédé,pépé
+pénal,pédal
+péniche,"panache, penché, punch"
+pénis,"panse, pensée, punaise"
+pénurie,"panier, peiner, punir"
+pénétré,"peintre, peinture, pianoter, pointer, puanteur"
+pépin,poupon
+pépère,"papier, paupière, piper, père"
+pépé,pédé
+péquenot,piquant
+péril,"pareil, parlé, parole, perle, prolo"
+périmètre,"promoteur, prématuré"
+périmé,"parmi, prime, primo"
+période,"parade, pardi, parodie, perdu, prie-dieu"
+périple,parapluie
+péripétie,parapet
+périr,"parer, parier, parure, pierre, poirier"
+pérorer,"pourrir, périr"
+pétale,potelé
+pétarade,pétard
+pétard,pétarade
+péter,"pater, patrie, patère, paître, pieuter"
+pétoire,"pater, patrie, patère, paître, pieuter"
+pétrin,"patron, poitrine, poterne"
+pétrir,périr
+pétrole,poitrail
+pêche,"pacha, pioche, poche, prêche, péché"
+pêcher,"piocher, pécher, pécheur, pêche, pêcheur"
+pêcheur,"piocher, pécher, pécheur, pêche, pêcher"
+pôle,"pale, pile, pâle"
+quai,"quasi, quoi"
+quand,quant
+quant,"quand, quart, quinte"
+quart,"quant, quartz"
+quartz,quart
+quasi,quai
+quatre,"quatuor, quêter"
+quatuor,"quatre, quêter"
+quel,"quelle, quels"
+quelle,"quel, quille"
+quelques-unes,quelques-uns
+quelques-uns,quelques-unes
+quels,quel
+questionnaire,questionner
+questionner,questionnaire
+quille,quelle
+quinte,quant
+quoi,quai
+quête,quêter
+quêter,"quatre, quatuor, quête"
+rabat,"rabattu, rebut, robot"
+rabatteur,rabattre
+rabattre,rabatteur
+rabattu,rabat
+raboter,"rebuter, rebâtir"
+racaille,"recueilli, rocaille"
+race,"racisme, raciste, racé, rade, rage"
+racine,recoin
+racisme,race
+raciste,race
+racler,"receler, reculer, roucouler"
+raclée,"recueil, recul, reculé"
+racontar,raconter
+raconter,racontar
+racé,"race, raté, rayé"
+radar,"raideur, raidir, redire, rider, roder"
+rade,"race, radeau, rage, raid, raide"
+radeau,rade
+radiateur,"radoter, redouter"
+radical,ridicule
+radicalement,ridiculement
+radin,"radio, radis, ravin"
+radio,"radin, radis"
+radis,"radin, radio"
+radoter,"radiateur, redouter"
+rafale,"rafle, refoulé"
+rafle,"rafale, rafler, refoulé"
+rafler,"rafle, refiler, refluer, refouler"
+rage,"race, rade, rager, rageur, raie"
+rager,"rage, rageur, ramer, ranger, raser"
+rageur,"rage, rager, rigueur, rougeoyer, rougeur"
+ragot,ragoût
+ragoût,ragot
+raid,"rade, raide, raidir, raie, rail"
+raide,"rade, raid, raideur, raie, rainure"
+raideur,"radar, raide, raidir, redire, rider"
+raidir,"radar, raid, raideur, redire, rider"
+raie,"race, rade, rage, raid, raide"
+rail,"raid, raie, ravi"
+railler,"raillerie, railleur, rallier, rouiller"
+raillerie,"railler, railleur, rallier, rouiller"
+railleur,"railler, raillerie, rallier, rouiller"
+rainure,"raide, raie, renier, renouer, ruiner"
+raire,"raide, raie, rare, ravir, rire"
+raisin,"raison, résine, résiné"
+raison,"raisin, résine, résiné"
+raisonner,résonner
+rajouter,rejeter
+ralenti,"relent, roulant"
+ralliement,réellement
+rallier,"railler, raillerie, railleur, rouiller"
+ramage,rage
+ramasser,ramasseur
+ramasseur,ramasser
+rame,"race, rade, rage, raie, rameau"
+rameau,rame
+ramener,"ramer, ruminer"
+ramer,"rager, rame, ramener, rameur, rampe"
+rameur,"rame, ramer, ramure, remuer, rimer"
+rampe,"rame, ramer, ramper, rompu"
+ramper,"ramer, rampe, rompre"
+ramure,"ramer, rameur, remuer, rimer, rumeur"
+rance,"race, ronce"
+rancoeur,"rincer, roncier"
+rancune,rançon
+rang,"rage, ranger, rangé, rangée, ring"
+ranger,"rager, rang, ronger, rongeur"
+rangé,"rang, rangée, ring"
+rangée,"rang, rangé, ring"
+rançon,rancune
+rapace,race
+rapatrié,"repaître, rupture, réputer, répéter"
+rapide,raide
+rapine,rupin
+rapport,"rapporté, rapt"
+rapporter,réapparaître
+rapporté,rapport
+rapt,"rapport, raté, répit, réputé, répété"
+rare,"race, rade, rage, raie, raire"
+rareté,rare
+rasade,"rade, résidu"
+raser,"rager, ramer, rasoir, rater, rayer"
+rasoir,"raser, roser, rosier, rosir, ruser"
+rassasier,ressaisir
+rassembler,ressembler
+rasseoir,"rosser, rousseur, roussir, réussir"
+rassurer,resserré
+ratatiné,rotation
+rater,"rager, ramer, raser, rature, rayer"
+ratiche,retouche
+ration,"raton, retenu, retenue, rotin, routine"
+raton,"ration, rayon, retenu, retenue, rotin"
+rature,"rater, retiré, retour, reître, roter"
+raturer,"retirer, réitérer"
+raté,"racé, rapt, rayé"
+ravage,"rage, ravagé, rivage"
+ravager,"rager, ravageur, ravir"
+ravageur,ravager
+ravagé,"ravage, rivage"
+ravaler,"ravir, révéler"
+ravi,"raid, raie, rail, ravin, ravir"
+ravin,"radin, ravi, raviner, ravir, revenu"
+raviner,"ravin, revenir"
+ravir,"raire, ravager, ravaler, ravi, ravin"
+raviser,réviser
+ravisseur,rêvasser
+raviver,revivre
+rayer,"rager, ramer, raser, rater"
+rayon,raton
+rayé,"racé, raté"
+rebut,"rabat, rebuter, robot"
+rebuter,"raboter, rebut, rebâtir"
+rebâtir,"raboter, rebuter"
+receler,"racler, reculer, roucouler"
+receveur,recevoir
+recevoir,receveur
+recherche,recherché
+recherché,recherche
+recoin,racine
+recoller,recueillir
+recopier,recouper
+recoucher,ricocher
+recouper,recopier
+recourir,"recréer, récrier, récurer"
+recouvrer,recouvrir
+recouvrir,recouvrer
+recrue,récré
+recréer,"recourir, récrier, récurer"
+recteur,réciter
+recueil,"raclée, recul, reculé"
+recueilli,"racaille, rocaille"
+recueillir,recoller
+recul,"raclée, recueil, reculer, reculé"
+reculer,"racler, receler, recul, roucouler"
+reculé,"raclée, recueil, recul"
+redire,"radar, raideur, raidir, rider, roder"
+redouter,"radiateur, radoter"
+refermer,"reformer, réformer"
+refiler,"rafler, refluer, refouler"
+refluer,"rafler, refiler, refouler"
+reflux,réflexe
+reformer,"refermer, réformer"
+refouler,"rafler, refiler, refluer"
+refoulé,"rafale, rafle"
+refuge,réfugié
+refus,"refuser, refusé"
+refuser,refus
+refusé,refus
+regain,"rogne, règne, région"
+reich,"riche, roche, ruche, rêche"
+rein,"reine, rien, ring, rink"
+reine,"rein, rente, ruine"
+rejet,"rejeter, rejeton, rejeté"
+rejeter,"rajouter, rejet"
+rejeton,rejet
+rejeté,rejet
+rejouer,réjouir
+relais,roulis
+relayer,"relier, relire, reliure, reluire, rouler"
+relent,"ralenti, roulant"
+relevé,relève
+relier,"relayer, relire, reliure, reluire, rouler"
+relire,"relayer, relier, reliure, relié, reluire"
+reliure,"relayer, relier, relire, reluire, rouler"
+relié,"relire, relâché, repli"
+reluire,"relayer, relier, relire, reliure, rouler"
+relâche,relâché
+relâché,"relié, relâche"
+relève,relevé
+remarque,remorque
+remarquer,remorqueur
+remis,"remise, remous"
+remise,"remis, remous"
+remontée,remuant
+remorque,remarque
+remorqueur,remarquer
+remous,"remis, remise"
+rempli,repli
+remuant,remontée
+remuer,"ramer, rameur, ramure, rimer, rumeur"
+renauder,"rendre, rondeur"
+renaître,"rentier, rentré, rentrée"
+rencontre,rencontré
+rencontré,rencontre
+rendre,"renauder, rendu, rondeur"
+rendu,"rendre, rond, ronde, round"
+renier,"rainure, renouer, ruiner, réunir"
+renifler,ronfler
+renouer,"rainure, renier, ruiner, réunir"
+renouveau,renvoi
+rente,"reine, reste, riant"
+rentier,"renaître, rentré, rentrée"
+rentraire,rentrer
+rentrer,rentraire
+rentré,"renaître, rentier, rentrée"
+rentrée,"renaître, rentier, rentré"
+renverse,renversé
+renversé,renverse
+renvoi,renouveau
+renvoyer,rénover
+repaire,"repère, râper"
+reparaître,"repartir, reporter, réparateur, répartir, répertoire"
+repartir,"reparaître, reporter, réparateur, répartir, répertoire"
+repas,"repos, reposé"
+repasser,repousser
+repaître,"rapatrié, rupture, réputer, répéter"
+repeindre,"répandre, répondeur, répondre"
+repenti,repli
+repli,"relié, rempli, repenti, replier"
+replier,repli
+reporter,"reparaître, repartir, réparateur, répartir, répertoire"
+repos,"repas, reposer, reposé"
+reposer,repos
+reposé,"repas, repos"
+repousser,repasser
+repris,reprise
+reprise,repris
+repu,reçu
+repère,"repaire, râper"
+repérer,réparer
+requin,rouquin
+requête,roquet
+respect,respecté
+respecté,respect
+ressaisir,rassasier
+ressembler,rassembler
+resserré,rassurer
+restau,"reste, resto"
+restaurant,restreint
+reste,"rente, restau, rester, resto"
+rester,"reste, rosâtre, rustre"
+resto,"restau, reste"
+restreint,restaurant
+retenir,routinier
+retenu,"ration, raton, retenue, rotin, routine"
+retenue,"ration, raton, retenu, rotin, routine"
+retirer,"raturer, réitérer"
+retiré,"rater, rature, retour, reître, roter"
+retouche,ratiche
+retour,"rater, rature, retiré, reître, roter"
+retracer,rétrécir
+retrait,"retraite, retraité"
+retraite,"retrait, retraité"
+retraité,"retrait, retraite"
+revenir,raviner
+revenu,ravin
+revivre,"raviver, revue"
+revoilà,"rival, réveil, révolu"
+revoir,"ravir, river, rivière, rêver, rêverie"
+revue,"revivre, revêche"
+revêche,revue
+reçu,repu
+reître,"rater, rature, retiré, retour, roter"
+rhum,rhume
+rhume,rhum
+riant,rente
+riche,"reich, roche, ruche, rêche"
+ricocher,recoucher
+ride,"rade, raid, raide, raie, rideau"
+rideau,ride
+rider,"radar, raide, raideur, raidir, redire"
+ridicule,radical
+ridiculement,radicalement
+ridé,"raid, ride"
+rien,"raie, rein, ride, rime, ring"
+rieur,"rider, rieux, rimer, river"
+rieux,rieur
+rigide,"ride, rougeaud"
+rigole,"rigolo, rougeole, règle, régal, réglé"
+rigoler,"régaler, régler, régleur, régulier"
+rigolo,"rigole, rougeole, règle, régal, réglé"
+rigueur,"rager, rageur, rougeoyer, rougeur, rougir"
+rime,"raie, rame, ride, rien, rimer"
+rimer,"ramer, rameur, ramure, remuer, rider"
+rimmel,rime
+rincer,"rancoeur, roncier"
+ring,"rang, rangé, rangée, rein, rien"
+rink,"rein, rien, ring"
+rire,"raie, raire, rare, ride, rien"
+risible,risée
+risque,risqué
+risqué,risque
+risée,"risible, rosée"
+rital,"rituel, rival, rotule"
+rite,"raie, ride, rien, rime, rire"
+rituel,"rital, rotule"
+rivage,"ravage, ravagé"
+rival,"revoilà, rital, réveil, révolu"
+rivaliser,révulser
+rivalité,"révolte, révolté"
+rive,"raie, ride, rien, rime, rire"
+river,"ravir, revoir, rider, rieur, rimer"
+rivière,"ravir, revoir, rive, river, rêver"
+rixe,"raie, ride, rien, rime, rire"
+robe,"robuste, rose, roue"
+robinet,robot
+robot,"rabat, rebut, robinet"
+robuste,robe
+rocaille,"racaille, recueilli"
+roche,"reich, riche, rocher, rocheux, ronce"
+rocher,roche
+rocheux,roche
+rock,rocker
+rocker,rock
+roder,"radar, raideur, raidir, redire, rider"
+rogne,"regain, rogner, rogue, ronce, ronde"
+rogner,"rogne, régner"
+rogue,"rogne, roue, rouer, rouge, route"
+roide,"raide, ride, rider, roder, ronde"
+romain,"roman, roumain"
+roman,"romain, romance, roumain"
+romance,roman
+rompre,ramper
+rompu,rampe
+ronce,"rance, roche, rogne, ronde"
+roncier,"rancoeur, rincer"
+rond,"rendu, ronde, rondin, round"
+ronde,"rendu, roder, rogne, roide, ronce"
+rondeur,"renauder, rendre, ronde"
+rondin,rond
+ronfler,renifler
+ronger,"ranger, rongeur"
+rongeur,"ranger, ronger"
+roquet,requête
+rose,"robe, roseau, roser, rosette, rosser"
+roseau,rose
+roser,"raser, rasoir, roder, rose, rosier"
+rosette,"rose, rosée"
+rosier,"raser, rasoir, roser, rosir, ruser"
+rosir,"raser, rasoir, roser, rosier, ruser"
+rosser,"rasseoir, rose, roser, rousseur, roussir"
+rosâtre,"rester, rose, rosée, rustre"
+rosé,"rose, rosée, rusé"
+rosée,"risée, rose, roser, rosette, rosâtre"
+rotation,ratatiné
+roter,"rater, rature, retiré, retour, reître"
+rotin,"ration, raton, retenu, retenue, routine"
+rotule,"rital, rituel"
+rouage,rouge
+roucouler,"racler, receler, reculer"
+roue,"robe, rogue, rose, rouer, rouge"
+rouer,"roder, rogue, roser, roter, roue"
+rouge,"rogne, rogue, rouage, roue, rouer"
+rougeaud,rigide
+rougeole,"rigole, rigolo, règle, régal, réglé"
+rougeoyant,régent
+rougeoyer,"rager, rageur, rigueur, rougeur, rougir"
+rougeur,"rager, rageur, rigueur, rouge, rougeoyer"
+rougir,"rager, rageur, rigueur, rougeoyer, rougeur"
+rouille,"roue, rouge, route, ruelle"
+rouiller,"railler, raillerie, railleur, rallier"
+roulant,"ralenti, relent"
+roulement,royalement
+rouler,"relayer, relier, relire, reliure, reluire"
+roulette,roulotte
+roulis,relais
+roulotte,roulette
+roumain,"romain, roman"
+round,"rendu, rond, ronde"
+rouquin,requin
+rousseur,"rasseoir, rosser, roussir, réussir"
+roussi,"ruisseau, russe, réussi"
+roussir,"rasseoir, rosser, rouer, rousseur, réussir"
+route,"rogue, roter, roue, rouer, rouge"
+routier,"rater, rature, retiré, retour, reître"
+routine,"ration, raton, retenu, retenue, rotin"
+routinier,retenir
+rouvrir,rouer
+roux,roue
+royal,royale
+royale,royal
+royalement,roulement
+ruade,"rade, raide, rude"
+ruche,"reich, riche, roche, rêche"
+rude,"rade, ride, roue, ruade, rudesse"
+rudement,rudiment
+rudesse,rude
+rudiment,rudement
+ruelle,rouille
+ruer,"roue, rouer, rude, ruse, ruser"
+rugir,"rager, rageur, rigueur, rougeoyer, rougeur"
+ruine,"reine, ruiner, ruineux, ruiné, rupin"
+ruiner,"rainure, renier, renouer, ruine, réunir"
+ruineux,ruine
+ruiné,"ruine, rupin"
+ruisseau,"roussi, russe, réussi"
+rumeur,"ramer, rameur, ramure, remuer, rimer"
+ruminer,ramener
+rupin,"rapine, ruine, ruiné"
+rupture,"rapatrié, repaître, réputer, répéter"
+ruse,"rose, roue, rude, ruer, ruser"
+ruser,"raser, rasoir, roser, rosier, rosir"
+russe,"roussi, ruisseau, ruse, ruser, réussi"
+rustine,ruse
+rustre,"rester, rosâtre"
+rusé,"rosé, ruse, ruée"
+rutiler,râtelier
+ruée,"roue, rude, ruer, ruse, rusé"
+rythme,rythmé
+rythmé,rythme
+râble,"râblé, râle, râler"
+râblé,râble
+râle,"râble, râler, rôle"
+râler,"relayer, relier, relire, reliure, reluire"
+râper,"repaire, repère, râler"
+râtelier,rutiler
+règle,"rigole, rigolo, rougeole, règne, régal"
+règne,"regain, rogne, règle, région"
+réagir,"rager, rageur, rigueur, rougeoyer, rougeur"
+réapparaître,rapporter
+récif,"récit, rétif"
+récit,"récif, récital, réciter, répit"
+récital,récit
+réciter,"recteur, récit"
+récrier,"recourir, recréer, récurer"
+récré,recrue
+récurer,"recourir, recréer, récrier"
+rédaction,réduction
+réduction,rédaction
+réduire,"radar, raideur, raidir, redire, rider"
+réel,ruée
+réellement,ralliement
+réflexe,reflux
+réforme,réformé
+réformer,"refermer, reformer"
+réformé,réforme
+réfugié,refuge
+régal,"rigole, rigolo, rougeole, règle, régaler"
+régaler,"rigoler, régal, régir, régler, régleur"
+régent,rougeoyant
+région,"regain, rogne, règne"
+régir,"rager, rageur, rigueur, rougeoyer, rougeur"
+régler,"rigoler, régaler, régleur, régulier"
+régleur,"rigoler, régaler, régir, régler, régulier"
+réglé,"rigole, rigolo, rougeole, règle, régal"
+régner,rogner
+régulier,"rigoler, régaler, régler, régleur"
+réitérer,"raturer, retirer"
+réjouir,rejouer
+rénover,renvoyer
+répandre,"repeindre, répondeur, répondre"
+réparateur,"reparaître, repartir, reporter, répartir, répertoire"
+réparer,repérer
+répartir,"reparaître, repartir, reporter, réparateur, répertoire"
+répertoire,"reparaître, repartir, reporter, réparateur, répartir"
+répit,"rapt, récit, réputé, répété"
+répondeur,"repeindre, répandre, répondre"
+répondre,"repeindre, répandre, répondeur"
+réputation,répétition
+réputer,"rapatrié, repaître, rupture, répéter"
+réputé,"rapt, répit, répété"
+répéter,"rapatrié, repaître, rupture, réputer"
+répétition,réputation
+répété,"rapt, répit, réputé"
+réserve,réservé
+réserver,réservoir
+réservoir,réserver
+réservé,réserve
+résider,résoudre
+résidu,rasade
+résine,"raisin, raison, résiné"
+résiné,"raisin, raison, résine"
+résonner,raisonner
+résoudre,résider
+rétif,récif
+rétine,"ration, raton, retenu, retenue, rotin"
+rétro,"rater, rature, retiré, retour, reître"
+rétrécir,retracer
+réunir,"rainure, renier, renouer, ruiner"
+réussi,"roussi, ruisseau, russe"
+réussir,"rasseoir, rosser, rousseur, roussir"
+réveil,"revoilà, rival, révolu"
+réviser,raviser
+révolte,"rivalité, révolté"
+révolter,révélateur
+révolté,"rivalité, révolte"
+révolu,"revoilà, rival, réveil"
+révolution,révélation
+révulser,rivaliser
+révélateur,révolter
+révélation,révolution
+révéler,ravaler
+rêche,"reich, riche, roche, ruche"
+rêne,rêve
+rêvasser,ravisseur
+rêve,"rive, rêne, rêver, rêverie, rêveur"
+rêver,"ravir, revoir, river, rivière, rêve"
+rêverie,"ravir, revoir, river, rivière, rêve"
+rêveur,"ravir, revoir, river, rivière, rêve"
+rêvé,rêve
+rôder,"radar, raideur, raidir, redire, rider"
+rôdeur,"radar, raideur, raidir, redire, rider"
+rôle,râle
+rôti,rôtir
+rôtir,"rater, rature, retiré, retour, reître"
+sable,"sabre, sale, saler, salle, salve"
+sabot,"saboter, subit"
+saboter,sabot
+sabre,"sable, sabrer, sbire, sobre, subir"
+sabrer,sabre
+saccade,saccadé
+saccader,succéder
+saccadé,"saccade, sacré"
+sacrement,sacrément
+sacrer,"secourir, sucrer, sucrerie"
+sacré,"saccadé, saucer, scier, scierie, sciure"
+sacrément,sacrement
+sage,"sagesse, sale, sang, sape, stage"
+sagesse,sage
+saigner,"seigneur, seigneurie, signer, signor, soigner"
+saignée,"signe, signé, soigné"
+sailler,"saillir, seller, souiller, souillure"
+saillie,"salle, selle, soleil, souille"
+saillir,"sailler, seller, souiller, souillure"
+sain,"saint, salin, sana, sang, sans"
+saint,"sain, salin, santé, sapin, satin"
+saisi,"saisie, saisir"
+saisie,saisi
+saisir,saisi
+salade,"salaud, solde, solide"
+saladier,"solder, solidaire"
+salaire,"sale, saler, salir, salière, salle"
+salaud,"salade, solde, solide"
+sale,"sable, sage, salaire, saler, saleté"
+salement,seulement
+saler,"sable, salaire, sale, salir, salière"
+saleté,"sale, salut"
+salin,"sain, saint, salir, salon, sapin"
+salir,"salaire, saler, salin, salière, saluer"
+salive,"salve, slave, soulevé, sylvie"
+saliver,soulever
+salière,"salaire, sale, saler, salir, salle"
+salle,"sable, saillie, salaire, sale, saler"
+salon,"salin, savon, selon"
+salope,slip
+saluer,"salaire, saler, salir, salière, saouler"
+salut,"saleté, saut, saute"
+salutaire,solitaire
+salve,"sable, salaire, sale, saler, salive"
+salé,sale
+samouraï,"saumure, semer"
+sana,"sain, sang, sans"
+sandwich,sandwiche
+sandwiche,sandwich
+sang,"sage, sain, sana, sangle, sans"
+sangle,sang
+sangler,"sanglier, singulier"
+sanglier,"sangler, singulier"
+sanitaire,"senteur, sentier, sentir, suinter, sénateur"
+sans,"sain, sana, sang, sens, sensé"
+santé,"saint, sente, senti, sonate, suant"
+saoul,"saouler, saule"
+saouler,"salaire, saler, salir, salière, saluer"
+sape,"sage, sale, saper, sapeur"
+saper,"saler, sape, sapeur, souper, soupier"
+sapeur,"sape, saper, souper, soupier, soupir"
+saphir,sphère
+sapin,"sain, saint, salin, satin"
+sarcler,sourcilier
+sardine,sourdine
+satané,"satin, soutane, soutenu, soutien, stone"
+satin,"sain, saint, salin, sapin, satané"
+saturer,"soutirer, strier"
+satyre,"sauter, sauteur, sautoir, situer, star"
+sauce,"saucer, saule, saumure, saute, sauvage"
+saucer,"sacré, sauce, scier, scierie, sciure"
+saucisse,secousse
+sauf,"saut, seau, suif"
+saule,"sable, sale, saler, salle, salve"
+saumon,semaine
+saumure,"samouraï, sauce, saule, saute, semer"
+saumâtre,symétrie
+saurer,"serra, serre, serré, sierra, sourire"
+saut,"salut, sauf, saute, sauter, seau"
+saute,"salut, sauce, saule, saumure, saut"
+sauter,"satyre, saut, saute, sauteur, sautoir"
+sauteur,"satyre, saute, sauter, sautoir, situer"
+sautoir,"satyre, sauter, sauteur, situer, star"
+sauvage,"sauce, saule, saute"
+sauver,"sauveur, saveur, savoir, suivre, sévir"
+sauveur,"sauver, saveur, savoir, suivre, sévir"
+savane,savon
+savant,"souvent, suivant"
+savate,soviet
+saveur,"sauver, sauveur, savoir, suivre, sévir"
+savoir,"sauver, sauveur, saveur, suivre, sévir"
+savon,"salon, savane"
+savourer,sevrer
+sbire,"sabre, sobre, subir"
+scander,"secondaire, seconder"
+sceau,seau
+scie,"science, scier, scierie, sien, site"
+science,scie
+scier,"sacré, saucer, scie, scierie, sciure"
+scierie,"sacré, saucer, scie, scier, sciure"
+sciure,"sacré, saucer, scier, scierie, secouer"
+scolaire,séculaire
+scooter,secteur
+scout,"secte, société, soute"
+scruter,"secrétaire, sécréter"
+sculpter,"sculpteur, sculpture"
+sculpteur,"sculpter, sculpture"
+sculpture,"sculpter, sculpteur"
+seau,"sauf, saut, sceau, seul"
+second,seconde
+secondaire,"scander, seconder"
+seconde,"second, secte"
+seconder,"scander, secondaire"
+secouer,"sacré, saucer, scier, scierie, sciure"
+secourir,"sacrer, sucrer, sucrerie"
+secousse,saucisse
+secret,"secrète, sécurité"
+secrète,"secret, sécurité"
+secrétaire,"scruter, sécréter"
+secte,"scout, seconde, secteur, sente, société"
+secteur,"scooter, secte"
+seigle,sigle
+seigneur,"saigner, seigneurie, signer, signor, soigner"
+seigneurie,"saigner, seigneur, signer, signor, soigner"
+sein,"sain, sens, serein, serin, sien"
+selle,"saillie, salle, seller, semelle, soleil"
+seller,"sailler, saillir, selle, souiller, souillure"
+selon,"salin, salon"
+semaine,saumon
+semelle,selle
+semer,"samouraï, saumure"
+semis,"siamois, soumis"
+sens,"sans, sein, sensé, sien, siens"
+sensé,"sans, sens, siens"
+sentant,suintant
+sente,"saint, santé, secte, senteur, senti"
+senteur,"sanitaire, sente, sentier, sentir, suinter"
+senti,"saint, santé, sente, sentier, sentir"
+sentier,"sanitaire, senteur, senti, sentir, suinter"
+sentir,"sanitaire, senteur, senti, sentier, suinter"
+seoir,soir
+serbe,"serge, serpe, serre, serrure, service"
+serein,"sein, serin, sirène, surin, syrien"
+serge,"serbe, sergent, serpe, serre, serrure"
+sergent,serge
+serin,"sein, serein, seriner, servi, sirène"
+seriner,serin
+serment,sûrement
+serpe,"serbe, serge, serpent, serre, serrure"
+serpent,serpe
+serra,"saurer, serre, serrer, serré, sierra"
+serre,"saurer, serbe, serge, serpe, serra"
+serrer,"serra, serre, serrure, serré"
+serrure,"serbe, serge, serpe, serre, serrer"
+serré,"saurer, serra, serre, serrer, sierra"
+sertir,"siroter, sortir"
+serveur,servir
+servi,"serin, servir, survie"
+service,"serbe, serge, serpe, serre"
+servile,"serbe, serge, serpe, serre"
+servir,"serveur, servi"
+seuil,seul
+seul,"seau, seuil"
+seulement,salement
+sevrer,savourer
+shoot,"shooter, short, souhait"
+shooter,"shoot, souhaiter"
+short,"shoot, sort, sorte, sport"
+show,slow
+siamois,"semis, soumis"
+sien,"sain, scie, sein, sens, sienne"
+sienne,"sien, sinon, sonné"
+siens,"sans, sens, sensé, sien"
+sierra,"saurer, serra, serre, serré, sourire"
+sieur,"scier, soeur, sueur"
+sifflant,sifflante
+sifflante,sifflant
+siffler,souffler
+sifflet,soufflet
+siffloter,souffleter
+sigle,"seigle, signe, silex, singe, siège"
+signe,"saignée, sigle, signer, signé, singe"
+signer,"saigner, seigneur, seigneurie, signe, signor"
+signor,"saigner, seigneur, seigneurie, signer, soigner"
+signé,"saignée, signe, soigné"
+silex,"sigle, solex"
+sillon,silo
+silo,"sillon, slow, solo"
+sincère,singe
+singe,"sang, sigle, signe, sincère, singer"
+singer,"singe, singerie, songer, songerie, songeur"
+singerie,"singer, songer, songerie, songeur"
+singulier,"sangler, sanglier"
+sinon,"sienne, sonné"
+sinuer,sonore
+sirop,serpe
+siroter,"sertir, sortir"
+sirène,"serein, serin, surin, syrien"
+site,"scie, sien, soie, soit, suie"
+situation,station
+situer,"satyre, sauter, sauteur, sautoir, star"
+sitôt,statue
+siècle,"social, socle"
+siège,"sigle, signe, singe"
+slave,"salive, salve, soulevé, suave, sylvie"
+slip,salope
+slow,"show, silo, solo"
+snob,sono
+sobre,"sabre, sbire, sombre, sorte, store"
+social,"siècle, socle"
+société,"scout, secte"
+socle,"siècle, social, solde, sole, solex"
+soeur,"sieur, sourd, sueur"
+sofa,soif
+soi-disant,séduisant
+soi-même,somme
+soie,"scie, sien, site, soierie, soif"
+soierie,soie
+soif,"sofa, soie, soin, soir, soit"
+soigner,"saigner, seigneur, seigneurie, signer, signor"
+soigné,"saignée, signe, signé"
+soin,"sain, sein, sien, soie, soif"
+soir,"seoir, soie, soif, soigner, soin"
+soirée,soir
+soit,"site, soie, soif, soin, soir"
+solaire,"salaire, saler, salir, salière, saluer"
+soldat,solidité
+solde,"salade, salaud, socle, solaire, solder"
+solder,"saladier, solde, solidaire"
+sole,"sale, socle, soie, solaire, solde"
+soleil,"saillie, salle, selle, sole, souille"
+solex,"silex, socle, solde, sole"
+solidaire,"saladier, solder"
+solide,"salade, salaud, solde"
+solidité,soldat
+solitaire,salutaire
+solo,"silo, slow, sole, sono, soûl"
+solution,"sultan, sultane"
+sombre,sobre
+sommaire,"sommer, sommier"
+somme,"soi-même, sommeil, sommer, sommet"
+sommeil,somme
+sommer,"sommaire, somme, sommier"
+sommet,"somme, sommité"
+sommier,"sommaire, sommer"
+sommité,sommet
+sonate,"saint, santé, sente, senti, suant"
+songe,"sang, singe, songer, songeur, stone"
+songer,"singer, singerie, songe, songerie, songeur"
+songerie,"singer, singerie, songer, songeur"
+songeur,"singer, singerie, songe, songer, songerie"
+sonner,sonnerie
+sonnerie,sonner
+sonné,"sienne, sinon"
+sono,"snob, soin, solo, sonore"
+sonore,"sinuer, sono"
+sordide,sorte
+sort,"short, soir, soit, sorte, sortie"
+sorte,"short, sobre, sordide, sort, sortie"
+sortie,"sort, sorte, syrte, sûreté"
+sortir,"sertir, siroter, sort"
+soucier,"sacré, saucer, scier, scierie, sciure"
+souder,séduire
+soudé,"soufflé, soulevé, sourd"
+souffle,"soufflé, soupe, soute"
+souffler,siffler
+soufflet,sifflet
+souffleter,siffloter
+soufflé,"soudé, souffle"
+souhait,shoot
+souhaiter,shooter
+souille,"saillie, salle, selle, soleil, soupe"
+souiller,"sailler, saillir, seller, souillure"
+souillure,"sailler, saillir, seller, souiller"
+souk,sous
+soulever,saliver
+soulevé,"salive, salve, slave, soudé, sylvie"
+soulier,"salaire, saler, salir, salière, saluer"
+soumis,"semis, siamois"
+soupe,"souffle, souille, souper, souple, sourdre"
+souper,"saper, sapeur, soupe, soupier, soupir"
+soupier,"saper, sapeur, souper, soupir, soupière"
+soupir,"saper, sapeur, souper, soupier, soupière"
+soupirail,spirale
+soupirant,sprint
+soupirer,"supérieur, séparer"
+soupière,"saper, sapeur, souper, soupier, soupir"
+souple,soupe
+sourcilier,sarcler
+sourd,"soeur, soudé, sourdre"
+sourdine,sardine
+sourdre,"soupe, sourd, soute"
+souriant,sérénité
+sourire,"saurer, serra, serre, serré, sierra"
+sous,souk
+soutane,"satané, satin, soupe, soutenu, soutien"
+soute,"saute, scout, sorte, souffle, souille"
+souteneur,soutenir
+soutenir,souteneur
+soutenu,"satané, satin, soutane, soute, soutien"
+soutien,"satané, satin, soutane, soutenu, stone"
+soutirer,"saturer, strier"
+souvent,"savant, suivant"
+soviet,savate
+soûl,"sole, solo, soûler"
+soûler,"salaire, saler, salir, salière, saluer"
+sperme,suprême
+sphère,saphir
+spirale,soupirail
+sport,"short, sort, sorte, sportif"
+sportif,sport
+sprint,soupirant
+stable,sable
+stade,"stage, stand, stature, studio"
+stage,"sage, stade, stature"
+stagner,star
+stalle,salle
+stand,stade
+star,"satyre, sauter, sauteur, sautoir, situer"
+stater,stature
+station,situation
+statue,sitôt
+stature,"stade, stage, stater"
+stone,"satané, satin, songe, soutane, soutenu"
+store,"satyre, sauter, sauteur, sautoir, situer"
+stratège,stratégie
+stratégie,stratège
+strie,"satyre, sauter, sauteur, sautoir, situer"
+strier,"saturer, soutirer, strie"
+strophe,strie
+studio,stade
+style,"stylo, stèle"
+stylo,"style, stèle"
+stèle,"style, stylo"
+suant,"saint, santé, sente, senti, sonate"
+suave,"salve, slave"
+subir,"sabre, sbire, sobre, subit"
+subit,"sabot, subir, suite"
+succéder,saccader
+sucer,"sacré, sauce, saucer, scier, scierie"
+sucre,"sacré, sauce, saucer, scier, scierie"
+sucrer,"sacrer, secourir, sucer, sucre, sucrerie"
+sucrerie,"sacrer, secourir, sucrer"
+sucré,"sacré, saucer, scier, scierie, sciure"
+sud-est,sud-ouest
+sud-ouest,sud-est
+suer,"sucer, sueur, suie, super, suée"
+sueur,"sieur, soeur, sucer, suer, super"
+suicidaire,suicider
+suicide,"suicidé, suie, suite"
+suicider,suicidaire
+suicidé,suicide
+suie,"scie, sien, site, soie, suer"
+suif,"sauf, soif, suie"
+suintant,sentant
+suinter,"sanitaire, senteur, sentier, sentir, sénateur"
+suite,"saute, site, soute, subit, suicide"
+suivant,"savant, souvent"
+suivre,"sauver, sauveur, saveur, savoir, sévir"
+sultan,"solution, sultane"
+sultane,"solution, sultan"
+super,"saper, sapeur, soupe, souper, soupier"
+superbe,super
+supplice,supplicié
+supplicié,supplice
+supplier,suppléer
+suppléer,supplier
+suprême,sperme
+supérieur,"soupirer, séparer"
+suraigu,serge
+surin,"serein, serin, sirène, syrien"
+surplis,surplus
+surplus,surplis
+surpris,surprise
+surprise,surpris
+survie,servi
+suspens,suspense
+suspense,suspens
+suée,"suer, suie"
+sylvie,"salive, salve, slave, soulevé"
+symétrie,saumâtre
+syrien,"serein, serin, sirène, surin"
+syrte,"sort, sorte, sortie, sûreté"
+séant,"saint, santé, sente, senti, sonate"
+sécréter,"scruter, secrétaire"
+séculaire,scolaire
+sécurité,"secret, secrète"
+séduire,souder
+séduisant,soi-disant
+sénat,"saint, santé, sente, senti, sonate"
+sénateur,"sanitaire, senteur, sentier, sentir, suinter"
+séparer,"soupirer, supérieur"
+séparé,"saper, sapeur, souper, soupier, soupir"
+série,"strie, sérieux"
+sérieux,série
+sérénité,souriant
+sévir,"sauver, sauveur, saveur, savoir, suivre"
+sévère,"sauver, sauveur, saveur, savoir, suivre"
+sûrement,serment
+sûreté,"sort, sorte, sortie, syrte"
+table,"tableau, tabler, taule"
+tableau,"table, tabou"
+tabler,"table, tablier"
+tablier,tabler
+tabou,tableau
+tache,"tacher, tchao, touche, touché, trace"
+tacher,"tache, toucher, tâcher"
+tacite,tact
+tact,"tacite, tant, trac, tract"
+taie,"taire, tare, tari, taxe, taxi"
+taille,"taillé, telle, tulle"
+tailler,"tailleur, touiller"
+tailleur,"tailler, touiller"
+taillis,telles
+taillé,"taille, telle, tulle"
+taire,"taie, tapir, tare, tarir, tarte"
+talion,talon
+talon,talion
+talus,tels
+tambour,"timbre, timbré, tomber, tombereau"
+tamis,"tamiser, tamisé, tapis"
+tamiser,tamis
+tamisé,tamis
+tampon,tympan
+tanière,"tante, tenir, ténor"
+tank,tant
+tanner,tonner
+tanné,"tienne, tonne, tonneau"
+tant,"tact, tank, tante, tantôt, teint"
+tante,"tanière, tant, tarte, teint, teinte"
+tantôt,tant
+taper,"tapir, taupe, taxer"
+tapin,"tapiner, tapir, tapis, tarin, train"
+tapiner,tapin
+tapir,"taire, taper, tapin, tapis, tapoter"
+tapis,"tamis, tapin, tapir"
+tapisser,"tapisserie, tapissier"
+tapisserie,"tapisser, tapissier"
+tapissier,"tapisser, tapisserie"
+tapoter,tapir
+tarauder,"tarder, tordre, traduire"
+tard,"tarder, tardif, tare, tari, taré"
+tarder,"tarauder, tard, tordre, traduire"
+tardif,"tard, tarif"
+tare,"taie, taire, tard, tari, tartare"
+targuer,tarir
+tari,"taie, tard, tare, tarif, tarin"
+tarif,"tardif, tari, tarin, tarir, turf"
+tarin,"tapin, tari, tarif, tarir, terne"
+tarir,"taire, tapir, targuer, tari, tarif"
+tarot,"tarte, tort, tortue, trait, traite"
+tartare,"tare, tarte, tartir, tertre, tortore"
+tarte,"taire, tante, tare, tarot, tartare"
+tartine,tare
+tartir,"tarir, tartare, tertre, tortore, torture"
+taré,"tard, tare, tari, tiré, tsar"
+tasse,"tasser, tassé, tissu"
+tasser,"tasse, tisser, tousser, tussor"
+tassé,"tasse, tissu"
+tatane,téton
+tatouer,"titre, toiture, tuteur, tutoyer, tuyauterie"
+taule,"table, taupe, tuile, tulle"
+taupe,"taper, taule"
+taux,"taxe, taxi, toux"
+taxe,"taie, tare, taux, taxer, taxi"
+taxer,"taper, taxe"
+taxi,"taie, tari, taux, taxe"
+tchao,"tache, touche, touché, tâche"
+teindre,"tendre, tondeur, tondre"
+teint,"tant, tante, teinte, teinter, tente"
+teinte,"tant, tante, teint, tente"
+teinter,"teint, teinture, tenter, tenture, tinter"
+teinture,"teinter, tenter, tenture, tinter"
+telle,"taille, taillé, telles, tulle, tutelle"
+telles,"taillis, telle"
+tels,"talus, test"
+tempe,"temple, temps, terme, trempe"
+temple,tempe
+temporaire,tempérer
+temps,tempe
+tempérer,temporaire
+tendre,"teindre, tondeur, tondre"
+tendu,"tenu, tenue, tondu"
+tenir,"tanière, terni, ternir, ténor"
+tension,tunisien
+tente,"tant, tante, teint, teinte, tenter"
+tenter,"teinter, teinture, tente, tenture, tinter"
+tenture,"teinter, teinture, tenter, tinter"
+tenu,"tendu, tenue, tien, ténu"
+tenue,"tendu, tente, tenu, terne"
+terme,"tempe, terne, terre, terrine, tram"
+termite,"terne, terre"
+terne,"tarin, tente, tenue, terme, termite"
+terni,"tarin, tenir, terne, ternir, tournoi"
+ternir,"tenir, terni, tourner, tournoyer, tournure"
+terrain,"terrien, terrine"
+terrasser,terrassier
+terrassier,terrasser
+terre,"tarir, terme, termite, terne, terreau"
+terreau,"tarir, terre, tirer, tireur, tiroir"
+terrer,"terre, terreur, terrier, terroir"
+terreur,"terre, terrer, terrier, terroir"
+terreux,terre
+terrien,"terrain, terrine"
+terrier,"terrer, terreur, terroir"
+terrine,"terme, terrain, terrien"
+terroir,"terrer, terreur, terrier"
+tertre,"tartare, tartir, terre, tortore, torture"
+test,"tels, tester, toast"
+tester,test
+texte,tente
+thon,thune
+thune,"thon, tune, turne"
+thym,thème
+thème,"thym, thèse"
+thèse,thème
+théière,théorie
+théorie,théière
+tien,"taie, tenu, tienne, tiens, tige"
+tienne,"tanné, tien, tonne, tonneau"
+tiens,"tien, tiers"
+tiercé,"trac, trace, tracé, troc, truc"
+tiers,"tiens, tirer, tors, torse, trier"
+tige,"taie, tien, tigre, tire"
+tigre,"taire, tige, tigré, tire, tirer"
+tigré,"tigre, tiré"
+timbale,tombal
+timbre,"tambour, timbré, tomber, tombereau"
+timbré,"tambour, timbre, tomber, tombereau"
+timon,"tison, témoin"
+timoré,tumeur
+tinter,"teinter, teinture, tenter, tenture"
+tintin,"tintouin, tonton"
+tintouin,"tintin, tonton"
+tiquer,toquer
+tirade,"tard, tordu"
+tirailler,tirailleur
+tirailleur,tirailler
+tirant,trente
+tire,"taie, taire, tare, tien, tige"
+tirer,"taire, tarir, terre, terreau, tiers"
+tireur,"tarir, terre, terreau, tire, tirer"
+tiroir,"tarir, terre, terreau, tirer, tireur"
+tiré,"taré, tigré, tire"
+tisane,"tison, toison"
+tison,"timon, tisane, toison"
+tisser,"tasser, tousser, tussor"
+tissu,"tasse, tassé"
+titi,toit
+titre,"taire, tatouer, tigre, tire, tirer"
+titulaire,tutélaire
+tiédeur,tiédir
+tiédir,tiédeur
+toast,test
+toile,"toiture, tuile"
+toiser,tsar
+toison,"tisane, tison"
+toit,"titi, tort, tout, trot"
+toiture,"tatouer, titre, toile, tuteur, tutoyer"
+tombal,timbale
+tombe,"tombeau, tomber, tombé, tombée, tome"
+tombeau,"tombe, tombé, tombée"
+tomber,"tambour, timbre, timbré, tombe, tombereau"
+tombereau,"tambour, timbre, timbré, tomber"
+tombé,"tombe, tombeau, tombée"
+tombée,"tombe, tombeau, tombé"
+tome,tombe
+tondeur,"teindre, tendre, tondre"
+tondre,"teindre, tendre, tondeur"
+tondu,"tendu, tonneau, tordu"
+tonique,"tonne, tunique"
+tonne,"tanné, tienne, tonique, tonneau, tonner"
+tonneau,"tanné, tienne, tondu, tonne"
+tonner,"tanner, tonne"
+tonton,"tintin, tintouin"
+topo,trop
+toque,"toquer, toute"
+toquer,"tiquer, toque"
+torcher,tricher
+torchis,tors
+tordre,"tarauder, tarder, traduire"
+tordu,"tard, tirade, tondu"
+torero,"tarir, terre, terreau, tirer, tireur"
+tornade,truand
+torpédo,trépied
+torrent,tort
+tors,"tiers, torchis, torse, tort, tour"
+torse,"tiers, tors, torve, trois, très"
+tort,"tarot, tarte, toit, torrent, tors"
+tortore,"tartare, tartir, tertre, torture, torturé"
+tortue,"tarot, tarte, tort, trait, traite"
+torture,"tartare, tartir, tertre, tortore, torturé"
+torturer,triturer
+torturé,"tartare, tartir, tertre, tortore, torture"
+torve,"torse, travée, trouvé, trêve"
+touche,"tache, tchao, touché, tâche"
+toucher,"tacher, tour, tâcher"
+touché,"tache, tchao, touche, tâche"
+touffe,touffu
+touffu,touffe
+touiller,"tailler, tailleur"
+tour,"tors, tort, toucher, tourbe, tourner"
+tourbe,"tour, tribu"
+tourelle,"treille, trille, trouille, truelle"
+tourisme,troisième
+touriste,triste
+tourment,"tourmente, tourmenté"
+tourmente,"tourment, tourmenté"
+tourmenté,"tourment, tourmente"
+tournant,"tournoyant, traînant"
+tourner,"ternir, tour, tournoyer, tournure, traîner"
+tournis,"tous, transe, transi"
+tournoi,"tarin, terne, terni, tourné, tournée"
+tournoyant,"tournant, traînant"
+tournoyer,"ternir, tourner, tournure, traîner, trôner"
+tournure,"ternir, tourner, tournoyer, traîner, trôner"
+tourné,"tarin, terne, terni, tour, tournoi"
+tournée,"tarin, terne, terni, tournoi, tourné"
+tourtereau,"tartare, tartir, tertre, tortore, torture"
+tous,"tors, tour, tournis, tout, toux"
+tousser,"tasser, tisser, tour, tussor"
+tout,"toit, tort, tour, tous, toute"
+toute,"toque, tournée, tout, toutes, toutou"
+toutes,"tout, toute"
+toutou,"tout, toute"
+toux,"taux, tour, tous, tout, trou"
+trac,"tact, tiercé, tracas, trace, tracer"
+tracas,trac
+trace,"tache, tiercé, trac, tracer, tract"
+tracer,"trac, trace"
+tract,"tact, trac, trace, tracé, trait"
+tracteur,tricoter
+tracé,"tiercé, trac, trace, tract, troc"
+traduire,"tarauder, tarder, tordre"
+trahi,"trahir, train, trait"
+trahir,trahi
+train,"tapin, tarin, terne, terni, tournoi"
+traire,"taire, tarir, terre, terreau, tirer"
+trait,"tarot, tarte, tort, tortue, tract"
+traite,"tarot, tarte, tort, tortue, trait"
+traiter,"tartare, tartir, tertre, tortore, torture"
+traiteur,"tartare, tartir, tertre, tortore, torture"
+traité,"tarot, tarte, tort, tortue, trait"
+tram,"terme, trac, trame, tramer"
+trame,"terme, trace, tram, tramer, tranche"
+tramer,"tram, trame, trimer, trémière"
+tranche,"trame, tranché, tranchée, tronche"
+tranché,"tranche, tranchée, tronche"
+tranchée,"tranche, tranché, tronche"
+transe,"tournis, transi"
+transi,"tournis, transe"
+transit,tract
+transparaître,transporter
+transport,transporté
+transporter,transparaître
+transporté,transport
+trapu,"tripe, trop, troupe, troupeau"
+trapèze,"trace, trame"
+traquer,"troquer, truquer"
+travail,trivial
+travailler,travailleur
+travailleur,travailler
+travaillé,trouvaille
+travers,"traverse, traversé, traversée"
+traverse,"travers, traversé, traversée"
+traversé,"travers, traverse, traversée"
+traversée,"travers, traverse, traversé"
+travée,"torve, trouvé, trêve"
+traînant,"tournant, tournoyant"
+traîne,"tarin, terne, terni, tournoi, tourné"
+traîneau,"tarin, terne, terni, tournoi, tourné"
+traîner,"ternir, tourner, tournoyer, tournure, trôner"
+traînée,"tarin, terne, terni, tournoi, tourné"
+traître,"tartare, tartir, tertre, tortore, torture"
+treille,"tourelle, trille, trouille, truelle"
+tremble,tremblé
+trembler,trimbaler
+tremblé,tremble
+trempe,"tempe, trempé, trompe"
+tremper,"tromper, tromperie, trompeur"
+trempé,"trempe, trompe"
+trente,"tente, tirant"
+tresse,"trousse, trousseau"
+tresser,trousser
+triangle,tringle
+triangulaire,tringler
+tribu,"tourbe, tribun, tribune, tribut"
+tribun,"tribu, tribune, turban, turbin"
+tribune,"tribu, tribun, tripe, turban, turbin"
+tribut,tribu
+tricher,torcher
+tricot,tract
+tricoter,tracteur
+trier,"tarir, terre, terreau, tiers, tirer"
+trille,"tourelle, treille, trouille, truelle"
+trimbaler,trembler
+trimer,"tramer, trier, trémière"
+tringle,"triangle, tripe"
+tringler,triangulaire
+trio,"tari, troc, trop, trot, trou"
+tripe,"trapu, tribune, trier, tringle, triple"
+triple,tripe
+trique,truqué
+triste,touriste
+triturer,torturer
+trivial,travail
+troc,"tiercé, trac, trace, tracé, trio"
+trois,"tiers, tors, torse, très"
+troisième,tourisme
+trombe,tombe
+trompe,"trempe, trempé"
+tromper,"tremper, tromperie, trompeur"
+tromperie,"tremper, tromper, trompeur"
+trompeur,"tremper, tromper, tromperie"
+tronc,"troc, tronche"
+tronche,"tranche, tranché, tranchée, tronc"
+trop,"topo, trapu, trio, tripe, troc"
+troquer,"traquer, truquer"
+troquet,trot
+trot,"tarot, tarte, toit, tort, tortue"
+trotter,trottoir
+trottoir,trotter
+trou,"tour, tous, tout, toux, trio"
+troublant,turbulent
+trouble,troublé
+troublé,trouble
+trouer,"tarir, terre, terreau, tirer, tireur"
+trouille,"tourelle, treille, trille, truelle"
+troupe,"trapu, tripe, trop, trou, troupeau"
+troupeau,"trapu, tripe, trop, troupe"
+trousse,"tresse, trousseau"
+trousseau,"tresse, trousse"
+trousser,tresser
+trouvaille,travaillé
+trouvé,"torve, travée, trou, troué, trêve"
+troué,"trou, trouvé, trouée"
+trouée,"trou, troué"
+truand,tornade
+truc,"tiercé, trac, trace, tracé, troc"
+truelle,"tourelle, treille, trille, trouille"
+truie,"trier, tripe, truite, tuile"
+truite,"tarot, tarte, tort, tortue, trait"
+truquer,"traquer, troquer"
+truqué,trique
+très,"tiers, tors, torse, trois"
+trémière,"tramer, trimer"
+trépied,torpédo
+tréteau,"tarot, tarte, tort, tortue, trait"
+trêve,"torve, travée, trouvé"
+trône,"tarin, terne, terni, tournoi, tourné"
+trôner,"ternir, tourner, tournoyer, tournure, traîner"
+tsar,"tard, tare, tari, taré, toiser"
+tube,"tuer, tune"
+tuer,"tour, tube, tuerie, tueur, tune"
+tuerie,tuer
+tueur,"tuer, tumeur, tuteur"
+tuile,"taule, toile, truie, tulle"
+tulle,"taille, taillé, taule, telle, tuile"
+tumeur,"timoré, tueur"
+tune,"thune, tube, tuer, tunique, tunnel"
+tunique,"tonique, tune"
+tunisien,tension
+tunnel,tune
+turban,"tribun, tribune, turbin"
+turbin,"tribun, tribune, turban"
+turbulent,troublant
+turc,"tiercé, tour, trac, trace, tracé"
+turf,"tarif, tour, tuer, turc"
+turne,"tarin, terne, terni, thune, tournoi"
+tussor,"tasser, tisser, tousser"
+tutelle,telle
+tuteur,"tatouer, titre, toiture, tueur, tutoyer"
+tutoyer,"tatouer, titre, toiture, tuteur, tuyauterie"
+tutu,"tout, têtu"
+tutélaire,titulaire
+tuyauterie,"tatouer, titre, toiture, tuteur, tutoyer"
+tympan,tampon
+type,typique
+typique,type
+tyran,"tarin, terne, terni, tournoi, tourné"
+tâche,"tache, tchao, touche, touché, tâcher"
+tâcher,"tacher, toucher, tâche"
+tâter,"tatouer, titre, toiture, tuteur, tutoyer"
+témoin,timon
+ténor,"tanière, tenir"
+ténu,tenu
+téter,"tatouer, titre, toiture, tuteur, tutoyer"
+téton,tatane
+têtard,tard
+tête,têtu
+têtu,"tutu, tête"
+ulcère,ulcéré
+ulcéré,ulcère
+unes,urne
+urine,"uriner, urne, usine"
+uriner,urine
+urne,"unes, urine"
+usage,usagé
+usagé,usage
+usine,urine
+vacance,vache
+vacarme,vache
+vache,"vacance, vacarme"
+vagin,"vagir, vain, vigne"
+vagir,"vagin, vaguer, vigueur, voguer, voyager"
+vague,"vaguer, vogue"
+vaguer,"vagir, vague, vigueur, voguer, voyager"
+vain,"vagin, vaincu, vlan, vrai"
+vaincu,vain
+vaisseau,vessie
+valable,"valse, volubile"
+valet,"valse, velouté, violet, volet, volute"
+valeur,"valoir, veulerie, violer, violeur, voiler"
+valide,validé
+validé,valide
+valise,valse
+vallée,"veille, veillée, vieilli, villa, ville"
+valoche,valse
+valoir,"valeur, veulerie, violer, violeur, voiler"
+valse,"valable, valet, valise, valoche, valser"
+valser,valse
+vanille,"vanne, venelle"
+vanité,"vent, vente, voyant"
+vanne,"vanille, vanner, venin"
+vanner,vanne
+vanter,"ventre, ventru"
+vape,"vapeur, vase"
+vapeur,"vape, vipère, vêpre"
+vareuse,"vers, verso, versé, virus"
+variable,verbal
+varice,"vorace, vrac"
+varier,"verre, verrou, verrue, virer"
+varié,variété
+variété,"varié, vert, vertu, vérité"
+vase,"valse, vape, vaseux, vaste"
+vaseux,vase
+vaste,"valse, vase, veste, visite"
+vaurien,verni
+vautour,"vitre, vitré, voiture, voter, votre"
+vautrer,vitrer
+veau,"velu, venu, veuf, voeu"
+veille,"vallée, veillée, vieilli, villa, ville"
+veiller,"veilleur, vieillerie, vieillir"
+veilleur,"veiller, vieillerie, vieillir"
+veillée,"vallée, veille, veine, vieilli, villa"
+veine,"veillée, venin, vente, venue, vigne"
+velléité,vieillot
+velouté,"valet, violet, volet, volute"
+velu,"veau, venu, veuf, voeu"
+vendeur,"vendre, venir"
+vendre,vendeur
+vendu,"venu, venue, viande"
+venelle,"vanille, vente, venue"
+veneur,"venir, vénéré"
+venger,"vengeur, vinaigre"
+vengeur,"venger, venir, vinaigre"
+venin,"vanne, veine, venir, verni"
+venir,"vendeur, veneur, vengeur, venin, verni"
+vent,"vanité, vente, ventre, ventru, venu"
+vente,"vanité, veine, venelle, vent, ventre"
+ventre,"vanter, vent, vente, ventru"
+ventru,"vanter, vent, ventre"
+venu,"veau, velu, vendu, vent, venue"
+venue,"veine, vendu, venelle, vente, venu"
+verbal,variable
+verbe,"verdure, verge, vermine, verre, vertige"
+verdict,vert
+verdir,verdure
+verdure,"verbe, verdir, verge, verve"
+verge,"verbe, verdure, verger, vermine, verre"
+verger,verge
+verglas,vers
+vermeil,vermoulu
+vermine,"verbe, verge, verre, verve"
+vermoulu,vermeil
+verni,"vaurien, venin, venir, vernir, vernis"
+vernir,"venir, verni"
+vernis,verni
+verre,"varier, verbe, verge, vermine, verrou"
+verrou,"varier, verre, verrue, virer"
+verrue,"varier, verre, verrou, virer"
+vers,"vareuse, verglas, verser, verset, verso"
+versant,vert
+verser,"vers, verso, versé"
+verset,vers
+verso,"vareuse, vers, verser, versé, virus"
+versé,"vareuse, vers, verser, verso, virus"
+vert,"variété, vent, verdict, vers, versant"
+vertical,verticale
+verticale,vertical
+vertige,"verbe, verre, verve"
+vertu,"variété, vert, vérité"
+verve,"verbe, verdure, verge, vermine, verre"
+vessie,vaisseau
+veste,"vaste, vente, visite"
+vestiaire,"visiter, visiteur"
+veuf,"veau, velu, venu, voeu"
+veule,venue
+veulerie,"valeur, valoir, violer, violeur, voiler"
+viande,vendu
+vibrer,virer
+vicaire,vice
+vice,"vicaire, vicomte, victime, vide, vite"
+vicieux,vieux
+vicomte,vice
+victime,vice
+vide,"vice, vider, vidé, vite, vive"
+vider,"vide, virer, viser"
+vidé,"vide, visé"
+vieil,"vieilli, viril"
+vieillerie,"veiller, veilleur, vieillir"
+vieilli,"vallée, veille, veillée, vieil, villa"
+vieillir,"veiller, veilleur, vieillerie"
+vieillot,velléité
+vierge,"verge, virage"
+vieux,"vicieux, vineux"
+vigie,vigne
+vigne,"vagin, veine, vigie"
+vigueur,"vagir, vaguer, voguer, voyager, voyageur"
+vilain,"violon, vlan"
+villa,"vallée, veille, veillée, vieilli, village"
+village,villa
+ville,"vallée, veille, veillée, vieilli, villa"
+vinaigre,"venger, vengeur"
+vineux,vieux
+viol,"violer, violet, violon, volé"
+violent,"volant, volonté"
+violer,"valeur, valoir, veulerie, viol, violeur"
+violet,"valet, velouté, viol, volet, volute"
+violette,voilette
+violeur,"valeur, valoir, veulerie, violer, voiler"
+violon,"vilain, viol, vlan"
+vipère,"vapeur, vêpre"
+virage,"verge, vierge"
+virer,"varier, verre, verrou, verrue, vibrer"
+virgule,virée
+viril,"vieil, virtuel, vérole, vérolé"
+virtuel,viril
+virus,"vareuse, vers, verso, versé"
+virée,"virer, virgule, visée, vitre, vitré"
+visa,"visage, visé"
+visage,visa
+viscère,visée
+viser,"vider, virer, visière, visser, visée"
+visible,visée
+vision,"vison, voisin"
+visite,"vaste, veste, vite"
+visiter,"vestiaire, visiteur"
+visiteur,"vestiaire, visiter"
+visière,"viser, visée"
+vison,"vision, voisin"
+visser,viser
+visé,"vidé, visa, visée"
+visée,"virée, viscère, viser, visible, visière"
+vite,"vice, vide, visite, vitesse, vitre"
+vitesse,"vite, vitre"
+vitre,"vautour, virer, virée, vite, vitesse"
+vitrer,"vautrer, virer, vitre"
+vitreux,vitre
+vitrine,"vite, vétéran"
+vitré,"vautour, virée, vitre, voiture, voter"
+vive,"vice, vide, vite, vivre, voie"
+vivre,"virer, virée, vitre, vive, voire"
+vlan,"vain, vilain, violon"
+voeu,"veau, velu, venu, veuf, voie"
+vogue,"vague, voguer, vouer"
+voguer,"vagir, vaguer, vigueur, vogue, vouer"
+voie,"vice, vide, vite, vive, voeu"
+voile,"ville, voie, voiler, voilà, voilé"
+voiler,"valeur, valoir, veulerie, violer, violeur"
+voilette,violette
+voilier,"valeur, valoir, veulerie, violer, violeur"
+voilà,"voile, voilé"
+voilé,"voile, voilà, volé, volée"
+voir,"voie, voilier, voire, voix, vomir"
+voire,"virer, virée, vitre, vivre, voie"
+voisin,"vision, vison"
+voiture,"vautour, vitre, vitré, voie, voile"
+voix,"voie, voir"
+volant,"violent, volonté"
+voler,"valeur, valoir, veulerie, violer, violeur"
+volet,"valet, velouté, violet, voile, voler"
+voleter,"voler, volet"
+voleur,"valeur, valoir, veulerie, violer, violeur"
+volière,"valeur, valoir, veulerie, violer, violeur"
+volonté,"violent, volant, volé"
+voltige,volée
+voltiger,voltigeur
+voltigeur,voltiger
+volubile,valable
+volupté,volé
+volute,"valet, velouté, violet, volet"
+volé,"viol, voilé, volonté, volupté, volée"
+volée,"voile, voilé, voler, volet, volière"
+vomir,"voir, voire"
+vorace,"varice, vrac"
+vote,"vite, voeu, voie, voter, votre"
+voter,"vautour, vitre, vitré, voiture, voler"
+votre,"vautour, vitre, vitré, voire, voiture"
+vouer,"vogue, voguer, voler, voter, vouloir"
+vouivre,vivre
+vouloir,"valeur, valoir, veulerie, violer, violeur"
+vous,voeu
+voyager,"vagir, vaguer, vigueur, voguer, voyageur"
+voyageur,"vagir, vaguer, vigueur, voguer, voyager"
+voyant,"vanité, vent, vente"
+voyelle,"vallée, veille, veillée, vieilli, villa"
+voûte,"vote, voter, votre, voûter, voûté"
+voûter,"vautour, vitre, vitré, voiture, voter"
+voûté,voûte
+vrac,"varice, vorace, vrai"
+vrai,"vain, vrac"
+vrille,ville
+vénéré,"veneur, venir"
+vérité,"variété, vert, vertu"
+vérole,"viril, vérolé"
+vérolé,"viril, vérole"
+vétéran,vitrine
+vêpre,"vapeur, vipère"
+vêtir,"vautour, vitre, vitré, voiture, voter"
+vôtre,"vautour, vitre, vitré, voiture, voter"
+vôtres,vôtre
+zèle,zélé
+zélé,zèle
+âcre,"âpre, âtre"
+âpre,"âcre, âpreté, âtre"
+âpreté,âpre
+âtre,"âcre, âpre"
+ébahi,ébahir
+ébahir,ébahi
+ébat,état
+ébauche,ébauché
+ébauché,ébauche
+éblouir,ébouler
+ébouler,éblouir
+écaille,"écaillé, écuelle"
+écaillé,"écaille, écuelle"
+écart,"écarter, écarté, éclat, écrit, écriteau"
+écarter,"écart, écourter, écritoire, écriture"
+écarté,"écart, écrit, écriteau"
+échappé,"échappée, échoppe"
+échappée,"échappé, échoppe"
+écho,échoir
+échoir,"écho, échouer"
+échoppe,"échappé, échappée"
+échouer,échoir
+éclabousser,éclaboussure
+éclaboussure,éclabousser
+éclair,"éclairé, éclore, écolier, écouler"
+éclairer,éclaireur
+éclaireur,éclairer
+éclairé,"éclair, éclore, écolier, écouler"
+éclat,"écart, éclater, éclaté"
+éclater,éclat
+éclaté,éclat
+éclore,"éclair, éclairé, écolier, écouler"
+éclos,écluse
+écluse,éclos
+écoeurer,"écrier, écrire"
+école,"économe, étole"
+écolier,"éclair, éclairé, éclore, écouler"
+économe,"école, économie"
+économie,économe
+écouler,"éclair, éclairé, éclore, écolier"
+écourter,"écarter, écritoire, écriture"
+écouter,écouteur
+écouteur,écouter
+écran,écrin
+écrier,"écoeurer, écrire"
+écrin,"écran, écrit"
+écrire,"écoeurer, écrier"
+écrit,"écart, écarté, écrin, écriteau"
+écriteau,"écart, écarté, écrit"
+écritoire,"écarter, écourter, écriture"
+écriture,"écarter, écourter, écritoire"
+écuelle,"écaille, écaillé, écume"
+écume,"écuelle, écumer"
+écumer,écume
+éden,édenté
+édenté,éden
+éditer,éditeur
+éditeur,éditer
+égal,"égaler, étal"
+égaler,égal
+égalité,égaré
+égard,égaré
+égaré,"égalité, égard"
+égratigner,égratignure
+égratignure,égratigner
+élan,élancé
+élancé,élan
+élection,élocution
+élever,éleveur
+éleveur,élever
+élevé,élève
+élier,"élire, élite, épier, évier"
+élire,"élier, élite"
+élite,"élier, élire"
+élocution,élection
+élève,élevé
+émail,émaillé
+émaillé,émail
+émettre,émietter
+émietter,émettre
+émissaire,émousser
+émousser,émissaire
+épais,épars
+épaisseur,épaissir
+épaissir,épaisseur
+épandre,épave
+épanouir,épinier
+épargne,épave
+épars,épais
+épauler,"épeler, épiler, éploré"
+épave,"épandre, épargne"
+épeler,"épauler, épiler, éploré"
+épice,"épier, épine, épingle, épisode"
+épicerie,épicier
+épicier,"épicerie, épier"
+épier,"élier, épice, épicier, épiler, épine"
+épiler,"épauler, épeler, épier, éploré"
+épine,"épice, épier, épineux, épisode"
+épineux,épine
+épingle,épice
+épinier,"épanouir, épier"
+épisode,"épice, épine"
+éploré,"épauler, épeler, épiler"
+éplucher,épluchure
+épluchure,éplucher
+épopée,épée
+épouser,épuiser
+épouvante,épouvanté
+épouvanté,épouvante
+épreuve,éprouvé
+éprouvé,épreuve
+épuiser,épouser
+épée,épopée
+équilibre,équilibré
+équilibré,équilibre
+érafler,éraflure
+éraflure,érafler
+étable,"établi, étale"
+établi,étable
+étage,"étager, étale, étang, étape"
+étager,"étage, étagère"
+étagère,"étager, étale, étape"
+étain,étang
+étal,"égal, étale, étaler, étalon, état"
+étalage,étape
+étale,"étable, étage, étagère, étal, étaler"
+étaler,"étal, étale, étioler, étoiler"
+étalon,étal
+étanche,"étale, étape"
+étang,"étage, étain"
+étape,"étage, étagère, étalage, étale, étanche"
+état,"ébat, étal, étau"
+étau,"étal, état, étui"
+éteindre,étendre
+étendre,éteindre
+étendu,étendue
+étendue,étendu
+éternité,étreinte
+étioler,"étaler, étoiler"
+étirer,étrier
+étoffe,étouffé
+étoile,"étoilé, étole"
+étoiler,"étaler, étioler"
+étoilé,étoile
+étole,"école, étale, étoile"
+étouffé,étoffe
+étourderie,étourdir
+étourdir,étourderie
+étreinte,éternité
+étrier,étirer
+étude,étuve
+étui,étau
+étuve,étude
+évacuation,évocation
+évaluer,évoluer
+éveil,éveillé
+éveillé,éveil
+éventail,éventuel
+éventaire,"éventer, éventré"
+éventer,"éventaire, éventré"
+éventré,"éventaire, éventer"
+éventuel,éventail
+évier,"élier, épier, éviter"
+éviter,évier
+évocation,évacuation
+évoluer,évaluer

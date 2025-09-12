@@ -1,0 +1,31 @@
+FRENCH WORD SIMILARITY ANALYSIS - SUMMARY REPORT
+============================================================
+
+ANALYSIS OVERVIEW:
+- Total French words analyzed: 14,651
+- Total comparisons made: 77,920,046
+- Confusable pairs found: 16,818
+- Words with similar mappings: 10,417
+- Analysis time: 154.31 seconds (2.5 minutes)
+
+ALGORITHM FEATURES:
+- Cognitive Rules Engine with 4 rules:
+  * Rule 1: Accent Confusion (diacritic sensitivity)
+  * Rule 2: The Near Miss (DLD = 1)
+  * Rule 3: The Internal Jumble (DLD = 2, Dice > 0.70)
+  * Rule 4: The Shell Match (LCP ≥ 3, LCS ≥ 1)
+- Same starting character constraint
+- Top-5 similar words per target word
+- Composite similarity scoring
+
+OUTPUT FILES:
+- consolidated_french_word_similarities.csv (main results)
+- french_word_similarities.csv (simple format)
+- french_word_similarities_detailed.csv (with scores)
+- Multiple checkpoint files (partial_results_*.csv)
+
+USE CASES:
+- Language learning: Identify confusing word pairs
+- Vocabulary training: Focus on similar words
+- Error analysis: Understand common mistakes
+- Curriculum design: Group related vocabulary
