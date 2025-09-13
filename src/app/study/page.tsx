@@ -1178,7 +1178,7 @@ function ReviewCard({
                 </div>
 
                 {/* Main content */}
-                <div className="flex-1 flex flex-col justify-center items-center space-y-2 sm:space-y-6">
+                <div className="flex-1 flex flex-col justify-center items-center space-y-1.5 sm:space-y-6">
                   {/* Language A Word with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-2xl sm:text-6xl font-bold text-gray-900 break-words">{word?.language_a_word}</p>
@@ -1208,7 +1208,6 @@ function ReviewCard({
                   {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
                     <div className="w-[calc(100%+3rem)] sm:w-full ml-[-1.5rem] mr-[-1.5rem] sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg overflow-hidden mx-auto">
-                      <p className="text-sm sm:text-lg text-gray-600 mb-1 sm:mb-3">Example:</p>
                       <div className="flex items-center justify-center gap-3 sm:gap-4">
                         <p className="text-base sm:text-xl italic break-words line-clamp-3">{word.language_a_sentence}</p>
                         <Button
@@ -1220,7 +1219,7 @@ function ReviewCard({
                         </Button>
                       </div>
                       {word.language_b_sentence && (
-                        <div className="flex items-center justify-center gap-3 sm:gap-4 mt-1.5 sm:mt-3">
+                        <div className="flex items-center justify-center gap-3 sm:gap-4 mt-1 sm:mt-3">
                           <p className="text-sm sm:text-lg text-gray-500 break-words line-clamp-3">
                             {word.language_b_sentence}
                           </p>
