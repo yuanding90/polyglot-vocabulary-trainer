@@ -47,7 +47,7 @@ export function SimilarWordsPanel({ currentWordId, currentDeckId, max = 5 }: Sim
   return (
     <Card className="mt-6">
       <CardHeader>
-        <CardTitle className="text-lg">Words Similar in Spelling{scope === 'deck' ? ' (this deck)' : ''}</CardTitle>
+        <CardTitle className="text-base sm:text-lg">Words Similar in Spelling{scope === 'deck' ? ' (this deck)' : ''}</CardTitle>
       </CardHeader>
       <CardContent>
         {loading && (
@@ -64,15 +64,15 @@ export function SimilarWordsPanel({ currentWordId, currentDeckId, max = 5 }: Sim
             {words.map((w) => (
               <li key={w.wordId} className="p-3 border rounded-md">
                 <div className="">
-                  <div className="font-medium text-gray-900 text-base">{w.word}</div>
+                  <div className="font-semibold text-gray-900 text-base sm:text-lg break-words">{w.word}</div>
                   {w.translation && (
-                    <div className="text-sm text-gray-700">{w.translation}</div>
+                    <div className="text-sm sm:text-base text-gray-700">{w.translation}</div>
                   )}
                 </div>
                 {(w.sentence || w.sentenceTranslation) && (
-                  <div className="mt-2 text-sm text-gray-700">
-                    {w.sentence && <div className="italic">{w.sentence}</div>}
-                    {w.sentenceTranslation && <div className="text-gray-500">{w.sentenceTranslation}</div>}
+                  <div className="mt-2 text-xs sm:text-sm text-gray-700 space-y-1">
+                    {w.sentence && <div className="italic break-words line-clamp-2">{w.sentence}</div>}
+                    {w.sentenceTranslation && <div className="text-gray-500 break-words line-clamp-2">{w.sentenceTranslation}</div>}
                   </div>
                 )}
               </li>

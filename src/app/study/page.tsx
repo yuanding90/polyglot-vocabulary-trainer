@@ -838,7 +838,7 @@ export default function StudySession() {
 
   if (sessionWords.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
@@ -866,7 +866,7 @@ export default function StudySession() {
           </div>
         </header>
 
-        <div className="container mx-auto p-6 max-w-4xl">
+        <div className="container mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-screen-sm sm:max-w-2xl lg:max-w-4xl">
           <Card>
             <CardContent className="p-8">
               <div className="text-center">
@@ -888,7 +888,7 @@ export default function StudySession() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -916,10 +916,10 @@ export default function StudySession() {
         </div>
       </header>
 
-      <div className="container mx-auto p-6 max-w-4xl">
+      <div className="container mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-screen-sm sm:max-w-2xl lg:max-w-4xl">
         {/* Session Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             {sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} Session
           </h1>
           <p className="text-gray-600">
@@ -945,30 +945,30 @@ export default function StudySession() {
         {sessionType === 'review' && (
           <div className="mb-8">
             {/* Overall Statistics */}
-            <div className="grid grid-cols-6 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-700">{sessionWords.length - currentWordIndex}</div>
-                <div className="text-sm text-gray-500">Remaining</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-700">{sessionWords.length - currentWordIndex}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Remaining</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-red-600">{sessionProgress.again}</div>
-                <div className="text-sm text-gray-500">Again</div>
+                <div className="text-xl sm:text-2xl font-bold text-red-600">{sessionProgress.again}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Again</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600">{sessionProgress.hard}</div>
-                <div className="text-sm text-gray-500">Hard</div>
+                <div className="text-xl sm:text-2xl font-bold text-orange-600">{sessionProgress.hard}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Hard</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">{sessionProgress.good}</div>
-                <div className="text-sm text-gray-500">Good</div>
+                <div className="text-xl sm:text-2xl font-bold text-green-600">{sessionProgress.good}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Good</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">{sessionProgress.easy}</div>
-                <div className="text-sm text-gray-500">Easy</div>
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{sessionProgress.easy}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Easy</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">{sessionWords.length}</div>
-                <div className="text-sm text-gray-500">Reviewed</div>
+                <div className="text-xl sm:text-2xl font-bold text-purple-600">{sessionWords.length}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Reviewed</div>
               </div>
             </div>
           </div>
@@ -1110,7 +1110,7 @@ function ReviewCard({
                 <div className="flex-1 flex flex-col justify-center items-center">
                   {cardType === 'listening' ? (
                     <div className="text-center space-y-6">
-                      <div className="text-6xl">🎧</div>
+                      <div className="text-4xl sm:text-6xl">🎧</div>
                       <Button
                         variant="outline"
                         size="lg"
@@ -1124,7 +1124,7 @@ function ReviewCard({
                   ) : (
                     <div className="text-center space-y-6">
                       <div className="flex items-center justify-center gap-4 mb-8">
-                        <div className="text-6xl font-bold text-gray-900">
+                        <div className="text-3xl sm:text-6xl font-bold text-gray-900">
                           {promptText}
                         </div>
                         {(cardType === 'recognition' || cardType === 'production') && (
@@ -1148,7 +1148,7 @@ function ReviewCard({
                         onChange={(e) => onUserAnswer(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && onShowAnswer()}
                         placeholder="Type your answer..."
-                        className="w-full max-w-md p-4 border-2 border-gray-300 rounded-lg text-center text-2xl focus:border-blue-500 focus:outline-none"
+                        className="w-full max-w-full sm:max-w-md p-3 sm:p-4 border-2 border-gray-300 rounded-lg text-center text-lg sm:text-2xl focus:border-blue-500 focus:outline-none"
                         autoFocus
                       />
                     </div>
@@ -1159,7 +1159,7 @@ function ReviewCard({
                 <div className="text-center mt-8">
                   <Button 
                     onClick={onShowAnswer} 
-                    className="px-12 py-4 text-xl bg-blue-600 hover:bg-blue-700"
+                    className="w-full sm:w-auto px-6 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl bg-blue-600 hover:bg-blue-700"
                   >
                     Reveal Answer
                   </Button>
@@ -1181,7 +1181,7 @@ function ReviewCard({
                 <div className="flex-1 flex flex-col justify-center items-center space-y-6">
                   {/* Language A Word with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
-                    <p className="text-6xl font-bold text-gray-900">{word?.language_a_word}</p>
+                    <p className="text-3xl sm:text-6xl font-bold text-gray-900">{word?.language_a_word}</p>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1194,7 +1194,7 @@ function ReviewCard({
 
                   {/* Language B Translation with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
-                    <p className="text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
+                    <p className="text-2xl sm:text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1240,7 +1240,7 @@ function ReviewCard({
                 {/* Bottom section */}
                 <div className="mt-8 space-y-6">
                   {/* SRS Rating Buttons */}
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                     <Button
                       variant="outline"
                       size="lg"
@@ -1342,7 +1342,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
           {/* Language A Word with Pronunciation */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <h1 className="text-6xl font-bold text-gray-900">{word?.language_a_word}</h1>
+              <h1 className="text-3xl sm:text-6xl font-bold text-gray-900">{word?.language_a_word}</h1>
               <Button
                 variant="ghost"
                 size="lg"
@@ -1357,7 +1357,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
           {/* Language B Translation with Pronunciation */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <p className="text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
+              <p className="text-2xl sm:text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
               <Button
                 variant="ghost"
                 size="lg"
@@ -1408,14 +1408,14 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
                 variant="outline"
                 size="lg"
                 onClick={() => onAnswer('learn')}
-                className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-xl px-12 py-6"
+                className="w-full sm:w-auto bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-lg sm:text-xl px-6 sm:px-12 py-3 sm:py-6 min-h-[44px]"
               >
                 Learn This
               </Button>
               <Button
                 size="lg"
                 onClick={() => onAnswer('know')}
-                className="bg-green-600 hover:bg-green-700 text-xl px-12 py-6"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-lg sm:text-xl px-6 sm:px-12 py-3 sm:py-6 min-h-[44px]"
               >
                 I Know This
               </Button>
@@ -1448,7 +1448,7 @@ function DeepDiveCard({ word, onAnswer, speakWord, currentDeck }: DeepDiveCardPr
           {/* Language A Word */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <h1 className="text-6xl font-bold text-gray-900">{word?.language_a_word}</h1>
+              <h1 className="text-3xl sm:text-6xl font-bold text-gray-900">{word?.language_a_word}</h1>
               <Button
                 variant="ghost"
                 size="lg"
@@ -1463,7 +1463,7 @@ function DeepDiveCard({ word, onAnswer, speakWord, currentDeck }: DeepDiveCardPr
           {/* Language B Translation */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <p className="text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
+              <p className="text-2xl sm:text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
               <Button
                 variant="ghost"
                 size="lg"
