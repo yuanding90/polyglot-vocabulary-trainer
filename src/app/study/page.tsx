@@ -1178,7 +1178,7 @@ function ReviewCard({
                 </div>
 
                 {/* Main content */}
-                <div className="flex-1 flex flex-col justify-center items-center space-y-3 sm:space-y-6">
+                <div className="flex-1 flex flex-col justify-center items-center space-y-2 sm:space-y-6">
                   {/* Language A Word with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-2xl sm:text-6xl font-bold text-gray-900 break-words">{word?.language_a_word}</p>
@@ -1207,7 +1207,7 @@ function ReviewCard({
 
                   {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
-                    <div className="w-[calc(100%+1rem)] -mx-2 sm:w-full sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
+                    <div className="w-[calc(100%+3rem)] -mx-6 sm:w-full sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
                       <p className="text-sm sm:text-lg text-gray-600 mb-1 sm:mb-3">Example:</p>
                       <div className="flex items-center justify-center gap-3 sm:gap-4">
                         <p className="text-base sm:text-xl italic break-words line-clamp-3">{word.language_a_sentence}</p>
@@ -1371,7 +1371,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
 
           {/* Example Sentence with Pronunciation */}
           {word?.language_a_sentence && (
-            <div className="text-center w-full max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
+            <div className="text-center w-[calc(100%+3rem)] -mx-6 sm:w-full sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <p className="text-base sm:text-2xl italic text-gray-800 break-words line-clamp-3">{word.language_a_sentence}</p>
