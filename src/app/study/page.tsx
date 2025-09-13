@@ -1207,31 +1207,33 @@ function ReviewCard({
 
                   {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
-                    <div className="w-[calc(100%+3rem)] sm:w-full ml-[-1.5rem] mr-[-1.5rem] sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg overflow-hidden mx-auto">
-                      <div className="flex items-center justify-center gap-3 sm:gap-4">
-                        <p className="text-base sm:text-xl italic break-words line-clamp-3">{word.language_a_sentence}</p>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => speakWord(word.language_a_sentence, currentDeck?.language_a_code)}
-                        >
-                          <Volume2 className="h-5 w-5" />
-                        </Button>
-                      </div>
-                      {word.language_b_sentence && (
-                        <div className="flex items-center justify-center gap-3 sm:gap-4 mt-1 sm:mt-3">
-                          <p className="text-sm sm:text-lg text-gray-500 break-words line-clamp-3">
-                            {word.language_b_sentence}
-                          </p>
+                    <div className="text-center w-[calc(100%+3rem)] sm:w-full ml-[-1.5rem] mr-[-1.5rem] sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg overflow-hidden mx-auto">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="flex items-center justify-center gap-3 sm:gap-4">
+                          <p className="text-base sm:text-2xl italic text-gray-800 break-words line-clamp-3">{word.language_a_sentence}</p>
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => speakWord(word.language_b_sentence, currentDeck?.language_b_code)}
+                            onClick={() => speakWord(word.language_a_sentence, currentDeck?.language_a_code)}
                           >
                             <Volume2 className="h-5 w-5" />
                           </Button>
                         </div>
-                      )}
+                        {word.language_b_sentence && (
+                          <div className="flex items-center justify-center gap-3 sm:gap-4">
+                            <p className="text-sm sm:text-xl text-gray-600 break-words line-clamp-3">
+                              {word.language_b_sentence}
+                            </p>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => speakWord(word.language_b_sentence, currentDeck?.language_b_code)}
+                            >
+                              <Volume2 className="h-5 w-5" />
+                            </Button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
