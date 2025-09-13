@@ -919,7 +919,7 @@ export default function StudySession() {
       <div className="container mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-screen-sm sm:max-w-2xl lg:max-w-4xl">
         {/* Session Header */}
         <div className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-xl sm:text-3xl font-bold text-gray-900 mb-2 leading-tight">
             {sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} Session
           </h1>
           <p className="text-gray-600">
@@ -1110,7 +1110,7 @@ function ReviewCard({
                 <div className="flex-1 flex flex-col justify-center items-center">
                   {cardType === 'listening' ? (
                     <div className="text-center space-y-6">
-                      <div className="text-4xl sm:text-6xl">🎧</div>
+                      <div className="text-3xl sm:text-6xl">🎧</div>
                       <Button
                         variant="outline"
                         size="lg"
@@ -1123,8 +1123,8 @@ function ReviewCard({
                     </div>
                   ) : (
                     <div className="text-center space-y-6">
-                      <div className="flex items-center justify-center gap-4 mb-8">
-                        <div className="text-3xl sm:text-6xl font-bold text-gray-900">
+                      <div className="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <div className="text-2xl sm:text-6xl font-bold text-gray-900 break-words">
                           {promptText}
                         </div>
                         {(cardType === 'recognition' || cardType === 'production') && (
@@ -1148,7 +1148,7 @@ function ReviewCard({
                         onChange={(e) => onUserAnswer(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && onShowAnswer()}
                         placeholder="Type your answer..."
-                        className="w-full max-w-full sm:max-w-md p-3 sm:p-4 border-2 border-gray-300 rounded-lg text-center text-lg sm:text-2xl focus:border-blue-500 focus:outline-none"
+                        className="w-full max-w-full sm:max-w-md p-3 sm:p-4 border-2 border-gray-300 rounded-lg text-center text-base sm:text-2xl focus:border-blue-500 focus:outline-none"
                         autoFocus
                       />
                     </div>
@@ -1181,7 +1181,7 @@ function ReviewCard({
                 <div className="flex-1 flex flex-col justify-center items-center space-y-6">
                   {/* Language A Word with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
-                    <p className="text-3xl sm:text-6xl font-bold text-gray-900">{word?.language_a_word}</p>
+                    <p className="text-2xl sm:text-6xl font-bold text-gray-900 break-words">{word?.language_a_word}</p>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1194,7 +1194,7 @@ function ReviewCard({
 
                   {/* Language B Translation with Pronunciation */}
                   <div className="flex items-center justify-center gap-4">
-                    <p className="text-2xl sm:text-4xl font-medium text-gray-700">{word?.language_b_translation}</p>
+                    <p className="text-xl sm:text-4xl font-medium text-gray-700 break-words">{word?.language_b_translation}</p>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1207,10 +1207,10 @@ function ReviewCard({
 
                   {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
-                    <div className="p-6 bg-gray-50 rounded-lg">
-                      <p className="text-lg text-gray-600 mb-3">Example:</p>
-                      <div className="flex items-center justify-center gap-4">
-                        <p className="text-xl italic">{word.language_a_sentence}</p>
+                    <div className="p-4 sm:p-6 bg-gray-50 rounded-lg">
+                      <p className="text-sm sm:text-lg text-gray-600 mb-2 sm:mb-3">Example:</p>
+                      <div className="flex items-center justify-center gap-3 sm:gap-4">
+                        <p className="text-base sm:text-xl italic break-words line-clamp-3">{word.language_a_sentence}</p>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -1220,8 +1220,8 @@ function ReviewCard({
                         </Button>
                       </div>
                       {word.language_b_sentence && (
-                        <div className="flex items-center justify-center gap-4 mt-3">
-                          <p className="text-lg text-gray-500">
+                        <div className="flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3">
+                          <p className="text-sm sm:text-lg text-gray-500 break-words line-clamp-3">
                             {word.language_b_sentence}
                           </p>
                           <Button
@@ -1245,7 +1245,7 @@ function ReviewCard({
                       variant="outline"
                       size="lg"
                       onClick={() => onAnswer('again')}
-                      className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-lg"
+                      className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-base sm:text-lg"
                     >
                       Again
                     </Button>
@@ -1253,7 +1253,7 @@ function ReviewCard({
                       variant="outline"
                       size="lg"
                       onClick={() => onAnswer('hard')}
-                      className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100 text-lg"
+                      className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100 text-base sm:text-lg"
                     >
                       Hard
                     </Button>
@@ -1261,7 +1261,7 @@ function ReviewCard({
                       variant="outline"
                       size="lg"
                       onClick={() => onAnswer('good')}
-                      className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-lg"
+                      className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-base sm:text-lg"
                     >
                       Good
                     </Button>
@@ -1269,7 +1269,7 @@ function ReviewCard({
                       variant="outline"
                       size="lg"
                       onClick={() => onAnswer('easy')}
-                      className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-lg"
+                      className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-base sm:text-lg"
                     >
                       Easy
                     </Button>
@@ -1283,7 +1283,7 @@ function ReviewCard({
                         variant="outline"
                         size="lg"
                         onClick={() => onAnswer('remove-leech')}
-                        className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-xl py-4"
+                        className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 text-lg sm:text-xl py-3 sm:py-4"
                       >
                         <AlertTriangle className="h-6 w-6 mr-3" />
                         Remove from Leeches
@@ -1293,7 +1293,7 @@ function ReviewCard({
                         variant="outline"
                         size="lg"
                         onClick={() => onAnswer('leech')}
-                        className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-xl py-4"
+                        className="w-full bg-red-50 border-red-200 text-red-700 hover:bg-red-100 text-lg sm:text-xl py-3 sm:py-4"
                       >
                         <AlertTriangle className="h-6 w-6 mr-3" />
                         Add to Leeches

@@ -47,7 +47,7 @@ export function SimilarWordsPanel({ currentWordId, currentDeckId, max = 5 }: Sim
   return (
     <Card className="mt-6">
       <CardHeader>
-        <CardTitle className="text-base sm:text-lg">Words Similar in Spelling{scope === 'deck' ? ' (this deck)' : ''}</CardTitle>
+        <CardTitle className="text-sm sm:text-lg leading-tight">Words Similar in Spelling{scope === 'deck' ? ' (this deck)' : ''}</CardTitle>
       </CardHeader>
       <CardContent>
         {loading && (
@@ -64,9 +64,9 @@ export function SimilarWordsPanel({ currentWordId, currentDeckId, max = 5 }: Sim
             {words.map((w) => (
               <li key={w.wordId} className="p-3 border rounded-md">
                 <div className="">
-                  <div className="font-semibold text-gray-900 text-base sm:text-lg break-words">{w.word}</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-lg break-words">{w.word}</div>
                   {w.translation && (
-                    <div className="text-sm sm:text-base text-gray-700">{w.translation}</div>
+                    <div className="text-xs sm:text-base text-gray-700">{w.translation}</div>
                   )}
                 </div>
                 {(w.sentence || w.sentenceTranslation) && (

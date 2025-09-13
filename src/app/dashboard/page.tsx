@@ -488,21 +488,21 @@ export default function Dashboard() {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">🐰 Polyglot Vocabulary Trainer</h1>
-              <p className="text-gray-600">Master vocabulary with spaced repetition</p>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 py-4 sm:py-6">
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">🐰 Polyglot Vocabulary Trainer</h1>
+              <p className="text-xs sm:text-sm text-gray-600 leading-snug break-words">Master vocabulary with spaced repetition</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="w-full sm:w-auto flex items-center gap-2 sm:gap-4 justify-between sm:justify-end">
               {currentUser && (
-                <span className="text-sm text-gray-600">
+                <span className="hidden sm:inline text-sm text-gray-600">
                   Signed in as: {currentUser.email}
                 </span>
               )}
               <Button 
                 onClick={handleSignOut}
                 variant="outline"
-                className="flex items-center gap-2 text-red-600 border-red-300 hover:bg-red-50"
+                className="flex items-center gap-2 text-red-600 border-red-300 hover:bg-red-50 w-full sm:w-auto"
               >
                 <Settings className="h-4 w-4" />
                 Sign Out
@@ -546,25 +546,25 @@ export default function Dashboard() {
         {/* Current Deck Info */}
         <Card className="mb-8 card-enhanced">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="w-full min-w-0">
+                <h2 className="text-lg sm:text-xl font-semibold mb-1 flex items-center gap-2 leading-tight">
                   <BookOpen className="h-5 w-5 text-blue-600" />
                   Current Deck
                 </h2>
-                <div className="flex items-center gap-3">
-                  <span className="text-lg font-medium">{currentDeck.name}</span>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="text-base sm:text-lg font-medium break-words">{currentDeck.name}</span>
+                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                     {currentDeck.difficulty_level}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
                   {currentDeck.language_a_name} → {currentDeck.language_b_name}
                 </p>
               </div>
               <Button 
                 onClick={() => setShowDeckSelection(true)}
-                className="btn-outline flex items-center gap-2"
+                className="btn-outline flex items-center gap-2 w-full sm:w-auto"
               >
                 <LibraryBig className="h-4 w-4" />
                 Change Deck
