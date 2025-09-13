@@ -1207,7 +1207,7 @@ function ReviewCard({
 
                   {/* Example Sentence with Pronunciation */}
                   {word?.language_a_sentence && (
-                    <div className="w-[calc(100%+3rem)] -mx-6 sm:w-full sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
+                    <div className="w-[calc(100%+3rem)] sm:w-full ml-[-1.5rem] mr-[-1.5rem] sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg overflow-hidden mx-auto">
                       <p className="text-sm sm:text-lg text-gray-600 mb-1 sm:mb-3">Example:</p>
                       <div className="flex items-center justify-center gap-3 sm:gap-4">
                         <p className="text-base sm:text-xl italic break-words line-clamp-3">{word.language_a_sentence}</p>
@@ -1371,7 +1371,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
 
           {/* Example Sentence with Pronunciation */}
           {word?.language_a_sentence && (
-            <div className="text-center w-[calc(100%+3rem)] -mx-6 sm:w-full sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg mx-auto">
+            <div className="text-center w-[calc(100%+3rem)] sm:w-full ml-[-1.5rem] mr-[-1.5rem] sm:mx-0 max-w-[700px] sm:max-w-none p-4 sm:p-6 bg-gray-50 rounded-lg overflow-hidden mx-auto">
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <p className="text-base sm:text-2xl italic text-gray-800 break-words line-clamp-3">{word.language_a_sentence}</p>
