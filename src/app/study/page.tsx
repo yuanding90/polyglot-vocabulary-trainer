@@ -8,7 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { 
   ArrowLeft,
   Volume2,
-  AlertTriangle
+  AlertTriangle,
+  Sparkles
 } from 'lucide-react'
 import { 
   SRS, 
@@ -19,6 +20,7 @@ import {
 } from '@/lib/utils'
 import { DailySummaryManager } from '@/lib/daily-summary'
 import { SimilarWordsPanel } from '@/components/SimilarWordsPanel'
+import { AITutorPanel } from '@/components/AITutorPanel'
 import { ttsService } from '@/lib/tts-service'
 
 import { Vocabulary, VocabularyDeck, UserProgress } from '@/lib/supabase'
@@ -67,6 +69,7 @@ export default function StudySession() {
   const [currentWord, setCurrentWordState] = useState<Vocabulary | null>(null)
   const [currentWordProgress, setCurrentWordProgress] = useState<{ again_count: number } | null>(null) // Track current word's progress
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive'>('discovery')
+  const [showAITutor, setShowAITutor] = useState(false)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentDeck, setCurrentDeck] = useState<VocabularyDeck | null>(null)
   // Removed currentUser state - getting user inside each function like French app
@@ -178,6 +181,15 @@ export default function StudySession() {
     localStorage.removeItem('deepDiveCategory')
     window.location.href = '/dashboard'
   }
+
+  const handleAITutorClick = () => {
+    setShowAITutor(true)
+  }
+
+  // Clear AI‑Tutor visibility when the current word changes
+  useEffect(() => {
+    setShowAITutor(false)
+  }, [currentWord?.id])
 
   const handleSignOut = async () => {
     try {
@@ -882,6 +894,23 @@ export default function StudySession() {
               </div>
             </CardContent>
           </Card>
+          {/* AI‑Tutor button and panel (visible if a current word exists) */}
+          {currentWord && (
+            <div className="mt-6">
+              <Button
+                onClick={handleAITutorClick}
+                className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
+              >
+                <Sparkles className="h-5 w-5 mr-2 opacity-90" />
+                AI‑Tutor
+              </Button>
+              <AITutorPanel
+                vocabularyId={currentWord.id}
+                l1Language="en"
+                visible={showAITutor}
+              />
+            </div>
+          )}
         </div>
       </div>
     )
@@ -1009,6 +1038,7 @@ export default function StudySession() {
             speakWord={speakWord}
             currentWordProgress={currentWordProgress}
             currentDeck={currentDeck}
+            onAITutorClick={handleAITutorClick}
           />
         ) : sessionType === 'discovery' ? (
           <DiscoveryCard 
@@ -1018,6 +1048,7 @@ export default function StudySession() {
             sessionProgress={sessionProgress}
             currentDeck={currentDeck}
             sessionWords={sessionWords}
+            onAITutorClick={handleAITutorClick}
           />
         ) : (
           <DeepDiveCard 
@@ -1026,6 +1057,17 @@ export default function StudySession() {
             speakWord={speakWord}
             currentDeck={currentDeck}
           />
+        )}
+
+        {/* AI‑Tutor Panel under card, above Similar Words */}
+        {currentWord && (
+          <div className="mt-6">
+            <AITutorPanel
+              vocabularyId={currentWord.id}
+              l1Language="en"
+              visible={showAITutor && (sessionType === 'discovery' || (sessionType === 'review' && showAnswer))}
+            />
+          </div>
         )}
 
         {/* Similar Words Under Card */}
@@ -1055,6 +1097,7 @@ interface ReviewCardProps {
   speakWord: (text: string | undefined, language?: string) => void
   currentWordProgress: { again_count: number } | null // Add progress data
   currentDeck: VocabularyDeck | null
+  onAITutorClick: () => void
 }
 
 function ReviewCard({ 
@@ -1069,7 +1112,8 @@ function ReviewCard({
   onUserAnswer,
   speakWord,
   currentWordProgress,
-  currentDeck
+  currentDeck,
+  onAITutorClick
 }: ReviewCardProps) {
   const prompt = cardType === 'recognition' 
     ? `Translate this ${word?.language_a_word ? 'word' : 'text'}:` 
@@ -1276,6 +1320,20 @@ function ReviewCard({
                     </Button>
                   </div>
 
+                  {/* AI‑Tutor Button (after reveal, above Leeches) */}
+                  {showAnswer && (
+                    <div className="text-center">
+                      <Button
+                        size="lg"
+                        onClick={onAITutorClick}
+                        className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
+                      >
+                        <Sparkles className="h-5 w-5 mr-2 opacity-90" />
+                        AI‑Tutor
+                      </Button>
+                    </div>
+                  )}
+
                   {/* Add/Remove from Leeches Option */}
                   <div className="text-center pt-6 border-t-2 border-gray-300">
                     {/* Check if word is already a leech based on user progress */}
@@ -1319,9 +1377,10 @@ interface DiscoveryCardProps {
   sessionProgress: SessionProgress
   currentDeck: VocabularyDeck | null
   sessionWords: Vocabulary[]
+  onAITutorClick: () => void
 }
 
-function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck, sessionWords }: DiscoveryCardProps) {
+function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck, sessionWords, onAITutorClick }: DiscoveryCardProps) {
   return (
     <Card className="mb-8">
       <CardContent className="p-8">
@@ -1421,6 +1480,18 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
                 I Know This
               </Button>
             </div>
+          </div>
+
+          {/* AI‑Tutor Button under Learn/Know */}
+          <div className="text-center mt-4">
+            <Button
+              size="lg"
+              onClick={onAITutorClick}
+              className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
+            >
+              <Sparkles className="h-5 w-5 mr-2 opacity-90" />
+              AI‑Tutor
+            </Button>
           </div>
         </div>
       </CardContent>

@@ -1,0 +1,187 @@
+
+> multi-language-vocabulary-trainer@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.2 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.13:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 762ms
+ ○ Compiling /api/ai-tutor/generate ...
+ ✓ Compiled /api/ai-tutor/generate in 738ms
+ POST /api/ai-tutor/generate 200 in 1724ms
+ ✓ Compiled /api/ai-tutor/fetch in 63ms
+ GET /api/ai-tutor/fetch?vocabularyId=10092&l1Language=en&promptVersion=ai-tutor-v1 200 in 370ms
+ ○ Compiling /study ...
+ ✓ Compiled /study in 1154ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 1306ms
+ ✓ Compiled /favicon.ico in 128ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 381ms
+ GET /api/ai-tutor/fetch?vocabularyId=10346&l1Language=en&promptVersion=ai-tutor-v1 404 in 408ms
+(node:55362) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[ai-tutor] primary b64 length 2624568
+ POST /api/ai-tutor/generate 200 in 63000ms
+ GET /api/ai-tutor/fetch?vocabularyId=10346&l1Language=en&promptVersion=ai-tutor-v1 200 in 318ms
+[ai-tutor] primary b64 length 2911972
+ POST /api/ai-tutor/generate 200 in 59276ms
+ GET /api/ai-tutor/fetch?vocabularyId=10346&l1Language=en&promptVersion=ai-tutor-v1 200 in 300ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 188ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 236ms
+ GET /api/ai-tutor/fetch?vocabularyId=10441&l1Language=en&promptVersion=ai-tutor-v1 404 in 529ms
+ POST /api/ai-tutor/generate 200 in 20210ms
+ GET /api/ai-tutor/fetch?vocabularyId=10441&l1Language=en&promptVersion=ai-tutor-v1 200 in 328ms
+ ✓ Compiled in 55ms
+ ✓ Compiled in 196ms
+ ✓ Compiled in 152ms
+ GET /api/ai-tutor/fetch?vocabularyId=9821&l1Language=en&promptVersion=ai-tutor-v1 404 in 492ms
+ POST /api/ai-tutor/generate 200 in 23091ms
+ GET /api/ai-tutor/fetch?vocabularyId=9821&l1Language=en&promptVersion=ai-tutor-v1 200 in 302ms
+ ✓ Compiled /dashboard in 193ms
+ GET /dashboard 200 in 242ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 229ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 164ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 225ms
+ GET /api/ai-tutor/fetch?vocabularyId=10483&l1Language=en&promptVersion=ai-tutor-v1 404 in 472ms
+ POST /api/ai-tutor/generate 200 in 17008ms
+ GET /api/ai-tutor/fetch?vocabularyId=10483&l1Language=en&promptVersion=ai-tutor-v1 200 in 292ms
+ GET /api/ai-tutor/fetch?vocabularyId=10230&l1Language=en&promptVersion=ai-tutor-v1 404 in 467ms
+ POST /api/ai-tutor/generate 200 in 18595ms
+ GET /api/ai-tutor/fetch?vocabularyId=10230&l1Language=en&promptVersion=ai-tutor-v1 200 in 292ms
+ GET /dashboard 200 in 74ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 222ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 66ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 221ms
+ GET /api/ai-tutor/fetch?vocabularyId=36765&l1Language=en&promptVersion=ai-tutor-v1 404 in 411ms
+ ✓ Compiled /api/tts in 45ms
+ POST /api/tts 200 in 599ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 227ms
+ POST /api/tts 200 in 393ms
+ POST /api/ai-tutor/generate 200 in 18551ms
+ GET /api/ai-tutor/fetch?vocabularyId=36765&l1Language=en&promptVersion=ai-tutor-v1 200 in 294ms
+ GET /dashboard 200 in 56ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 223ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 68ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 224ms
+ GET /api/ai-tutor/fetch?vocabularyId=27638&l1Language=en&promptVersion=ai-tutor-v1 404 in 410ms
+ POST /api/ai-tutor/generate 200 in 20176ms
+ GET /api/ai-tutor/fetch?vocabularyId=27638&l1Language=en&promptVersion=ai-tutor-v1 200 in 295ms
+ GET /dashboard 200 in 65ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 225ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.csbv12z46o6'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.csbv12z46o6'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 645ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.k5lm8n8qtm'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.k5lm8n8qtm'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.csbv12z46o6'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.csbv12z46o6'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.x7v2qxxoibb'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.x7v2qxxoibb'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.796akonpxdk'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.796akonpxdk'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.z83ks416my'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.z83ks416my'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.b5csmif107b'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.b5csmif107b'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.5jbnege8g2f'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.5jbnege8g2f'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.b5csmif107b'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.b5csmif107b'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.ayin0ty9qnf'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.ayin0ty9qnf'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.tmdqpthjl7'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.tmdqpthjl7'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.fcl8p54tnl'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.fcl8p54tnl'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.94gk92dgxx8'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.94gk92dgxx8'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.2esjf48nc06'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.2esjf48nc06'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.94gk92dgxx8'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.94gk92dgxx8'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.cx6pt7oy11c'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.cx6pt7oy11c'
+}
+[Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.v49icsqr8fb'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.v49icsqr8fb'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.po2idjj6hu'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/ding/Desktop/Coding/multi-language-vocabulary-trainer/.next/static/development/_buildManifest.js.tmp.po2idjj6hu'
+}
