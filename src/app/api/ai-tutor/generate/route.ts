@@ -42,8 +42,8 @@ async function sha256Base64(s: string) {
 export async function POST(req: Request) {
   try {
     const body: GenerateBody = await req.json().catch(() => ({}))
-    if (!body.vocabularyId || !body.l1Language) {
-      return NextResponse.json({ error: 'vocabularyId and l1Language are required' }, { status: 400 })
+    if (!body.vocabularyId || !body.l1Language || !body.l2Language) {
+      return NextResponse.json({ error: 'vocabularyId, l1Language and l2Language are required' }, { status: 400 })
     }
 
     const includeAnalysis = body.includeAnalysis ?? true
@@ -140,12 +140,17 @@ export async function POST(req: Request) {
     // Build prompt with deck sense context and other_meanings section
     const system = 'You are an expert linguist, language tutor, and memory coach. Output ONLY a single JSON object; no extra text.'
     const includeAnalysisFlag = includeAnalysis ? 'true' : 'false'
-    const userPrompt = `A learner whose base language is ${promptInputs.l1_language} is learning ${promptInputs.l2_language}.
+    const userPrompt = `Language map: L1=${promptInputs.l1_language}; L2=${promptInputs.l2_language}.
+
+A learner whose base language is ${promptInputs.l1_language} is learning ${promptInputs.l2_language}.
 
 Goal: Produce ONE JSON object containing (a) an optional lexical analysis, (b) EXACTLY three mnemonics, and (c) an image brief, and (d) a section listing other meanings not covered by the current deck sense. All explanatory notes and translations must be in ${promptInputs.l1_language}. Do NOT include any text outside the JSON.
 
-Important constraints:
-- All explanatory text, labels, and translations must be in ${promptInputs.l1_language}.
+Important constraints (STRICT):
+- All explanatory text, labels, notes, and translations must be in ${promptInputs.l1_language} ONLY.
+- All L2 fields (l2_word, l2_phrase, l2_sentence) must be in ${promptInputs.l2_language} ONLY. Do not use English in L2 fields.
+- If ${promptInputs.l2_language} is Chinese, use Simplified Chinese characters; do NOT use pinyin.
+- If you cannot produce correct L2 terms for synonyms/antonyms/word family, return an empty array for that list.
 - For usage examples, the "l2_sentence" must be in ${promptInputs.l2_language}, and the corresponding "l1_translation" must be in ${promptInputs.l1_language}.
 
 Sense anchoring (use this exact deck sense):
@@ -166,9 +171,9 @@ Output schema (exact top-level keys in one JSON object):
       "examples": [ { "l2_sentence": "", "l1_translation": "" }, { "l2_sentence": "", "l1_translation": "" }, { "l2_sentence": "", "l1_translation": "" } ]
     },
     "connections": {
-      "nuanced_synonyms": [ { "l2_word": "", "l1_meaning": "", "distinction_note_l1": "" }, { "l2_word": "", "l1_meaning": "", "distinction_note_l1": "" } ],
+      "nuanced_synonyms": [ { "l2_word": "", "l1_meaning": "", "distinction_note_l1": "" } ],
       "antonyms": [ { "l2_word": "", "l1_meaning": "" } ],
-      "word_family": [ { "l2_word": "", "type": "", "l1_meaning": "" }, { "l2_word": "", "type": "", "l1_meaning": "" } ],
+      "word_family": [ { "l2_word": "", "type": "", "l1_meaning": "" } ],
       "mnemonic_aid": ""
     },
     "clarification": {
@@ -205,7 +210,7 @@ Output schema (exact top-level keys in one JSON object):
 
 Behavior:
 - If include_analysis = false, set "analysis" to {} but still fill mnemonics and image_brief.
-- All text must be in ${promptInputs.l1_language}.
+- All explanatory text must be in ${promptInputs.l1_language}. All L2 items must be in ${promptInputs.l2_language}.
 `
 
     // Prefer structured JSON output. If unsupported, fall back to plain completion.

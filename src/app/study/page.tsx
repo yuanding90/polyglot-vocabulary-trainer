@@ -906,7 +906,8 @@ export default function StudySession() {
               </Button>
               <AITutorPanel
                 vocabularyId={currentWord.id}
-                l1Language="en"
+                l1Language={currentDeck?.language_b_name || 'English'}
+                l2Language={currentDeck?.language_a_name || 'French'}
                 visible={showAITutor}
               />
             </div>
@@ -1064,7 +1065,8 @@ export default function StudySession() {
           <div className="mt-6">
             <AITutorPanel
               vocabularyId={currentWord.id}
-              l1Language="en"
+              l1Language={currentDeck?.language_b_name || 'English'}
+              l2Language={currentDeck?.language_a_name || 'French'}
               visible={showAITutor && (sessionType === 'discovery' || (sessionType === 'review' && showAnswer))}
             />
           </div>
