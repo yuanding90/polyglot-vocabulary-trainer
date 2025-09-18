@@ -143,7 +143,7 @@ export function AITutorPanel({
       <div className="flex items-center justify-center gap-2">
         <Sparkles className="h-5 w-5 text-violet-500" />
         <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-          AI‑Tutor
+          AI‑Tutor Notes
         </h3>
       </div>
       <div className="mt-2 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
