@@ -906,7 +906,8 @@ export default function StudySession() {
               </Button>
               <AITutorPanel
                 vocabularyId={currentWord.id}
-                l1Language="en"
+                l1Language={currentDeck?.language_b_name || 'English'}
+                l2Language={currentDeck?.language_a_name || 'French'}
                 visible={showAITutor}
               />
             </div>
@@ -1064,7 +1065,8 @@ export default function StudySession() {
           <div className="mt-6">
             <AITutorPanel
               vocabularyId={currentWord.id}
-              l1Language="en"
+              l1Language={currentDeck?.language_b_name || 'English'}
+              l2Language={currentDeck?.language_a_name || 'French'}
               visible={showAITutor && (sessionType === 'discovery' || (sessionType === 'review' && showAnswer))}
             />
           </div>
@@ -1332,7 +1334,7 @@ function ReviewCard({
                   </div>
 
                   {/* Add/Remove from Leeches Option */}
-                  <div className="text-center pt-6 border-t-2 border-gray-300">
+                  <div className="text-center pt-6 border-t-2 border-gray-300 px-0 sm:px-0">
                     {/* Check if word is already a leech based on user progress */}
                     {currentWordProgress && currentWordProgress.again_count >= 3 ? (
                       <Button
@@ -1359,14 +1361,14 @@ function ReviewCard({
 
                   {/* AI‑Tutor Button (move below Leeches) */}
                   {showAnswer && (
-                    <div className="text-center">
+                    <div className="text-center mt-4 sm:mt-6">
                       <Button
                         size="lg"
                         onClick={onAITutorClick}
                         className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
                       >
                         <Sparkles className="h-5 w-5 mr-2 opacity-90" />
-                        AI‑Tutor
+                        Ask AI‑Tutor
                       </Button>
                     </div>
                   )}

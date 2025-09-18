@@ -40,10 +40,12 @@ type Payload = {
 export function AITutorPanel({
   vocabularyId,
   l1Language,
+  l2Language,
   visible,
 }: {
   vocabularyId: number
   l1Language: string
+  l2Language: string
   visible: boolean
 }) {
   const [loading, setLoading] = useState(false)
@@ -87,8 +89,8 @@ export function AITutorPanel({
       const gen = await fetch(`/api/ai-tutor/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-          // Include l2Language hint so the server formats examples correctly
-          body: JSON.stringify({ vocabularyId, l1Language, l2Language: 'auto' }),
+          // Send both languages explicitly so the server formats fields correctly
+          body: JSON.stringify({ vocabularyId, l1Language, l2Language }),
       })
       if (!gen.ok) {
         const txt = await gen.text()
@@ -118,7 +120,7 @@ export function AITutorPanel({
       setError(message)
       setLoading(false)
     }
-  }, [vocabularyId, l1Language])
+  }, [vocabularyId, l1Language, l2Language])
 
   useEffect(() => {
     if (!visible) return
@@ -141,7 +143,7 @@ export function AITutorPanel({
       <div className="flex items-center justify-center gap-2">
         <Sparkles className="h-5 w-5 text-violet-500" />
         <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-          AI‑Tutor
+          AI‑Tutor Notes
         </h3>
       </div>
       <div className="mt-2 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
