@@ -894,7 +894,7 @@ export default function StudySession() {
               </div>
             </CardContent>
           </Card>
-          {/* AI‑Tutor button and panel (visible if a current word exists) */}
+          {/* AI Tutor button and panel (visible if a current word exists) */}
           {currentWord && (
             <div className="mt-6">
               <Button
@@ -902,7 +902,7 @@ export default function StudySession() {
                 className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
               >
                 <Sparkles className="h-5 w-5 mr-2 opacity-90" />
-                AI‑Tutor
+                Ask AI Tutor
               </Button>
               <AITutorPanel
                 vocabularyId={currentWord.id}
@@ -1060,9 +1060,9 @@ export default function StudySession() {
           />
         )}
 
-        {/* AI‑Tutor Panel under card, above Similar Words */}
+        {/* AI Tutor Panel under card, above Similar Words */}
         {currentWord && (
-          <div className="mt-6">
+          <div className="mt-8 sm:mt-12">
             <AITutorPanel
               vocabularyId={currentWord.id}
               l1Language={currentDeck?.language_b_name || 'English'}
@@ -1296,7 +1296,7 @@ function ReviewCard({
                 </div>
 
                 {/* Bottom section */}
-                <div className="mt-8 space-y-6">
+                <div className="mt-8 space-y-6 pb-6 sm:pb-8">
                   {/* SRS Rating Buttons */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                     <Button
@@ -1359,7 +1359,7 @@ function ReviewCard({
                     )}
                   </div>
 
-                  {/* AI‑Tutor Button (move below Leeches) */}
+                  {/* AI Tutor Button (move below Leeches) */}
                   {showAnswer && (
                     <div className="text-center mt-4 sm:mt-6">
                       <Button
@@ -1368,7 +1368,7 @@ function ReviewCard({
                         className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
                       >
                         <Sparkles className="h-5 w-5 mr-2 opacity-90" />
-                        Ask AI‑Tutor
+                        Ask AI Tutor
                       </Button>
                     </div>
                   )}
@@ -1495,7 +1495,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
             </div>
           </div>
 
-          {/* AI‑Tutor Button under Learn/Know */}
+          {/* AI Tutor Button under Learn/Know */}
           <div className="text-center mt-4">
             <Button
               size="lg"
@@ -1503,7 +1503,7 @@ function DiscoveryCard({ word, onAnswer, speakWord, sessionProgress, currentDeck
               className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
             >
               <Sparkles className="h-5 w-5 mr-2 opacity-90" />
-              AI‑Tutor
+              Ask AI Tutor
             </Button>
           </div>
         </div>
