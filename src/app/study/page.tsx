@@ -1296,7 +1296,7 @@ function ReviewCard({
                 </div>
 
                 {/* Bottom section */}
-                <div className="mt-8 space-y-6 pb-6 sm:pb-8">
+                <div className="mt-8 space-y-6 pb-10 sm:pb-12">
                   {/* SRS Rating Buttons */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                     <Button
@@ -1361,7 +1361,7 @@ function ReviewCard({
 
                   {/* AI Tutor Button (move below Leeches) */}
                   {showAnswer && (
-                    <div className="text-center mt-4 sm:mt-6">
+                    <div className="text-center mt-4 sm:mt-6 mb-2 sm:mb-3">
                       <Button
                         size="lg"
                         onClick={onAITutorClick}

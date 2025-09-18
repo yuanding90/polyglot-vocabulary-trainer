@@ -139,7 +139,7 @@ export function AITutorPanel({
   if (!visible) return null
 
   return (
-    <div className="mt-6 sm:mt-8 border-t pt-5 sm:pt-6">
+    <div className="mt-8 sm:mt-12 border-t pt-6 sm:pt-8">
       <div className="flex items-center justify-center gap-2">
         <Sparkles className="h-5 w-5 text-violet-500" />
         <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
