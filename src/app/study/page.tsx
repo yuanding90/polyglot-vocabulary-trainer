@@ -1115,11 +1115,13 @@ function ReviewCard({
   currentDeck,
   onAITutorClick
 }: ReviewCardProps) {
-  const prompt = cardType === 'recognition' 
-    ? `Translate this ${word?.language_a_word ? 'word' : 'text'}:` 
-    : cardType === 'production' 
-    ? `Translate this ${word?.language_b_translation ? 'word' : 'text'}:` 
-    : 'Listen and translate:'
+  const langA = currentDeck?.language_a_code?.toUpperCase() || 'L2'
+  const langB = currentDeck?.language_b_code?.toUpperCase() || 'L1'
+  const prompt = cardType === 'recognition'
+    ? `Translate ${langA} → ${langB}`
+    : cardType === 'production'
+    ? `Translate ${langB} → ${langA}`
+    : `Listen and translate ${langA} → ${langB}`
   
   const promptText = cardType === 'recognition' 
     ? word?.language_a_word 
@@ -1164,6 +1166,15 @@ function ReviewCard({
                         <Volume2 className="h-8 w-8 mr-3" />
                         Listen Again
                       </Button>
+                      <input
+                        type="text"
+                        value={userAnswer}
+                        onChange={(e) => onUserAnswer(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && onShowAnswer()}
+                        placeholder={`Type the ${langB} translation...`}
+                        className="w-full max-w-full sm:max-w-md p-3 sm:p-4 border-2 border-gray-300 rounded-lg text-center text-base sm:text-2xl focus:border-blue-500 focus:outline-none"
+                        autoFocus
+                      />
                     </div>
                   ) : (
                     <div className="text-center space-y-6">
@@ -1320,20 +1331,6 @@ function ReviewCard({
                     </Button>
                   </div>
 
-                  {/* AI‑Tutor Button (after reveal, above Leeches) */}
-                  {showAnswer && (
-                    <div className="text-center">
-                      <Button
-                        size="lg"
-                        onClick={onAITutorClick}
-                        className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
-                      >
-                        <Sparkles className="h-5 w-5 mr-2 opacity-90" />
-                        AI‑Tutor
-                      </Button>
-                    </div>
-                  )}
-
                   {/* Add/Remove from Leeches Option */}
                   <div className="text-center pt-6 border-t-2 border-gray-300">
                     {/* Check if word is already a leech based on user progress */}
@@ -1359,6 +1356,20 @@ function ReviewCard({
                       </Button>
                     )}
                   </div>
+
+                  {/* AI‑Tutor Button (move below Leeches) */}
+                  {showAnswer && (
+                    <div className="text-center">
+                      <Button
+                        size="lg"
+                        onClick={onAITutorClick}
+                        className="w-full sm:w-auto text-base sm:text-lg rounded-full px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-violet-600 hover:via-purple-600 hover:to-indigo-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
+                      >
+                        <Sparkles className="h-5 w-5 mr-2 opacity-90" />
+                        AI‑Tutor
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
