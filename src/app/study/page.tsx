@@ -1115,13 +1115,13 @@ function ReviewCard({
   currentDeck,
   onAITutorClick
 }: ReviewCardProps) {
-  const langA = currentDeck?.language_a_code?.toUpperCase() || 'L2'
-  const langB = currentDeck?.language_b_code?.toUpperCase() || 'L1'
+  const langAName = currentDeck?.language_a_name || 'Language A'
+  const langBName = currentDeck?.language_b_name || 'Language B'
   const prompt = cardType === 'recognition'
-    ? `Translate ${langA} → ${langB}`
+    ? `Translate ${langAName} → ${langBName}`
     : cardType === 'production'
-    ? `Translate ${langB} → ${langA}`
-    : `Listen and translate ${langA} → ${langB}`
+    ? `Translate ${langBName} → ${langAName}`
+    : `Listen and translate ${langAName} → ${langBName}`
   
   const promptText = cardType === 'recognition' 
     ? word?.language_a_word 
@@ -1171,7 +1171,7 @@ function ReviewCard({
                         value={userAnswer}
                         onChange={(e) => onUserAnswer(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && onShowAnswer()}
-                        placeholder={`Type the ${langB} translation...`}
+                        placeholder={`Type the ${langBName} translation...`}
                         className="w-full max-w-full sm:max-w-md p-3 sm:p-4 border-2 border-gray-300 rounded-lg text-center text-base sm:text-2xl focus:border-blue-500 focus:outline-none"
                         autoFocus
                       />
