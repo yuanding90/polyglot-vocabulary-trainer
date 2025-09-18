@@ -10,6 +10,7 @@ const ENABLE_IMAGE_GENERATION = false
 type GenerateBody = {
   vocabularyId?: number
   l1Language?: string
+  l2Language?: string
   includeAnalysis?: boolean
   forceImage?: boolean
 }
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
     const promptInputs = {
       vocabulary_id: vocabRow.id,
       l1_language: body.l1Language,
-      l2_language: 'fr',
+      l2_language: body.l2Language || 'auto',
       target_word: vocabRow.language_a_word,
       translation: vocabRow.language_b_translation,
       l2_ipa: '',
@@ -142,6 +143,10 @@ export async function POST(req: Request) {
     const userPrompt = `A learner whose base language is ${promptInputs.l1_language} is learning ${promptInputs.l2_language}.
 
 Goal: Produce ONE JSON object containing (a) an optional lexical analysis, (b) EXACTLY three mnemonics, and (c) an image brief, and (d) a section listing other meanings not covered by the current deck sense. All explanatory notes and translations must be in ${promptInputs.l1_language}. Do NOT include any text outside the JSON.
+
+Important constraints:
+- All explanatory text, labels, and translations must be in ${promptInputs.l1_language}.
+- For usage examples, the "l2_sentence" must be in ${promptInputs.l2_language}, and the corresponding "l1_translation" must be in ${promptInputs.l1_language}.
 
 Sense anchoring (use this exact deck sense):
 - l2_word: ${promptInputs.deck_sense_context.l2_word}

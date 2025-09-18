@@ -87,7 +87,8 @@ export function AITutorPanel({
       const gen = await fetch(`/api/ai-tutor/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vocabularyId, l1Language }),
+          // Include l2Language hint so the server formats examples correctly
+          body: JSON.stringify({ vocabularyId, l1Language, l2Language: 'auto' }),
       })
       if (!gen.ok) {
         const txt = await gen.text()
