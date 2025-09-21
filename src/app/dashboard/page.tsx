@@ -66,9 +66,9 @@ export default function Dashboard() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
-  // Deck filter state (Language A/L2 and Language B/L1)
-  const [filterL2Code, setFilterL2Code] = useState<string | null>(null)
-  const [filterL1Code, setFilterL1Code] = useState<string | null>(null)
+  // Deck filter state by language NAMES (dedupe fr vs fr-FR)
+  const [filterL2Name, setFilterL2Name] = useState<string | null>(null)
+  const [filterL1Name, setFilterL1Name] = useState<string | null>(null)
 
   useEffect(() => {
     // Get current user first
@@ -110,27 +110,43 @@ export default function Dashboard() {
     return () => window.removeEventListener('focus', handleFocus)
   }, [currentUser, currentDeck])
 
-  // Initialize deck filters from current deck or saved filters
+  // Initialize deck filters from current deck or saved filters (by language names)
   useEffect(() => {
-    // On first load, prefer current deck's languages; fallback to saved filters
+    // Helper to normalize names
+    const norm = (s: string) => (s || '').trim()
+
     const saved = (() => {
       try { return JSON.parse(localStorage.getItem('deckFilters') || 'null') } catch { return null }
-    })() as { l2?: string | null; l1?: string | null } | null
+    })() as { l2Name?: string | null; l1Name?: string | null; l2?: string | null; l1?: string | null } | null
 
     if (currentDeck) {
-      setFilterL2Code(currentDeck.language_a_code || null)
-      setFilterL1Code(currentDeck.language_b_code || null)
-    } else if (saved) {
-      setFilterL2Code(saved.l2 ?? null)
-      setFilterL1Code(saved.l1 ?? null)
+      setFilterL2Name(norm(currentDeck.language_a_name || ''))
+      setFilterL1Name(norm(currentDeck.language_b_name || ''))
+      return
     }
-  }, [currentDeck])
 
-  // Persist filters
+    if (saved) {
+      // Preferred: names
+      if (saved.l2Name || saved.l1Name) {
+        setFilterL2Name(saved.l2Name ? norm(saved.l2Name) : null)
+        setFilterL1Name(saved.l1Name ? norm(saved.l1Name) : null)
+        return
+      }
+      // Back-compat: map codes to names using availableDecks
+      if (saved.l2 || saved.l1) {
+        const l2Name = availableDecks.find(d => d.language_a_code === saved.l2)?.language_a_name || null
+        const l1Name = availableDecks.find(d => d.language_b_code === saved.l1)?.language_b_name || null
+        setFilterL2Name(l2Name ? norm(l2Name) : null)
+        setFilterL1Name(l1Name ? norm(l1Name) : null)
+      }
+    }
+  }, [currentDeck, availableDecks])
+
+  // Persist filters by names
   useEffect(() => {
-    const payload = { l2: filterL2Code, l1: filterL1Code }
+    const payload = { l2Name: filterL2Name, l1Name: filterL1Name }
     try { localStorage.setItem('deckFilters', JSON.stringify(payload)) } catch {}
-  }, [filterL2Code, filterL1Code])
+  }, [filterL2Name, filterL1Name])
 
   const loadDashboardData = useCallback(async (userId: string) => {
     try {
@@ -382,34 +398,36 @@ export default function Dashboard() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">New language you want to learn</label>
               <select
-                value={filterL2Code || ''}
-                onChange={(e) => setFilterL2Code(e.target.value || null)}
+                value={filterL2Name || ''}
+                onChange={(e) => setFilterL2Name(e.target.value || null)}
                 className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">All</option>
-                {Array.from(new Map(availableDecks.map(d => [d.language_a_code, d.language_a_name])).entries()).map(([code, name]) => (
-                  <option key={code || 'unknown-l2'} value={code || ''}>{name} {code ? `(${code})` : ''}</option>
-                ))}
+                {Array.from(new Set(availableDecks.map(d => (d.language_a_name || '').trim()))).filter(Boolean).sort()
+                  .map((name) => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Your native language</label>
               <select
-                value={filterL1Code || ''}
-                onChange={(e) => setFilterL1Code(e.target.value || null)}
+                value={filterL1Name || ''}
+                onChange={(e) => setFilterL1Name(e.target.value || null)}
                 className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">All</option>
-                {Array.from(new Map(availableDecks.map(d => [d.language_b_code, d.language_b_name])).entries()).map(([code, name]) => (
-                  <option key={code || 'unknown-l1'} value={code || ''}>{name} {code ? `(${code})` : ''}</option>
-                ))}
+                {Array.from(new Set(availableDecks.map(d => (d.language_b_name || '').trim()))).filter(Boolean).sort()
+                  .map((name) => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
               </select>
             </div>
             <div className="flex gap-3">
               <Button
                 variant="outline"
                 className="w-full"
-                onClick={() => { setFilterL2Code(null); setFilterL1Code(null) }}
+                onClick={() => { setFilterL2Name(null); setFilterL1Name(null) }}
               >
                 Clear Filters
               </Button>
@@ -417,24 +435,25 @@ export default function Dashboard() {
           </div>
 
           {(() => {
+            const norm = (s: string) => (s || '').trim().toLowerCase()
             const decksFiltered = availableDecks.filter(d => (
-              (!filterL2Code || (d.language_a_code || '').toLowerCase() === filterL2Code.toLowerCase()) &&
-              (!filterL1Code || (d.language_b_code || '').toLowerCase() === filterL1Code.toLowerCase())
+              (!filterL2Name || norm(d.language_a_name || '') === norm(filterL2Name)) &&
+              (!filterL1Name || norm(d.language_b_name || '') === norm(filterL1Name))
             ))
 
             const noneFound = decksFiltered.length === 0
-            const l2Name = (availableDecks.find(d => d.language_a_code === filterL2Code)?.language_a_name) || 'Selected L2'
-            const l1Name = (availableDecks.find(d => d.language_b_code === filterL1Code)?.language_b_name) || 'Selected L1'
+            const l2Name = filterL2Name || 'Selected L2'
+            const l1Name = filterL1Name || 'Selected L1'
 
             return noneFound ? (
               <div className="text-center py-12">
                 <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No decks found</h3>
                 <p className="text-gray-600 max-w-xl mx-auto">
-                  No decks found for {filterL2Code ? l2Name : 'any L2'} → {filterL1Code ? l1Name : 'any L1'}. This combination isn’t available yet, but it’s coming soon. Try clearing filters or selecting another pair.
+                  No decks found for {filterL2Name ? l2Name : 'any L2'} → {filterL1Name ? l1Name : 'any L1'}. This combination isn’t available yet, but it’s coming soon. Try clearing filters or selecting another pair.
                 </p>
                 <div className="mt-4">
-                  <Button variant="outline" onClick={() => { setFilterL2Code(null); setFilterL1Code(null) }}>
+                  <Button variant="outline" onClick={() => { setFilterL2Name(null); setFilterL1Name(null) }}>
                     Clear Filters
                   </Button>
                 </div>
