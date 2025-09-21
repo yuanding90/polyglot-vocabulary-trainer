@@ -34,7 +34,8 @@ import {
   EyeOff as UnseenIcon,
   BookOpen as LearningIcon,
   TrendingUp as StrengtheningIcon,
-  CheckCircle as MasteredIcon
+  CheckCircle as MasteredIcon,
+  SlidersHorizontal
 } from 'lucide-react'
 
 export default function Dashboard() {
@@ -393,46 +394,57 @@ export default function Dashboard() {
             </p>
           </div>
 
-          {/* Deck Filter Bar */}
-          <div className="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">New language you want to learn</label>
-              <select
-                value={filterL2Name || ''}
-                onChange={(e) => setFilterL2Name(e.target.value || null)}
-                className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">All</option>
-                {Array.from(new Set(availableDecks.map(d => (d.language_a_name || '').trim()))).filter(Boolean).sort()
-                  .map((name) => (
-                    <option key={name} value={name}>{name}</option>
-                  ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Your native language</label>
-              <select
-                value={filterL1Name || ''}
-                onChange={(e) => setFilterL1Name(e.target.value || null)}
-                className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">All</option>
-                {Array.from(new Set(availableDecks.map(d => (d.language_b_name || '').trim()))).filter(Boolean).sort()
-                  .map((name) => (
-                    <option key={name} value={name}>{name}</option>
-                  ))}
-              </select>
-            </div>
-            <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => { setFilterL2Name(null); setFilterL1Name(null) }}
-              >
-                Clear Filters
-              </Button>
-            </div>
-          </div>
+          {/* Deck Filter Control Panel */}
+          <Card className="mb-6 rounded-xl border border-blue-200 bg-white shadow-sm">
+            <CardHeader className="pb-2 text-center">
+              <CardTitle className="text-lg sm:text-xl font-bold flex items-center justify-center gap-2 text-blue-700">
+                <SlidersHorizontal className="h-5 w-5 text-blue-600" />
+                Find Your Languge Deck
+              </CardTitle>
+              <p className="text-sm text-gray-600 mt-1 text-center">Pick your learn language and native language to narrow choices.</p>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                <div>
+                  <label className="block text-base font-semibold text-gray-800 mb-2">New language you want to learn</label>
+                  <select
+                    value={filterL2Name || ''}
+                    onChange={(e) => setFilterL2Name(e.target.value || null)}
+                    className="w-full p-4 text-base border-2 rounded-lg bg-white border-blue-300 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(availableDecks.map(d => (d.language_a_name || '').trim()))).filter(Boolean).sort()
+                      .map((name) => (
+                        <option key={name} value={name}>{name}</option>
+                      ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-base font-semibold text-gray-800 mb-2">Your native language</label>
+                  <select
+                    value={filterL1Name || ''}
+                    onChange={(e) => setFilterL1Name(e.target.value || null)}
+                    className="w-full p-4 text-base border-2 rounded-lg bg-white border-blue-300 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                  >
+                    <option value="">All</option>
+                    {Array.from(new Set(availableDecks.map(d => (d.language_b_name || '').trim()))).filter(Boolean).sort()
+                      .map((name) => (
+                        <option key={name} value={name}>{name}</option>
+                      ))}
+                  </select>
+                </div>
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    className="w-full text-base py-3 border-green-300 text-green-700 hover:bg-green-50"
+                    onClick={() => { setFilterL2Name(null); setFilterL1Name(null) }}
+                  >
+                    Clear Filters
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {(() => {
             const norm = (s: string) => (s || '').trim().toLowerCase()
