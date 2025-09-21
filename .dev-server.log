@@ -126,3 +126,19 @@ Session settings in study session: { types: [ 'recognition', 'production' ] }
  GET /study 200 in 69ms
  GET /favicon.ico?favicon.0b3bf435.ico 200 in 302ms
  GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 500 in 576ms
+ GET /dashboard 200 in 69ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 226ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 69ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 246ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 584ms
+ GET /dashboard 200 in 77ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 233ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 56ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 221ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 462ms
+ ✓ Compiled in 33ms
+ ✓ Compiled /api/ai-tutor/fetch in 60ms
+ GET /api/ai-tutor/fetch?vocabularyId=11172&l1Language=English&promptVersion=ai-tutor-v1 200 in 459ms
+ ✓ Compiled in 31ms
