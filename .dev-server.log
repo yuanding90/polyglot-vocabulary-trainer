@@ -1,0 +1,85 @@
+
+> multi-language-vocabulary-trainer@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.2 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.13:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 872ms
+ ○ Compiling /api/admin/ai-tutor/backfill-leeches ...
+ ✓ Compiled /api/admin/ai-tutor/backfill-leeches in 765ms
+ POST /api/admin/ai-tutor/backfill-leeches?dryRun=true 200 in 4524ms
+ ✓ Compiled /api/ai-tutor/generate in 187ms
+(node:99427) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ POST /api/ai-tutor/generate 200 in 14821ms
+ POST /api/ai-tutor/generate 200 in 15147ms
+ POST /api/ai-tutor/generate 200 in 16515ms
+ POST /api/ai-tutor/generate 200 in 13843ms
+ POST /api/ai-tutor/generate 200 in 14184ms
+ POST /api/ai-tutor/generate 200 in 16262ms
+ POST /api/ai-tutor/generate 200 in 19195ms
+ POST /api/ai-tutor/generate 200 in 17800ms
+ POST /api/ai-tutor/generate 200 in 19096ms
+ POST /api/ai-tutor/generate 200 in 15481ms
+ POST /api/ai-tutor/generate 200 in 17294ms
+ POST /api/ai-tutor/generate 200 in 17736ms
+ POST /api/ai-tutor/generate 200 in 13917ms
+ POST /api/ai-tutor/generate 200 in 14483ms
+ POST /api/ai-tutor/generate 200 in 19278ms
+ POST /api/ai-tutor/generate 200 in 13714ms
+ POST /api/ai-tutor/generate 200 in 16573ms
+ POST /api/ai-tutor/generate 200 in 14983ms
+ POST /api/ai-tutor/generate 200 in 14828ms
+ POST /api/ai-tutor/generate 200 in 15102ms
+ POST /api/ai-tutor/generate 200 in 16263ms
+ POST /api/ai-tutor/generate 200 in 16424ms
+ POST /api/ai-tutor/generate 200 in 17497ms
+ POST /api/ai-tutor/generate 200 in 17407ms
+ POST /api/ai-tutor/generate 200 in 15491ms
+ POST /api/ai-tutor/generate 200 in 15157ms
+ POST /api/ai-tutor/generate 200 in 15048ms
+ POST /api/ai-tutor/generate 200 in 16591ms
+ POST /api/ai-tutor/generate 200 in 13983ms
+ POST /api/ai-tutor/generate 200 in 18031ms
+ POST /api/ai-tutor/generate 200 in 14229ms
+ POST /api/ai-tutor/generate 200 in 19542ms
+ POST /api/ai-tutor/generate 200 in 15773ms
+ POST /api/ai-tutor/generate 200 in 16746ms
+ POST /api/ai-tutor/generate 200 in 20349ms
+ POST /api/ai-tutor/generate 200 in 17936ms
+ POST /api/ai-tutor/generate 200 in 16573ms
+ POST /api/ai-tutor/generate 200 in 15450ms
+ POST /api/ai-tutor/generate 500 in 14662ms
+ POST /api/ai-tutor/generate 200 in 16854ms
+ POST /api/ai-tutor/generate 200 in 17188ms
+ POST /api/ai-tutor/generate 500 in 20162ms
+ POST /api/ai-tutor/generate 200 in 16480ms
+ POST /api/ai-tutor/generate 200 in 15731ms
+ POST /api/ai-tutor/generate 200 in 17476ms
+ POST /api/ai-tutor/generate 200 in 15083ms
+ POST /api/ai-tutor/generate 200 in 17657ms
+ POST /api/ai-tutor/generate 200 in 17631ms
+ POST /api/ai-tutor/generate 200 in 338ms
+ POST /api/ai-tutor/generate 200 in 19399ms
+ POST /api/ai-tutor/generate 500 in 13880ms
+ POST /api/ai-tutor/generate 200 in 14939ms
+ POST /api/ai-tutor/generate 200 in 12270ms
+ POST /api/ai-tutor/generate 200 in 14326ms
+ POST /api/ai-tutor/generate 200 in 14767ms
+ POST /api/ai-tutor/generate 200 in 14240ms
+ POST /api/ai-tutor/generate 200 in 13536ms
+ POST /api/ai-tutor/generate 200 in 16106ms
+ POST /api/ai-tutor/generate 200 in 17228ms
+ POST /api/ai-tutor/generate 200 in 15855ms
+ POST /api/ai-tutor/generate 200 in 15666ms
+ POST /api/ai-tutor/generate 200 in 16644ms
+ POST /api/ai-tutor/generate 200 in 16828ms
+ POST /api/ai-tutor/generate 200 in 17827ms
+ POST /api/ai-tutor/generate 200 in 16318ms
+ POST /api/ai-tutor/generate 200 in 15370ms
+ POST /api/ai-tutor/generate 200 in 15802ms
+ POST /api/admin/ai-tutor/backfill-leeches 200 in 364709ms
