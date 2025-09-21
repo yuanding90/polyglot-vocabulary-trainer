@@ -153,15 +153,25 @@ export async function GET(req: Request) {
     if (withAI.length === 0) return NextResponse.json({ queue: [] })
 
     // Get viewed set for prioritization
-    const { data: viewed, error: vErr } = await supabase
-      .from('deep_dive_progress')
-      .select('vocabulary_id, last_viewed_at')
-      .eq('user_id', userId)
-      .eq('deck_id', deckId)
-      .eq('category', category)
-      .in('vocabulary_id', withAI)
-    if (vErr) return NextResponse.json({ error: vErr.message }, { status: 500 })
-    const viewedSet = new Set<number>((viewed || []).map((r: { vocabulary_id: number }) => r.vocabulary_id))
+    let viewed: Array<{ vocabulary_id: number; last_viewed_at: string }> | null = null
+    {
+      // If deckId is numeric, filter; if UUID, skip to avoid type errors (treated as no prior views)
+      const deckNum = Number(deckId)
+      if (!Number.isNaN(deckNum)) {
+        const vTry = await supabase
+          .from('deep_dive_progress')
+          .select('vocabulary_id, last_viewed_at')
+          .eq('user_id', userId)
+          .eq('deck_id', deckNum)
+          .eq('category', category)
+          .in('vocabulary_id', withAI)
+        if (vTry.error) return NextResponse.json({ error: vTry.error.message }, { status: 500 })
+        viewed = vTry.data as Array<{ vocabulary_id: number; last_viewed_at: string }>
+      } else {
+        viewed = []
+      }
+    }
+    const viewedSet = new Set<number>((viewed || []).map((r) => r.vocabulary_id))
 
     const unseen = withAI.filter(id => !viewedSet.has(id))
     const seen = (viewed || [])

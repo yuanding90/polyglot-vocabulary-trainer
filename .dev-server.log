@@ -116,3 +116,13 @@ Session settings in study session: { types: [ 'recognition', 'production' ] }
  GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 500 in 729ms
  GET /dashboard 200 in 86ms
  GET /favicon.ico?favicon.0b3bf435.ico 200 in 230ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 72ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 234ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 500 in 745ms
+ GET /dashboard 200 in 71ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 222ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 69ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 302ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 500 in 576ms
