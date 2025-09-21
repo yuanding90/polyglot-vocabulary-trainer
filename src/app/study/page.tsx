@@ -589,12 +589,29 @@ export default function StudySession() {
       
       // Handle leech actions
       if (rating === 'leech') {
+        // Background prewarm for AI Tutor when explicitly marked as leech
+        try {
+          if (currentDeck) {
+            void fetch('/api/ai-tutor/generate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                vocabularyId: currentWord.id,
+                l1Language: currentDeck.language_b_name,
+                l2Language: currentDeck.language_a_name,
+                includeAnalysis: true,
+              }),
+            }).catch(() => {})
+          }
+        } catch {}
+
         await markWordAsLeech(currentWord)
         return
       }
 
       if (rating === 'remove-leech') {
         await removeWordFromLeech(currentWord)
+        // No prewarm on removal
         return
       }
 
@@ -726,6 +743,23 @@ export default function StudySession() {
       if (error) {
         console.error('Error saving word progress:', error)
       }
+
+      // Background prewarm: if this action marks or confirms leech status, request AI Tutor content generation silently
+      try {
+        const nowLeech = (sessionType === 'review' && (rating === 'again') && (newAgainCount >= 3))
+        if (nowLeech && currentDeck) {
+          void fetch('/api/ai-tutor/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              vocabularyId: currentWord.id,
+              l1Language: currentDeck.language_b_name,
+              l2Language: currentDeck.language_a_name,
+              includeAnalysis: true,
+            }),
+          }).catch(() => {})
+        }
+      } catch {}
 
       // Move to next word
       if (rating === 'again') {
