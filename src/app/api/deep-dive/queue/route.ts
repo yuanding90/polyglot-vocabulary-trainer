@@ -30,33 +30,89 @@ export async function GET(req: Request) {
 
     const supabase = getAdminSupabase()
 
-    // Get deck languages
-    const { data: deck, error: deckErr } = await supabase
-      .from('vocabulary_decks')
-      .select('id, language_a_name, language_b_name')
-      .eq('id', deckId)
-      .single()
+    // Get deck languages (support id as uuid or integer by trying both)
+    let deck: { id: unknown; language_a_name: string; language_b_name: string } | null = null
+    let deckErr: { message: string } | null = null
+    {
+      const try1 = await supabase
+        .from('vocabulary_decks')
+        .select('id, language_a_name, language_b_name')
+        .eq('id', deckId)
+        .single()
+      if (!try1.error && try1.data) {
+        deck = try1.data as typeof deck
+      } else {
+        const deckNum = Number(deckId)
+        if (!Number.isNaN(deckNum)) {
+          const try2 = await supabase
+            .from('vocabulary_decks')
+            .select('id, language_a_name, language_b_name')
+            .eq('id', deckNum)
+            .single()
+          if (!try2.error && try2.data) deck = try2.data as typeof deck
+          else deckErr = try2.error as { message: string }
+        } else {
+          deckErr = try1.error as { message: string }
+        }
+      }
+    }
     if (deckErr || !deck) {
       return NextResponse.json({ error: deckErr?.message || 'Deck not found' }, { status: 404 })
     }
 
-    // Get vocabulary ids in deck
-    const { data: deckVocab, error: dvErr } = await supabase
-      .from('deck_vocabulary')
-      .select('vocabulary_id')
-      .eq('deck_id', deckId)
-    if (dvErr) return NextResponse.json({ error: dvErr.message }, { status: 500 })
+    // Get vocabulary ids in deck (try string deckId first, then numeric fallback)
+    let deckVocab: Array<{ vocabulary_id: number }> | null = null
+    {
+      const try1 = await supabase
+        .from('deck_vocabulary')
+        .select('vocabulary_id')
+        .eq('deck_id', deckId)
+      if (!try1.error && try1.data) {
+        deckVocab = try1.data as Array<{ vocabulary_id: number }>
+      } else {
+        const deckNum = Number(deckId)
+        if (!Number.isNaN(deckNum)) {
+          const try2 = await supabase
+            .from('deck_vocabulary')
+            .select('vocabulary_id')
+            .eq('deck_id', deckNum)
+          if (!try2.error && try2.data) deckVocab = try2.data as Array<{ vocabulary_id: number }>
+          else return NextResponse.json({ error: (try2.error || try1.error)?.message || 'deck_vocabulary error' }, { status: 500 })
+        } else {
+          return NextResponse.json({ error: (try1.error)?.message || 'deck_vocabulary error' }, { status: 500 })
+        }
+      }
+    }
     const vocabIds = (deckVocab || []).map((v: { vocabulary_id: number }) => v.vocabulary_id)
     if (vocabIds.length === 0) return NextResponse.json({ queue: [] })
 
-    // Get progress for user in this deck
-    const { data: progress, error: pErr } = await supabase
-      .from('user_progress')
-      .select('word_id, interval, again_count')
-      .eq('user_id', userId)
-      .eq('deck_id', deckId)
-      .in('word_id', vocabIds)
-    if (pErr) return NextResponse.json({ error: pErr.message }, { status: 500 })
+    // Get progress for user in this deck (try both string/number deckId)
+    let progress: Array<{ word_id: number; interval: number; again_count: number }> | null = null
+    {
+      const try1 = await supabase
+        .from('user_progress')
+        .select('word_id, interval, again_count')
+        .eq('user_id', userId)
+        .eq('deck_id', deckId)
+        .in('word_id', vocabIds)
+      if (!try1.error && try1.data) {
+        progress = try1.data as Array<{ word_id: number; interval: number; again_count: number }>
+      } else {
+        const deckNum = Number(deckId)
+        if (!Number.isNaN(deckNum)) {
+          const try2 = await supabase
+            .from('user_progress')
+            .select('word_id, interval, again_count')
+            .eq('user_id', userId)
+            .eq('deck_id', deckNum)
+            .in('word_id', vocabIds)
+          if (!try2.error && try2.data) progress = try2.data as Array<{ word_id: number; interval: number; again_count: number }>
+          else return NextResponse.json({ error: (try2.error || try1.error)?.message || 'user_progress error' }, { status: 500 })
+        } else {
+          return NextResponse.json({ error: try1.error?.message || 'user_progress error' }, { status: 500 })
+        }
+      }
+    }
     const progressByWord = new Map<number, { interval: number; again_count: number }>()
     for (const row of progress || []) progressByWord.set(row.word_id, { interval: row.interval, again_count: row.again_count })
 
