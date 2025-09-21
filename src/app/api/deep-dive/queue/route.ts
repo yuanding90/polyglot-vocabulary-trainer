@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 export const runtime = 'nodejs'
 
 type Category = 'leeches' | 'learning' | 'strengthening' | 'consolidating'
+type DeckRow = { id: unknown; language_a_name: string; language_b_name: string }
 
 function getAdminSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -31,7 +32,7 @@ export async function GET(req: Request) {
     const supabase = getAdminSupabase()
 
     // Get deck languages (support id as uuid or integer by trying both)
-    let deck: { id: unknown; language_a_name: string; language_b_name: string } | null = null
+    let deck: DeckRow | null = null
     let deckErr: { message: string } | null = null
     {
       const try1 = await supabase
@@ -40,7 +41,7 @@ export async function GET(req: Request) {
         .eq('id', deckId)
         .single()
       if (!try1.error && try1.data) {
-        deck = try1.data as typeof deck
+        deck = try1.data as DeckRow
       } else {
         const deckNum = Number(deckId)
         if (!Number.isNaN(deckNum)) {
@@ -49,7 +50,7 @@ export async function GET(req: Request) {
             .select('id, language_a_name, language_b_name')
             .eq('id', deckNum)
             .single()
-          if (!try2.error && try2.data) deck = try2.data as typeof deck
+          if (!try2.error && try2.data) deck = try2.data as DeckRow
           else deckErr = try2.error as { message: string }
         } else {
           deckErr = try1.error as { message: string }
