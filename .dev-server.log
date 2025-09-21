@@ -83,3 +83,28 @@
  POST /api/ai-tutor/generate 200 in 15370ms
  POST /api/ai-tutor/generate 200 in 15802ms
  POST /api/admin/ai-tutor/backfill-leeches 200 in 364709ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1211ms
+ GET / 200 in 1400ms
+ GET / 200 in 55ms
+ ✓ Compiled /favicon.ico in 87ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 327ms
+ ✓ Compiled /auth/callback in 81ms
+ GET /auth/callback 307 in 345ms
+ GET / 200 in 42ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 223ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 242ms
+ ✓ Compiled /study in 358ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 423ms
+ ✓ Compiled /api/deep-dive/queue in 48ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 253ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 400 in 280ms
+ ✓ Compiled /dashboard in 148ms
+ GET /dashboard 200 in 195ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 240ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 66ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 228ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 400 in 227ms
+ ✓ Compiled in 67ms

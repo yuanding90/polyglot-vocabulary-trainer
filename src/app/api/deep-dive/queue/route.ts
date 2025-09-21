@@ -17,9 +17,9 @@ function getAdminSupabase() {
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
-    const deckId = Number(searchParams.get('deckId') || '')
-    const category = (searchParams.get('category') || '') as Category
-    const userId = searchParams.get('userId') || ''
+    const deckId = (searchParams.get('deckId') || '').trim()
+    const category = (searchParams.get('category') || '').trim() as Category
+    const userId = (searchParams.get('userId') || '').trim()
 
     if (!deckId || !category || !userId) {
       return NextResponse.json({ error: 'deckId, category, and userId are required' }, { status: 400 })

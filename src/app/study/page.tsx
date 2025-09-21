@@ -285,7 +285,7 @@ export default function StudySession() {
       // Deep-dive uses server queue endpoint to fetch AI-ready prioritized words
       if (sessionType === 'deep-dive') {
         const category = deepDiveCategory || 'leeches'
-        const url = `/api/deep-dive/queue?deckId=${currentDeck.id}&category=${encodeURIComponent(category)}&userId=${encodeURIComponent(user.id)}`
+        const url = `/api/deep-dive/queue?deckId=${encodeURIComponent(String(currentDeck.id))}&category=${encodeURIComponent(category)}&userId=${encodeURIComponent(String(user.id))}`
         const resp = await fetch(url)
         if (!resp.ok) {
           console.error('Error fetching deep dive queue:', await resp.text())
