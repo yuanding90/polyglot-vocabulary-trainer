@@ -609,6 +609,27 @@ export default function StudySession() {
         return
       }
       
+      // Deep-dive short-circuit: record view and move on (no SRS changes)
+      if (sessionType === 'deep-dive') {
+        try {
+          const category = deepDiveCategory || 'leeches'
+          await supabase
+            .from('deep_dive_progress')
+            .upsert({
+              user_id: user.id,
+              deck_id: currentDeck.id,
+              category,
+              vocabulary_id: currentWord.id,
+              last_viewed_at: new Date().toISOString(),
+            }, { onConflict: 'user_id,deck_id,category,vocabulary_id' })
+        } catch (e) {
+          console.error('Error upserting deep_dive_progress:', e)
+        }
+        setSessionProgress(prev => ({ ...prev, reviewed: prev.reviewed + 1 }))
+        await moveToNextWord()
+        return
+      }
+      
       // Handle leech actions
       if (rating === 'leech') {
         // Background prewarm for AI Tutor when explicitly marked as leech

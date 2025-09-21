@@ -1,7 +1,7 @@
 -- Create deep_dive_progress table (idempotent)
 CREATE TABLE IF NOT EXISTS public.deep_dive_progress (
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  deck_id INTEGER NOT NULL REFERENCES public.vocabulary_decks(id) ON DELETE CASCADE,
+  deck_id INTEGER NOT NULL,
   category TEXT NOT NULL CHECK (category IN ('leeches','learning','strengthening','consolidating')),
   vocabulary_id INTEGER NOT NULL REFERENCES public.vocabulary(id) ON DELETE CASCADE,
   last_viewed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
