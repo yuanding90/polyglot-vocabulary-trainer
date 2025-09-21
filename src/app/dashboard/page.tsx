@@ -247,8 +247,11 @@ export default function Dashboard() {
     setSessionType(type)
     setShowStudySession(true)
     
-    // Store session type and redirect to study session
+    // Store session type and selected deep-dive category (if any), then redirect
     localStorage.setItem('sessionType', type)
+    if (type === 'deep-dive' && deepDiveCategory) {
+      localStorage.setItem('deepDiveCategory', deepDiveCategory)
+    }
     window.location.href = '/study'
   }
 
@@ -293,6 +296,10 @@ export default function Dashboard() {
     if (currentUser) {
       await loadDeckData(deck.id, currentUser.id)
       console.log('Deck selected and data loaded:', deck.name)
+    }
+    // Preserve deep-dive selection across deck change
+    if (deepDiveCategory) {
+      localStorage.setItem('deepDiveCategory', deepDiveCategory)
     }
   }
 

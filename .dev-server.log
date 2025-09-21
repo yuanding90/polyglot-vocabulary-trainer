@@ -142,3 +142,41 @@ Session settings in study session: { types: [ 'recognition', 'production' ] }
  ✓ Compiled /api/ai-tutor/fetch in 60ms
  GET /api/ai-tutor/fetch?vocabularyId=11172&l1Language=English&promptVersion=ai-tutor-v1 200 in 459ms
  ✓ Compiled in 31ms
+ GET /dashboard 200 in 248ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 245ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 170ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 224ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 473ms
+ GET /api/ai-tutor/fetch?vocabularyId=10939&l1Language=English&promptVersion=ai-tutor-v1 200 in 283ms
+ GET /api/ai-tutor/fetch?vocabularyId=10939&l1Language=English&promptVersion=ai-tutor-v1 200 in 293ms
+ GET /api/ai-tutor/fetch?vocabularyId=10926&l1Language=English&promptVersion=ai-tutor-v1 200 in 335ms
+ GET /api/ai-tutor/fetch?vocabularyId=11181&l1Language=English&promptVersion=ai-tutor-v1 200 in 287ms
+ GET /dashboard 200 in 57ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 228ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 67ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 225ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 555ms
+ GET /api/ai-tutor/fetch?vocabularyId=11172&l1Language=English&promptVersion=ai-tutor-v1 200 in 296ms
+ GET /api/ai-tutor/fetch?vocabularyId=11172&l1Language=English&promptVersion=ai-tutor-v1 200 in 323ms
+ GET /dashboard 200 in 52ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 224ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 63ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 222ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 488ms
+ GET /api/ai-tutor/fetch?vocabularyId=10695&l1Language=English&promptVersion=ai-tutor-v1 200 in 289ms
+ GET /api/ai-tutor/fetch?vocabularyId=10695&l1Language=English&promptVersion=ai-tutor-v1 200 in 284ms
+ GET /dashboard 200 in 71ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 225ms
+Session settings in study session: { types: [ 'recognition', 'production' ] }
+ GET /study 200 in 52ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 228ms
+ GET /api/deep-dive/queue?deckId=543a6e65-69d1-4e9e-ad0e-b2f1734b61b5&category=leeches&userId=c36ec450-ae41-4fd6-be2e-cd2030d6a1ac 200 in 457ms
+ GET /api/ai-tutor/fetch?vocabularyId=10882&l1Language=English&promptVersion=ai-tutor-v1 200 in 285ms
+ GET /api/ai-tutor/fetch?vocabularyId=10882&l1Language=English&promptVersion=ai-tutor-v1 200 in 309ms
+ GET /dashboard 200 in 63ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 223ms
+ ✓ Compiled in 87ms
+ ✓ Compiled in 25ms
