@@ -282,6 +282,50 @@ export default function StudySession() {
       
       console.log('Study session: Using user:', user.email, 'ID:', user.id)
       
+      // Deep-dive uses server queue endpoint to fetch AI-ready prioritized words
+      if (sessionType === 'deep-dive') {
+        const category = deepDiveCategory || 'leeches'
+        const url = `/api/deep-dive/queue?deckId=${currentDeck.id}&category=${encodeURIComponent(category)}&userId=${encodeURIComponent(user.id)}`
+        const resp = await fetch(url)
+        if (!resp.ok) {
+          console.error('Error fetching deep dive queue:', await resp.text())
+          setLoading(false)
+          return
+        }
+        const { queue } = await resp.json()
+        if (!queue || queue.length === 0) {
+          console.log('Deep dive queue is empty (AI-ready filtered)')
+          setLocalSessionWords([])
+          setLoading(false)
+          return
+        }
+        // Fetch vocabulary rows for the queue
+        const { data: words, error: wordsError } = await supabase
+          .from('vocabulary')
+          .select('*')
+          .in('id', queue)
+        if (wordsError) {
+          console.error('Error fetching vocabulary for deep dive:', wordsError)
+          setLoading(false)
+          return
+        }
+        const byId = new Map((words || []).map(w => [w.id, w]))
+        const ordered = queue.map((id: number) => byId.get(id)).filter(Boolean) as Vocabulary[]
+        setLocalSessionWords(ordered)
+        setSessionProgress(prev => ({ ...prev, total: ordered.length }))
+        if (ordered.length > 0) {
+          setCurrentWordState(ordered[0])
+          setCurrentWordIndex(0)
+          setShowAnswer(false)
+          setUserAnswer('')
+          setIsCorrect(false)
+          await loadCurrentWordProgress(ordered[0])
+          setCardType('recognition')
+        }
+        setLoading(false)
+        return
+      }
+      
       // Get all vocabulary for the deck (like French app does)
       const { data: deckVocab, error: deckError } = await supabase
         .from('deck_vocabulary')
@@ -364,28 +408,6 @@ export default function StudySession() {
             const learnedWordIds = userProgress.map(p => p.word_id)
             filteredWords = words.filter(word => !learnedWordIds.includes(word.id))
             console.log(`Discovery session: Using ${filteredWords.length} unseen words`)
-          } else if (sessionType === 'deep-dive' && deepDiveCategory) {
-            // For deep dive, filter based on selected category
-            const progressMap = new Map(userProgress.map(p => [p.word_id, p]))
-            
-            filteredWords = words.filter(word => {
-              const progress = progressMap.get(word.id)
-              if (!progress) return false
-              
-              switch (deepDiveCategory) {
-                case 'leeches':
-                  return progress.again_count >= 3
-                case 'learning':
-                  return progress.again_count < 3 && progress.interval < 7
-                case 'strengthening':
-                  return progress.again_count < 3 && progress.interval >= 7 && progress.interval < 21
-                case 'consolidating':
-                  return progress.again_count < 3 && progress.interval >= 21 && progress.interval < 60
-                default:
-                  return false
-              }
-            })
-            console.log(`Deep dive session: Found ${filteredWords.length} words for category ${deepDiveCategory}`)
           }
         } else {
           // No progress data - for new users or new decks
@@ -1626,37 +1648,14 @@ function DeepDiveCard({ word, onAnswer, speakWord, currentDeck }: DeepDiveCardPr
             </div>
           )}
 
-          {/* Rating Buttons */}
+          {/* Deep Dive Navigation */}
           <div className="text-center pt-6">
-            <div className="flex gap-4 justify-center">
-              <Button
-                variant="outline"
-                onClick={() => onAnswer('again')}
-                className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100"
-              >
-                Again
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => onAnswer('hard')}
-                className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
-              >
-                Hard
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => onAnswer('good')}
-                className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
-              >
-                Good
-              </Button>
-              <Button
-                onClick={() => onAnswer('easy')}
-                className="bg-green-600 hover:bg-green-700"
-              >
-                Easy
-              </Button>
-            </div>
+            <Button
+              onClick={() => onAnswer('good')}
+              className="bg-blue-600 hover:bg-blue-700 px-8"
+            >
+              Next
+            </Button>
           </div>
         </div>
       </CardContent>
