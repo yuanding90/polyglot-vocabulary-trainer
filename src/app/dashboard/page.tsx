@@ -380,7 +380,7 @@ export default function Dashboard() {
           {/* Deck Filter Bar */}
           <div className="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Learn Language (L2)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">New language you want to learn</label>
               <select
                 value={filterL2Code || ''}
                 onChange={(e) => setFilterL2Code(e.target.value || null)}
@@ -393,7 +393,7 @@ export default function Dashboard() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Native Language (L1)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Your native language</label>
               <select
                 value={filterL1Code || ''}
                 onChange={(e) => setFilterL1Code(e.target.value || null)}
