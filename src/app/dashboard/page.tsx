@@ -66,6 +66,9 @@ export default function Dashboard() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  // Deck filter state (Language A/L2 and Language B/L1)
+  const [filterL2Code, setFilterL2Code] = useState<string | null>(null)
+  const [filterL1Code, setFilterL1Code] = useState<string | null>(null)
 
   useEffect(() => {
     // Get current user first
@@ -106,6 +109,28 @@ export default function Dashboard() {
     window.addEventListener('focus', handleFocus)
     return () => window.removeEventListener('focus', handleFocus)
   }, [currentUser, currentDeck])
+
+  // Initialize deck filters from current deck or saved filters
+  useEffect(() => {
+    // On first load, prefer current deck's languages; fallback to saved filters
+    const saved = (() => {
+      try { return JSON.parse(localStorage.getItem('deckFilters') || 'null') } catch { return null }
+    })() as { l2?: string | null; l1?: string | null } | null
+
+    if (currentDeck) {
+      setFilterL2Code(currentDeck.language_a_code || null)
+      setFilterL1Code(currentDeck.language_b_code || null)
+    } else if (saved) {
+      setFilterL2Code(saved.l2 ?? null)
+      setFilterL1Code(saved.l1 ?? null)
+    }
+  }, [currentDeck])
+
+  // Persist filters
+  useEffect(() => {
+    const payload = { l2: filterL2Code, l1: filterL1Code }
+    try { localStorage.setItem('deckFilters', JSON.stringify(payload)) } catch {}
+  }, [filterL2Code, filterL1Code])
 
   const loadDashboardData = useCallback(async (userId: string) => {
     try {
@@ -352,124 +377,129 @@ export default function Dashboard() {
             </p>
           </div>
 
-          {availableDecks.length === 0 ? (
-            <div className="text-center py-12">
-              <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No Decks Available</h3>
-                              <p className="text-gray-600">
-                  Vocabulary decks will appear here once they&apos;re added to the system.
+          {/* Deck Filter Bar */}
+          <div className="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Learn Language (L2)</label>
+              <select
+                value={filterL2Code || ''}
+                onChange={(e) => setFilterL2Code(e.target.value || null)}
+                className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">All</option>
+                {Array.from(new Map(availableDecks.map(d => [d.language_a_code, d.language_a_name])).entries()).map(([code, name]) => (
+                  <option key={code || 'unknown-l2'} value={code || ''}>{name} {code ? `(${code})` : ''}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Native Language (L1)</label>
+              <select
+                value={filterL1Code || ''}
+                onChange={(e) => setFilterL1Code(e.target.value || null)}
+                className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">All</option>
+                {Array.from(new Map(availableDecks.map(d => [d.language_b_code, d.language_b_name])).entries()).map(([code, name]) => (
+                  <option key={code || 'unknown-l1'} value={code || ''}>{name} {code ? `(${code})` : ''}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => { setFilterL2Code(null); setFilterL1Code(null) }}
+              >
+                Clear Filters
+              </Button>
+            </div>
+          </div>
+
+          {(() => {
+            const decksFiltered = availableDecks.filter(d => (
+              (!filterL2Code || (d.language_a_code || '').toLowerCase() === filterL2Code.toLowerCase()) &&
+              (!filterL1Code || (d.language_b_code || '').toLowerCase() === filterL1Code.toLowerCase())
+            ))
+
+            const noneFound = decksFiltered.length === 0
+            const l2Name = (availableDecks.find(d => d.language_a_code === filterL2Code)?.language_a_name) || 'Selected L2'
+            const l1Name = (availableDecks.find(d => d.language_b_code === filterL1Code)?.language_b_name) || 'Selected L1'
+
+            return noneFound ? (
+              <div className="text-center py-12">
+                <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No decks found</h3>
+                <p className="text-gray-600 max-w-xl mx-auto">
+                  No decks found for {filterL2Code ? l2Name : 'any L2'} → {filterL1Code ? l1Name : 'any L1'}. This combination isn’t available yet, but it’s coming soon. Try clearing filters or selecting another pair.
                 </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {availableDecks.map((deck) => {
-                const progress = userDeckProgress[deck.id] || {
-                  deck_id: deck.id,
-                  total_words: 0,
-                  mastered_words: 0,
-                  learning_words: 0,
-                  leeches: 0,
-                  unseen_words: 0
-                }
-                
-                // Calculate progress percentages for different states
-                const totalWords = progress.total_words || 0
-                const mastered = progress.mastered_words
-                const learning = progress.learning_words
-                const unseen = progress.unseen_words
-                
-                return (
-                  <Card 
-                    key={`${deck.id}-${progress.total_words}-${progress.mastered_words}`} 
-                    className="cursor-pointer transition-all hover:shadow-lg hover:bg-gray-50 card-enhanced"
-                    onClick={() => selectDeck(deck)}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <BookOpen className="h-5 w-5 text-blue-600" />
-                            <h3 className="font-semibold text-lg">{deck.name}</h3>
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-700' :
-                              deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
-                              deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-700' :
-                              'bg-red-100 text-red-700'
-                            }`}>
-                              {deck.difficulty_level}
-                            </span>
-                          </div>
-                          
-                          {/* Progress Bar */}
-                                                      <div className="space-y-4">
-                            <div className="flex justify-between text-sm text-gray-600">
-                              <span>Progress Overview</span>
-                              <span>{progress.mastered_words}/{totalWords} mastered</span>
+                <div className="mt-4">
+                  <Button variant="outline" onClick={() => { setFilterL2Code(null); setFilterL1Code(null) }}>
+                    Clear Filters
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {decksFiltered.map((deck) => {
+                  const progress = userDeckProgress[deck.id] || {
+                    deck_id: deck.id,
+                    total_words: 0,
+                    mastered_words: 0,
+                    learning_words: 0,
+                    leeches: 0,
+                    unseen_words: 0
+                  }
+                  const totalWords = progress.total_words || 0
+                  const mastered = progress.mastered_words
+                  const learning = progress.learning_words
+                  const unseen = progress.unseen_words
+                  return (
+                    <Card 
+                      key={`${deck.id}-${progress.total_words}-${progress.mastered_words}`} 
+                      className="cursor-pointer transition-all hover:shadow-lg hover:bg-gray-50 card-enhanced"
+                      onClick={() => selectDeck(deck)}
+                    >
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <BookOpen className="h-5 w-5 text-blue-600" />
+                              <h3 className="font-semibold text-lg">{deck.name}</h3>
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-700' :
+                                deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                                deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-700' :
+                                'bg-red-100 text-red-700'
+                              }`}>
+                                {deck.difficulty_level}
+                              </span>
                             </div>
-                            
-                            <div className="flex h-4 bg-gray-200 rounded-full overflow-hidden">
-                              {/* Unseen */}
-                              <div 
-                                className="bg-gray-400"
-                                style={{ width: `${(unseen / totalWords) * 100}%` }}
-                                title={`${unseen} unseen`}
-                              />
-                              {/* Learning */}
-                              <div 
-                                className="bg-orange-400"
-                                style={{ width: `${(learning / totalWords) * 100}%` }}
-                                title={`${learning} learning`}
-                              />
-                              {/* Strengthening */}
-                              <div 
-                                className="bg-yellow-400"
-                                style={{ width: `${(progress.strengthening_words || 0) / totalWords * 100}%` }}
-                                title={`${progress.strengthening_words || 0} strengthening`}
-                              />
-                              {/* Mastered */}
-                              <div 
-                                className="bg-green-500"
-                                style={{ width: `${(mastered / totalWords) * 100}%` }}
-                                title={`${mastered} mastered`}
-                              />
-                            </div>
-                            
-                            <div className="grid grid-cols-4 gap-6 mt-6">
-                              <div className="text-center">
-                                <UnseenIcon className="h-5 w-5 mx-auto mb-2 text-gray-400" />
-                                <div className="text-xl font-bold text-gray-500">{unseen}</div>
-                                <div className="text-sm text-gray-400 font-medium">Unseen</div>
+                            <div className="space-y-4">
+                              <div className="flex justify-between text-sm text-gray-600">
+                                <span>Progress Overview</span>
+                                <span>{mastered}/{totalWords} mastered</span>
                               </div>
-                              <div className="text-center">
-                                <LearningIcon className="h-5 w-5 mx-auto mb-2 text-orange-400" />
-                                <div className="text-xl font-bold text-orange-500">{learning}</div>
-                                <div className="text-sm text-gray-400 font-medium">Learning</div>
-                              </div>
-                              <div className="text-center">
-                                <StrengtheningIcon className="h-5 w-5 mx-auto mb-2 text-yellow-400" />
-                                <div className="text-xl font-bold text-yellow-500">{progress.strengthening_words || 0}</div>
-                                <div className="text-sm text-gray-400 font-medium">Strengthening</div>
-                              </div>
-                              <div className="text-center">
-                                <MasteredIcon className="h-5 w-5 mx-auto mb-2 text-green-400" />
-                                <div className="text-xl font-bold text-green-500">{mastered}</div>
-                                <div className="text-sm text-gray-400 font-medium">Mastered</div>
+                              <div className="flex h-4 bg-gray-200 rounded-full overflow-hidden">
+                                <div className="bg-gray-400" style={{ width: `${(unseen / totalWords) * 100}%` }} title={`${unseen} unseen`} />
+                                <div className="bg-orange-400" style={{ width: `${(learning / totalWords) * 100}%` }} title={`${learning} learning`} />
+                                <div className="bg-yellow-400" style={{ width: `${((progress.strengthening_words || 0) / totalWords) * 100}%` }} title={`${progress.strengthening_words || 0} strengthening`} />
+                                <div className="bg-green-500" style={{ width: `${(mastered / totalWords) * 100}%` }} title={`${mastered} mastered`} />
                               </div>
                             </div>
                           </div>
+                          <div className="text-right ml-4">
+                            <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
+                            <div className="text-sm text-gray-600">words</div>
+                          </div>
                         </div>
-                        
-                        <div className="text-right ml-4">
-                          <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
-                          <div className="text-sm text-gray-600">words</div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )
-              })}
-            </div>
-          )}
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+              </div>
+            )
+          })()}
         </div>
       </div>
     )

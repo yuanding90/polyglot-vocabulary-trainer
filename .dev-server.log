@@ -354,3 +354,5 @@ Session settings in study session: { types: [ 'recognition', 'production' ] }
  GET /favicon.ico?favicon.0b3bf435.ico 200 in 252ms
  GET /dashboard 200 in 103ms
  GET /favicon.ico?favicon.0b3bf435.ico 200 in 236ms
+ ✓ Compiled in 106ms
+ ✓ Compiled in 261ms
