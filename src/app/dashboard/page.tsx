@@ -647,7 +647,7 @@ export default function Dashboard() {
             {/* Overall Progress */}
             <div className="mb-6">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
-                <span>Overall Progress</span>
+                <span className="text-base font-bold text-gray-800">Overall Progress</span>
                 <span className="text-base font-bold text-gray-800">{Math.round(progressPercentage)}%</span>
               </div>
               <Progress value={progressPercentage} className="h-3" />
