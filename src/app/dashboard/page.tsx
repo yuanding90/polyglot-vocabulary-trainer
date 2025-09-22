@@ -697,59 +697,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Recommended Next Deck (Conditional) */}
-            {(() => {
-              if (!availableDecks || availableDecks.length === 0) return null
-              const currentId = currentDeck?.id
-              const candidates = availableDecks.filter(d => d.id !== currentId)
-              let best: { deck: VocabularyDeck; kind: 'now'|'soon'; count: number } | null = null
-              for (const d of candidates) {
-                const cnt = dueNowByDeck[d.id] || 0
-                if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'now' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
-                  best = { deck: d, kind: 'now', count: cnt }
-                }
-              }
-              if (!best) {
-                for (const d of candidates) {
-                  const cnt = dueSoonByDeck[d.id] || 0
-                  if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'soon' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
-                    best = { deck: d, kind: 'soon', count: cnt }
-                  }
-                }
-              }
-              if (!best) return null
-              const { deck, kind, count } = best
-              const handleSwitchAndReview = (deckToSwitch: VocabularyDeck) => {
-                try {
-                  localStorage.setItem('selectedDeck', JSON.stringify(deckToSwitch))
-                  localStorage.setItem('sessionType', 'review')
-                } catch {}
-                window.location.href = '/study'
-              }
-              return (
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <button
-                    onClick={() => handleSwitchAndReview(deck)}
-                    className="w-full text-right border border-pink-200 bg-pink-50 hover:bg-pink-100 hover:border-pink-300 rounded-lg p-4 transition-colors"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1 text-right">
-                        <div className="text-xs font-medium text-pink-700">Another deck pending your review :</div>
-                        <div className="font-semibold text-gray-900 mt-1">
-                          Review {count} words {kind === 'now' ? 'due now' : 'due soon'} in {deck.name}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {deck.language_a_name} → {deck.language_b_name}
-                        </div>
-                      </div>
-                      <div className="mt-1">
-                        <Play className="h-5 w-5 text-pink-600" />
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              )
-            })()}
+            {/* Recommended Next Deck moved below session types */}
           </CardContent>
         </Card>
 
@@ -874,6 +822,62 @@ export default function Dashboard() {
         </div>
 
         
+        
+        {/* Recommended Next Deck (Distinct Section) */}
+        {(() => {
+          if (!availableDecks || availableDecks.length === 0) return null
+          const currentId = currentDeck?.id
+          const candidates = availableDecks.filter(d => d.id !== currentId)
+          let best: { deck: VocabularyDeck; kind: 'now'|'soon'; count: number } | null = null
+          for (const d of candidates) {
+            const cnt = dueNowByDeck[d.id] || 0
+            if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'now' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
+              best = { deck: d, kind: 'now', count: cnt }
+            }
+          }
+          if (!best) {
+            for (const d of candidates) {
+              const cnt = dueSoonByDeck[d.id] || 0
+              if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'soon' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
+                best = { deck: d, kind: 'soon', count: cnt }
+              }
+            }
+          }
+          if (!best) return null
+          const { deck, kind, count } = best
+          const handleSwitchAndReview = (deckToSwitch: VocabularyDeck) => {
+            try {
+              localStorage.setItem('selectedDeck', JSON.stringify(deckToSwitch))
+              localStorage.setItem('sessionType', 'review')
+            } catch {}
+            window.location.href = '/study'
+          }
+          return (
+            <Card className="mb-8 card-enhanced">
+              <CardContent className="p-4 sm:p-6">
+                <button
+                  onClick={() => handleSwitchAndReview(deck)}
+                  className="w-full border border-pink-200 bg-pink-50 hover:bg-pink-100 hover:border-pink-300 rounded-lg p-3 sm:p-4 transition-colors min-h-[44px]"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2">
+                      <Play className="h-5 w-5 text-pink-600" />
+                      <span className="text-sm sm:text-base font-semibold text-pink-700">Another deck pending your review :</span>
+                    </div>
+                    <div className="text-left sm:text-right">
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base break-words line-clamp-2 sm:line-clamp-none">
+                        Review {count} words {kind === 'now' ? 'due now' : 'due soon'} in {deck.name}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        {deck.language_a_name} → {deck.language_b_name}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </CardContent>
+            </Card>
+          )
+        })()}
 
         {/* Learning Types Configuration - At the bottom */}
         <Card className="mb-8 card-enhanced">
