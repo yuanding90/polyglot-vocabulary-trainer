@@ -728,17 +728,25 @@ export default function Dashboard() {
               }
               return (
                 <div className="mt-8 pt-6 border-t border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Next Up:</h3>
-                  <Button
+                  <button
                     onClick={() => handleSwitchAndReview(deck)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg sm:text-xl py-3 sm:py-4"
+                    className="w-full text-right border border-pink-200 bg-pink-50 hover:bg-pink-100 hover:border-pink-300 rounded-lg p-4 transition-colors"
                   >
-                    <Play className="h-5 w-5 mr-2" />
-                    <div className="flex flex-col items-center">
-                      <span className="font-bold">Review {count} words {kind === 'now' ? 'due now' : 'due soon'} in {deck.name}</span>
-                      <span className="text-sm text-blue-100">{deck.language_a_name} → {deck.language_b_name}</span>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-1 text-right">
+                        <div className="text-xs font-medium text-pink-700">Another deck pending your review :</div>
+                        <div className="font-semibold text-gray-900 mt-1">
+                          Review {count} words {kind === 'now' ? 'due now' : 'due soon'} in {deck.name}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {deck.language_a_name} → {deck.language_b_name}
+                        </div>
+                      </div>
+                      <div className="mt-1">
+                        <Play className="h-5 w-5 text-pink-600" />
+                      </div>
                     </div>
-                  </Button>
+                  </button>
                 </div>
               )
             })()}
