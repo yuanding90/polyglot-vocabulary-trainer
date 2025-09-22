@@ -70,6 +70,9 @@ export default function Dashboard() {
   // Deck filter state by language NAMES (dedupe fr vs fr-FR)
   const [filterL2Name, setFilterL2Name] = useState<string | null>(null)
   const [filterL1Name, setFilterL1Name] = useState<string | null>(null)
+  // Due counts across decks for recommendation CTA
+  const [dueNowByDeck, setDueNowByDeck] = useState<Record<string, number>>({})
+  const [dueSoonByDeck, setDueSoonByDeck] = useState<Record<string, number>>({})
 
   useEffect(() => {
     // Get current user first
@@ -163,8 +166,10 @@ export default function Dashboard() {
       if (decksError) throw decksError
       setAvailableDecks(decks || [])
 
-      // Load metrics for all decks to show correct word counts
+      // Load metrics and due counts for all decks to show correct word counts and recommendation
       if (decks && decks.length > 0) {
+        const nextDueNow: Record<string, number> = {}
+        const nextDueSoon: Record<string, number> = {}
         for (const deck of decks) {
           try {
             const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
@@ -178,10 +183,16 @@ export default function Dashboard() {
               strengthening_words: metrics.strengthening,
               consolidating_words: metrics.consolidating
             })
+            // Build queues to compute due-now / due-soon
+            const queues = await sessionQueueManager.buildQueues(deck.id, userId)
+            nextDueNow[deck.id] = queues.review.length
+            nextDueSoon[deck.id] = queues.nearFuture.length
           } catch (error) {
             console.error(`Error loading metrics for deck ${deck.id}:`, error)
           }
         }
+        setDueNowByDeck(nextDueNow)
+        setDueSoonByDeck(nextDueSoon)
       }
 
       // Load current deck from localStorage
@@ -611,26 +622,20 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Current Deck Info */}
+        {/* Current Deck Info & Progress (Merged) */}
         <Card className="mb-8 card-enhanced">
           <CardContent className="p-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
               <div className="w-full min-w-0">
                 <h2 className="text-lg sm:text-xl font-semibold mb-1 flex items-center gap-2 leading-tight">
                   <BookOpen className="h-5 w-5 text-blue-600" />
-                  Current Deck
+                  <span className="break-words">{currentDeck.name} • {currentDeck.language_a_name} → {currentDeck.language_b_name}</span>
                 </h2>
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span className="text-base sm:text-lg font-medium break-words">{currentDeck.name}</span>
-                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
-                    {currentDeck.difficulty_level}
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                  {currentDeck.language_a_name} → {currentDeck.language_b_name}
-                </p>
+                <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                  {currentDeck.difficulty_level}
+                </span>
               </div>
-              <Button 
+              <Button
                 onClick={() => setShowDeckSelection(true)}
                 className="btn-outline flex items-center gap-2 w-full sm:w-auto"
               >
@@ -638,54 +643,105 @@ export default function Dashboard() {
                 Change Deck
               </Button>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Current Deck Progress */}
-        <Card className="mb-8 card-enhanced">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Activity className="h-5 w-5 text-blue-600" />
-              Deck Progress
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Progress Bar */}
+            {/* Overall Progress */}
             <div className="mb-6">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
                 <span>Overall Progress</span>
-                <span>{Math.round(progressPercentage)}%</span>
+                <span className="text-base font-bold text-gray-800">{Math.round(progressPercentage)}%</span>
               </div>
               <Progress value={progressPercentage} className="h-3" />
             </div>
 
-            {/* Word Categories */}
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+            {/* Word Categories (including Due Now/Due Soon) */}
+            <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
+              {/* Due Now */}
+              <div className="progress-indicator progress-due-now">
+                <p className="text-2xl font-bold text-red-600">{reviewQueue.length}</p>
+                <p className="text-sm text-red-700 font-medium">Due Now</p>
+              </div>
+              {/* Due Soon */}
+              <div className="progress-indicator progress-due-soon">
+                <p className="text-2xl font-bold text-orange-600">{nearFutureQueue.length}</p>
+                <p className="text-sm text-orange-700 font-medium">Due Soon</p>
+              </div>
+              {/* Unseen */}
               <div className="progress-indicator progress-unseen">
                 <p className="text-2xl font-bold text-gray-600">{metrics.unseen}</p>
                 <p className="text-sm text-gray-700 font-medium">Unseen</p>
               </div>
+              {/* Leeches */}
               <div className="progress-indicator progress-leeches">
                 <p className="text-2xl font-bold text-red-600">{metrics.leeches}</p>
                 <p className="text-sm text-red-700 font-medium">Leeches</p>
               </div>
+              {/* Learning */}
               <div className="progress-indicator progress-learning">
                 <p className="text-2xl font-bold text-orange-600">{metrics.learning}</p>
                 <p className="text-sm text-orange-700 font-medium">Learning</p>
               </div>
+              {/* Strengthening */}
               <div className="progress-indicator progress-strengthening">
                 <p className="text-2xl font-bold text-yellow-600">{metrics.strengthening}</p>
                 <p className="text-sm text-yellow-700 font-medium">Strengthening</p>
               </div>
+              {/* Consolidating */}
               <div className="progress-indicator progress-consolidating">
                 <p className="text-2xl font-bold text-blue-600">{metrics.consolidating}</p>
                 <p className="text-sm text-blue-700 font-medium">Consolidating</p>
               </div>
+              {/* Mastered */}
               <div className="progress-indicator progress-mastered">
                 <p className="text-2xl font-bold text-green-600">{metrics.mastered}</p>
                 <p className="text-sm text-green-700 font-medium">Mastered</p>
               </div>
             </div>
+
+            {/* Recommended Next Deck (Conditional) */}
+            {(() => {
+              if (!availableDecks || availableDecks.length === 0) return null
+              const currentId = currentDeck?.id
+              const candidates = availableDecks.filter(d => d.id !== currentId)
+              let best: { deck: VocabularyDeck; kind: 'now'|'soon'; count: number } | null = null
+              for (const d of candidates) {
+                const cnt = dueNowByDeck[d.id] || 0
+                if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'now' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
+                  best = { deck: d, kind: 'now', count: cnt }
+                }
+              }
+              if (!best) {
+                for (const d of candidates) {
+                  const cnt = dueSoonByDeck[d.id] || 0
+                  if (cnt > 0 && (!best || cnt > best.count || (best.kind === 'soon' && cnt === best.count && (d.name || '') < (best.deck.name || '')))) {
+                    best = { deck: d, kind: 'soon', count: cnt }
+                  }
+                }
+              }
+              if (!best) return null
+              const { deck, kind, count } = best
+              const handleSwitchAndReview = (deckToSwitch: VocabularyDeck) => {
+                try {
+                  localStorage.setItem('selectedDeck', JSON.stringify(deckToSwitch))
+                  localStorage.setItem('sessionType', 'review')
+                } catch {}
+                window.location.href = '/study'
+              }
+              return (
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Next Up:</h3>
+                  <Button
+                    onClick={() => handleSwitchAndReview(deck)}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg sm:text-xl py-3 sm:py-4"
+                  >
+                    <Play className="h-5 w-5 mr-2" />
+                    <div className="flex flex-col items-center">
+                      <span className="font-bold">Review {count} words {kind === 'now' ? 'due now' : 'due soon'} in {deck.name}</span>
+                      <span className="text-sm text-blue-100">{deck.language_a_name} → {deck.language_b_name}</span>
+                    </div>
+                  </Button>
+                </div>
+              )
+            })()}
           </CardContent>
         </Card>
 
