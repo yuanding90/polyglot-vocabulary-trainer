@@ -865,89 +865,40 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Queue Status - At the very bottom */}
-        <Card className="mb-8 card-enhanced">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Activity className="h-5 w-5 text-blue-600" />
-              Queue Status
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-red-50 border border-red-200 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Zap className="h-5 w-5 text-red-600" />
-                  <span className="text-lg font-bold text-red-600">{reviewQueue.length}</span>
-                </div>
-                <p className="text-sm font-medium text-red-700">Due Now</p>
-                <p className="text-xs text-red-600">Ready for review</p>
-              </div>
-              
-              <div className="text-center p-4 bg-orange-50 border border-orange-200 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Clock className="h-5 w-5 text-orange-600" />
-                  <span className="text-lg font-bold text-orange-600">{nearFutureQueue.length}</span>
-                </div>
-                <p className="text-sm font-medium text-orange-700">Due Soon</p>
-                <p className="text-xs text-orange-600">Coming up next</p>
-              </div>
-              
-              <div className="text-center p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Brain className="h-5 w-5 text-blue-600" />
-                  <span className="text-lg font-bold text-blue-600">{practicePool.length}</span>
-                </div>
-                <p className="text-sm font-medium text-blue-700">Practice</p>
-                <p className="text-xs text-blue-600">Extra practice</p>
-              </div>
-              
-              <div className="text-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <EyeOff className="h-5 w-5 text-gray-600" />
-                  <span className="text-lg font-bold text-gray-600">{unseenQueue.length}</span>
-                </div>
-                <p className="text-sm font-medium text-gray-700">Unseen</p>
-                <p className="text-xs text-gray-600">New words</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        
 
         {/* Learning Types Configuration - At the bottom */}
         <Card className="mb-8 card-enhanced">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Settings className="h-5 w-5 text-blue-600" />
-              Learning Types
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <Settings className="h-5 w-5 text-blue-600" />
+                Choose Review Types
+              </CardTitle>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleSelectAllTypes}
+                  className="btn-outline"
+                >
+                  Select All
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleClearAllTypes}
+                  className="btn-outline"
+                >
+                  Clear All
+                </Button>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {/* Learning Type Options */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <Label className="text-base font-medium">Select Learning Types</Label>
-                  <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={handleSelectAllTypes}
-                      className="btn-outline"
-                    >
-                      Select All
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={handleClearAllTypes}
-                      className="btn-outline"
-                    >
-                      Clear All
-                    </Button>
-                  </div>
-                </div>
-                
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="flex items-center space-x-3 p-4 border rounded-lg">
                     <Checkbox
