@@ -909,7 +909,7 @@ export default function Dashboard() {
                     <Label htmlFor="recognition" className="flex items-center gap-2 cursor-pointer flex-1">
                       <Eye className="h-5 w-5 text-blue-600" />
                       <div>
-                        <div className="font-medium">Language A → Language B</div>
+                        <div className="font-medium">Learning Language to Native Language</div>
                         <div className="text-sm text-gray-600">Recognition</div>
                       </div>
                     </Label>
@@ -924,7 +924,7 @@ export default function Dashboard() {
                     <Label htmlFor="production" className="flex items-center gap-2 cursor-pointer flex-1">
                       <MessageSquare className="h-5 w-5 text-green-600" />
                       <div>
-                        <div className="font-medium">Language B → Language A</div>
+                        <div className="font-medium">Native Language to Learning Language</div>
                         <div className="text-sm text-gray-600">Production</div>
                       </div>
                     </Label>
@@ -939,7 +939,7 @@ export default function Dashboard() {
                     <Label htmlFor="listening" className="flex items-center gap-2 cursor-pointer flex-1">
                       <Ear className="h-5 w-5 text-purple-600" />
                       <div>
-                        <div className="font-medium">Voice First</div>
+                        <div className="font-medium">Voice Recognition</div>
                         <div className="text-sm text-gray-600">Listening</div>
                       </div>
                     </Label>
