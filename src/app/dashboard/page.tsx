@@ -528,6 +528,29 @@ export default function Dashboard() {
                                 <div className="bg-yellow-400" style={{ width: `${((progress.strengthening_words || 0) / totalWords) * 100}%` }} title={`${progress.strengthening_words || 0} strengthening`} />
                                 <div className="bg-green-500" style={{ width: `${(mastered / totalWords) * 100}%` }} title={`${mastered} mastered`} />
                               </div>
+                              {/* Category Counters */}
+                              <div className="grid grid-cols-4 gap-4 mt-4">
+                                <div className="text-center">
+                                  <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
+                                  <div className="text-sm font-bold text-gray-600">{unseen}</div>
+                                  <div className="text-xs text-gray-500">Unseen</div>
+                                </div>
+                                <div className="text-center">
+                                  <LearningIcon className="h-4 w-4 mx-auto mb-1 text-orange-500" />
+                                  <div className="text-sm font-bold text-orange-600">{learning}</div>
+                                  <div className="text-xs text-gray-500">Learning</div>
+                                </div>
+                                <div className="text-center">
+                                  <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-500" />
+                                  <div className="text-sm font-bold text-yellow-600">{progress.strengthening_words || 0}</div>
+                                  <div className="text-xs text-gray-500">Strengthening</div>
+                                </div>
+                                <div className="text-center">
+                                  <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-500" />
+                                  <div className="text-sm font-bold text-green-600">{mastered}</div>
+                                  <div className="text-xs text-gray-500">Mastered</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                           <div className="text-right ml-4">
