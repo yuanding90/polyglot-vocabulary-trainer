@@ -1052,7 +1052,7 @@ export default function StudySession() {
         {(sessionType === 'review' || sessionType === 'deep-dive') && (
           <div className="mb-8">
             {/* Overall Statistics */}
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-7 gap-3 sm:gap-4">
               <div className="text-center">
                 <div className="text-xl sm:text-2xl font-bold text-gray-700">{sessionWords.length - currentWordIndex}</div>
                 <div className="text-xs sm:text-sm text-gray-500">Remaining</div>
@@ -1060,6 +1060,22 @@ export default function StudySession() {
               <div className="text-center">
                 <div className="text-xl sm:text-2xl font-bold text-blue-700">{sessionProgress.reviewed}</div>
                 <div className="text-xs sm:text-sm text-gray-500">Reviewed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl sm:text-2xl font-bold text-red-600">{sessionProgress.again}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Again</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl sm:text-2xl font-bold text-orange-600">{sessionProgress.hard}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Hard</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{sessionProgress.good}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Good</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl sm:text-2xl font-bold text-green-600">{sessionProgress.easy}</div>
+                <div className="text-xs sm:text-sm text-gray-500">Easy</div>
               </div>
               <div className="text-center">
                 <div className="text-xl sm:text-2xl font-bold text-purple-600">{sessionWords.length}</div>
