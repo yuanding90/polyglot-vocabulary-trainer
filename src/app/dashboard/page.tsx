@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase, VocabularyDeck } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
@@ -83,6 +83,11 @@ export default function Dashboard() {
   // Due counts across decks for recommendation CTA
   const [dueNowByDeck, setDueNowByDeck] = useState<Record<string, number>>({})
   const [dueSoonByDeck, setDueSoonByDeck] = useState<Record<string, number>>({})
+  // In-flight guards and debounce refs
+  const isLoadingAllRef = useRef(false)
+  const isLoadingDeckRef = useRef(false)
+  const lastRefreshAtRef = useRef(0)
+  const dueCountsLoadingRef = useRef(false)
 
   useEffect(() => {
     // Get current user first
@@ -121,7 +126,14 @@ export default function Dashboard() {
   useEffect(() => {
     if (currentDeck && currentUser) {
       const loadCurrentDeckData = async () => {
-        await loadDeckData(currentDeck.id, currentUser.id)
+        if (isLoadingDeckRef.current) return
+        isLoadingDeckRef.current = true
+        try {
+          await loadDeckData(currentDeck.id, currentUser.id)
+        } finally {
+          isLoadingDeckRef.current = false
+          lastRefreshAtRef.current = Date.now()
+        }
       }
       loadCurrentDeckData()
     }
@@ -131,9 +143,18 @@ export default function Dashboard() {
   useEffect(() => {
     const handleFocus = async () => {
       if (currentUser && currentDeck) {
+        const now = Date.now()
+        if (now - lastRefreshAtRef.current < 2000) return
+        if (isLoadingDeckRef.current) return
         console.log('Dashboard focused, refreshing data...')
-        await loadDeckData(currentDeck.id, currentUser.id)
-        await loadSessionStats(currentUser.id)
+        isLoadingDeckRef.current = true
+        try {
+          await loadDeckData(currentDeck.id, currentUser.id)
+          await loadSessionStats(currentUser.id)
+        } finally {
+          isLoadingDeckRef.current = false
+          lastRefreshAtRef.current = Date.now()
+        }
       }
     }
 
@@ -181,6 +202,8 @@ export default function Dashboard() {
 
   const loadDashboardData = useCallback(async (userId: string) => {
     try {
+      if (isLoadingAllRef.current) return
+      isLoadingAllRef.current = true
       setLoading(true)
       
       // Load available decks
@@ -193,10 +216,8 @@ export default function Dashboard() {
       if (decksError) throw decksError
       setAvailableDecks(decks || [])
 
-      // Load metrics and due counts for all decks to show correct word counts and recommendation
+      // Load metrics for all decks to show correct word counts
       if (decks && decks.length > 0) {
-        const nextDueNow: Record<string, number> = {}
-        const nextDueSoon: Record<string, number> = {}
         for (const deck of decks) {
           try {
             const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
@@ -210,16 +231,30 @@ export default function Dashboard() {
               strengthening_words: metrics.strengthening,
               consolidating_words: metrics.consolidating
             })
-            // Build queues to compute due-now / due-soon
-            const queues = await sessionQueueManager.buildQueues(deck.id, userId)
-            nextDueNow[deck.id] = queues.review.length
-            nextDueSoon[deck.id] = queues.nearFuture.length
           } catch (error) {
             console.error(`Error loading metrics for deck ${deck.id}:`, error)
           }
         }
-        setDueNowByDeck(nextDueNow)
-        setDueSoonByDeck(nextDueSoon)
+        // Defer due counts calculation to next tick to avoid blocking paint
+        setTimeout(async () => {
+          if (dueCountsLoadingRef.current) return
+          dueCountsLoadingRef.current = true
+          const nextDueNow: Record<string, number> = {}
+          const nextDueSoon: Record<string, number> = {}
+          try {
+            for (const deck of decks) {
+              try {
+                const queues = await sessionQueueManager.buildQueues(deck.id, userId)
+                nextDueNow[deck.id] = queues.review.length
+                nextDueSoon[deck.id] = queues.nearFuture.length
+              } catch {}
+            }
+            setDueNowByDeck(nextDueNow)
+            setDueSoonByDeck(nextDueSoon)
+          } finally {
+            dueCountsLoadingRef.current = false
+          }
+        }, 0)
       }
 
       // Load current deck from localStorage
@@ -227,9 +262,6 @@ export default function Dashboard() {
       if (deckData) {
         const deck = JSON.parse(deckData)
         setCurrentDeck(deck)
-        
-        // Load deck data with current user
-        await loadDeckData(deck.id, userId)
       }
 
       // Load session statistics
@@ -239,6 +271,7 @@ export default function Dashboard() {
       console.error('Error loading dashboard data:', error)
     } finally {
       setLoading(false)
+      isLoadingAllRef.current = false
     }
   }, [])
 
