@@ -35,20 +35,24 @@ export class DailySummaryManager {
         totalNewWords = existingSummary.new_words_learned + newWordsLearned
       }
 
-      // Insert or update daily summary
-      const { error } = await supabase
+      // Insert or update daily summary (onConflict composite key)
+      const { data: upserted, error } = await supabase
         .from('daily_summary')
-        .upsert({
-          user_id: userId,
-          date: dateString,
-          reviews_done: totalReviews,
-          new_words_learned: totalNewWords
-        })
+        .upsert(
+          {
+            user_id: userId,
+            date: dateString,
+            reviews_done: totalReviews,
+            new_words_learned: totalNewWords
+          },
+          { onConflict: 'user_id,date' }
+        )
+        .select()
 
       if (error) {
         console.error('Error logging daily summary:', error)
       } else {
-        console.log(`Daily summary logged: ${totalReviews} reviews, ${totalNewWords} new words`)
+        console.log(`Daily summary logged: ${totalReviews} reviews, ${totalNewWords} new words`, upserted)
       }
     } catch (error) {
       console.error('Error in logDailySummary:', error)
