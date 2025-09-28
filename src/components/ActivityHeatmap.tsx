@@ -98,8 +98,10 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
     <div className="w-full">
       <div className="overflow-x-auto pb-2">
         <div className="md:flex md:flex-col md:items-center">
-          {/* Top Month Labels */}
-          <div className="flex items-center gap-2 mb-1 md:justify-center md:ml-0 ml-8 sm:ml-10">
+          {/* Top Month Labels (aligned to grid by adding a spacer matching the day label column) */}
+          <div className="flex items-center gap-2 mb-1 md:justify-center">
+            {/* Spacer equal to day label column width */}
+            <div className="flex-shrink-0 w-8 sm:w-10 mr-2" />
             {weeks.map((_, i) => (
               <div key={i} className="w-4 sm:w-5 lg:w-6 text-[10px] text-gray-500 text-center">
                 {i === 0 || (monthLabelFor(weekStarts[i]) !== monthLabelFor(weekStarts[i - 1])) ? monthLabelFor(weekStarts[i]) : ''}
@@ -107,11 +109,19 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
             ))}
           </div>
           <div className="flex items-start gap-2 md:justify-center">
-            {/* Day labels (show on sm+) */}
-            <div className="hidden sm:flex flex-col gap-1 text-[10px] text-gray-500 mr-2">
-              {dayLabels.map((dl, i) => (
-                <div key={i} className="h-4 sm:h-5 lg:h-6 flex items-center">{i % 2 === 0 ? dl : ''}</div>
-              ))}
+            {/* Day labels (always show; compact on mobile). Show only Mon/Wed/Fri/Sun. */}
+            <div className="flex flex-col gap-1 text-[10px] text-gray-500 mr-2">
+              {dayLabels.map((dl, i) => {
+                const show = i === 0 || i === 2 || i === 4 || i === 6 // Mon, Wed, Fri, Sun
+                return (
+                  <div key={i} className="h-4 sm:h-5 lg:h-6 flex items-center">
+                    {/* Mobile: single-letter labels */}
+                    <span className="block sm:hidden">{show ? dl.charAt(0) : ''}</span>
+                    {/* sm+: three-letter labels */}
+                    <span className="hidden sm:block">{show ? dl : ''}</span>
+                  </div>
+                )
+              })}
             </div>
             {/* Weeks */}
             <div className="flex items-start gap-2">
