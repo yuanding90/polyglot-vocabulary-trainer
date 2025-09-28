@@ -5,36 +5,78 @@ type Day = { date: string; total: number }
 
 export function ActivityHeatmap({ series }: { series: Day[] }) {
   // Arrange into weeks (columns) and days (rows Mon-Sun)
-  const byDate = new Map(series.map(d => [d.date, d.total]))
+  // Build initial map from API (assumed UTC date strings)
+  const byDateRaw = new Map(series.map(d => [d.date, d.total]))
+  // Heuristic TZ alignment: if the latest series date is off by ±1 day from local today,
+  // shift all series dates by that delta so "today" aligns with local today.
+  const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`)
+  const toLocalIso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+  const parseKeyUtc = (s: string) => {
+    const [y, m, d] = s.split('-').map(Number)
+    return Date.UTC(y, (m || 1) - 1, d || 1)
+  }
+  const localToday = new Date()
+  const localTodayUtcKey = Date.UTC(localToday.getFullYear(), localToday.getMonth(), localToday.getDate())
+  const lastKeyStr = series[series.length - 1]?.date
+  const lastKeyUtc = lastKeyStr ? parseKeyUtc(lastKeyStr) : localTodayUtcKey
+  const diffDays = Math.round((lastKeyUtc - localTodayUtcKey) / (24 * 60 * 60 * 1000))
+  const shiftDays = Math.abs(diffDays) === 1 ? -diffDays : 0
+  const byDate = new Map<string, number>()
+  for (const [k, v] of byDateRaw) {
+    const base = new Date(parseKeyUtc(k))
+    base.setUTCDate(base.getUTCDate() + shiftDays)
+    const shifted = base.toISOString().slice(0, 10)
+    byDate.set(shifted, v)
+  }
   const dates = series.map(d => new Date(d.date + 'T00:00:00Z'))
   if (dates.length === 0) return null
 
-  // Build continuous set from min to max
-  const start = new Date(dates[0])
-  const end = new Date(dates[dates.length - 1])
+  // Build continuous set from min to max (LOCAL dates)
+  // Determine desired lookback: 12 weeks mobile, 52 weeks desktop (fill empties if API shorter)
+  const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches
+  const desiredWeeks = isMobile ? 12 : 24
+  const desiredDays = desiredWeeks * 7
+  const todayLocal = new Date()
+  const end = new Date(todayLocal.getFullYear(), todayLocal.getMonth(), todayLocal.getDate())
+  const start = new Date(end)
+  start.setDate(start.getDate() - (desiredDays - 1))
   const days: { date: string; total: number; weekday: number; }[] = []
-  for (let dt = new Date(start); dt <= end; dt.setUTCDate(dt.getUTCDate() + 1)) {
-    const iso = dt.toISOString().slice(0,10)
+  // Extend to end of current week (Sunday) so the grid shows a complete final week
+  const endWeekday = (end.getDay() + 6) % 7 // Mon=0..Sun=6
+  const daysToSunday = 6 - endWeekday
+  const loopEnd = new Date(end)
+  loopEnd.setDate(loopEnd.getDate() + daysToSunday)
+  for (let dt = new Date(start); dt <= loopEnd; dt.setDate(dt.getDate() + 1)) {
+    const iso = toLocalIso(dt)
     const total = byDate.get(iso) || 0
     // weekday: 0..6 (Mon..Sun) using getUTCDay (0=Sun). Normalize to Mon=0..Sun=6
-    const sun0 = dt.getUTCDay() // 0..6 Sun..Sat
+    const sun0 = dt.getDay() // 0..6 Sun..Sat in local time
     const weekday = (sun0 + 6) % 7
     days.push({ date: iso, total, weekday })
   }
 
-  // Group into weeks
+  // Group into weeks and track week start dates (Monday)
   const weeks: { date: string; total: number }[][] = []
+  const weekStarts: string[] = []
   let week: { date: string; total: number }[] = Array(7).fill(null).map(() => ({ date: '', total: 0 }))
-  let dayIdx = 0
+  let weekHasAny = false
   for (const d of days) {
-    if (d.weekday === 0 && dayIdx !== 0) {
+    if (d.weekday === 0 && weekHasAny) {
+      // push previous week
       weeks.push(week)
+      // record start date of week (Monday is index 0)
+      const startDate = week[0]?.date || ''
+      weekStarts.push(startDate)
+      // reset
       week = Array(7).fill(null).map(() => ({ date: '', total: 0 }))
+      weekHasAny = false
     }
     week[d.weekday] = { date: d.date, total: d.total }
-    dayIdx++
+    weekHasAny = true
   }
+  // push final week
   weeks.push(week)
+  weekStarts.push(week[0]?.date || '')
 
   const getColor = (n: number) => {
     if (n === 0) return 'bg-gray-200'
@@ -44,23 +86,51 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
     return 'bg-green-700'
   }
 
+  // Month labels (top) and day labels (left)
+  const monthLabelFor = (iso: string) => {
+    if (!iso) return ''
+    const d = new Date(iso + 'T00:00:00Z')
+    return d.toLocaleString(undefined, { month: 'short' })
+  }
+  const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
   return (
     <div className="w-full">
-      <div className="flex items-start gap-2 overflow-x-auto pb-2">
-        {/* Weeks */}
-        {weeks.map((col, i) => (
-          <div key={i} className="flex flex-col gap-1">
-            {col.map((cell, r) => (
-              <div key={r} className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-sm">
-                <div
-                  className={`w-full h-full rounded-sm ${getColor(cell.total)} border border-gray-200`}
-                  title={`${cell.date || ''}: ${cell.total} actions`}
-                  aria-label={`${cell.date || ''}: ${cell.total} actions`}
-                />
+      <div className="overflow-x-auto pb-2">
+        <div className="md:flex md:flex-col md:items-center">
+          {/* Top Month Labels */}
+          <div className="flex items-center gap-2 mb-1 md:justify-center md:ml-0 ml-8 sm:ml-10">
+            {weeks.map((_, i) => (
+              <div key={i} className="w-4 sm:w-5 lg:w-6 text-[10px] text-gray-500 text-center">
+                {i === 0 || (monthLabelFor(weekStarts[i]) !== monthLabelFor(weekStarts[i - 1])) ? monthLabelFor(weekStarts[i]) : ''}
               </div>
             ))}
           </div>
-        ))}
+          <div className="flex items-start gap-2 md:justify-center">
+            {/* Day labels (show on sm+) */}
+            <div className="hidden sm:flex flex-col gap-1 text-[10px] text-gray-500 mr-2">
+              {dayLabels.map((dl, i) => (
+                <div key={i} className="h-4 sm:h-5 lg:h-6 flex items-center">{i % 2 === 0 ? dl : ''}</div>
+              ))}
+            </div>
+            {/* Weeks */}
+            <div className="flex items-start gap-2">
+              {weeks.map((col, i) => (
+                <div key={i} className="flex flex-col gap-1">
+                  {col.map((cell, r) => (
+                    <div key={r} className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-sm">
+                    <div
+                      className={`w-full h-full rounded-sm ${getColor(cell.total)} border border-gray-200 ${cell.date === toLocalIso(end) ? 'ring-2 ring-blue-500' : ''}`}
+                        title={`${cell.date || ''}: ${cell.total} actions`}
+                        aria-label={`${cell.date || ''}: ${cell.total} actions`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       {/* Legend */}
       <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">

@@ -96,7 +96,9 @@ export default function Dashboard() {
         // Load activity summary (84 days window for heatmap)
         try {
           setActivityLoading(true)
-          const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=84`)
+          const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches
+          const daysParam = isMobile ? 84 : 168 // 12 weeks mobile, 24 weeks desktop
+          const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=${daysParam}`)
           if (resp.ok) {
             const json = await resp.json()
             setActivity(json)
@@ -640,7 +642,6 @@ export default function Dashboard() {
       </header>
 
       <div className="container mx-auto p-6 max-w-6xl">
-        {/* Recent Activity moved near bottom; populated by new API later */}
 
         {/* Current Deck Info & Progress (Merged) */}
         <Card className="mb-8 card-enhanced">
@@ -721,48 +722,11 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Recent Activity (moved here) */}
-        <Card className="mb-8 card-enhanced">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Activity className="h-5 w-5 text-blue-600" />
-              Recent Activity
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 px-4 pb-4">
-            {activityLoading ? (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-3 bg-blue-50 rounded-lg">
-                  <p className="text-2xl font-bold text-blue-600">{activity?.today ?? 0}</p>
-                  <p className="text-sm text-blue-700 font-medium">Today</p>
-                </div>
-                <div className="p-3 bg-green-50 rounded-lg">
-                  <p className="text-2xl font-bold text-green-600">{activity?.last7Days ?? 0}</p>
-                  <p className="text-sm text-green-700 font-medium">7 Days</p>
-                </div>
-                <div className="p-3 bg-purple-50 rounded-lg">
-                  <p className="text-2xl font-bold text-purple-600">{activity?.last30Days ?? 0}</p>
-                  <p className="text-sm text-purple-700 font-medium">30 Days</p>
-                </div>
-                <div className="p-3 bg-orange-50 rounded-lg">
-                  <p className="text-2xl font-bold text-orange-600">{activity?.streak ?? 0} 🔥</p>
-                  <p className="text-sm text-orange-700 font-medium">Streak</p>
-                </div>
-              </div>
-            )}
+        
 
-            <div className="mt-4">
-              {activity && <ActivityHeatmap series={activity.series} />}
-            </div>
-          </CardContent>
-        </Card>
+        
+        
+        
 
         {/* Session Types */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -1030,6 +994,48 @@ export default function Dashboard() {
                   </p>
                 </div>
               )}
+            </div>
+          </CardContent>
+        </Card>
+        {/* Recent Activity (final bottom section) */}
+        <Card className="mb-8 card-enhanced">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Activity className="h-5 w-5 text-blue-600" />
+              Recent Activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 px-4 pb-4">
+            {activityLoading ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-600">{activity?.today ?? 0}</p>
+                  <p className="text-sm text-blue-700 font-medium">Today</p>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <p className="text-2xl font-bold text-green-600">{activity?.last7Days ?? 0}</p>
+                  <p className="text-sm text-green-700 font-medium">7 Days</p>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <p className="text-2xl font-bold text-purple-600">{activity?.last30Days ?? 0}</p>
+                  <p className="text-sm text-purple-700 font-medium">30 Days</p>
+                </div>
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <p className="text-2xl font-bold text-orange-600">{activity?.streak ?? 0} 🔥</p>
+                  <p className="text-sm text-orange-700 font-medium">Streak</p>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-4">
+              {activity && <ActivityHeatmap series={activity.series} />}
             </div>
           </CardContent>
         </Card>
