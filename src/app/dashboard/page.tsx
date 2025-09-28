@@ -8,6 +8,7 @@ import { sessionQueueManager } from '@/lib/session-queues'
 import { DailySummaryManager } from '@/lib/daily-summary'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ActivityHeatmap } from '@/components/ActivityHeatmap'
 import { Progress } from '@/components/ui/progress'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -67,6 +68,15 @@ export default function Dashboard() {
   const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  // Activity summary (across decks)
+  const [activityLoading, setActivityLoading] = useState(false)
+  const [activity, setActivity] = useState<{
+    today: number
+    last7Days: number
+    last30Days: number
+    streak: number
+    series: { date: string; total: number }[]
+  } | null>(null)
   // Deck filter state by language NAMES (dedupe fr vs fr-FR)
   const [filterL2Name, setFilterL2Name] = useState<string | null>(null)
   const [filterL1Name, setFilterL1Name] = useState<string | null>(null)
@@ -83,6 +93,21 @@ export default function Dashboard() {
       if (user) {
         console.log('Dashboard: Loading dashboard data for user:', user.id)
         await loadDashboardData(user.id)
+        // Load activity summary (84 days window for heatmap)
+        try {
+          setActivityLoading(true)
+          const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=84`)
+          if (resp.ok) {
+            const json = await resp.json()
+            setActivity(json)
+          } else {
+            console.error('Failed to load activity summary:', await resp.text())
+          }
+        } catch (e) {
+          console.error('Error fetching activity summary:', e)
+        } finally {
+          setActivityLoading(false)
+        }
       } else {
         console.log('Dashboard: No user found, redirecting to auth')
       }
@@ -615,35 +640,7 @@ export default function Dashboard() {
       </header>
 
       <div className="container mx-auto p-6 max-w-6xl">
-        {/* Recent Activity - At the very top */}
-        <Card className="mb-6 card-enhanced">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Activity className="h-5 w-5 text-blue-600" />
-              Recent Activity
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 px-4 pb-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div className="p-3 bg-blue-50 rounded-lg">
-                <p className="text-2xl font-bold text-blue-600">{sessionStats.reviewsToday}</p>
-                <p className="text-sm text-blue-700 font-medium">Today</p>
-              </div>
-              <div className="p-3 bg-green-50 rounded-lg">
-                <p className="text-2xl font-bold text-green-600">{sessionStats.reviews7Days}</p>
-                <p className="text-sm text-green-700 font-medium">7 Days</p>
-              </div>
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <p className="text-2xl font-bold text-purple-600">{sessionStats.reviews30Days}</p>
-                <p className="text-sm text-purple-700 font-medium">30 Days</p>
-              </div>
-              <div className="p-3 bg-orange-50 rounded-lg">
-                <p className="text-2xl font-bold text-orange-600">{sessionStats.currentStreak} 🔥</p>
-                <p className="text-sm text-orange-700 font-medium">Streak</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Recent Activity moved near bottom; populated by new API later */}
 
         {/* Current Deck Info & Progress (Merged) */}
         <Card className="mb-8 card-enhanced">
@@ -704,14 +701,14 @@ export default function Dashboard() {
                 <p className="text-sm text-orange-700 font-medium">Learning</p>
               </div>
               {/* Strengthening */}
-              <div className="progress-indicator progress-strengthening">
+              <div className="progress-indicator progress-strengthening flex flex-col items-center">
                 <p className="text-2xl font-bold text-yellow-600">{metrics.strengthening}</p>
-                <p className="text-sm text-yellow-700 font-medium">Strengthening</p>
+                <p className="text-sm text-yellow-700 font-medium whitespace-nowrap text-center leading-tight">Strengthening</p>
               </div>
               {/* Consolidating */}
-              <div className="progress-indicator progress-consolidating">
+              <div className="progress-indicator progress-consolidating flex flex-col items-center">
                 <p className="text-2xl font-bold text-blue-600">{metrics.consolidating}</p>
-                <p className="text-sm text-blue-700 font-medium">Consolidating</p>
+                <p className="text-sm text-blue-700 font-medium whitespace-nowrap text-center leading-tight">Consolidating</p>
               </div>
               {/* Mastered */}
               <div className="progress-indicator progress-mastered">
@@ -721,6 +718,49 @@ export default function Dashboard() {
             </div>
 
             {/* Recommended Next Deck moved below session types */}
+          </CardContent>
+        </Card>
+
+        {/* Recent Activity (moved here) */}
+        <Card className="mb-8 card-enhanced">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Activity className="h-5 w-5 text-blue-600" />
+              Recent Activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 px-4 pb-4">
+            {activityLoading ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-600">{activity?.today ?? 0}</p>
+                  <p className="text-sm text-blue-700 font-medium">Today</p>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <p className="text-2xl font-bold text-green-600">{activity?.last7Days ?? 0}</p>
+                  <p className="text-sm text-green-700 font-medium">7 Days</p>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <p className="text-2xl font-bold text-purple-600">{activity?.last30Days ?? 0}</p>
+                  <p className="text-sm text-purple-700 font-medium">30 Days</p>
+                </div>
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <p className="text-2xl font-bold text-orange-600">{activity?.streak ?? 0} 🔥</p>
+                  <p className="text-sm text-orange-700 font-medium">Streak</p>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-4">
+              {activity && <ActivityHeatmap series={activity.series} />}
+            </div>
           </CardContent>
         </Card>
 
