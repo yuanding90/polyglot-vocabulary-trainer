@@ -31,7 +31,7 @@ export async function GET(req: Request) {
 
     const { data, error } = await supabase
       .from('daily_summary')
-      .select('date, review_count, discovery_count')
+      .select('date, reviews_done, new_words_learned')
       .eq('user_id', userId)
       .gte('date', fromStr)
       .lte('date', toStr)
@@ -44,8 +44,8 @@ export async function GET(req: Request) {
     const toDate = new Date(toStr + 'T00:00:00.000Z')
     const byDate = new Map<string, { review: number; discovery: number }>()
     for (const row of data || []) {
-      const r = (row as any).review_count || 0
-      const d = (row as any).discovery_count || 0
+      const r = (row as any).reviews_done || 0
+      const d = (row as any).new_words_learned || 0
       byDate.set((row as any).date, { review: r, discovery: d })
     }
 
