@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase, VocabularyDeck } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
@@ -83,6 +83,11 @@ export default function Dashboard() {
   // Due counts across decks for recommendation CTA
   const [dueNowByDeck, setDueNowByDeck] = useState<Record<string, number>>({})
   const [dueSoonByDeck, setDueSoonByDeck] = useState<Record<string, number>>({})
+  // In-flight guards and debounce refs
+  const isLoadingAllRef = useRef(false)
+  const isLoadingDeckRef = useRef(false)
+  const lastRefreshAtRef = useRef(0)
+  const dueCountsLoadingRef = useRef(false)
 
   useEffect(() => {
     // Get current user first
@@ -96,7 +101,9 @@ export default function Dashboard() {
         // Load activity summary (84 days window for heatmap)
         try {
           setActivityLoading(true)
-          const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=84`)
+          const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches
+          const daysParam = isMobile ? 84 : 168 // 12 weeks mobile, 24 weeks desktop
+          const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=${daysParam}`)
           if (resp.ok) {
             const json = await resp.json()
             setActivity(json)
@@ -119,7 +126,14 @@ export default function Dashboard() {
   useEffect(() => {
     if (currentDeck && currentUser) {
       const loadCurrentDeckData = async () => {
-        await loadDeckData(currentDeck.id, currentUser.id)
+        if (isLoadingDeckRef.current) return
+        isLoadingDeckRef.current = true
+        try {
+          await loadDeckData(currentDeck.id, currentUser.id)
+        } finally {
+          isLoadingDeckRef.current = false
+          lastRefreshAtRef.current = Date.now()
+        }
       }
       loadCurrentDeckData()
     }
@@ -129,9 +143,18 @@ export default function Dashboard() {
   useEffect(() => {
     const handleFocus = async () => {
       if (currentUser && currentDeck) {
+        const now = Date.now()
+        if (now - lastRefreshAtRef.current < 2000) return
+        if (isLoadingDeckRef.current) return
         console.log('Dashboard focused, refreshing data...')
-        await loadDeckData(currentDeck.id, currentUser.id)
-        await loadSessionStats(currentUser.id)
+        isLoadingDeckRef.current = true
+        try {
+          await loadDeckData(currentDeck.id, currentUser.id)
+          await loadSessionStats(currentUser.id)
+        } finally {
+          isLoadingDeckRef.current = false
+          lastRefreshAtRef.current = Date.now()
+        }
       }
     }
 
@@ -179,6 +202,8 @@ export default function Dashboard() {
 
   const loadDashboardData = useCallback(async (userId: string) => {
     try {
+      if (isLoadingAllRef.current) return
+      isLoadingAllRef.current = true
       setLoading(true)
       
       // Load available decks
@@ -191,10 +216,8 @@ export default function Dashboard() {
       if (decksError) throw decksError
       setAvailableDecks(decks || [])
 
-      // Load metrics and due counts for all decks to show correct word counts and recommendation
+      // Load metrics for all decks to show correct word counts
       if (decks && decks.length > 0) {
-        const nextDueNow: Record<string, number> = {}
-        const nextDueSoon: Record<string, number> = {}
         for (const deck of decks) {
           try {
             const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
@@ -208,16 +231,30 @@ export default function Dashboard() {
               strengthening_words: metrics.strengthening,
               consolidating_words: metrics.consolidating
             })
-            // Build queues to compute due-now / due-soon
-            const queues = await sessionQueueManager.buildQueues(deck.id, userId)
-            nextDueNow[deck.id] = queues.review.length
-            nextDueSoon[deck.id] = queues.nearFuture.length
           } catch (error) {
             console.error(`Error loading metrics for deck ${deck.id}:`, error)
           }
         }
-        setDueNowByDeck(nextDueNow)
-        setDueSoonByDeck(nextDueSoon)
+        // Defer due counts calculation to next tick to avoid blocking paint
+        setTimeout(async () => {
+          if (dueCountsLoadingRef.current) return
+          dueCountsLoadingRef.current = true
+          const nextDueNow: Record<string, number> = {}
+          const nextDueSoon: Record<string, number> = {}
+          try {
+            for (const deck of decks) {
+              try {
+                const queues = await sessionQueueManager.buildQueues(deck.id, userId)
+                nextDueNow[deck.id] = queues.review.length
+                nextDueSoon[deck.id] = queues.nearFuture.length
+              } catch {}
+            }
+            setDueNowByDeck(nextDueNow)
+            setDueSoonByDeck(nextDueSoon)
+          } finally {
+            dueCountsLoadingRef.current = false
+          }
+        }, 0)
       }
 
       // Load current deck from localStorage
@@ -225,9 +262,6 @@ export default function Dashboard() {
       if (deckData) {
         const deck = JSON.parse(deckData)
         setCurrentDeck(deck)
-        
-        // Load deck data with current user
-        await loadDeckData(deck.id, userId)
       }
 
       // Load session statistics
@@ -237,6 +271,7 @@ export default function Dashboard() {
       console.error('Error loading dashboard data:', error)
     } finally {
       setLoading(false)
+      isLoadingAllRef.current = false
     }
   }, [])
 
@@ -640,7 +675,6 @@ export default function Dashboard() {
       </header>
 
       <div className="container mx-auto p-6 max-w-6xl">
-        {/* Recent Activity moved near bottom; populated by new API later */}
 
         {/* Current Deck Info & Progress (Merged) */}
         <Card className="mb-8 card-enhanced">
@@ -721,48 +755,11 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Recent Activity (moved here) */}
-        <Card className="mb-8 card-enhanced">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Activity className="h-5 w-5 text-blue-600" />
-              Recent Activity
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 px-4 pb-4">
-            {activityLoading ? (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-3 bg-blue-50 rounded-lg">
-                  <p className="text-2xl font-bold text-blue-600">{activity?.today ?? 0}</p>
-                  <p className="text-sm text-blue-700 font-medium">Today</p>
-                </div>
-                <div className="p-3 bg-green-50 rounded-lg">
-                  <p className="text-2xl font-bold text-green-600">{activity?.last7Days ?? 0}</p>
-                  <p className="text-sm text-green-700 font-medium">7 Days</p>
-                </div>
-                <div className="p-3 bg-purple-50 rounded-lg">
-                  <p className="text-2xl font-bold text-purple-600">{activity?.last30Days ?? 0}</p>
-                  <p className="text-sm text-purple-700 font-medium">30 Days</p>
-                </div>
-                <div className="p-3 bg-orange-50 rounded-lg">
-                  <p className="text-2xl font-bold text-orange-600">{activity?.streak ?? 0} 🔥</p>
-                  <p className="text-sm text-orange-700 font-medium">Streak</p>
-                </div>
-              </div>
-            )}
+        
 
-            <div className="mt-4">
-              {activity && <ActivityHeatmap series={activity.series} />}
-            </div>
-          </CardContent>
-        </Card>
+        
+        
+        
 
         {/* Session Types */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -1030,6 +1027,48 @@ export default function Dashboard() {
                   </p>
                 </div>
               )}
+            </div>
+          </CardContent>
+        </Card>
+        {/* Recent Activity (final bottom section) */}
+        <Card className="mb-8 card-enhanced">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Activity className="h-5 w-5 text-blue-600" />
+              Recent Activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 px-4 pb-4">
+            {activityLoading ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+                <div className="p-3 bg-gray-50 rounded-lg animate-pulse h-16" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-600">{activity?.today ?? 0}</p>
+                  <p className="text-sm text-blue-700 font-medium">Today</p>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <p className="text-2xl font-bold text-green-600">{activity?.last7Days ?? 0}</p>
+                  <p className="text-sm text-green-700 font-medium">7 Days</p>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <p className="text-2xl font-bold text-purple-600">{activity?.last30Days ?? 0}</p>
+                  <p className="text-sm text-purple-700 font-medium">30 Days</p>
+                </div>
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <p className="text-2xl font-bold text-orange-600">{activity?.streak ?? 0} 🔥</p>
+                  <p className="text-sm text-orange-700 font-medium">Streak</p>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-4">
+              {activity && <ActivityHeatmap series={activity.series} />}
             </div>
           </CardContent>
         </Card>
