@@ -44,9 +44,10 @@ export async function GET(req: Request) {
     const toDate = new Date(toStr + 'T00:00:00.000Z')
     const byDate = new Map<string, { review: number; discovery: number }>()
     for (const row of data || []) {
-      const r = (row as any).reviews_done || 0
-      const d = (row as any).new_words_learned || 0
-      byDate.set((row as any).date, { review: r, discovery: d })
+      const r = (row as { reviews_done?: number }).reviews_done || 0
+      const d = (row as { new_words_learned?: number }).new_words_learned || 0
+      const dateKey = (row as { date: string }).date
+      byDate.set(dateKey, { review: r, discovery: d })
     }
 
     const series: { date: string; total: number; review: number; discovery: number }[] = []

@@ -35,7 +35,7 @@ export function SimilarWordsPanel({ currentWordId, currentDeckId, max = 5 }: Sim
         const inDeck = await WordSimilarityService.getSimilarWordsInDeck(currentWordId, currentDeckId, max)
         setWords(inDeck)
         setScope('deck')
-      } catch (e) {
+      } catch {
         setError('Failed to load similar words')
       } finally {
         setLoading(false)

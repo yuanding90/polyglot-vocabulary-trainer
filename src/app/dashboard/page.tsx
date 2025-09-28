@@ -21,17 +21,11 @@ import {
   ArrowLeft,
   LibraryBig,
   Dumbbell,
-  Calendar,
-  Trophy,
   Activity,
   Settings,
   Eye,
   MessageSquare,
   Ear,
-  Zap,
-  Clock,
-  EyeOff,
-  Flame,
   EyeOff as UnseenIcon,
   BookOpen as LearningIcon,
   TrendingUp as StrengtheningIcon,
@@ -643,7 +637,7 @@ export default function Dashboard() {
     return { totalWords, totalMastered, progressPercentage }
   }
 
-  const { totalWords, totalMastered, progressPercentage } = getOverallProgress()
+  const { /* totalWords, totalMastered, */ progressPercentage } = getOverallProgress()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">

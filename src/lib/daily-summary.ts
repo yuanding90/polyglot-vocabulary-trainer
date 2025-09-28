@@ -70,7 +70,7 @@ export class DailySummaryManager {
   }> {
     try {
       const today = new Date()
-      const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
+      // const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
       const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000)
 
       // Get daily summaries for the last 30 days
