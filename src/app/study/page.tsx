@@ -1198,6 +1198,11 @@ function ReviewCard({
   currentDeck,
   onAITutorClick
 }: ReviewCardProps) {
+  const [showFrontExample, setShowFrontExample] = useState(false)
+  // Ensure each new word starts with example hidden
+  useEffect(() => {
+    setShowFrontExample(false)
+  }, [word?.id])
   const langAName = currentDeck?.language_a_name || 'Language A'
   const langBName = currentDeck?.language_b_name || 'Language B'
   const prompt = cardType === 'recognition'
@@ -1302,6 +1307,30 @@ function ReviewCard({
                     Reveal Answer
                   </Button>
                 </div>
+
+                {/* Show Example Sentence (front-side, language matching the prompt) */}
+                {(() => {
+                  const exampleText = cardType === 'production' 
+                    ? word?.language_b_sentence 
+                    : word?.language_a_sentence
+                  if (!exampleText) return null
+                  return (
+                    <div className="text-center mt-3">
+                      <Button 
+                        variant="outline"
+                        onClick={() => setShowFrontExample(v => !v)}
+                        className="w-full sm:w-auto"
+                      >
+                        {showFrontExample ? 'Hide Example Sentence Hint' : 'Example Sentence Hint'}
+                      </Button>
+                      {showFrontExample && (
+                        <div className="mt-3 mx-auto max-w-[700px] text-sm sm:text-base italic text-gray-800 break-words">
+                          {exampleText}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })()}
               </div>
             </div>
 
