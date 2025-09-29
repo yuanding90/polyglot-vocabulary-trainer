@@ -22,6 +22,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const userId = searchParams.get('userId') || ''
     const daysParam = searchParams.get('days')
+    const tzOffsetParam = searchParams.get('tzOffset') // minutes offset from UTC (e.g., -420 for PDT)
     const days = Math.max(1, Math.min(365, Number(daysParam) || 30))
 
     if (!userId) {
@@ -30,8 +31,14 @@ export async function GET(req: Request) {
 
     const supabase = getAdminSupabase()
 
-    const today = new Date()
-    const toDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
+    const now = new Date()
+    const tzOffsetMin = Number.isFinite(Number(tzOffsetParam)) ? Number(tzOffsetParam) : -now.getTimezoneOffset()
+    // Compute local midnight for provided offset: shift UTC by offset, zero time, shift back
+    const utcNowMs = now.getTime()
+    const localMs = utcNowMs + tzOffsetMin * 60 * 1000
+    const local = new Date(localMs)
+    const localMidnight = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate()))
+    const toDate = new Date(localMidnight.getTime() - tzOffsetMin * 60 * 1000)
     const fromDate = new Date(toDate)
     fromDate.setUTCDate(fromDate.getUTCDate() - (days - 1))
 

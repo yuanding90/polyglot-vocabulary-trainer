@@ -7,27 +7,10 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
   // Arrange into weeks (columns) and days (rows Mon-Sun)
   // Build initial map from API (assumed UTC date strings)
   const byDateRaw = new Map(series.map(d => [d.date, d.total]))
-  // Heuristic TZ alignment: if the latest series date is off by ±1 day from local today,
-  // shift all series dates by that delta so "today" aligns with local today.
+  // Use dates as provided by API; no shifting heuristics
   const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`)
   const toLocalIso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
-  const parseKeyUtc = (s: string) => {
-    const [y, m, d] = s.split('-').map(Number)
-    return Date.UTC(y, (m || 1) - 1, d || 1)
-  }
-  const localToday = new Date()
-  const localTodayUtcKey = Date.UTC(localToday.getFullYear(), localToday.getMonth(), localToday.getDate())
-  const lastKeyStr = series[series.length - 1]?.date
-  const lastKeyUtc = lastKeyStr ? parseKeyUtc(lastKeyStr) : localTodayUtcKey
-  const diffDays = Math.round((lastKeyUtc - localTodayUtcKey) / (24 * 60 * 60 * 1000))
-  const shiftDays = Math.abs(diffDays) === 1 ? -diffDays : 0
-  const byDate = new Map<string, number>()
-  for (const [k, v] of byDateRaw) {
-    const base = new Date(parseKeyUtc(k))
-    base.setUTCDate(base.getUTCDate() + shiftDays)
-    const shifted = base.toISOString().slice(0, 10)
-    byDate.set(shifted, v)
-  }
+  const byDate = byDateRaw
   const dates = series.map(d => new Date(d.date + 'T00:00:00Z'))
   if (dates.length === 0) return null
 
