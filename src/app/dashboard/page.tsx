@@ -112,6 +112,9 @@ export default function Dashboard() {
         }
       } else {
         console.log('Dashboard: No user found, redirecting to auth')
+        setLoading(false)
+        // Redirect to sign-in so we don't hang on a spinner if session is missing (new port/origin)
+        window.location.href = '/'
       }
     }
     getCurrentUser()

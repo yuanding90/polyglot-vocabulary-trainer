@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+export const runtime = 'nodejs'
 
 // Rate limiting and quota management
 const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
@@ -87,33 +88,35 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Rate limiting - use IP address as identifier
+    // Rate limit & quota (bypass in development for easier local testing)
+    const isDev = process.env.NODE_ENV !== 'production'
     const clientIP = request.headers.get('x-forwarded-for') || 
                     request.headers.get('x-real-ip') || 
                     'unknown'
-    
-    const rateLimit = checkRateLimit(clientIP)
-    if (!rateLimit.allowed) {
-      return NextResponse.json(
-        { 
-          error: 'Rate limit exceeded', 
-          remaining: rateLimit.remaining,
-          resetTime: rateLimit.resetTime 
-        },
-        { status: 429 }
-      )
-    }
-
-    // Monthly quota check
-    const quotaCheck = checkMonthlyQuota(clientIP)
-    if (!quotaCheck.allowed) {
-      return NextResponse.json(
-        { 
-          error: 'Monthly quota exceeded', 
-          remaining: quotaCheck.remaining 
-        },
-        { status: 429 }
-      )
+    let rateLimit = { allowed: true, remaining: MAX_REQUESTS_PER_MINUTE, resetTime: Date.now() + RATE_LIMIT_WINDOW }
+    let quotaCheck = { allowed: true, remaining: MAX_REQUESTS_PER_MONTH }
+    if (!isDev) {
+      rateLimit = checkRateLimit(clientIP)
+      if (!rateLimit.allowed) {
+        return NextResponse.json(
+          { 
+            error: 'Rate limit exceeded', 
+            remaining: rateLimit.remaining,
+            resetTime: rateLimit.resetTime 
+          },
+          { status: 429 }
+        )
+      }
+      quotaCheck = checkMonthlyQuota(clientIP)
+      if (!quotaCheck.allowed) {
+        return NextResponse.json(
+          { 
+            error: 'Monthly quota exceeded', 
+            remaining: quotaCheck.remaining 
+          },
+          { status: 429 }
+        )
+      }
     }
 
     // Get Azure configuration from environment variables
@@ -142,26 +145,52 @@ export async function POST(request: NextRequest) {
       </speak>
     `
 
-    // Call Azure Cognitive Services TTS
-    const response = await fetch(
-      `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`,
-      {
+    // Call Azure Cognitive Services TTS with timeout and one retry on 429
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 10000)
+    const endpoint = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`
+    const start = Date.now()
+    let response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Ocp-Apim-Subscription-Key': subscriptionKey,
+        'Content-Type': 'application/ssml+xml',
+        'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3'
+      },
+      body: ssml,
+      signal: controller.signal
+    })
+    clearTimeout(timeout)
+
+    // Retry once on 429 with small backoff
+    if (response.status === 429) {
+      await new Promise(r => setTimeout(r, 300))
+      const retryController = new AbortController()
+      const retryTimeout = setTimeout(() => retryController.abort(), 10000)
+      response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Ocp-Apim-Subscription-Key': subscriptionKey,
           'Content-Type': 'application/ssml+xml',
           'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3'
         },
-        body: ssml
-      }
-    )
+        body: ssml,
+        signal: retryController.signal
+      })
+      clearTimeout(retryTimeout)
+    }
 
     if (!response.ok) {
-      console.error('Azure TTS failed:', response.status, response.statusText)
-      return NextResponse.json(
-        { error: 'TTS service error' },
-        { status: 500 }
-      )
+      const dur = Date.now() - start
+      console.error('Azure TTS failed:', { status: response.status, statusText: response.statusText, durationMs: dur })
+      const status = response.status
+      if (status === 401 || status === 403) {
+        return NextResponse.json({ error: 'Unauthorized to TTS provider' }, { status })
+      }
+      if (status === 429) {
+        return NextResponse.json({ error: 'TTS rate limited' }, { status })
+      }
+      return NextResponse.json({ error: 'TTS service error' }, { status: 502 })
     }
 
     // Get the audio blob
@@ -180,10 +209,11 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
+    const isAbort = error instanceof Error && (error.name === 'AbortError')
     console.error('TTS API error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: isAbort ? 'TTS request timeout' : 'Internal server error' },
+      { status: isAbort ? 504 : 500 }
     )
   }
 }
