@@ -1,4 +1,10 @@
 // TTS Service for secure Azure Text-to-Speech integration
+function isAbortError(err: unknown): boolean {
+  if (typeof err !== 'object' || err === null) return false
+  const maybe = err as { name?: unknown }
+  return typeof maybe.name === 'string' && maybe.name === 'AbortError'
+}
+
 export class TTSService {
   private audioContext: AudioContext | null = null
   private currentAudio: HTMLAudioElement | null = null
@@ -119,7 +125,7 @@ export class TTSService {
       // Play the audio
       try {
         await this.currentAudio.play()
-      } catch (e) {
+      } catch {
         // Autoplay blocked; show a minimal prompt in console
         console.warn('Audio play blocked by browser. Prompting user gesture.')
         // Optionally surface a UI prompt elsewhere in app if needed
@@ -135,7 +141,7 @@ export class TTSService {
       this.cache.set(cacheKey, { url: audioUrl, expiresAt: Date.now() + 60_000 })
 
     } catch (error) {
-      if (error && typeof error === 'object' && 'name' in error && (error as any).name === 'AbortError') {
+      if (isAbortError(error)) {
         // Ignore expected aborts from cancelling in-flight requests
         return
       }
