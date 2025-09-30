@@ -15,9 +15,9 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
   if (dates.length === 0) return null
 
   // Build continuous set from min to max (LOCAL dates)
-  // Determine desired lookback: 12 weeks mobile, 52 weeks desktop (fill empties if API shorter)
+  // Determine desired lookback: 11 weeks mobile, 24 weeks desktop (fill empties if API shorter)
   const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches
-  const desiredWeeks = isMobile ? 12 : 24
+  const desiredWeeks = isMobile ? 11 : 24
   const desiredDays = desiredWeeks * 7
   const todayLocal = new Date()
   const end = new Date(todayLocal.getFullYear(), todayLocal.getMonth(), todayLocal.getDate())

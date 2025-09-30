@@ -96,7 +96,7 @@ export default function Dashboard() {
         try {
           setActivityLoading(true)
           const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches
-          const daysParam = isMobile ? 84 : 168 // 12 weeks mobile, 24 weeks desktop
+          const daysParam = isMobile ? 77 : 168 // 11 weeks mobile, 24 weeks desktop
           const tzOffset = new Date().getTimezoneOffset() * -1 // minutes east of UTC
           const resp = await fetch(`/api/activity/summary?userId=${user.id}&days=${daysParam}&tzOffset=${tzOffset}`)
           if (resp.ok) {
