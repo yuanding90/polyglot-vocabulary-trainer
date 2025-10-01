@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, startTransition } from 'react'
+import { flushSync } from 'react-dom'
 import { useVocabularyStore } from '@/store/vocabulary-store'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -1084,7 +1085,6 @@ export default function StudySession() {
         {/* Session Type Specific Interface */}
         {sessionType === 'review' ? (
           <ReviewCard 
-            key={`${currentWordData?.id || 'no-word'}-${cardType}`}
             word={currentWordData}
             cardType={cardType}
             showAnswer={showAnswer}
@@ -1200,14 +1200,9 @@ function ReviewCard({
   onAITutorClick
 }: ReviewCardProps) {
   const [showFrontExample, setShowFrontExample] = useState(false)
-  const [suppressFlip, setSuppressFlip] = useState(true)
   // Ensure each new word starts with example hidden
   useEffect(() => {
     setShowFrontExample(false)
-    // Temporarily suppress flip to avoid brief back-face flash on mount/word change
-    setSuppressFlip(true)
-    const t = setTimeout(() => setSuppressFlip(false), 150)
-    return () => clearTimeout(t)
   }, [word?.id])
   const langAName = currentDeck?.language_a_name || 'Language A'
   const langBName = currentDeck?.language_b_name || 'Language B'
@@ -1236,7 +1231,7 @@ function ReviewCard({
   return (
     <Card className="mb-8">
       <CardContent className="p-8">
-        <div className={`flash-card ${showAnswer && !suppressFlip ? 'flipped' : ''}`} style={{ minHeight: '500px' }}>
+        <div className={`flash-card ${showAnswer ? 'flipped' : ''}`} style={{ minHeight: '500px' }}>
           <div className="flash-card-inner">
             {/* Front of Card - Question */}
             <div className="flash-card-front">
@@ -1340,8 +1335,7 @@ function ReviewCard({
               </div>
             </div>
 
-            {/* Back of Card - Answer (lazy-mounted to prevent brief reveal) */}
-            {showAnswer && !suppressFlip && (
+            {/* Back of Card - Answer (always mounted; CSS controls visibility) */}
             <div className="flash-card-back" aria-hidden={!showAnswer}>
               <div className="flex flex-col h-full">
                 {/* Status on top */}
@@ -1492,7 +1486,6 @@ function ReviewCard({
                 </div>
               </div>
             </div>
-            )}
           </div>
         </div>
       </CardContent>
