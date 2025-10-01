@@ -561,8 +561,8 @@ export default function Dashboard() {
                       onClick={() => selectDeck(deck)}
                     >
                       <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                          <div className="flex-1 w-full">
                             <div className="flex items-center gap-3 mb-2">
                               <BookOpen className="h-5 w-5 text-blue-600" />
                               <h3 className="font-semibold text-lg">{deck.name}</h3>
@@ -587,7 +587,7 @@ export default function Dashboard() {
                                 <div className="bg-green-500" style={{ width: `${(mastered / totalWords) * 100}%` }} title={`${mastered} mastered`} />
                               </div>
                               {/* Category Counters */}
-                              <div className="grid grid-cols-4 gap-4 mt-4">
+                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
                                 <div className="text-center">
                                   <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
                                   <div className="text-sm font-bold text-gray-600">{unseen}</div>
@@ -601,17 +601,17 @@ export default function Dashboard() {
                                 <div className="text-center">
                                   <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-500" />
                                   <div className="text-sm font-bold text-yellow-600">{progress.strengthening_words || 0}</div>
-                                  <div className="text-xs text-gray-500">Strengthening</div>
+                                  <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Strengthening</div>
                                 </div>
                                 <div className="text-center">
                                   <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-500" />
                                   <div className="text-sm font-bold text-green-600">{mastered}</div>
-                                  <div className="text-xs text-gray-500">Mastered</div>
+                                  <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Mastered</div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className="text-right ml-4">
+                          <div className="sm:text-right sm:ml-4 mt-2 sm:mt-0 self-end sm:self-auto">
                             <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
                             <div className="text-sm text-gray-600">words</div>
                           </div>
