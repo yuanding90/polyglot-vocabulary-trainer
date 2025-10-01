@@ -1199,7 +1199,6 @@ function ReviewCard({
   onAITutorClick
 }: ReviewCardProps) {
   const [showFrontExample, setShowFrontExample] = useState(false)
-  const [audioUnlocked, setAudioUnlocked] = useState(false)
   // Ensure each new word starts with example hidden
   useEffect(() => {
     setShowFrontExample(false)
@@ -1218,31 +1217,6 @@ function ReviewCard({
     ? word?.language_b_translation 
     : ''
 
-  // Auto-play audio for listening mode (with user interaction unlock)
-  useEffect(() => {
-    if (cardType === 'listening' && audioUnlocked) {
-      const timer = setTimeout(async () => {
-        try {
-          await speakWord(word?.language_a_word, 'auto')
-        } catch (error) {
-          console.log('Auto-play failed:', error)
-        }
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [cardType, word?.language_a_word, speakWord, audioUnlocked])
-
-  // Handle user interaction to unlock audio
-  const handleUnlockAudio = async () => {
-    try {
-      await ttsService.unlockAudio()
-      setAudioUnlocked(true)
-      // Auto-play immediately after unlock
-      await speakWord(word?.language_a_word, 'auto')
-    } catch (error) {
-      console.log('Failed to unlock audio:', error)
-    }
-  }
 
   return (
     <Card className="mb-8">
@@ -1262,27 +1236,15 @@ function ReviewCard({
                   {cardType === 'listening' ? (
                     <div className="text-center space-y-6">
                       <div className="text-3xl sm:text-6xl">🎧</div>
-                      {!audioUnlocked ? (
-                        <Button
-                          variant="default"
-                          size="lg"
-                          onClick={handleUnlockAudio}
-                          className="text-xl px-8 py-4 bg-blue-600 hover:bg-blue-700"
-                        >
-                          <Volume2 className="h-8 w-8 mr-3" />
-                          Enable Audio & Listen
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="outline"
-                          size="lg"
-                          onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
-                          className="text-xl px-8 py-4"
-                        >
-                          <Volume2 className="h-8 w-8 mr-3" />
-                          Listen Again
-                        </Button>
-                      )}
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => speakWord(word?.language_a_word, currentDeck?.language_a_code)}
+                        className="text-xl px-8 py-4"
+                      >
+                        <Volume2 className="h-8 w-8 mr-3" />
+                        Listen
+                      </Button>
                       <input
                         type="text"
                         value={userAnswer}
