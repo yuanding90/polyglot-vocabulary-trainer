@@ -586,34 +586,43 @@ export default function Dashboard() {
                                 {deck.difficulty_level}
                               </span>
                             </div>
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                               <div className="flex justify-between text-sm text-gray-600">
                                 <span>Progress Overview</span>
                                 <span>{mastered}/{totalWords} mastered</span>
                               </div>
-                              <div className="flex h-4 bg-gray-200 rounded-full overflow-hidden">
-                                {pUnseen > 0 && (
-                                  <div className="bg-gray-400" style={{ width: `${pUnseen}%` }} title={`${unseen} unseen`} />
-                                )}
-                                {pLeeches > 0 && (
-                                  <div className="bg-red-400" style={{ width: `${pLeeches}%` }} title={`${leechesCount} leeches`} />
-                                )}
-                                {pLearning > 0 && (
-                                  <div className="bg-orange-400" style={{ width: `${pLearning}%` }} title={`${learning} learning`} />
-                                )}
-                                {pStrengthening > 0 && (
-                                  <div className="bg-yellow-400" style={{ width: `${pStrengthening}%` }} title={`${strengtheningCount} strengthening`} />
-                                )}
-                                {pConsolidating > 0 && (
-                                  <div className="bg-blue-400" style={{ width: `${pConsolidating}%` }} title={`${consolidatingCount} consolidating`} />
-                                )}
-                                {pMastered > 0 && (
-                                  <div className="bg-green-500" style={{ width: `${pMastered}%` }} title={`${mastered} mastered`} />
-                                )}
+                              <div className="flex items-center gap-3">
+                                <div className="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
+                                  <div className="flex h-full">
+                                    {pUnseen > 0 && (
+                                      <div className="bg-gray-400" style={{ width: `${pUnseen}%` }} title={`${unseen} unseen`} />
+                                    )}
+                                    {pLeeches > 0 && (
+                                      <div className="bg-red-400" style={{ width: `${pLeeches}%` }} title={`${leechesCount} leeches`} />
+                                    )}
+                                    {pLearning > 0 && (
+                                      <div className="bg-orange-400" style={{ width: `${pLearning}%` }} title={`${learning} learning`} />
+                                    )}
+                                    {pStrengthening > 0 && (
+                                      <div className="bg-yellow-400" style={{ width: `${pStrengthening}%` }} title={`${strengtheningCount} strengthening`} />
+                                    )}
+                                    {pConsolidating > 0 && (
+                                      <div className="bg-blue-400" style={{ width: `${pConsolidating}%` }} title={`${consolidatingCount} consolidating`} />
+                                    )}
+                                    {pMastered > 0 && (
+                                      <div className="bg-green-500" style={{ width: `${pMastered}%` }} title={`${mastered} mastered`} />
+                                    )}
+                                  </div>
+                                </div>
+                                {/* Mobile-only word count next to bar */}
+                                <div className="block sm:hidden text-right min-w-[64px]">
+                                  <div className="text-xl font-bold text-blue-600 leading-none">{totalWords}</div>
+                                  <div className="text-xs text-gray-600 leading-none">words</div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div className="sm:text-right sm:ml-4 mt-2 sm:mt-0 self-end sm:self-auto">
+                          <div className="hidden sm:block sm:text-right sm:ml-4 mt-2 sm:mt-0 self-end sm:self-auto">
                             <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
                             <div className="text-sm text-gray-600">words</div>
                           </div>
