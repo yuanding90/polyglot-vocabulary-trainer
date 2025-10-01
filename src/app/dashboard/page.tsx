@@ -554,6 +554,17 @@ export default function Dashboard() {
                   const mastered = progress.mastered_words
                   const learning = progress.learning_words
                   const unseen = progress.unseen_words
+                  const leechesCount = progress.leeches || 0
+                  const strengtheningCount = progress.strengthening_words || 0
+                  const consolidatingCount = progress.consolidating_words || 0
+                  // Percentages with rounding-safe remainder for the last segment
+                  const pUnseen = totalWords ? (unseen / totalWords) * 100 : 0
+                  const pLeeches = totalWords ? (leechesCount / totalWords) * 100 : 0
+                  const pLearning = totalWords ? (learning / totalWords) * 100 : 0
+                  const pStrengthening = totalWords ? (strengtheningCount / totalWords) * 100 : 0
+                  const pConsolidating = totalWords ? (consolidatingCount / totalWords) * 100 : 0
+                  const sumExceptMastered = pUnseen + pLeeches + pLearning + pStrengthening + pConsolidating
+                  const pMastered = Math.max(0, 100 - sumExceptMastered)
                   return (
                     <Card 
                       key={`${deck.id}-${progress.total_words}-${progress.mastered_words}`} 
@@ -581,39 +592,53 @@ export default function Dashboard() {
                                 <span>{mastered}/{totalWords} mastered</span>
                               </div>
                               <div className="flex h-4 bg-gray-200 rounded-full overflow-hidden">
-                                <div className="bg-gray-400" style={{ width: `${(unseen / totalWords) * 100}%` }} title={`${unseen} unseen`} />
-                                <div className="bg-orange-400" style={{ width: `${(learning / totalWords) * 100}%` }} title={`${learning} learning`} />
-                                <div className="bg-yellow-400" style={{ width: `${((progress.strengthening_words || 0) / totalWords) * 100}%` }} title={`${progress.strengthening_words || 0} strengthening`} />
-                                <div className="bg-green-500" style={{ width: `${(mastered / totalWords) * 100}%` }} title={`${mastered} mastered`} />
-                              </div>
-                              {/* Category Counters */}
-                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
-                                <div className="text-center">
-                                  <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
-                                  <div className="text-sm font-bold text-gray-600">{unseen}</div>
-                                  <div className="text-xs text-gray-500">Unseen</div>
-                                </div>
-                                <div className="text-center">
-                                  <LearningIcon className="h-4 w-4 mx-auto mb-1 text-orange-500" />
-                                  <div className="text-sm font-bold text-orange-600">{learning}</div>
-                                  <div className="text-xs text-gray-500">Learning</div>
-                                </div>
-                                <div className="text-center">
-                                  <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-500" />
-                                  <div className="text-sm font-bold text-yellow-600">{progress.strengthening_words || 0}</div>
-                                  <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Strengthening</div>
-                                </div>
-                                <div className="text-center">
-                                  <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-500" />
-                                  <div className="text-sm font-bold text-green-600">{mastered}</div>
-                                  <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Mastered</div>
-                                </div>
+                                {pUnseen > 0 && (
+                                  <div className="bg-gray-400" style={{ width: `${pUnseen}%` }} title={`${unseen} unseen`} />
+                                )}
+                                {pLeeches > 0 && (
+                                  <div className="bg-red-400" style={{ width: `${pLeeches}%` }} title={`${leechesCount} leeches`} />
+                                )}
+                                {pLearning > 0 && (
+                                  <div className="bg-orange-400" style={{ width: `${pLearning}%` }} title={`${learning} learning`} />
+                                )}
+                                {pStrengthening > 0 && (
+                                  <div className="bg-yellow-400" style={{ width: `${pStrengthening}%` }} title={`${strengtheningCount} strengthening`} />
+                                )}
+                                {pConsolidating > 0 && (
+                                  <div className="bg-blue-400" style={{ width: `${pConsolidating}%` }} title={`${consolidatingCount} consolidating`} />
+                                )}
+                                {pMastered > 0 && (
+                                  <div className="bg-green-500" style={{ width: `${pMastered}%` }} title={`${mastered} mastered`} />
+                                )}
                               </div>
                             </div>
                           </div>
                           <div className="sm:text-right sm:ml-4 mt-2 sm:mt-0 self-end sm:self-auto">
                             <div className="text-2xl font-bold text-blue-600">{totalWords}</div>
                             <div className="text-sm text-gray-600">words</div>
+                          </div>
+                        </div>
+                        {/* Category Counters (full width, sits below top row to utilize space under words) */}
+                        <div className="grid grid-cols-4 gap-4 mt-4">
+                          <div className="text-center">
+                            <UnseenIcon className="h-4 w-4 mx-auto mb-1 text-gray-400" />
+                            <div className="text-sm font-bold text-gray-600">{unseen}</div>
+                            <div className="text-xs text-gray-500">Unseen</div>
+                          </div>
+                          <div className="text-center">
+                            <LearningIcon className="h-4 w-4 mx-auto mb-1 text-orange-500" />
+                            <div className="text-sm font-bold text-orange-600">{learning}</div>
+                            <div className="text-xs text-gray-500">Learning</div>
+                          </div>
+                          <div className="text-center">
+                            <StrengtheningIcon className="h-4 w-4 mx-auto mb-1 text-yellow-500" />
+                            <div className="text-sm font-bold text-yellow-600">{progress.strengthening_words || 0}</div>
+                            <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Strengthening</div>
+                          </div>
+                          <div className="text-center">
+                            <MasteredIcon className="h-4 w-4 mx-auto mb-1 text-green-500" />
+                            <div className="text-sm font-bold text-green-600">{mastered}</div>
+                            <div className="text-xs text-gray-500 whitespace-nowrap leading-tight">Mastered</div>
                           </div>
                         </div>
                       </CardContent>
