@@ -215,6 +215,29 @@ export class TTSService {
       this.audioContext !== null
     )
   }
+
+  // Unlock audio context for auto-play
+  async unlockAudio(): Promise<void> {
+    if (typeof window === 'undefined') return
+
+    // Create audio context if it doesn't exist
+    if (!this.audioContext) {
+      const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      this.audioContext = new AudioContextClass()
+    }
+
+    // Resume suspended context
+    if (this.audioContext.state === 'suspended') {
+      try {
+        await this.audioContext.resume()
+        this.unlocked = true
+        console.log('Audio context unlocked for auto-play')
+      } catch (error) {
+        console.log('Failed to unlock audio context:', error)
+        throw error
+      }
+    }
+  }
 }
 
 // Export singleton instance
