@@ -1340,8 +1340,9 @@ function ReviewCard({
               </div>
             </div>
 
-            {/* Back of Card - Answer */}
-            <div className="flash-card-back">
+            {/* Back of Card - Answer (lazy-mounted to prevent brief reveal) */}
+            {showAnswer && !suppressFlip && (
+            <div className="flash-card-back" aria-hidden={!showAnswer}>
               <div className="flex flex-col h-full">
                 {/* Status on top */}
                 <div className="text-center mb-6">
@@ -1491,6 +1492,7 @@ function ReviewCard({
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </CardContent>
