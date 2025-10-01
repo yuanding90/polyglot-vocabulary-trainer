@@ -72,7 +72,8 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
   // Month labels (top) and day labels (left)
   const monthLabelFor = (iso: string) => {
     if (!iso) return ''
-    const d = new Date(iso + 'T00:00:00Z')
+    // Parse as local day to avoid UTC month drift
+    const d = new Date(iso + 'T00:00:00')
     return d.toLocaleString(undefined, { month: 'short' })
   }
   const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -85,11 +86,18 @@ export function ActivityHeatmap({ series }: { series: Day[] }) {
           <div className="flex items-center gap-2 mb-1 md:justify-center">
             {/* Spacer equal to day label column width */}
             <div className="flex-shrink-0 w-8 sm:w-10 mr-2" />
-            {weeks.map((_, i) => (
-              <div key={i} className="w-4 sm:w-5 lg:w-6 text-[10px] text-gray-500 text-center">
-                {i === 0 || (monthLabelFor(weekStarts[i]) !== monthLabelFor(weekStarts[i - 1])) ? monthLabelFor(weekStarts[i]) : ''}
-              </div>
-            ))}
+            {weeks.map((col, i) => {
+              // Label months only where the week contains the 1st of a month (GitHub-style)
+              const firstOfMonth = col.find(c => c.date && new Date(c.date + 'T00:00:00').getDate() === 1)
+              const label = firstOfMonth
+                ? monthLabelFor(firstOfMonth.date)
+                : (i === 0 ? monthLabelFor(weekStarts[0]) : '')
+              return (
+                <div key={i} className="w-4 sm:w-5 lg:w-6 text-[10px] text-gray-500 text-center">
+                  {label}
+                </div>
+              )
+            })}
           </div>
           <div className="flex items-start gap-2 md:justify-center">
             {/* Day labels (always show; compact on mobile). Show only Mon/Wed/Fri/Sun. */}
