@@ -163,162 +163,185 @@ export function AITutorPanel({
       )}
       {payload && (
         <div className="space-y-4 mt-3">
-          {/* 1) Mnemonics */}
-          {payload.mnemonics?.length ? (
-            <details className="bg-slate-50 p-3 rounded" open>
-              <summary className="font-medium cursor-pointer">Mnemonics</summary>
-              <ul className="list-disc ml-5 mt-2 text-base space-y-1">
-                {payload.mnemonics.map((m, i) => (
-                  <li key={i}><span className="font-semibold capitalize">{m.type.replace('_', ' ')}:</span> {m.content}</li>
-                ))}
-              </ul>
-            </details>
-          ) : null}
-
-          {/* 2) Analysis (all analysis content incl. connections and clarification) */}
-          {payload.analysis && (
-            <details className="bg-slate-50 p-3 rounded" open>
-              <summary className="font-medium cursor-pointer">Analysis</summary>
-              <div className="mt-2 space-y-3">
-                {/* Usage context */}
-                {payload.analysis.usage_context?.nuance_register_note && (
-                  <p className="text-base text-slate-600">{payload.analysis.usage_context.nuance_register_note}</p>
-                )}
-                {payload.analysis.usage_context?.collocations?.length ? (
-                  <div>
-                    <h4 className="text-sm font-semibold">Collocations</h4>
-                    <ul className="list-disc ml-5 text-base">
-                      {payload.analysis.usage_context.collocations.map((c, i) => (
-                        <li key={i}>
-                          <span className="font-medium">{c.l2_phrase}</span> – {c.l1_meaning}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-                {payload.analysis.usage_context?.examples?.length ? (
-                  <div>
-                    <h4 className="text-sm font-semibold">Examples</h4>
-                    <div className="space-y-1">
-                      {payload.analysis.usage_context.examples.map((ex, i) => (
-                        <div key={i} className="border-l-2 border-blue-200 pl-2">
-                          <p className="italic text-base">{ex.l2_sentence}</p>
-                          <p className="text-sm text-slate-500">{ex.l1_translation}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {/* Connections */}
-                {(payload.analysis.connections?.nuanced_synonyms?.length ||
-                  payload.analysis.connections?.antonyms?.length ||
-                  payload.analysis.connections?.word_family?.length ||
-                  payload.analysis.connections?.mnemonic_aid) ? (
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold">Connections</h4>
-                    {payload.analysis.connections?.nuanced_synonyms?.length ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Nuanced synonyms</h5>
-                    <ul className="list-disc ml-5 text-base">
-                          {payload.analysis.connections.nuanced_synonyms.map((s, i) => (
-                            <li key={i}>
-                              <span className="font-medium">{s.l2_word}</span> – {s.l1_meaning}
-                          {s.distinction_note_l1 ? (
-                            <div className="text-sm text-slate-500">{s.distinction_note_l1}</div>
-                              ) : null}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                    {payload.analysis.connections?.antonyms?.length ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Antonyms</h5>
-                    <ul className="list-disc ml-5 text-base">
-                          {payload.analysis.connections.antonyms.map((a, i) => (
-                            <li key={i}><span className="font-medium">{a.l2_word}</span> – {a.l1_meaning}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                    {payload.analysis.connections?.word_family?.length ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Word family</h5>
-                    <ul className="list-disc ml-5 text-base">
-                          {payload.analysis.connections.word_family.map((w, i) => (
-                            <li key={i}><span className="font-medium">{w.l2_word}</span> ({w.type}) – {w.l1_meaning}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                    {payload.analysis.connections?.mnemonic_aid ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Mnemonic aid</h5>
-                    <p className="text-base">{payload.analysis.connections.mnemonic_aid}</p>
-                      </div>
-                    ) : null}
-                  </div>
-                ) : null}
-
-                {/* Clarification */}
-                {(payload.analysis.clarification?.confusables?.length || payload.analysis.clarification?.common_mistakes?.length) ? (
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold">Clarification</h4>
-                    {payload.analysis.clarification?.confusables?.length ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Confusables</h5>
-                    <ul className="list-disc ml-5 text-base">
-                          {payload.analysis.clarification.confusables.map((c, i) => (
-                            <li key={i}>
-                              <span className="font-medium">{c.l2_word}</span> – {c.l1_meaning}
-                          {c.difference_note_l1 ? (
-                            <div className="text-sm text-slate-500">{c.difference_note_l1}</div>
-                              ) : null}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                    {payload.analysis.clarification?.common_mistakes?.length ? (
-                      <div>
-                        <h5 className="text-sm font-medium">Common mistakes</h5>
-                    <ul className="list-disc ml-5 text-base">
-                          {payload.analysis.clarification.common_mistakes.map((m, i) => (
-                            <li key={i}>{m}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </div>
-                ) : null}
-              </div>
-            </details>
-          )}
-
-          {/* 3) Other meanings (with examples) */}
-          {payload.other_meanings?.length ? (
-            <details className="bg-slate-50 p-3 rounded">
-              <summary className="font-medium cursor-pointer">Other meanings</summary>
-              <div className="mt-2 space-y-2">
-                {payload.other_meanings.map((om, i) => (
-                  <div key={i} className="text-base">
-                    <div className="font-medium">{om.meaning_l1}</div>
-                    {om.examples?.length ? (
-                      <ul className="list-disc ml-5 mt-1 space-y-1">
-                        {om.examples.map((ex, j) => (
-                          <li key={j}>
-                            <div className="italic text-base">{ex.l2_sentence}</div>
-                            <div className="text-sm text-slate-500">{ex.l1_translation}</div>
+          {/* Consolidated AI Tutor Notes */}
+          <details className="bg-slate-50 p-3 rounded" open>
+            <summary className="font-medium cursor-pointer">AI Tutor Notes</summary>
+            <div className="mt-2 space-y-4">
+              
+              {/* Mnemonics Section */}
+              {payload.mnemonics?.length ? (
+                <div>
+                  <h4 className="text-sm font-semibold mb-2">Mnemonics</h4>
+                  <ul className="list-disc ml-5 text-base space-y-1">
+                    {payload.mnemonics.map((m, i) => {
+                      // Handle visualization cue numbering and merge mnemonic aid
+                      if (m.type === 'visualization_cue') {
+                        return (
+                          <li key={i}>
+                            <span className="font-semibold capitalize">visualization cue 1:</span> {m.content}
                           </li>
-                        ))}
-                      </ul>
+                        )
+                      }
+                      return (
+                        <li key={i}>
+                          <span className="font-semibold capitalize">{m.type.replace('_', ' ')}:</span> {m.content}
+                        </li>
+                      )
+                    })}
+                    {/* Add merged mnemonic aid as visualization cue 2 */}
+                    {payload.analysis?.connections?.mnemonic_aid && (
+                      <li>
+                        <span className="font-semibold">visualization cue 2:</span> {payload.analysis.connections.mnemonic_aid}
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              ) : null}
+
+              {/* Learning Guide Section */}
+              {payload.analysis && (
+                <div>
+                  <h4 className="text-sm font-semibold mb-2">Learning Guide</h4>
+                  <div className="space-y-3">
+                    {/* Usage context */}
+                    {payload.analysis.usage_context?.nuance_register_note && (
+                      <p className="text-base text-slate-600">{payload.analysis.usage_context.nuance_register_note}</p>
+                    )}
+                    
+                    {/* Collocations */}
+                    {payload.analysis.usage_context?.collocations?.length ? (
+                      <div>
+                        <h5 className="text-sm font-medium">Collocations</h5>
+                        <ul className="list-disc ml-5 text-base">
+                          {payload.analysis.usage_context.collocations.map((c, i) => (
+                            <li key={i}>
+                              <span className="font-medium">{c.l2_phrase}</span> – {c.l1_meaning}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                    
+                    {/* Examples */}
+                    {payload.analysis.usage_context?.examples?.length ? (
+                      <div>
+                        <h5 className="text-sm font-medium">Examples</h5>
+                        <div className="space-y-1">
+                          {payload.analysis.usage_context.examples.map((ex, i) => (
+                            <div key={i} className="border-l-2 border-blue-200 pl-2">
+                              <p className="italic text-base">{ex.l2_sentence}</p>
+                              <p className="text-sm text-slate-500">{ex.l1_translation}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {/* Connections */}
+                    {(payload.analysis.connections?.nuanced_synonyms?.length ||
+                      payload.analysis.connections?.antonyms?.length ||
+                      payload.analysis.connections?.word_family?.length) ? (
+                      <div className="space-y-2">
+                        <h5 className="text-sm font-medium">Connections</h5>
+                        {payload.analysis.connections?.nuanced_synonyms?.length ? (
+                          <div>
+                            <h6 className="text-sm font-medium">Nuanced synonyms</h6>
+                            <ul className="list-disc ml-5 text-base">
+                              {payload.analysis.connections.nuanced_synonyms.map((s, i) => (
+                                <li key={i}>
+                                  <span className="font-medium">{s.l2_word}</span> – {s.l1_meaning}
+                                  {s.distinction_note_l1 ? (
+                                    <div className="text-sm text-slate-500">{s.distinction_note_l1}</div>
+                                  ) : null}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                        {payload.analysis.connections?.antonyms?.length ? (
+                          <div>
+                            <h6 className="text-sm font-medium">Antonyms</h6>
+                            <ul className="list-disc ml-5 text-base">
+                              {payload.analysis.connections.antonyms.map((a, i) => (
+                                <li key={i}><span className="font-medium">{a.l2_word}</span> – {a.l1_meaning}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                        {payload.analysis.connections?.word_family?.length ? (
+                          <div>
+                            <h6 className="text-sm font-medium">Word family</h6>
+                            <ul className="list-disc ml-5 text-base">
+                              {payload.analysis.connections.word_family.map((w, i) => (
+                                <li key={i}><span className="font-medium">{w.l2_word}</span> ({w.type}) – {w.l1_meaning}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
+
+                    {/* Clarification */}
+                    {(payload.analysis.clarification?.confusables?.length || payload.analysis.clarification?.common_mistakes?.length) ? (
+                      <div className="space-y-2">
+                        <h5 className="text-sm font-medium">Clarification</h5>
+                        {payload.analysis.clarification?.confusables?.length ? (
+                          <div>
+                            <h6 className="text-sm font-medium">Confusables</h6>
+                            <ul className="list-disc ml-5 text-base">
+                              {payload.analysis.clarification.confusables.map((c, i) => (
+                                <li key={i}>
+                                  <span className="font-medium">{c.l2_word}</span> – {c.l1_meaning}
+                                  {c.difference_note_l1 ? (
+                                    <div className="text-sm text-slate-500">{c.difference_note_l1}</div>
+                                  ) : null}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                        {payload.analysis.clarification?.common_mistakes?.length ? (
+                          <div>
+                            <h6 className="text-sm font-medium">Common mistakes</h6>
+                            <ul className="list-disc ml-5 text-base">
+                              {payload.analysis.clarification.common_mistakes.map((m, i) => (
+                                <li key={i}>{m}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </div>
                     ) : null}
                   </div>
-                ))}
-              </div>
-            </details>
-          ) : null}
+                </div>
+              )}
+
+              {/* Other meanings */}
+              {payload.other_meanings?.length ? (
+                <div>
+                  <h4 className="text-sm font-semibold mb-2">Other meanings</h4>
+                  <div className="space-y-2">
+                    {payload.other_meanings.map((om, i) => (
+                      <div key={i} className="text-base">
+                        <div className="font-medium">{om.meaning_l1}</div>
+                        {om.examples?.length ? (
+                          <ul className="list-disc ml-5 mt-1 space-y-1">
+                            {om.examples.map((ex, j) => (
+                              <li key={j}>
+                                <div className="italic text-base">{ex.l2_sentence}</div>
+                                <div className="text-sm text-slate-500">{ex.l1_translation}</div>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+            </div>
+          </details>
 
           {/* IMAGE: rendering disabled for now (kept for later re‑enable) */}
           {/* <div className="mt-2"> ... </div> */}
