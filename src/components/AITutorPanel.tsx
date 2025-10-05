@@ -171,7 +171,7 @@ export function AITutorPanel({
               {/* Mnemonics Section */}
               {payload.mnemonics?.length ? (
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Mnemonics</h4>
+                  <h4 className="text-sm font-semibold mb-2">🧠 Mnemonics</h4>
                   <ul className="list-disc ml-5 text-base space-y-1">
                     {payload.mnemonics.map((m, i) => {
                       // Handle visualization cue numbering and merge mnemonic aid
@@ -201,7 +201,7 @@ export function AITutorPanel({
               {/* Learning Guide Section */}
               {payload.analysis && (
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Learning Guide</h4>
+                  <h4 className="text-sm font-semibold mb-2">📚 Learning Guide</h4>
                   <div className="space-y-3">
                     {/* Usage context */}
                     {payload.analysis.usage_context?.nuance_register_note && (
@@ -211,7 +211,7 @@ export function AITutorPanel({
                     {/* Collocations */}
                     {payload.analysis.usage_context?.collocations?.length ? (
                       <div>
-                        <h5 className="text-sm font-medium">Collocations</h5>
+                        <h5 className="text-sm font-medium">🔗 Collocations</h5>
                         <ul className="list-disc ml-5 text-base">
                           {payload.analysis.usage_context.collocations.map((c, i) => (
                             <li key={i}>
@@ -225,7 +225,7 @@ export function AITutorPanel({
                     {/* Examples */}
                     {payload.analysis.usage_context?.examples?.length ? (
                       <div>
-                        <h5 className="text-sm font-medium">Examples</h5>
+                        <h5 className="text-sm font-medium">💡 Examples</h5>
                         <div className="space-y-1">
                           {payload.analysis.usage_context.examples.map((ex, i) => (
                             <div key={i} className="border-l-2 border-blue-200 pl-2">
@@ -242,10 +242,10 @@ export function AITutorPanel({
                       payload.analysis.connections?.antonyms?.length ||
                       payload.analysis.connections?.word_family?.length) ? (
                       <div className="space-y-2">
-                        <h5 className="text-sm font-medium">Connections</h5>
+                        <h5 className="text-sm font-medium">🔗 Connections</h5>
                         {payload.analysis.connections?.nuanced_synonyms?.length ? (
                           <div>
-                            <h6 className="text-sm font-medium">Nuanced synonyms</h6>
+                            <h6 className="text-sm font-medium">🔄 Nuanced synonyms</h6>
                             <ul className="list-disc ml-5 text-base">
                               {payload.analysis.connections.nuanced_synonyms.map((s, i) => (
                                 <li key={i}>
@@ -260,7 +260,7 @@ export function AITutorPanel({
                         ) : null}
                         {payload.analysis.connections?.antonyms?.length ? (
                           <div>
-                            <h6 className="text-sm font-medium">Antonyms</h6>
+                            <h6 className="text-sm font-medium">⚖️ Antonyms</h6>
                             <ul className="list-disc ml-5 text-base">
                               {payload.analysis.connections.antonyms.map((a, i) => (
                                 <li key={i}><span className="font-medium">{a.l2_word}</span> – {a.l1_meaning}</li>
@@ -270,7 +270,7 @@ export function AITutorPanel({
                         ) : null}
                         {payload.analysis.connections?.word_family?.length ? (
                           <div>
-                            <h6 className="text-sm font-medium">Word family</h6>
+                            <h6 className="text-sm font-medium">👨‍👩‍👧‍👦 Word family</h6>
                             <ul className="list-disc ml-5 text-base">
                               {payload.analysis.connections.word_family.map((w, i) => (
                                 <li key={i}><span className="font-medium">{w.l2_word}</span> ({w.type}) – {w.l1_meaning}</li>
@@ -284,10 +284,10 @@ export function AITutorPanel({
                     {/* Clarification */}
                     {(payload.analysis.clarification?.confusables?.length || payload.analysis.clarification?.common_mistakes?.length) ? (
                       <div className="space-y-2">
-                        <h5 className="text-sm font-medium">Clarification</h5>
+                        <h5 className="text-sm font-medium">⚠️ Clarification</h5>
                         {payload.analysis.clarification?.confusables?.length ? (
                           <div>
-                            <h6 className="text-sm font-medium">Confusables</h6>
+                            <h6 className="text-sm font-medium">🤔 Confusables</h6>
                             <ul className="list-disc ml-5 text-base">
                               {payload.analysis.clarification.confusables.map((c, i) => (
                                 <li key={i}>
@@ -302,7 +302,7 @@ export function AITutorPanel({
                         ) : null}
                         {payload.analysis.clarification?.common_mistakes?.length ? (
                           <div>
-                            <h6 className="text-sm font-medium">Common mistakes</h6>
+                            <h6 className="text-sm font-medium">❌ Common mistakes</h6>
                             <ul className="list-disc ml-5 text-base">
                               {payload.analysis.clarification.common_mistakes.map((m, i) => (
                                 <li key={i}>{m}</li>
@@ -319,7 +319,7 @@ export function AITutorPanel({
               {/* Other meanings */}
               {payload.other_meanings?.length ? (
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Other meanings</h4>
+                  <h4 className="text-sm font-semibold mb-2">🔀 Other meanings</h4>
                   <div className="space-y-2">
                     {payload.other_meanings.map((om, i) => (
                       <div key={i} className="text-base">
