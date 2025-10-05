@@ -178,7 +178,7 @@ export function AITutorPanel({
                       if (m.type === 'visualization_cue') {
                         return (
                           <li key={i}>
-                            <span className="font-semibold capitalize">visualization cue 1:</span> {m.content}
+                            <span className="font-semibold">Visualization cue 1:</span> {m.content}
                           </li>
                         )
                       }
@@ -191,7 +191,7 @@ export function AITutorPanel({
                     {/* Add merged mnemonic aid as visualization cue 2 */}
                     {payload.analysis?.connections?.mnemonic_aid && (
                       <li>
-                        <span className="font-semibold">visualization cue 2:</span> {payload.analysis.connections.mnemonic_aid}
+                        <span className="font-semibold">Visualization cue 2:</span> {payload.analysis.connections.mnemonic_aid}
                       </li>
                     )}
                   </ul>
