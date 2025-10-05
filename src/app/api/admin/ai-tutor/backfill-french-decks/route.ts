@@ -92,6 +92,10 @@ export async function POST(req: Request) {
     const existingAIWordIds = new Set((existingAI || []).map(item => item.vocabulary_id))
     const wordsNeedingAI = uniqueWordIds.filter(id => !existingAIWordIds.has(id))
     
+    // For testing: limit to first 5 words
+    const testWords = wordsNeedingAI.slice(0, 5)
+    console.log(`🧪 TEST MODE: Processing only first ${testWords.length} words instead of all ${wordsNeedingAI.length}`)
+    
     console.log(`✅ ${existingAIWordIds.size} words already have AI content`)
     console.log(`🔄 ${wordsNeedingAI.length} words need AI content`)
 
@@ -142,6 +146,7 @@ export async function POST(req: Request) {
         .limit(1)
 
       if (existingPending && existingPending.length > 0) {
+        console.log(`⏳ Word ${wordId}: Already has pending AI content`)
         pending++
         return
       }
@@ -153,6 +158,7 @@ export async function POST(req: Request) {
 
       attempted++
       try {
+        console.log(`🚀 Word ${wordId}: Calling AI generation API...`)
         const r = await fetch(`${origin}/api/ai-tutor/generate`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -163,14 +169,19 @@ export async function POST(req: Request) {
           }),
         })
         const jj = await r.json().catch(() => ({}))
+        
         if (r.ok && jj?.status === 'ready') {
+          console.log(`✅ Word ${wordId}: AI content generated successfully`)
           ready++
         } else if (r.status === 202 || jj?.status === 'pending') {
+          console.log(`⏳ Word ${wordId}: AI content queued for generation`)
           pending++
         } else {
+          console.log(`❌ Word ${wordId}: AI generation failed - Status: ${r.status}, Response:`, jj)
           errors++
         }
       } catch (e) {
+        console.log(`❌ Word ${wordId}: AI generation error:`, e)
         errors++
       }
     }
@@ -178,10 +189,26 @@ export async function POST(req: Request) {
     // Process with controlled concurrency
     const concurrency = 3
     let idx = 0
+    let processedCount = 0
+    const totalWords = testWords.length
+    
+    console.log(`🚀 Starting backfill for ${totalWords} words with concurrency ${concurrency}`)
+    
     const workers = Array.from({ length: concurrency }).map(async () => {
-      while (idx < wordsNeedingAI.length) {
+      while (idx < testWords.length) {
         const current = idx++
-        await processWord(wordsNeedingAI[current])
+        const wordId = testWords[current]
+        
+        console.log(`📝 Processing word ${current + 1}/${totalWords} (ID: ${wordId})`)
+        
+        await processWord(wordId)
+        
+        processedCount++
+        const progress = ((processedCount / totalWords) * 100).toFixed(1)
+        const remaining = totalWords - processedCount
+        const estimatedTimeRemaining = remaining * 15 // rough estimate of 15 seconds per word
+        
+        console.log(`✅ Progress: ${processedCount}/${totalWords} (${progress}%) | Remaining: ${remaining} words | Est. time: ${Math.round(estimatedTimeRemaining / 60)}min`)
       }
     })
     await Promise.all(workers)
