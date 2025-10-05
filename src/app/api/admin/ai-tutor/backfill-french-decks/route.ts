@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     // 2) Get all vocabulary from French decks
     const { data: deckVocab, error: vocabErr } = await supabase
       .from('deck_vocabulary')
-      .select('word_id, deck_id')
+      .select('vocabulary_id, deck_id')
       .in('deck_id', deckIds)
 
     if (vocabErr) {
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
     }
 
     // 4) Get unique word IDs and check for existing AI content
-    const uniqueWordIds = Array.from(new Set(deckVocab.map(dv => dv.word_id)))
+    const uniqueWordIds = Array.from(new Set(deckVocab.map(dv => dv.vocabulary_id)))
     console.log(`📚 Found ${uniqueWordIds.length} unique words across all French decks`)
 
     // Check which words already have AI content
@@ -119,7 +119,7 @@ export async function POST(req: Request) {
 
     async function processWord(wordId: number) {
       // Find which deck this word belongs to (for language info)
-      const wordDeckEntry = deckVocab?.find(dv => dv.word_id === wordId)
+      const wordDeckEntry = deckVocab?.find(dv => dv.vocabulary_id === wordId)
       if (!wordDeckEntry) {
         errors++
         return
