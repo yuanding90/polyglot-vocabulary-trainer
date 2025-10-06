@@ -57,8 +57,8 @@ export default function Dashboard() {
   } = useVocabularyStore()
 
   const [loading, setLoading] = useState(true)
-  // const [showStudySession, setShowStudySession] = useState(false)
-  // const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
+  const [showStudySession, setShowStudySession] = useState(false)
+  const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   // Activity summary (across decks)
@@ -86,6 +86,199 @@ export default function Dashboard() {
   const isLoadingDeckRef = useRef(false)
   const lastRefreshAtRef = useRef(0)
   const dueCountsLoadingRef = useRef(false)
+
+  // Define callbacks before effects to avoid "used before declaration" errors
+  const loadSessionStats = useCallback(async (userId: string) => {
+    try {
+      // Use the new daily summary system
+      const stats = await DailySummaryManager.getRecentActivityStats(userId)
+      
+      console.log('Loaded recent activity stats:', stats)
+      updateSessionStats(stats)
+    } catch (error) {
+      console.error('Error loading session stats:', error)
+    }
+  }, [])
+
+  const loadDeckData = useCallback(async (deckId: string, userId: string) => {
+    try {
+      console.log('Dashboard: Loading deck data for deck:', deckId, 'user:', userId, 'type:', typeof userId)
+      if (!userId || userId === '00000000-0000-0000-0000-000000000000') {
+        console.error('Dashboard: Invalid user ID detected:', userId)
+        return
+      }
+      
+      // Build queues
+      const queues = await sessionQueueManager.buildQueues(deckId, userId)
+      console.log('Built queues:', {
+        unseen: queues.unseen.length,
+        review: queues.review.length,
+        practice: queues.practice.length,
+        nearFuture: queues.nearFuture.length
+      })
+      
+      setUnseenQueue(queues.unseen)
+      setReviewQueue(queues.review)
+      setPracticePool(queues.practice)
+      setNearFutureQueue(queues.nearFuture)
+
+      // Calculate metrics
+      const deckMetrics = await sessionQueueManager.calculateMetrics(userId, deckId)
+      console.log('Calculated metrics:', deckMetrics)
+      updateMetrics(deckMetrics)
+
+      // Update userDeckProgress with correct total words - ensure it's in sync with metrics
+      const totalWords = deckMetrics.unseen + deckMetrics.leeches + deckMetrics.learning + deckMetrics.strengthening + deckMetrics.consolidating + deckMetrics.mastered
+      setUserDeckProgress(deckId, {
+        deck_id: deckId,
+        total_words: totalWords,
+        mastered_words: deckMetrics.mastered,
+        learning_words: deckMetrics.learning,
+        leeches: deckMetrics.leeches,
+        unseen_words: deckMetrics.unseen,
+        strengthening_words: deckMetrics.strengthening,
+        consolidating_words: deckMetrics.consolidating
+      })
+      
+      console.log('Updated userDeckProgress for deck:', deckId, {
+        total_words: totalWords,
+        mastered_words: deckMetrics.mastered,
+        learning_words: deckMetrics.learning,
+        leeches: deckMetrics.leeches,
+        unseen_words: deckMetrics.unseen
+      })
+    } catch (error) {
+      console.error('Error loading deck data:', error)
+    }
+  }, [])
+
+  const loadVocabularyHeatmap = useCallback(async () => {
+    try {
+      console.log('🔍 Dashboard: Starting vocabulary heatmap load...')
+      setHeatmapLoading(true)
+      
+      // Get the current session token
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        console.error('❌ Dashboard: No access token available')
+        return
+      }
+      
+      console.log('🔍 Dashboard: Making API call to /api/vocabulary-heatmap?compact=1 ...')
+      const response = await fetch('/api/vocabulary-heatmap?compact=1', {
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      console.log('🔍 Dashboard: API response status:', response.status)
+      
+      if (response.ok) {
+        const result = await response.json()
+        if (result.compact) {
+          // Decode base64 bytes to Uint8Array
+          const bytes = Uint8Array.from(atob(result.bytes), c => c.charCodeAt(0))
+          // Map codes back to mastery labels
+          const labelFor = (code: number): 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown' => (
+            code === 1 ? 'learning' : code === 2 ? 'strengthening' : code === 3 ? 'consolidating' : code === 4 ? 'mastered' : code === 5 ? 'leech' : 'unknown'
+          )
+          // Build minimal array with frequencyRank by index and masteryLevel for rendering
+          const minimal = Array.from(bytes).map((code: number, idx: number) => ({ frequencyRank: idx + 1, masteryLevel: labelFor(code) }))
+          console.log('✅ Dashboard: Compact heatmap decoded:', { totalWords: result.totalWords, counts: result.counts })
+          setHeatmapData(minimal)
+        } else {
+          console.log('✅ Dashboard: Heatmap data (expanded) received:', { totalWords: result.totalWords })
+          setHeatmapData(result.data || [])
+        }
+      } else {
+        const errorText = await response.text()
+        console.error('❌ Dashboard: Failed to fetch vocabulary heatmap data:', response.status, response.statusText, errorText)
+      }
+    } catch (error) {
+      console.error('❌ Dashboard: Error loading vocabulary heatmap:', error)
+    } finally {
+      setHeatmapLoading(false)
+    }
+  }, [])
+
+  const loadDashboardData = useCallback(async (userId: string) => {
+    try {
+      if (isLoadingAllRef.current) return
+      isLoadingAllRef.current = true
+      setLoading(true)
+      
+      // Load available decks
+      const { data: decks, error: decksError } = await supabase
+        .from('vocabulary_decks')
+        .select('*')
+        .eq('is_active', true)
+        .order('name')
+
+      if (decksError) throw decksError
+      setAvailableDecks(decks || [])
+
+      // Load metrics for all decks to show correct word counts
+      if (decks && decks.length > 0) {
+        for (const deck of decks) {
+          try {
+            const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
+            setUserDeckProgress(deck.id, {
+              deck_id: deck.id,
+              total_words: metrics.unseen + metrics.leeches + metrics.learning + metrics.strengthening + metrics.consolidating + metrics.mastered,
+              mastered_words: metrics.mastered,
+              learning_words: metrics.learning,
+              leeches: metrics.leeches,
+              unseen_words: metrics.unseen,
+              strengthening_words: metrics.strengthening,
+              consolidating_words: metrics.consolidating
+            })
+          } catch (error) {
+            console.error(`Error loading metrics for deck ${deck.id}:`, error)
+          }
+        }
+        // Defer due counts calculation to next tick to avoid blocking paint
+        setTimeout(async () => {
+          if (dueCountsLoadingRef.current) return
+          dueCountsLoadingRef.current = true
+          const nextDueNow: Record<string, number> = {}
+          const nextDueSoon: Record<string, number> = {}
+          try {
+            for (const deck of decks) {
+              try {
+                const queues = await sessionQueueManager.buildQueues(deck.id, userId)
+                nextDueNow[deck.id] = queues.review.length
+                nextDueSoon[deck.id] = queues.nearFuture.length
+              } catch {}
+            }
+            setDueNowByDeck(nextDueNow)
+            setDueSoonByDeck(nextDueSoon)
+          } finally {
+            dueCountsLoadingRef.current = false
+          }
+        }, 0)
+      }
+
+      // Load current deck from localStorage
+      const deckData = localStorage.getItem('selectedDeck')
+      if (deckData) {
+        const deck = JSON.parse(deckData)
+        setCurrentDeck(deck)
+      }
+
+      // Load session statistics
+      await loadSessionStats(userId)
+      
+      // Load vocabulary heatmap data
+      await loadVocabularyHeatmap()
+
+    } catch (error) {
+      console.error('Error loading dashboard data:', error)
+    } finally {
+      setLoading(false)
+      isLoadingAllRef.current = false
+    }
+  }, [])
 
   useEffect(() => {
     // Get current user first
@@ -202,197 +395,13 @@ export default function Dashboard() {
     try { localStorage.setItem('deckFilters', JSON.stringify(payload)) } catch {}
   }, [filterL2Name, filterL1Name])
 
-  const loadDashboardData = useCallback(async (userId: string) => {
-    try {
-      if (isLoadingAllRef.current) return
-      isLoadingAllRef.current = true
-      setLoading(true)
-      
-      // Load available decks
-      const { data: decks, error: decksError } = await supabase
-        .from('vocabulary_decks')
-        .select('*')
-        .eq('is_active', true)
-        .order('name')
+  
 
-      if (decksError) throw decksError
-      setAvailableDecks(decks || [])
+  
 
-      // Load metrics for all decks to show correct word counts
-      if (decks && decks.length > 0) {
-        for (const deck of decks) {
-          try {
-            const metrics = await sessionQueueManager.calculateMetrics(userId, deck.id)
-            setUserDeckProgress(deck.id, {
-              deck_id: deck.id,
-              total_words: metrics.unseen + metrics.leeches + metrics.learning + metrics.strengthening + metrics.consolidating + metrics.mastered,
-              mastered_words: metrics.mastered,
-              learning_words: metrics.learning,
-              leeches: metrics.leeches,
-              unseen_words: metrics.unseen,
-              strengthening_words: metrics.strengthening,
-              consolidating_words: metrics.consolidating
-            })
-          } catch (error) {
-            console.error(`Error loading metrics for deck ${deck.id}:`, error)
-          }
-        }
-        // Defer due counts calculation to next tick to avoid blocking paint
-        setTimeout(async () => {
-          if (dueCountsLoadingRef.current) return
-          dueCountsLoadingRef.current = true
-          const nextDueNow: Record<string, number> = {}
-          const nextDueSoon: Record<string, number> = {}
-          try {
-            for (const deck of decks) {
-              try {
-                const queues = await sessionQueueManager.buildQueues(deck.id, userId)
-                nextDueNow[deck.id] = queues.review.length
-                nextDueSoon[deck.id] = queues.nearFuture.length
-              } catch {}
-            }
-            setDueNowByDeck(nextDueNow)
-            setDueSoonByDeck(nextDueSoon)
-          } finally {
-            dueCountsLoadingRef.current = false
-          }
-        }, 0)
-      }
+  
 
-      // Load current deck from localStorage
-      const deckData = localStorage.getItem('selectedDeck')
-      if (deckData) {
-        const deck = JSON.parse(deckData)
-        setCurrentDeck(deck)
-      }
-
-      // Load session statistics
-      await loadSessionStats(userId)
-      
-      // Load vocabulary heatmap data
-      await loadVocabularyHeatmap()
-
-    } catch (error) {
-      console.error('Error loading dashboard data:', error)
-    } finally {
-      setLoading(false)
-      isLoadingAllRef.current = false
-    }
-  }, [])
-
-  const loadDeckData = useCallback(async (deckId: string, userId: string) => {
-    try {
-      console.log('Dashboard: Loading deck data for deck:', deckId, 'user:', userId, 'type:', typeof userId)
-      if (!userId || userId === '00000000-0000-0000-0000-000000000000') {
-        console.error('Dashboard: Invalid user ID detected:', userId)
-        return
-      }
-      
-      // Build queues
-      const queues = await sessionQueueManager.buildQueues(deckId, userId)
-      console.log('Built queues:', {
-        unseen: queues.unseen.length,
-        review: queues.review.length,
-        practice: queues.practice.length,
-        nearFuture: queues.nearFuture.length
-      })
-      
-      setUnseenQueue(queues.unseen)
-      setReviewQueue(queues.review)
-      setPracticePool(queues.practice)
-      setNearFutureQueue(queues.nearFuture)
-
-      // Calculate metrics
-      const deckMetrics = await sessionQueueManager.calculateMetrics(userId, deckId)
-      console.log('Calculated metrics:', deckMetrics)
-      updateMetrics(deckMetrics)
-
-      // Update userDeckProgress with correct total words - ensure it's in sync with metrics
-      const totalWords = deckMetrics.unseen + deckMetrics.leeches + deckMetrics.learning + deckMetrics.strengthening + deckMetrics.consolidating + deckMetrics.mastered
-      setUserDeckProgress(deckId, {
-        deck_id: deckId,
-        total_words: totalWords,
-        mastered_words: deckMetrics.mastered,
-        learning_words: deckMetrics.learning,
-        leeches: deckMetrics.leeches,
-        unseen_words: deckMetrics.unseen,
-        strengthening_words: deckMetrics.strengthening,
-        consolidating_words: deckMetrics.consolidating
-      })
-      
-      console.log('Updated userDeckProgress for deck:', deckId, {
-        total_words: totalWords,
-        mastered_words: deckMetrics.mastered,
-        learning_words: deckMetrics.learning,
-        leeches: deckMetrics.leeches,
-        unseen_words: deckMetrics.unseen
-      })
-    } catch (error) {
-      console.error('Error loading deck data:', error)
-    }
-  }, [])
-
-  const loadSessionStats = useCallback(async (userId: string) => {
-    try {
-      // Use the new daily summary system
-      const stats = await DailySummaryManager.getRecentActivityStats(userId)
-      
-      console.log('Loaded recent activity stats:', stats)
-      updateSessionStats(stats)
-    } catch (error) {
-      console.error('Error loading session stats:', error)
-    }
-  }, [])
-
-  const loadVocabularyHeatmap = useCallback(async () => {
-    try {
-      console.log('🔍 Dashboard: Starting vocabulary heatmap load...')
-      setHeatmapLoading(true)
-      
-      // Get the current session token
-      const { data: { session } } = await supabase.auth.getSession()
-      if (!session?.access_token) {
-        console.error('❌ Dashboard: No access token available')
-        return
-      }
-      
-      console.log('🔍 Dashboard: Making API call to /api/vocabulary-heatmap?compact=1 ...')
-      const response = await fetch('/api/vocabulary-heatmap?compact=1', {
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json'
-        }
-      })
-      
-      console.log('🔍 Dashboard: API response status:', response.status)
-      
-      if (response.ok) {
-        const result = await response.json()
-        if (result.compact) {
-          // Decode base64 bytes to Uint8Array
-          const bytes = Uint8Array.from(atob(result.bytes), c => c.charCodeAt(0))
-          // Map codes back to mastery labels
-          const labelFor = (code: number): 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown' => (
-            code === 1 ? 'learning' : code === 2 ? 'strengthening' : code === 3 ? 'consolidating' : code === 4 ? 'mastered' : code === 5 ? 'leech' : 'unknown'
-          )
-          // Build minimal array with frequencyRank by index and masteryLevel for rendering
-          const minimal = Array.from(bytes).map((code: number, idx: number) => ({ frequencyRank: idx + 1, masteryLevel: labelFor(code) }))
-          console.log('✅ Dashboard: Compact heatmap decoded:', { totalWords: result.totalWords, counts: result.counts })
-          setHeatmapData(minimal)
-        } else {
-          console.log('✅ Dashboard: Heatmap data (expanded) received:', { totalWords: result.totalWords })
-          setHeatmapData(result.data || [])
-        }
-      } else {
-        const errorText = await response.text()
-        console.error('❌ Dashboard: Failed to fetch vocabulary heatmap data:', response.status, response.statusText, errorText)
-      }
-    } catch (error) {
-      console.error('❌ Dashboard: Error loading vocabulary heatmap:', error)
-    } finally {
-      setHeatmapLoading(false)
-    }
-  }, [])
+  
 
   const handleStartSession = async (type: 'review' | 'discovery' | 'deep-dive') => {
     if (!currentDeck) {

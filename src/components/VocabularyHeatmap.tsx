@@ -120,12 +120,14 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
     canvas.height = Math.floor(layout.height * dpr)
     
     // Ensure crisp, square pixels without smoothing
-    // @ts-expect-error - vendor flags may exist in some browsers
-    ctx.imageSmoothingEnabled = false
-    // @ts-expect-error - vendor flags may exist in some browsers
-    if (ctx.mozImageSmoothingEnabled !== undefined) ctx.mozImageSmoothingEnabled = false
-    // @ts-expect-error - vendor flags may exist in some browsers
-    if (ctx.webkitImageSmoothingEnabled !== undefined) ctx.webkitImageSmoothingEnabled = false
+    ;(ctx as CanvasRenderingContext2D & { mozImageSmoothingEnabled?: boolean; webkitImageSmoothingEnabled?: boolean }).imageSmoothingEnabled = false
+    const maybeCtx = ctx as CanvasRenderingContext2D & { mozImageSmoothingEnabled?: boolean; webkitImageSmoothingEnabled?: boolean }
+    if (typeof maybeCtx.mozImageSmoothingEnabled !== 'undefined') {
+      maybeCtx.mozImageSmoothingEnabled = false
+    }
+    if (typeof maybeCtx.webkitImageSmoothingEnabled !== 'undefined') {
+      maybeCtx.webkitImageSmoothingEnabled = false
+    }
 
     ctx.save()
     ctx.scale(dpr, dpr)
@@ -212,7 +214,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
           style={{ 
             width: `${layout.width}px`,
             height: `${layout.height}px`,
-            imageRendering: 'pixelated' as 'auto' | 'smooth' | 'high-quality' | 'crisp-edges' | 'pixelated'
+            imageRendering: 'pixelated'
           }}
         />
       </div>
