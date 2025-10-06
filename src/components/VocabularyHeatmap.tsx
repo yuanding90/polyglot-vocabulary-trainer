@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 interface VocabularyHeatmapData {
   wordId: number
   word: string
   frequencyRank: number
-  masteryLevel: 'new' | 'learning' | 'reviewing' | 'mastered' | 'graduated' | 'leech' | 'unknown'
+  masteryLevel: 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown'
   confidenceScore: number
   lastReviewed?: string
 }
@@ -23,47 +23,66 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
 
   // Color scheme based on SRS mastery levels
   const colors = {
-    unknown: '#E5E7EB',    // Light grey for new/unknown
-    new: '#E5E7EB',        // Light grey for new words
-    learning: '#F97316',   // Orange for learning (short intervals)
-    reviewing: '#EAB308',  // Yellow for reviewing (medium intervals)
-    mastered: '#22C55E',   // Green for mastered (long intervals)
-    graduated: '#3B82F6',  // Blue for graduated (very long intervals)
-    leech: '#EF4444'       // Red for leeches
+    unknown: '#E5E7EB',     // Light grey for unseen/unknown
+    learning: '#8B5CF6',    // Distinct purple for learning
+    strengthening: '#EAB308', // Yellow for strengthening
+    consolidating: '#3B82F6', // Blue for consolidating
+    mastered: '#22C55E',    // Green for mastered
+    leech: '#EF4444'        // Red for leeches
   }
+
+  // Aggregate counts per mastery category (aligns with API progress logic)
+  const counts = useMemo(() => {
+    const agg = {
+      unseen: 0,
+      learning: 0,
+      strengthening: 0,
+      consolidating: 0,
+      mastered: 0,
+      leech: 0
+    }
+    for (const w of data) {
+      switch (w.masteryLevel) {
+        case 'learning':
+          agg.learning++
+          break
+        case 'strengthening':
+          agg.strengthening++
+          break
+        case 'consolidating':
+          agg.consolidating++
+          break
+        case 'mastered':
+          agg.mastered++
+          break
+        case 'leech':
+          agg.leech++
+          break
+        case 'unknown':
+        default:
+          agg.unseen++
+          break
+      }
+    }
+    return agg
+  }, [data])
 
   // Calculate optimal layout for dense rectangular heatmap (15,000 words)
   const calculateLayout = (containerWidth: number, containerHeight: number = 400) => {
-    const padding = 10  // Reduced padding for more space
-    const availableWidth = containerWidth - (padding * 2)
-    const availableHeight = containerHeight - (padding * 2)
+    const padding = 0
+    const availableWidth = Math.max(0, containerWidth - (padding * 2))
+    const availableHeight = Math.max(0, containerHeight - (padding * 2))
     
     const totalWords = data.length
     
     // Start with maximum pixel size and work down to fit all words
-    let pixelSize = 8  // Maximum pixel size
-    let cols, rows
+    const pixelSize = 4  // Fixed pixel size per word (4x4)
+    let cols: number
+    let rows: number
     
-    // Find the largest pixel size that fits all words in available space
-    do {
-      cols = Math.floor(availableWidth / pixelSize)
-      rows = Math.ceil(totalWords / cols)
-      
-      // Check if this fits in available height
-      if (rows * pixelSize <= availableHeight) {
-        break
-      }
-      
-      pixelSize--
-    } while (pixelSize > 1)
-    
-    // Ensure minimum pixel size for visibility
-    pixelSize = Math.max(pixelSize, 1)
-    
-    // Recalculate with final pixel size
-    cols = Math.floor(availableWidth / pixelSize)
+    // Compute columns so right-side whitespace is < pixelSize
+    cols = Math.max(1, Math.floor(availableWidth / pixelSize))
     rows = Math.ceil(totalWords / cols)
-    
     const width = cols * pixelSize
     const height = rows * pixelSize
     
@@ -103,11 +122,23 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
     const layout = calculateLayout(dimensions.width, dimensions.height)
     
     // Set canvas size
-    canvas.width = layout.width
-    canvas.height = layout.height
+    // Handle device pixel ratio to avoid blurring when scaling
+    const dpr = (typeof window !== 'undefined' && window.devicePixelRatio) ? window.devicePixelRatio : 1
+    canvas.width = Math.floor(layout.width * dpr)
+    canvas.height = Math.floor(layout.height * dpr)
     
+    // Ensure crisp, square pixels without smoothing
+    // @ts-ignore - some browsers use different flags; set defensively
+    ctx.imageSmoothingEnabled = false
+    // @ts-ignore
+    if (ctx.mozImageSmoothingEnabled !== undefined) ctx.mozImageSmoothingEnabled = false
+    // @ts-ignore
+    if (ctx.webkitImageSmoothingEnabled !== undefined) ctx.webkitImageSmoothingEnabled = false
+
+    ctx.save()
+    ctx.scale(dpr, dpr)
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, layout.width, layout.height)
     
     // Sort data by frequency rank (most common first)
     const sortedData = [...data].sort((a, b) => a.frequencyRank - b.frequencyRank)
@@ -127,6 +158,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
         ctx.fillRect(x, y, layout.pixelSize, layout.pixelSize)
       }
     })
+    ctx.restore()
   }, [data, dimensions])
 
   if (!data.length) {
@@ -138,46 +170,40 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
   }
 
   const layout = calculateLayout(dimensions.width, dimensions.height)
-  const totalWords = data.length
-  const masteredWords = data.filter(w => w.masteryLevel === 'mastered' || w.masteryLevel === 'graduated').length
-  const masteryPercentage = Math.round((masteredWords / totalWords) * 100)
 
   return (
     <div className={`w-full ${className}`}>
-      {/* Header with stats */}
+      {/* Subtitle only; section title is rendered by the dashboard container */}
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">French Vocabulary Mastery</h3>
-          <p className="text-sm text-gray-600">
-            {masteredWords.toLocaleString()} of {totalWords.toLocaleString()} words mastered ({masteryPercentage}%)
-          </p>
+          <p className="text-sm text-gray-600">The full language lexicon by frequency — colors highlight where you are in your learning journey.</p>
         </div>
         
-        {/* Legend */}
+        {/* Legend with counts */}
         <div className="flex flex-wrap gap-3 text-xs">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.unknown }}></div>
-            <span>Unknown</span>
+            <span>Unseen/To be discovered ({counts.unseen.toLocaleString()})</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.learning }}></div>
-            <span>Learning</span>
+            <span>Learning ({counts.learning.toLocaleString()})</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.reviewing }}></div>
-            <span>Reviewing</span>
+            <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.strengthening }}></div>
+            <span>Strengthening ({counts.strengthening.toLocaleString()})</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.consolidating }}></div>
+            <span>Consolidating ({counts.consolidating.toLocaleString()})</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.mastered }}></div>
-            <span>Mastered</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.graduated }}></div>
-            <span>Graduated</span>
+            <span>Mastered ({counts.mastered.toLocaleString()})</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded" style={{ backgroundColor: colors.leech }}></div>
-            <span>Leech</span>
+            <span>Leech ({counts.leech.toLocaleString()})</span>
           </div>
         </div>
       </div>
@@ -186,31 +212,19 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
       <div 
         ref={containerRef}
         className="w-full overflow-auto border border-gray-200 rounded-lg bg-white"
-        style={{ height: '600px' }}
       >
         <canvas
           ref={canvasRef}
           className="block"
           style={{ 
-            width: `${Math.min(layout.width, dimensions.width - 40)}px`,
-            height: `${layout.height}px`
+            width: `${layout.width}px`,
+            height: `${layout.height}px`,
+            imageRendering: 'pixelated' as any
           }}
         />
       </div>
       
-      {/* Grid info */}
-      <div className="mt-2 flex justify-between text-xs text-gray-500">
-        <span>Grid: {layout.cols} × {layout.rows}</span>
-        <span>{layout.totalWords} words</span>
-        <span>Pixel: {layout.pixelSize}px</span>
-      </div>
-      
-      {/* Frequency indicator */}
-      <div className="mt-1 flex justify-between text-xs text-gray-400">
-        <span>Most Common (Top-Left)</span>
-        <span>→</span>
-        <span>Least Common (Bottom-Right)</span>
-      </div>
+      {/* Footer info removed per request */}
     </div>
   )
 }

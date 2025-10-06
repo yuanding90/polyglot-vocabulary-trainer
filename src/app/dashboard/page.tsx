@@ -1161,7 +1161,7 @@ export default function Dashboard() {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <BarChart3 className="h-5 w-5 text-purple-600" />
-              Vocabulary Mastery Overview
+              Lexique Mastery Map
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0 px-4 pb-4">

@@ -309,8 +309,8 @@ export async function GET(request: NextRequest) {
     const transformedData = heatmapData.map((item) => {
       const userProgress = progressLookup.get(item.id)
 
-      // Determine mastery level based on user progress (using correct SRS logic)
-      let masteryLevel: 'new' | 'learning' | 'reviewing' | 'mastered' | 'graduated' | 'leech' | 'unknown' = 'unknown'
+      // Determine mastery level based on user progress (aligned with dashboard metrics)
+      let masteryLevel: 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown' = 'unknown'
 
       if (userProgress) {
         const LEECH_THRESHOLD = 4 // Align with SRS.LEECH_THRESHOLD from codebase
@@ -321,11 +321,11 @@ export async function GET(request: NextRequest) {
         } else if (userProgress.interval < 7) {
           masteryLevel = 'learning'
         } else if (userProgress.interval < 21) {
-          masteryLevel = 'reviewing'
+          masteryLevel = 'strengthening'
         } else if (userProgress.interval < 60) {
-          masteryLevel = 'mastered'
+          masteryLevel = 'consolidating'
         } else {
-          masteryLevel = 'graduated'
+          masteryLevel = 'mastered'
         }
       }
 
