@@ -5,7 +5,7 @@ import OpenAI from 'openai'
 export const runtime = 'nodejs'
 
 // IMAGE: disabled for now. Set to true to re-enable image generation later.
-const ENABLE_IMAGE_GENERATION = false
+// const ENABLE_IMAGE_GENERATION = false
 
 type GenerateBody = {
   vocabularyId?: number
@@ -107,7 +107,7 @@ export async function POST(req: Request) {
     }
 
     // Insert pending row
-    const { data: inserted, error: insertErr } = await supabase.from('word_ai_content').insert({
+    const { data: _inserted, error: insertErr } = await supabase.from('word_ai_content').insert({
       vocabulary_id: vocabRow.id,
       l1_language: body.l1Language,
       module_type: MODULE_TYPE,
@@ -225,7 +225,7 @@ Behavior:
         temperature: 0.8,
         // Let the model return JSON; we sanitize below
       })
-    } catch (e: unknown) {
+    } catch {
       // Retry without response_format if not supported
       chat = await openai.chat.completions.create({
         model: 'gpt-4.1-nano',
@@ -250,7 +250,7 @@ Behavior:
     let parsed: Record<string, unknown>
     try {
       parsed = JSON.parse(textContent) as Record<string, unknown>
-    } catch (e: unknown) {
+    } catch {
       // Mark failed if cannot parse
       await supabase
         .from('word_ai_content')

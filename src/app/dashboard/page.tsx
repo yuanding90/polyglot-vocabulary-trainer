@@ -57,8 +57,8 @@ export default function Dashboard() {
   } = useVocabularyStore()
 
   const [loading, setLoading] = useState(true)
-  const [showStudySession, setShowStudySession] = useState(false)
-  const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
+  // const [showStudySession, setShowStudySession] = useState(false)
+  // const [sessionType, setSessionType] = useState<'review' | 'discovery' | 'deep-dive' | null>(null)
   const [deepDiveCategory, setDeepDiveCategory] = useState<'leeches' | 'learning' | 'strengthening' | 'consolidating' | null>(null)
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   // Activity summary (across decks)
@@ -72,8 +72,9 @@ export default function Dashboard() {
   } | null>(null)
 
   // Vocabulary heatmap data
+  type HeatmapPoint = { frequencyRank: number; masteryLevel: 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown' }
   const [heatmapLoading, setHeatmapLoading] = useState(false)
-  const [heatmapData, setHeatmapData] = useState<any[]>([])
+  const [heatmapData, setHeatmapData] = useState<HeatmapPoint[]>([])
   // Deck filter state by language NAMES (dedupe fr vs fr-FR)
   const [filterL2Name, setFilterL2Name] = useState<string | null>(null)
   const [filterL1Name, setFilterL1Name] = useState<string | null>(null)
@@ -121,7 +122,7 @@ export default function Dashboard() {
       }
     }
     getCurrentUser()
-  }, [])
+  }, [loadDashboardData])
 
   // Reload deck-specific data when current deck changes
   useEffect(() => {
@@ -138,7 +139,7 @@ export default function Dashboard() {
       }
       loadCurrentDeckData()
     }
-  }, [currentDeck, currentUser])
+  }, [currentDeck, currentUser, loadDeckData, loadSessionStats])
 
   // Refresh data when returning from study session (focus event)
   useEffect(() => {
@@ -161,7 +162,7 @@ export default function Dashboard() {
 
     window.addEventListener('focus', handleFocus)
     return () => window.removeEventListener('focus', handleFocus)
-  }, [currentUser, currentDeck])
+  }, [currentUser, currentDeck, loadDeckData, loadSessionStats])
 
   // Initialize deck filters from current deck or saved filters (by language names)
   useEffect(() => {

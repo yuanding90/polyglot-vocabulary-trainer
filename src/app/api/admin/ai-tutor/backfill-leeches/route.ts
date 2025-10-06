@@ -149,7 +149,7 @@ export async function POST(req: Request) {
         } else {
           errors++
         }
-      } catch (e) {
+      } catch {
         errors++
       }
     }
