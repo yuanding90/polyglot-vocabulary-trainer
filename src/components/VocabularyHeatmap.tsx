@@ -3,12 +3,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 interface VocabularyHeatmapData {
-  wordId: number
-  word: string
   frequencyRank: number
   masteryLevel: 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown'
-  confidenceScore: number
-  lastReviewed?: string
 }
 
 interface VocabularyHeatmapProps {
@@ -174,7 +170,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
   return (
     <div className={`w-full ${className}`}>
       {/* Subtitle only; section title is rendered by the dashboard container */}
-      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div className="mb-4 flex flex-col gap-2">
         <div>
           <p className="text-sm text-gray-600">The full language lexicon by frequency — colors highlight where you are in your learning journey.</p>
         </div>

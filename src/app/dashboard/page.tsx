@@ -358,8 +358,8 @@ export default function Dashboard() {
         return
       }
       
-      console.log('🔍 Dashboard: Making API call to /api/vocabulary-heatmap...')
-      const response = await fetch('/api/vocabulary-heatmap', {
+      console.log('🔍 Dashboard: Making API call to /api/vocabulary-heatmap?compact=1 ...')
+      const response = await fetch('/api/vocabulary-heatmap?compact=1', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
           'Content-Type': 'application/json'
@@ -370,13 +370,21 @@ export default function Dashboard() {
       
       if (response.ok) {
         const result = await response.json()
-        console.log('✅ Dashboard: Heatmap data received:', {
-          totalWords: result.totalWords,
-          wordsWithProgress: result.mappedWords,
-          wordsWithoutProgress: result.unmappedWords,
-          sampleData: result.data?.slice(0, 3)
-        })
-        setHeatmapData(result.data || [])
+        if (result.compact) {
+          // Decode base64 bytes to Uint8Array
+          const bytes = Uint8Array.from(atob(result.bytes), c => c.charCodeAt(0))
+          // Map codes back to mastery labels
+          const labelFor = (code: number): 'learning' | 'strengthening' | 'consolidating' | 'mastered' | 'leech' | 'unknown' => (
+            code === 1 ? 'learning' : code === 2 ? 'strengthening' : code === 3 ? 'consolidating' : code === 4 ? 'mastered' : code === 5 ? 'leech' : 'unknown'
+          )
+          // Build minimal array with frequencyRank by index and masteryLevel for rendering
+          const minimal = Array.from(bytes).map((code: number, idx: number) => ({ frequencyRank: idx + 1, masteryLevel: labelFor(code) }))
+          console.log('✅ Dashboard: Compact heatmap decoded:', { totalWords: result.totalWords, counts: result.counts })
+          setHeatmapData(minimal)
+        } else {
+          console.log('✅ Dashboard: Heatmap data (expanded) received:', { totalWords: result.totalWords })
+          setHeatmapData(result.data || [])
+        }
       } else {
         const errorText = await response.text()
         console.error('❌ Dashboard: Failed to fetch vocabulary heatmap data:', response.status, response.statusText, errorText)

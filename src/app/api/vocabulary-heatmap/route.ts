@@ -7,6 +7,9 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 export async function GET(request: NextRequest) {
   try {
     console.log('🔥 API: Starting vocabulary heatmap request - THIS SHOULD APPEAR IN SERVER LOGS')
+    // Compact response toggle
+    const url = new URL(request.url)
+    const isCompact = url.searchParams.get('compact') === '1'
     
     // Create a service role client for server-side operations
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey)
@@ -332,14 +335,7 @@ export async function GET(request: NextRequest) {
       const mappedRank = frequencyByWordId.get(item.id)
       const frequencyRank = typeof mappedRank === 'number' ? mappedRank : Number.MAX_SAFE_INTEGER
 
-      return {
-        wordId: item.id,
-        word: item.language_a_word,
-        frequencyRank,
-        masteryLevel,
-        confidenceScore: userProgress ? 1 : 0, // 1 if has progress, 0 if unknown
-        lastReviewed: null
-      }
+      return { wordId: item.id, frequencyRank, masteryLevel }
     })
 
     // Sort by frequency rank ascending so the grid matches frequency order
@@ -350,30 +346,27 @@ export async function GET(request: NextRequest) {
     console.log('  - Words with progress:', progressLookup.size)
     console.log('  - Words without progress (Unknown):', transformedData.length - progressLookup.size)
 
-    // Diagnostics: mapping coverage and top-n sample
-    const mappedCount = transformedData.filter(item => Number.isFinite(item.frequencyRank) && item.frequencyRank < Number.MAX_SAFE_INTEGER).length
-    const unmappedCount = transformedData.length - mappedCount
-    const sampleTop20 = transformedData.slice(0, 20).map(item => ({
-      wordId: item.wordId,
-      frequencyRank: item.frequencyRank,
-      masteryLevel: item.masteryLevel
-    }))
-    console.log('  - Mapping coverage:', { mappedCount, unmappedCount })
-    console.log('  - Sample top-20 (rank/mastery):', sampleTop20)
-
-    return NextResponse.json({
-      data: transformedData,
-      totalWords: transformedData.length,
-      mappedWords: transformedData.filter(item => item.confidenceScore > 0).length,
-      unmappedWords: transformedData.filter(item => item.confidenceScore === 0).length,
-      diagnostics: {
-        deckCount: frenchDeckIds.length,
-        vocabularyCount: vocabularyIds.length,
-        mapping: { mappedCount, unmappedCount },
-        progressMergedCount: progressLookup.size,
-        sampleTop20
+    // Compact mode: return base64 bytes + counts
+    if (isCompact) {
+      transformedData.sort((a, b) => a.frequencyRank - b.frequencyRank)
+      const toCode = (m: string) => (m === 'learning' ? 1 : m === 'strengthening' ? 2 : m === 'consolidating' ? 3 : m === 'mastered' ? 4 : m === 'leech' ? 5 : 0)
+      const bytes = new Uint8Array(transformedData.length)
+      const counts = { unseen: 0, learning: 0, strengthening: 0, consolidating: 0, mastered: 0, leech: 0 }
+      for (let i = 0; i < transformedData.length; i++) {
+        const code = toCode(transformedData[i].masteryLevel)
+        bytes[i] = code
+        if (code === 0) counts.unseen++
+        else if (code === 1) counts.learning++
+        else if (code === 2) counts.strengthening++
+        else if (code === 3) counts.consolidating++
+        else if (code === 4) counts.mastered++
+        else if (code === 5) counts.leech++
       }
-    })
+      const base64 = Buffer.from(bytes).toString('base64')
+      return NextResponse.json({ compact: true, bytes: base64, totalWords: transformedData.length, counts })
+    }
+
+    return NextResponse.json({ data: transformedData, totalWords: transformedData.length, mappedWords: progressLookup.size, unmappedWords: transformedData.length - progressLookup.size })
 
   } catch (error) {
     console.error('Error in vocabulary heatmap API:', error)
