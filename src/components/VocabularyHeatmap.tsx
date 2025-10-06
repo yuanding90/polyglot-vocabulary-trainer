@@ -67,18 +67,15 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
   const calculateLayout = (containerWidth: number, containerHeight: number = 400) => {
     const padding = 0
     const availableWidth = Math.max(0, containerWidth - (padding * 2))
-    const availableHeight = Math.max(0, containerHeight - (padding * 2))
     
     const totalWords = data.length
     
     // Start with maximum pixel size and work down to fit all words
     const pixelSize = 4  // Fixed pixel size per word (4x4)
-    let cols: number
-    let rows: number
+    const cols: number = Math.max(1, Math.floor(availableWidth / pixelSize))
+    const rows: number = Math.ceil(totalWords / cols)
     
     // Compute columns so right-side whitespace is < pixelSize
-    cols = Math.max(1, Math.floor(availableWidth / pixelSize))
-    rows = Math.ceil(totalWords / cols)
     const width = cols * pixelSize
     const height = rows * pixelSize
     
@@ -124,11 +121,11 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
     canvas.height = Math.floor(layout.height * dpr)
     
     // Ensure crisp, square pixels without smoothing
-    // @ts-ignore - some browsers use different flags; set defensively
+    // @ts-expect-error - vendor flags may exist in some browsers
     ctx.imageSmoothingEnabled = false
-    // @ts-ignore
+    // @ts-expect-error - vendor flags may exist in some browsers
     if (ctx.mozImageSmoothingEnabled !== undefined) ctx.mozImageSmoothingEnabled = false
-    // @ts-ignore
+    // @ts-expect-error - vendor flags may exist in some browsers
     if (ctx.webkitImageSmoothingEnabled !== undefined) ctx.webkitImageSmoothingEnabled = false
 
     ctx.save()
