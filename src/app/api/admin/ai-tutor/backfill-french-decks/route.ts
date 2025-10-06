@@ -57,9 +57,7 @@ export async function POST(req: Request) {
       decks = byLegacy || []
     }
 
-    if (decksErr) {
-      return NextResponse.json({ error: decksErr.message }, { status: 500 })
-    }
+    
 
     if (!decks || decks.length === 0) {
       return NextResponse.json({ error: 'No French decks found' }, { status: 404 })
