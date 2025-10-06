@@ -94,8 +94,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
     const updateDimensions = () => {
       if (containerRef.current) {
         const containerWidth = containerRef.current.clientWidth
-        const containerHeight = containerRef.current.clientHeight
-        setDimensions({ width: containerWidth, height: containerHeight })
+        setDimensions({ width: containerWidth, height: containerRef.current.clientHeight })
       }
     }
 
@@ -212,7 +211,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
           style={{ 
             width: `${layout.width}px`,
             height: `${layout.height}px`,
-            imageRendering: 'pixelated' as any
+            imageRendering: 'pixelated' as 'auto' | 'smooth' | 'high-quality' | 'crisp-edges' | 'pixelated'
           }}
         />
       </div>

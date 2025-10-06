@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     
     // Loop through each French deck individually to avoid 1000 limit
     console.log('API: Fetching vocabulary from each French deck individually...')
-    let allVocabIds: number[] = []
+    const allVocabIds: number[] = []
     
     for (const deckId of frenchDeckIds) {
       try {
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch vocabulary data in batches to avoid 1000 limit
     console.log('API: Fetching vocabulary data for', vocabularyIds.length, 'words in batches...')
-    let heatmapData: any[] = []
+    const heatmapData: { id: number }[] = []
     const batchSize = 1000
     
     for (let i = 0; i < vocabularyIds.length; i += batchSize) {
@@ -110,10 +110,7 @@ export async function GET(request: NextRequest) {
       try {
         const { data: batchData, error: batchError } = await supabaseAdmin
           .from('vocabulary')
-          .select(`
-            id,
-            language_a_word
-          `)
+          .select('id')
           .in('id', batch)
         
         if (batchError) {
@@ -212,7 +209,8 @@ export async function GET(request: NextRequest) {
     console.log('API: Sample vocabulary IDs:', vocabularyIds.slice(0, 5))
     console.log('API: French deck IDs being processed:', frenchDeckIds)
     
-    let userProgressData = []
+    type ProgressRow = { word_id: number; deck_id: string | number; interval: number; repetitions: number; again_count: number; next_review_date?: string }
+    let userProgressData: ProgressRow[] = []
     try {
       const { data: progressResult, error: progressError } = await supabaseAdmin
         .from('user_progress')
@@ -239,7 +237,7 @@ export async function GET(request: NextRequest) {
         userProgressData = []
       } else {
         let usedFallback = false
-        let result = progressResult || []
+        let result: ProgressRow[] = (progressResult || []) as ProgressRow[]
         if (!result || result.length === 0) {
           console.log('API: Zero progress rows with French deck filter; retrying without deck filter...')
           const { data: fallbackResult, error: fallbackError } = await supabaseAdmin
@@ -259,7 +257,7 @@ export async function GET(request: NextRequest) {
             console.log('API: Fallback user progress query failed:', fallbackError.message)
           } else {
             usedFallback = true
-            result = fallbackResult || []
+            result = (fallbackResult || []) as ProgressRow[]
           }
         }
 
@@ -292,7 +290,7 @@ export async function GET(request: NextRequest) {
     // - Otherwise, choose the record with the highest interval
     const LEECH_THRESHOLD = 4
     const progressLookup = new Map<number, { interval: number; again_count: number; repetitions: number }>()
-    for (const p of userProgressData as any[]) {
+    for (const p of userProgressData) {
       const prev = progressLookup.get(p.word_id)
       if (!prev) {
         progressLookup.set(p.word_id, { interval: p.interval || 0, again_count: p.again_count || 0, repetitions: p.repetitions || 0 })
