@@ -87,6 +87,32 @@ export default function Dashboard() {
   const lastRefreshAtRef = useRef(0)
   const dueCountsLoadingRef = useRef(false)
 
+  // Helpers: derive French deck level and tier label from deck name
+  const getFrenchLevelFromName = (name?: string | null): number | null => {
+    const s = (name || '')
+    // New pattern: French (by frequency) - Level N
+    let m = s.match(/French \(by frequency\) - Level\s*(\d+)/i)
+    if (m) return parseInt(m[1], 10)
+    // Legacy pattern: French 01..16
+    m = s.match(/French\s*0?(\d{1,2})\b/i)
+    if (m) return parseInt(m[1], 10)
+    return null
+  }
+
+  const getFrenchTierLabel = (deck: VocabularyDeck): { label: string; cls: string } | null => {
+    const l2 = (deck.language_a_name || '').trim().toLowerCase()
+    const l1 = (deck.language_b_name || '').trim().toLowerCase()
+    if (l2 !== 'french' || l1 !== 'english') return null
+    const level = getFrenchLevelFromName(deck.name)
+    if (!level || level < 1) return null
+    // Assumption: overlaps go to the higher tier (7→Advanced, 11→Rare)
+    if (level >= 1 && level <= 3) return { label: 'Core', cls: 'bg-green-100 text-green-700' }
+    if (level >= 4 && level <= 6) return { label: 'Daily', cls: 'bg-blue-100 text-blue-700' }
+    if (level >= 7 && level <= 10) return { label: 'Advanced', cls: 'bg-orange-100 text-orange-700' }
+    if (level >= 11 && level <= 16) return { label: 'Rare', cls: 'bg-purple-100 text-purple-700' }
+    return null
+  }
+
   // Define callbacks before effects to avoid "used before declaration" errors
   const loadSessionStats = useCallback(async (userId: string) => {
     try {
@@ -588,6 +614,20 @@ export default function Dashboard() {
               (!filterL1Name || norm(d.language_b_name || '') === norm(filterL1Name))
             ))
 
+            // Stable numeric sort for French (by frequency) decks so Level 10 doesn't come before Level 2
+            const levelOf = (name: string | undefined | null): number | null => {
+              const m = (name || '').match(/French \(by frequency\) - Level\s*(\d+)/i)
+              return m ? parseInt(m[1], 10) : null
+            }
+            const decksSorted = [...decksFiltered].sort((a, b) => {
+              const la = levelOf(a.name)
+              const lb = levelOf(b.name)
+              if (la !== null && lb !== null) return la - lb
+              if (la !== null) return -1
+              if (lb !== null) return 1
+              return (a.name || '').localeCompare(b.name || '')
+            })
+
             const noneFound = decksFiltered.length === 0
             const l2Name = filterL2Name || 'Selected L2'
             const l1Name = filterL1Name || 'Selected L1'
@@ -607,7 +647,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {decksFiltered.map((deck) => {
+                {decksSorted.map((deck) => {
                   const progress = userDeckProgress[deck.id] || {
                     deck_id: deck.id,
                     total_words: 0,
@@ -643,14 +683,26 @@ export default function Dashboard() {
                             <div className="flex items-center gap-3 mb-2">
                               <BookOpen className="h-5 w-5 text-blue-600" />
                               <h3 className="font-semibold text-lg">{deck.name}</h3>
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-700' :
-                                deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
-                                deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-700' :
-                                'bg-red-100 text-red-700'
-                              }`}>
-                                {deck.difficulty_level}
-                              </span>
+                              {(() => {
+                                const tier = getFrenchTierLabel(deck)
+                                if (tier) {
+                                  return (
+                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${tier.cls}`}>
+                                      {tier.label}
+                                    </span>
+                                  )
+                                }
+                                return (
+                                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                    deck.difficulty_level === 'beginner' ? 'bg-green-100 text-green-700' :
+                                    deck.difficulty_level === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                                    deck.difficulty_level === 'advanced' ? 'bg-orange-100 text-orange-700' :
+                                    'bg-red-100 text-red-700'
+                                  }`}>
+                                    {deck.difficulty_level}
+                                  </span>
+                                )
+                              })()}
                             </div>
                             <div className="space-y-3">
                               <div className="flex justify-between text-sm text-gray-600">
@@ -783,9 +835,21 @@ export default function Dashboard() {
                   <BookOpen className="h-5 w-5 text-blue-600" />
                   <span className="break-words">{currentDeck.name} • {currentDeck.language_a_name} → {currentDeck.language_b_name}</span>
                 </h2>
-                <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
-                  {currentDeck.difficulty_level}
-                </span>
+                {(() => {
+                  const tier = getFrenchTierLabel(currentDeck)
+                  if (tier) {
+                    return (
+                      <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium ${tier.cls}`}>
+                        {tier.label}
+                      </span>
+                    )
+                  }
+                  return (
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                      {currentDeck.difficulty_level}
+                    </span>
+                  )
+                })()}
               </div>
               <Button
                 onClick={() => setShowDeckSelection(true)}

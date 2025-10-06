@@ -26,19 +26,36 @@ export async function POST(req: Request) {
     const dryRun = url.searchParams.get('dryRun') === 'true'
     const supabase = getAdminSupabase()
 
-    // 1) Get French deck IDs (French 01 to French 06 for now)
-    const frenchDeckNames = [
-      "12. French 01", "13. French 02", "14. French 03", 
-      "15. French 04", "16. French 05", "17. French 06"
-      // "18. French 07", "19. French 08", "20. French 09", "21. French 10", 
-      // "22. French 11", "23. French 12", "24. French 13", "25. French 14", 
-      // "26. French 15", "27. French 16"
-    ]
+    // 1) Get French deck IDs by language and new naming pattern; fallback to legacy names
+    let decks: Array<{ id: string; name: string; language_a_name: string; language_b_name: string }> | null = null
+    {
+      const { data: byPattern, error: byPatternErr } = await supabase
+        .from('vocabulary_decks')
+        .select('id, name, language_a_name, language_b_name')
+        .eq('language_a_name', 'French')
+        .eq('language_b_name', 'English')
+        .ilike('name', 'French (by frequency) - Level %')
+      if (!byPatternErr && byPattern && byPattern.length > 0) {
+        decks = byPattern
+      }
+    }
 
-    const { data: decks, error: decksErr } = await supabase
-      .from('vocabulary_decks')
-      .select('id, name, language_a_name, language_b_name')
-      .in('name', frenchDeckNames)
+    if (!decks || decks.length === 0) {
+      const legacyNames = [
+        '12. French 01', '13. French 02', '14. French 03', '15. French 04',
+        '16. French 05', '17. French 06', '18. French 07', '19. French 08',
+        '20. French 09', '21. French 10', '22. French 11', '23. French 12',
+        '24. French 13', '25. French 14', '26. French 15', '27. French 16'
+      ]
+      const { data: byLegacy, error: decksErr } = await supabase
+        .from('vocabulary_decks')
+        .select('id, name, language_a_name, language_b_name')
+        .in('name', legacyNames)
+      if (decksErr) {
+        return NextResponse.json({ error: decksErr.message }, { status: 500 })
+      }
+      decks = byLegacy || []
+    }
 
     if (decksErr) {
       return NextResponse.json({ error: decksErr.message }, { status: 500 })

@@ -36,27 +36,48 @@ export async function GET(request: NextRequest) {
     console.log('API: User verified:', user.id)
     const userId = user.id
 
-    // Simplified approach: Get all French vocabulary from 16 French decks
-    console.log('API: Fetching all French vocabulary from 16 decks...')
-    
-    const frenchDeckNames = [
-      '12. French 01', '13. French 02', '14. French 03', '15. French 04',
-      '16. French 05', '17. French 06', '18. French 07', '19. French 08',
-      '20. French 09', '21. French 10', '22. French 11', '23. French 12',
-      '24. French 13', '25. French 14', '26. French 15', '27. French 16'
-    ]
-    
-    // First get French deck IDs
-    const { data: frenchDecks, error: deckError } = await supabaseAdmin
-      .from('vocabulary_decks')
-      .select('id, name')
-      .in('name', frenchDeckNames)
-    
-    if (deckError || !frenchDecks || frenchDecks.length === 0) {
-      console.error('API: Failed to fetch French deck IDs:', deckError)
+    // Fetch all French decks by language and new naming pattern first
+    console.log('API: Fetching French decks by language and pattern...')
+    let frenchDecks: Array<{ id: string; name: string }>|null = null
+    {
+      const { data: byPattern, error: byPatternErr } = await supabaseAdmin
+        .from('vocabulary_decks')
+        .select('id, name')
+        .eq('language_a_name', 'French')
+        .eq('language_b_name', 'English')
+        .ilike('name', 'French (by frequency) - Level %')
+      if (byPatternErr) {
+        console.error('API: Error fetching French decks by pattern:', byPatternErr)
+      } else if (byPattern && byPattern.length > 0) {
+        frenchDecks = byPattern
+      }
+    }
+
+    // Fallback to legacy hard-coded names if new names aren't present yet
+    if (!frenchDecks || frenchDecks.length === 0) {
+      console.log('API: Falling back to legacy French deck names list')
+      const legacyNames = [
+        '12. French 01', '13. French 02', '14. French 03', '15. French 04',
+        '16. French 05', '17. French 06', '18. French 07', '19. French 08',
+        '20. French 09', '21. French 10', '22. French 11', '23. French 12',
+        '24. French 13', '25. French 14', '26. French 15', '27. French 16'
+      ]
+      const { data: byLegacy, error: byLegacyErr } = await supabaseAdmin
+        .from('vocabulary_decks')
+        .select('id, name')
+        .in('name', legacyNames)
+      if (byLegacyErr) {
+        console.error('API: Error fetching legacy French deck names:', byLegacyErr)
+      } else {
+        frenchDecks = byLegacy || []
+      }
+    }
+
+    if (!frenchDecks || frenchDecks.length === 0) {
+      console.error('API: No French decks found by pattern or legacy names')
       return NextResponse.json({ error: 'Failed to fetch French decks' }, { status: 500 })
     }
-    
+
     const frenchDeckIds = frenchDecks.map(d => d.id)
     console.log('API: Found French deck IDs:', frenchDeckIds.length, 'decks')
     console.log('API: Deck names:', frenchDecks.map(d => d.name))

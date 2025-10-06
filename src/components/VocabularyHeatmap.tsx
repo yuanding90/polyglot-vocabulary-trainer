@@ -152,6 +152,53 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
         ctx.fillRect(x, y, layout.pixelSize, layout.pixelSize)
       }
     })
+    // Draw translucent tier bands (Core / Daily / Advanced / Rare)
+    // Bands are computed as proportions of total rows: 3/16, 3/16, 4/16, 6/16
+    const rowsTotal = layout.rows
+    if (rowsTotal > 0) {
+      const rowsCore = Math.max(1, Math.round(rowsTotal * 3 / 16))
+      const rowsDaily = Math.max(1, Math.round(rowsTotal * 3 / 16))
+      const rowsAdvanced = Math.max(1, Math.round(rowsTotal * 4 / 16))
+      const rowsRare = Math.max(0, rowsTotal - (rowsCore + rowsDaily + rowsAdvanced))
+
+      const bands = [
+        { label: 'Core', rows: rowsCore },
+        { label: 'Daily', rows: rowsDaily },
+        { label: 'Advanced', rows: rowsAdvanced },
+        { label: 'Rare', rows: rowsRare }
+      ].filter(b => b.rows > 0)
+
+      let rowCursor = 0
+      // Subtle colored overlays per tier
+      const bandColors = [
+        'rgba(16,185,129,0.06)',  // Core: emerald
+        'rgba(59,130,246,0.06)',  // Daily: blue
+        'rgba(251,146,60,0.06)',  // Advanced: orange
+        'rgba(168,85,247,0.06)'   // Rare: purple
+      ]
+      const labelColor = '#374151' // gray-700
+      const labelShadow = 'rgba(255,255,255,0.7)'
+
+      for (let i = 0; i < bands.length; i++) {
+        const band = bands[i]
+        const y = rowCursor * layout.pixelSize
+        const h = band.rows * layout.pixelSize
+        // Fill band area
+        ctx.globalAlpha = 1
+        ctx.fillStyle = bandColors[i] || 'rgba(0,0,0,0.04)'
+        ctx.fillRect(0, y, layout.width, h)
+        // Label
+        ctx.fillStyle = labelShadow
+        ctx.font = 'bold 12px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif'
+        ctx.textBaseline = 'top'
+        ctx.fillText(band.label, 9, y + 7)
+        ctx.fillStyle = labelColor
+        ctx.fillText(band.label, 8, y + 6)
+
+        rowCursor += band.rows
+      }
+    }
+
     ctx.restore()
   // colors is stable; calculateLayout depends on data length and container, captured via dimensions
   }, [data, dimensions])
@@ -171,7 +218,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
       {/* Subtitle only; section title is rendered by the dashboard container */}
       <div className="mb-4 flex flex-col gap-2">
         <div>
-          <p className="text-sm text-gray-600">The full language lexicon by frequency — colors highlight where you are in your learning journey.</p>
+          <p className="text-sm text-gray-600">The full language lexicon by frequency — colors highlight where you are in your learning journey. (French only, other languages to come soon!)</p>
         </div>
         
         {/* Legend with counts */}
@@ -217,6 +264,26 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
             imageRendering: 'pixelated'
           }}
         />
+      </div>
+      
+      {/* Tier legend (Core/Daily/Advanced/Rare) */}
+      <div className="mt-2 flex flex-wrap gap-3 text-xs">
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(16,185,129,0.2)' }}></div>
+          <span>Core</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(59,130,246,0.2)' }}></div>
+          <span>Daily</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(251,146,60,0.2)' }}></div>
+          <span>Advanced</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-3 h-3 rounded" style={{ backgroundColor: 'rgba(168,85,247,0.2)' }}></div>
+          <span>Rare</span>
+        </div>
       </div>
       
       {/* Footer info removed per request */}
