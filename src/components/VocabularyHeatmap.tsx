@@ -151,6 +151,7 @@ const VocabularyHeatmap: React.FC<VocabularyHeatmapProps> = ({ data, className =
       }
     })
     ctx.restore()
+  // colors is stable; calculateLayout depends on data length and container, captured via dimensions
   }, [data, dimensions])
 
   if (!data.length) {
