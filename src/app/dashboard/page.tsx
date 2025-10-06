@@ -9,6 +9,7 @@ import { DailySummaryManager } from '@/lib/daily-summary'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ActivityHeatmap } from '@/components/ActivityHeatmap'
+import VocabularyHeatmap from '@/components/VocabularyHeatmap'
 import { Progress } from '@/components/ui/progress'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -28,6 +29,7 @@ import {
   Ear,
   EyeOff as UnseenIcon,
   BookOpen as LearningIcon,
+  BarChart3,
   TrendingUp as StrengtheningIcon,
   CheckCircle as MasteredIcon,
   SlidersHorizontal
@@ -71,6 +73,10 @@ export default function Dashboard() {
     streak: number
     series: { date: string; total: number }[]
   } | null>(null)
+
+  // Vocabulary heatmap data
+  const [heatmapLoading, setHeatmapLoading] = useState(false)
+  const [heatmapData, setHeatmapData] = useState<any[]>([])
   // Deck filter state by language NAMES (dedupe fr vs fr-FR)
   const [filterL2Name, setFilterL2Name] = useState<string | null>(null)
   const [filterL1Name, setFilterL1Name] = useState<string | null>(null)
@@ -264,6 +270,9 @@ export default function Dashboard() {
 
       // Load session statistics
       await loadSessionStats(userId)
+      
+      // Load vocabulary heatmap data
+      await loadVocabularyHeatmap()
 
     } catch (error) {
       console.error('Error loading dashboard data:', error)
@@ -334,6 +343,48 @@ export default function Dashboard() {
       updateSessionStats(stats)
     } catch (error) {
       console.error('Error loading session stats:', error)
+    }
+  }, [])
+
+  const loadVocabularyHeatmap = useCallback(async () => {
+    try {
+      console.log('🔍 Dashboard: Starting vocabulary heatmap load...')
+      setHeatmapLoading(true)
+      
+      // Get the current session token
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        console.error('❌ Dashboard: No access token available')
+        return
+      }
+      
+      console.log('🔍 Dashboard: Making API call to /api/vocabulary-heatmap...')
+      const response = await fetch('/api/vocabulary-heatmap', {
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      console.log('🔍 Dashboard: API response status:', response.status)
+      
+      if (response.ok) {
+        const result = await response.json()
+        console.log('✅ Dashboard: Heatmap data received:', {
+          totalWords: result.totalWords,
+          wordsWithProgress: result.mappedWords,
+          wordsWithoutProgress: result.unmappedWords,
+          sampleData: result.data?.slice(0, 3)
+        })
+        setHeatmapData(result.data || [])
+      } else {
+        const errorText = await response.text()
+        console.error('❌ Dashboard: Failed to fetch vocabulary heatmap data:', response.status, response.statusText, errorText)
+      }
+    } catch (error) {
+      console.error('❌ Dashboard: Error loading vocabulary heatmap:', error)
+    } finally {
+      setHeatmapLoading(false)
     }
   }, [])
 
@@ -1102,6 +1153,26 @@ export default function Dashboard() {
             <div className="mt-4">
               {activity && <ActivityHeatmap series={activity.series} />}
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Vocabulary Heatmap Section */}
+        <Card className="mb-8 card-enhanced">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <BarChart3 className="h-5 w-5 text-purple-600" />
+              Vocabulary Mastery Overview
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0 px-4 pb-4">
+            {heatmapLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                <span className="ml-2 text-gray-600">Loading vocabulary data...</span>
+              </div>
+            ) : (
+              <VocabularyHeatmap data={heatmapData} />
+            )}
           </CardContent>
         </Card>
       </div>

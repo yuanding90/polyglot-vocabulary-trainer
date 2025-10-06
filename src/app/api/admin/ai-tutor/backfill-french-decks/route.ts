@@ -26,14 +26,13 @@ export async function POST(req: Request) {
     const dryRun = url.searchParams.get('dryRun') === 'true'
     const supabase = getAdminSupabase()
 
-    // 1) Get French deck IDs (French 01 to French 16, excluding Batch 4)
-    // For testing: start with just French 01
+    // 1) Get French deck IDs (French 01 to French 06 for now)
     const frenchDeckNames = [
-      "12. French 01"
-      // "13. French 02", "14. French 03", "15. French 04",
-      // "16. French 05", "17. French 06", "18. French 07", "19. French 08",
-      // "20. French 09", "21. French 10", "22. French 11", "23. French 12",
-      // "24. French 13", "25. French 14", "26. French 15", "27. French 16"
+      "12. French 01", "13. French 02", "14. French 03", 
+      "15. French 04", "16. French 05", "17. French 06"
+      // "18. French 07", "19. French 08", "20. French 09", "21. French 10", 
+      // "22. French 11", "23. French 12", "24. French 13", "25. French 14", 
+      // "26. French 15", "27. French 16"
     ]
 
     const { data: decks, error: decksErr } = await supabase
@@ -72,36 +71,54 @@ export async function POST(req: Request) {
       deckById.set(d.id, { name: d.name, language_a_name: d.language_a_name, language_b_name: d.language_b_name })
     }
 
-    // 4) Get unique word IDs and check for existing AI content
-    const uniqueWordIds = Array.from(new Set(deckVocab.map(dv => dv.vocabulary_id)))
-    console.log(`📚 Found ${uniqueWordIds.length} unique words across all French decks`)
-
-    // Check which words already have AI content
-    const { data: existingAI, error: aiErr } = await supabase
-      .from('word_ai_content')
-      .select('vocabulary_id')
-      .in('vocabulary_id', uniqueWordIds)
-      .eq('module_type', 'ai_tutor_pack')
-      .eq('status', 'ready')
-      .eq('is_latest', true)
-
-    if (aiErr) {
-      return NextResponse.json({ error: aiErr.message }, { status: 500 })
-    }
-
-    const existingAIWordIds = new Set((existingAI || []).map(item => item.vocabulary_id))
-    const wordsNeedingAI = uniqueWordIds.filter(id => !existingAIWordIds.has(id))
+    // 4) Process each deck individually to find words needing AI content
+    const wordsNeedingAI: Array<{ wordId: number; deckId: string; deckName: string }> = []
+    const existingAIWordIds = new Set()
     
-    // For testing: limit to first 5 words
-    const testWords = wordsNeedingAI.slice(0, 5)
-    console.log(`🧪 TEST MODE: Processing only first ${testWords.length} words instead of all ${wordsNeedingAI.length}`)
+    console.log(`📚 Processing ${decks.length} French decks individually`)
+    
+    // Check each deck individually for existing AI content
+    for (const deck of decks) {
+      const { data: deckWords } = await supabase
+        .from('deck_vocabulary')
+        .select('vocabulary_id')
+        .eq('deck_id', deck.id)
+      
+      if (deckWords && deckWords.length > 0) {
+        const deckWordIds = deckWords.map(dw => dw.vocabulary_id)
+        console.log(`🔍 Deck ${deck.name}: Found ${deckWordIds.length} words`)
+        
+        const { data: existingAI } = await supabase
+          .from('word_ai_content')
+          .select('vocabulary_id')
+          .in('vocabulary_id', deckWordIds)
+          .eq('module_type', 'ai_tutor_pack')
+          .eq('l1_language', deck.language_b_name)
+          .eq('status', 'ready')
+          .eq('is_latest', true)
+        
+        const existingForDeck = new Set((existingAI || []).map(item => item.vocabulary_id))
+        const wordsNeedingForDeck = deckWordIds.filter(id => !existingForDeck.has(id))
+        
+        console.log(`✅ Deck ${deck.name}: ${existingForDeck.size} words have AI content, ${wordsNeedingForDeck.length} need AI content`)
+        
+        // Add words that need AI content for this deck
+        wordsNeedingForDeck.forEach(wordId => {
+          wordsNeedingAI.push({ wordId, deckId: deck.id, deckName: deck.name })
+          existingAIWordIds.add(wordId)
+        })
+      }
+    }
+    
+    // Use all words that need AI content
+    const testWords = wordsNeedingAI
     
     console.log(`✅ ${existingAIWordIds.size} words already have AI content`)
     console.log(`🔄 ${wordsNeedingAI.length} words need AI content`)
 
     if (wordsNeedingAI.length === 0) {
       return NextResponse.json({ 
-        totalWords: uniqueWordIds.length,
+        totalWords: existingAIWordIds.size,
         alreadyHaveAI: existingAIWordIds.size,
         needsAI: 0,
         attempted: 0,
@@ -121,15 +138,8 @@ export async function POST(req: Request) {
     let pending = 0
     let errors = 0
 
-    async function processWord(wordId: number) {
-      // Find which deck this word belongs to (for language info)
-      const wordDeckEntry = deckVocab?.find(dv => dv.vocabulary_id === wordId)
-      if (!wordDeckEntry) {
-        errors++
-        return
-      }
-
-      const deck = deckById.get(wordDeckEntry.deck_id)
+    async function processWord(wordId: number, deckId: string) {
+      const deck = deckById.get(deckId)
       if (!deck) {
         errors++
         return
@@ -197,11 +207,11 @@ export async function POST(req: Request) {
     const workers = Array.from({ length: concurrency }).map(async () => {
       while (idx < testWords.length) {
         const current = idx++
-        const wordId = testWords[current]
+        const wordData = testWords[current]
         
-        console.log(`📝 Processing word ${current + 1}/${totalWords} (ID: ${wordId})`)
+        console.log(`📝 Processing word ${current + 1}/${totalWords} (ID: ${wordData.wordId}, Deck: ${wordData.deckName})`)
         
-        await processWord(wordId)
+        await processWord(wordData.wordId, wordData.deckId)
         
         processedCount++
         const progress = ((processedCount / totalWords) * 100).toFixed(1)
@@ -213,8 +223,28 @@ export async function POST(req: Request) {
     })
     await Promise.all(workers)
 
+    // Calculate per-deck statistics
+    const deckStats = await Promise.all(decks.map(async (deck) => {
+      const { data: deckWords } = await supabase
+        .from('deck_vocabulary')
+        .select('vocabulary_id')
+        .eq('deck_id', deck.id)
+      
+      const deckWordIds = (deckWords || []).map(dw => dw.vocabulary_id)
+      const deckWordsWithAI = deckWordIds.filter(id => existingAIWordIds.has(id))
+      
+      return {
+        id: deck.id,
+        name: deck.name,
+        totalWords: deckWordIds.length,
+        wordsWithAI: deckWordsWithAI.length,
+        wordsNeedingAI: deckWordIds.length - deckWordsWithAI.length,
+        completionPercentage: deckWordIds.length > 0 ? Math.round((deckWordsWithAI.length / deckWordIds.length) * 100) : 0
+      }
+    }))
+
     return NextResponse.json({
-      totalWords: uniqueWordIds.length,
+      totalWords: existingAIWordIds.size + wordsNeedingAI.length,
       alreadyHaveAI: existingAIWordIds.size,
       needsAI: wordsNeedingAI.length,
       attempted,
@@ -222,7 +252,8 @@ export async function POST(req: Request) {
       pending,
       errors,
       dryRun,
-      frenchDecks: decks.map(d => ({ id: d.id, name: d.name }))
+      overallCompletionPercentage: Math.round((existingAIWordIds.size / (existingAIWordIds.size + wordsNeedingAI.length)) * 100),
+      frenchDecks: deckStats
     })
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Unexpected error'
