@@ -24,6 +24,10 @@ export async function POST(req: Request) {
 
     const url = new URL(req.url)
     const dryRun = url.searchParams.get('dryRun') === 'true'
+    const levelMinParam = url.searchParams.get('levelMin')
+    const levelMaxParam = url.searchParams.get('levelMax')
+    const levelMin = levelMinParam ? parseInt(levelMinParam, 10) : null
+    const levelMax = levelMaxParam ? parseInt(levelMaxParam, 10) : null
     const supabase = getAdminSupabase()
 
     // 1) Get French deck IDs by language and new naming pattern; fallback to legacy names
@@ -55,6 +59,27 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: decksErr.message }, { status: 500 })
       }
       decks = byLegacy || []
+    }
+
+    // Optional level filter for names like "French (by frequency) - Level N" or legacy "French 0N"
+    const levelFromName = (name: string | null | undefined): number | null => {
+      const s = name || ''
+      let m = s.match(/French \(by frequency\) - Level\s*(\d+)/i)
+      if (m) return parseInt(m[1], 10)
+      m = s.match(/French\s*0?(\d{1,2})\b/i)
+      if (m) return parseInt(m[1], 10)
+      return null
+    }
+    if (decks && (levelMin !== null || levelMax !== null)) {
+      const before = decks.length
+      decks = decks.filter(d => {
+        const lvl = levelFromName(d.name)
+        if (lvl === null) return false
+        if (levelMin !== null && lvl < levelMin) return false
+        if (levelMax !== null && lvl > levelMax) return false
+        return true
+      })
+      console.log(`Filtered decks by level range [${levelMin ?? '-'}, ${levelMax ?? '-'}]: ${before} -> ${decks.length}`)
     }
 
     

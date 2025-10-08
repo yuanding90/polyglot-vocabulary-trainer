@@ -224,85 +224,51 @@ export async function GET(request: NextRequest) {
       console.error('API: Exception while fetching frequency mappings:', error)
     }
 
-    // Fetch user progress data (only for words that have actual progress)
-    console.log('API: Fetching user progress for', vocabularyIds.length, 'words...')
-    console.log('API: Using user ID:', userId)
-    console.log('API: Sample vocabulary IDs:', vocabularyIds.slice(0, 5))
-    console.log('API: French deck IDs being processed:', frenchDeckIds)
-    
+    // Fetch user progress data (paginate to avoid 1000-row cap) and filter by heatmap vocabulary IDs
+    console.log('API: Fetching user progress (paginated) for user:', userId, 'and', vocabularyIds.length, 'lexicon words')
     type ProgressRow = { word_id: number; deck_id: string | number; interval: number; repetitions: number; again_count: number; next_review_date?: string }
     let userProgressData: ProgressRow[] = []
     try {
-      const { data: progressResult, error: progressError } = await supabaseAdmin
-        .from('user_progress')
-        .select(`
-          word_id,
-          deck_id,
-          interval,
-          repetitions,
-          again_count,
-          next_review_date
-        `)
-        .eq('user_id', userId)
-        .in('deck_id', frenchDeckIds) // Only get progress from French decks
+      const vocabularyIdSet = new Set<number>(vocabularyIds)
+      const pageSize = 1000
+      let from = 0
+      let totalFetched = 0
+      while (true) {
+        const { data: progressBatch, error: batchErr } = await supabaseAdmin
+          .from('user_progress')
+          .select(`
+            word_id,
+            deck_id,
+            interval,
+            repetitions,
+            again_count,
+            next_review_date
+          `)
+          .eq('user_id', userId)
+          .order('word_id', { ascending: true })
+          .range(from, from + pageSize - 1)
 
-      console.log('API: User progress query result:', {
-        dataLength: progressResult?.length || 0,
-        error: progressError,
-        hasError: !!progressError
-      })
-
-      if (progressError) {
-        console.log('API: User progress query failed:', progressError.message)
-        console.log('API: Full error:', progressError)
-        userProgressData = []
+        if (batchErr) {
+          console.log(`API: User progress page error at offset ${from}:`, batchErr.message)
+          break
+        }
+        const rows = (progressBatch || []) as ProgressRow[]
+        totalFetched += rows.length
+        // Keep only progress for words we will render in the heatmap
+        for (const r of rows) {
+          if (vocabularyIdSet.has(r.word_id)) userProgressData.push(r)
+        }
+        if (rows.length < pageSize) break
+        from += pageSize
+      }
+      console.log('API: User progress fetched (paginated):', userProgressData.length, 'rows for heatmap; total fetched:', totalFetched)
+      if (userProgressData.length > 0) {
+        console.log('API: Sample progress row:', userProgressData[0])
       } else {
-        let usedFallback = false
-        let result: ProgressRow[] = (progressResult || []) as ProgressRow[]
-        if (!result || result.length === 0) {
-          console.log('API: Zero progress rows with French deck filter; retrying without deck filter...')
-          const { data: fallbackResult, error: fallbackError } = await supabaseAdmin
-            .from('user_progress')
-            .select(`
-              word_id,
-              deck_id,
-              interval,
-              repetitions,
-              again_count,
-              next_review_date
-            `)
-            .eq('user_id', userId)
-            // No deck filter and no word_id filter as a last resort to detect any progress
-
-          if (fallbackError) {
-            console.log('API: Fallback user progress query failed:', fallbackError.message)
-          } else {
-            usedFallback = true
-            result = (fallbackResult || []) as ProgressRow[]
-          }
-        }
-
-        userProgressData = result
-        console.log('API: User progress fetched:', userProgressData.length, 'words with progress', usedFallback ? '(fallback used)' : '')
-        if (userProgressData.length > 0) {
-          console.log('API: Sample progress record:', userProgressData[0])
-          console.log('API: Progress mastery levels:', userProgressData.map(p => ({
-            word_id: p.word_id,
-            deck_id: p.deck_id,
-            interval: p.interval,
-            repetitions: p.repetitions,
-            again_count: p.again_count
-          })).slice(0, 3))
-          
-          // Show which French decks have progress
-          const decksWithProgress = [...new Set(userProgressData.map(p => p.deck_id))]
-          console.log('API: French decks with progress:', decksWithProgress)
-        } else {
-          console.log('API: No user progress found for user:', userId)
-        }
+        console.log('API: No user progress rows intersect heatmap vocabulary for user:', userId)
       }
     } catch (error) {
-      console.log('API: User progress query failed with exception:', error)
+      console.log('API: Exception while paginating user progress:', error)
       userProgressData = []
     }
 

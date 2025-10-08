@@ -4,10 +4,9 @@
 WITH french_decks AS (
   SELECT id, name, language_a_name, language_b_name
   FROM vocabulary_decks 
-  WHERE name IN (
-    '12. French 01', '13. French 02', '14. French 03', 
-    '15. French 04', '16. French 05', '17. French 06'
-  )
+  WHERE language_a_name = 'French' 
+    AND language_b_name = 'English'
+    AND name LIKE 'French (by frequency) - Level %'
 ),
 deck_word_counts AS (
   SELECT 
